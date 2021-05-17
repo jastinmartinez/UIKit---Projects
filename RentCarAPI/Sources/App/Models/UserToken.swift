@@ -10,7 +10,7 @@ import Vapor
 
 final class UserToken: ContenModel
 {
-   static var schema: String = "user_token"
+   static var schema: String = "user_tokens"
     
     @ID(key: .id)
     var id: UUID?

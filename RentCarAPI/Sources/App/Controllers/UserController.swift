@@ -12,9 +12,8 @@ struct UserController: RouteCollection
 {
     func boot(routes: RoutesBuilder) throws {
         
-        let userRoute = routes.grouped("users")
-        userRoute.post("signup", use: signUp)
-        userRoute.post("signin", use: signIn)
+        routes.post("signup", use: signUp)
+        routes.grouped(User.authenticator()).post("sign", use: signIn)
     }
     
     func signUp(req: Request) throws -> EventLoopFuture<User>  {
