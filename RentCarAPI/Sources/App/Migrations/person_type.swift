@@ -17,4 +17,7 @@ struct PersonType: Migration  {
             .field("person_type_state",.bool,.required)
             .create()
     }
+    func revert(on database: Database) -> EventLoopFuture<Void> {
+        database.schema("person_type").delete()
+    }
 }

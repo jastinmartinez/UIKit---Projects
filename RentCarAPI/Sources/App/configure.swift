@@ -9,10 +9,10 @@ public func configure(_ app: Application) throws {
     // app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
 
     app.databases.use(.postgres(
-        hostname: "localhost", username: "mac", password: "",database: "mac"
+        hostname: "localhost", username: "mac", password: "",database: "RentCar"
     ), as: .psql)
 
-    app.migrations.add(VehicleType())
+    app.migrations.add(User.Table())
 
 
     app.views.use(.leaf)
