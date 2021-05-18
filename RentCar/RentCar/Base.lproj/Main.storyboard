@@ -1,24 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Authentication View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="Authentication View Controller" customClass="AuthenticationViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="honda" translatesAutoresizingMaskIntoConstraints="NO" id="IiZ-hw-7wR">
+                                <rect key="frame" x="0.0" y="576" width="428" height="340"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="rqj-4y-sS2">
+                                <rect key="frame" x="20" y="255" width="388" height="193"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="jastin@gmail.com" borderStyle="roundedRect" placeholder="Correo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g8n-0U-8Wm">
+                                        <rect key="frame" x="30" y="0.0" width="328" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                    </textField>
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Jastin" borderStyle="roundedRect" placeholder="Usuario" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8he-WY-dpM">
+                                        <rect key="frame" x="30" y="43.666666666666686" width="328" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Admin001" borderStyle="roundedRect" placeholder="Contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U1i-bN-RDJ">
+                                        <rect key="frame" x="30" y="53" width="328" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                    </textField>
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Admin001" borderStyle="roundedRect" placeholder="Confirmar Contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JTk-XJ-jy1">
+                                        <rect key="frame" x="30" y="96.666666666666686" width="328" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                    </textField>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="usd-Uw-2zq">
+                                        <rect key="frame" x="169.66666666666666" y="106" width="51" height="34"/>
+                                        <connections>
+                                            <action selector="authSwithPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="mWL-Q9-kt1"/>
+                                        </connections>
+                                    </switch>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOs-xx-L7m" customClass="RoundedButton" customModule="RentCar" customModuleProvider="target">
+                                        <rect key="frame" x="100" y="159" width="188" height="34"/>
+                                        <color key="backgroundColor" red="0.015686274509803921" green="0.396078431372549" blue="0.50980392156862742" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Iniciar Sesion">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zKm-jA-PIV"/>
+                                            <segue destination="g3x-iY-tUn" kind="show" identifier="homePage" id="G8Z-bN-Rp7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="U1i-bN-RDJ" firstAttribute="leading" secondItem="rqj-4y-sS2" secondAttribute="leading" constant="30" id="ByF-UY-Kni"/>
+                                    <constraint firstItem="g8n-0U-8Wm" firstAttribute="leading" secondItem="rqj-4y-sS2" secondAttribute="leading" constant="30" id="CQv-o0-cr6"/>
+                                    <constraint firstItem="yOs-xx-L7m" firstAttribute="centerX" secondItem="rqj-4y-sS2" secondAttribute="centerX" id="Ccu-Di-4QB"/>
+                                    <constraint firstAttribute="trailing" secondItem="yOs-xx-L7m" secondAttribute="trailing" constant="100" id="GKU-q8-FIQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="JTk-XJ-jy1" secondAttribute="trailing" constant="30" id="SQT-64-M8m"/>
+                                    <constraint firstAttribute="trailing" secondItem="8he-WY-dpM" secondAttribute="trailing" constant="30" id="XLO-qm-x4k"/>
+                                    <constraint firstAttribute="trailing" secondItem="U1i-bN-RDJ" secondAttribute="trailing" constant="30" id="Yc2-XP-vJi"/>
+                                    <constraint firstItem="yOs-xx-L7m" firstAttribute="leading" secondItem="rqj-4y-sS2" secondAttribute="leading" constant="100" id="YdN-zb-Tee"/>
+                                    <constraint firstItem="JTk-XJ-jy1" firstAttribute="leading" secondItem="rqj-4y-sS2" secondAttribute="leading" constant="30" id="f8i-sI-2EB"/>
+                                    <constraint firstItem="8he-WY-dpM" firstAttribute="leading" secondItem="rqj-4y-sS2" secondAttribute="leading" constant="30" id="fYJ-K1-31P"/>
+                                    <constraint firstAttribute="trailing" secondItem="g8n-0U-8Wm" secondAttribute="trailing" constant="30" id="lPW-p0-4Os"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JMB Rental Car" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZx-6d-rp5">
+                                <rect key="frame" x="20" y="161" width="388" height="41"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="30"/>
+                                <color key="textColor" red="0.015686274509803921" green="0.396078431372549" blue="0.50980392156862742" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="IiZ-hw-7wR" secondAttribute="bottom" constant="10" id="EOL-O5-dEU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xZx-6d-rp5" secondAttribute="trailing" constant="20" id="Em3-Jp-zXz"/>
+                            <constraint firstItem="IiZ-hw-7wR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MhO-XG-hWM"/>
+                            <constraint firstItem="xZx-6d-rp5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="SUN-ev-VtE"/>
+                            <constraint firstItem="rqj-4y-sS2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="YHH-N0-eze"/>
+                            <constraint firstItem="xZx-6d-rp5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="117" id="aBb-Mv-D44"/>
+                            <constraint firstItem="rqj-4y-sS2" firstAttribute="top" secondItem="xZx-6d-rp5" secondAttribute="bottom" constant="53" id="tJe-cW-jZi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rqj-4y-sS2" secondAttribute="trailing" constant="20" id="uob-uZ-3CK"/>
+                            <constraint firstItem="IiZ-hw-7wR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="yF5-QV-oG3"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="fb8-bn-XnG"/>
+                    <connections>
+                        <outlet property="authButton" destination="yOs-xx-L7m" id="GOU-ZP-eoU"/>
+                        <outlet property="confirmPasswordTextField" destination="JTk-XJ-jy1" id="kDd-Ui-hAI"/>
+                        <outlet property="emailTextField" destination="g8n-0U-8Wm" id="8t6-1l-idp"/>
+                        <outlet property="passwordTextField" destination="U1i-bN-RDJ" id="TYA-09-hIT"/>
+                        <outlet property="userNameTextField" destination="8he-WY-dpM" id="BwN-vz-aea"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="190.65420560747663" y="-9.0712742980561565"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="agK-1K-gLc">
+            <objects>
+                <viewController id="g3x-iY-tUn" userLabel="Home View Controller" customClass="HomeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8jf-4j-JYr">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="R26-Cx-eQn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="J0T-BS-exH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x9S-p5-Gbs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1133" y="30"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="honda" width="512" height="340"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

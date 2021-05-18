@@ -14,6 +14,7 @@ struct UserController: RouteCollection
         
         routes.post("signup", use: signUp)
         routes.grouped(User.authenticator()).post("sign", use: signIn)
+        routes.grouped(UserToken.authenticator()).get("me", use: verifyToken)
     }
     
     func signUp(req: Request) throws -> EventLoopFuture<User>  {
@@ -34,7 +35,12 @@ struct UserController: RouteCollection
         return user.save(on: req.db).map{ user }
     }
     
-    func signIn(req: Request) throws -> User {
-        try req.auth.require(User.self)
+    func signIn(req: Request) throws -> EventLoopFuture<UserToken> {
+        let user = try req.auth.require(User.self)
+        let token = try user.generateToken()
+        return token.save(on: req.db).map { token }
+    }
+    func verifyToken(req: Request) throws -> User {
+       try req.auth.require(User.self)
     }
 }

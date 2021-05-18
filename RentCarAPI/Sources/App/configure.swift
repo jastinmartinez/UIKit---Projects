@@ -13,9 +13,7 @@ public func configure(_ app: Application) throws {
     ), as: .psql)
 
     app.migrations.add(User.Table())
-
-
-    app.views.use(.leaf)
+    app.migrations.add(UserToken.Table())
 
     // register routes
     try routes(app)

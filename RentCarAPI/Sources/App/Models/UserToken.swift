@@ -18,13 +18,23 @@ final class UserToken: ContenModel
     @Field(key: "value")
     var value: String
     
-    @Field(key: "user_id")
+    @Parent(key: "user_id")
     var user: User
     
-    init() {}
-    init(id: UUID? = nil, value: String,UserID: User.IDValue) {
+    init() { }
+    
+    init(id: UUID? = nil, value: String, UserID: User.IDValue) {
         self.id = id
         self.value = value
-        self.user.id = UserID
+        self.$user.id = UserID
+    }
+}
+
+extension UserToken: ModelTokenAuthenticatable {
+    static let valueKey = \UserToken.$value
+    static let userKey = \UserToken.$user
+ 
+    var isValid: Bool {
+        true
     }
 }
