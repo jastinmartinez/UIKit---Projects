@@ -8,17 +8,19 @@
 import Foundation
 import Fluent
 
-struct CombustibleType: Migration {
+extension CombustibleType {
     
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("combustible_type")
-            .id()
-            .field("combustible_type_description", .string, .required)
-            .field("combustible_type_state",.bool, .required)
-            .create()
-    }
-    
-    func revert(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("combustible_type").delete()
+    struct Migration: Fluent.Migration {
+        func prepare(on database: Database) -> EventLoopFuture<Void> {
+            database.schema("combustible_type")
+                .id()
+                .field("combustible_type_description", .string, .required)
+                .field("combustible_type_state",.bool, .required)
+                .create()
+        }
+        
+        func revert(on database: Database) -> EventLoopFuture<Void> {
+            database.schema("combustible_type").delete()
+        }
     }
 }

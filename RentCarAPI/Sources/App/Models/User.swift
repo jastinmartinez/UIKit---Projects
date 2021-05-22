@@ -26,7 +26,7 @@ final class User: ContenModel {
     
     init() {
     }
-     init(id: UUID? = nil, name: String, email: String,passwordHash: String)
+    init(id: UUID? = nil, name: String, email: String,passwordHash: String)
     {
         self.id = id
         self.name = name
@@ -35,9 +35,8 @@ final class User: ContenModel {
     }
 }
 
-// MARK: Creaation parameters
 extension User {
-    struct Create: Content {
+    struct SignUp: Content {
         var name: String
         var email: String
         var password: String
@@ -45,12 +44,17 @@ extension User {
     }
 }
 
-// MARK: Validation
+extension User {
+    struct SignIn: Content {
+        var email: String
+        var password: String
+    }
+}
 
 extension User: ModelAuthenticatable {
     static let usernameKey = \User.$email
     static let passwordHashKey = \User.$passwordHash
-    
+
     func verify(password: String) throws -> Bool {
         try Bcrypt.verify(password, created: self.passwordHash)
     }
@@ -58,8 +62,9 @@ extension User: ModelAuthenticatable {
 
 extension User {
     func generateToken() throws -> UserToken {
-        try .init(value: [UInt8].random(count: 16).base64, UserID: self.requireID())
+        try .init(
+            value: [UInt8].random(count: 16).base64,
+            userID: self.requireID()
+        )
     }
 }
-
-

@@ -7,6 +7,8 @@
 
 import Foundation
 import Vapor
+import Fluent
+
 
 struct UserController: RouteCollection
 {
@@ -14,33 +16,40 @@ struct UserController: RouteCollection
         
         routes.post("signup", use: signUp)
         routes.grouped(User.authenticator()).post("sign", use: signIn)
-        routes.grouped(UserToken.authenticator()).get("me", use: verifyToken)
+        routes.grouped(UserToken.authenticator()).get("me", use: me)
+        
     }
     
-    func signUp(req: Request) throws -> EventLoopFuture<User>  {
+    func signUp(req: Request) throws -> EventLoopFuture<UserToken>  {
         
-        try User.Create.validate(content: req)
+        try User.SignUp.validate(content: req)
         
-        let create = try req.content.decode(User.Create.self)
-        
-        guard create.password == create.confirmPassword else {
-            throw Abort(.badRequest, reason: "Contraseñas no coinciden")
-        }
+        let create = try req.content.decode(User.SignUp.self)
         
         let user = try User (
             name: create.name,
             email: create.email,
             passwordHash: Bcrypt.hash(create.password)
         )
-        return user.save(on: req.db).map{ user }
-    }
-    
-    func signIn(req: Request) throws -> EventLoopFuture<UserToken> {
-        let user = try req.auth.require(User.self)
+
+        let _ = user.save(on: req.db).map {  user }
+        
         let token = try user.generateToken()
+        
         return token.save(on: req.db).map { token }
     }
-    func verifyToken(req: Request) throws -> User {
-       try req.auth.require(User.self)
+    
+    func signIn(req: Request) throws -> EventLoopFuture<UserToken>  {
+        
+        let user = try req.auth.require(User.self)
+        
+        let token = try user.generateToken()
+        
+        return token.save(on: req.db).map { token }
+    }
+    
+    func me(req: Request) throws -> User  {
+        
+        try req.auth.require(User.self)
     }
 }

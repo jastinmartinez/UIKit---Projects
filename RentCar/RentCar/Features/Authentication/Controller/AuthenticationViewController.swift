@@ -27,7 +27,7 @@ class AuthenticationViewController: UIViewController {
         
         guard let email = emailTextField.text, let name = userNameTextField.text,let password = passwordTextField.text,let confirmpassword = confirmPasswordTextField.text else { return }
         
-        authenticationViewModel.signUp(user: User.UserSignUp(name: name, email: email, password: password, confirmPassword: confirmpassword))
+        authenticationViewModel.signUp(user: SignUp(name: name, email: email, password: password, confirmPassword: confirmpassword))
     }
     
     @IBAction func authSwithPressed(_ sender: UISwitch) {

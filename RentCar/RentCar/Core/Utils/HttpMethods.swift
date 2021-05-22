@@ -8,4 +8,6 @@
 import Foundation
 enum HttpMethods: String {
     case POST = "POST"
+    case PUT = "PUT"
+    case DEL = "DEL"
 }

@@ -11,10 +11,10 @@ public func configure(_ app: Application) throws {
     app.databases.use(.postgres(
         hostname: "localhost", username: "mac", password: "",database: "RentCar"
     ), as: .psql)
-
-    app.migrations.add(User.Table())
-    app.migrations.add(UserToken.Table())
-
+    
+    app.migrations.add(User.Migration())
+    app.migrations.add(UserToken.Migration())
+    app.migrations.add(CombustibleType.Migration())
     // register routes
     try routes(app)
 }
