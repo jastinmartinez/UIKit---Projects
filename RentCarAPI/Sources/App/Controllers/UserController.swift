@@ -20,7 +20,7 @@ struct UserController: RouteCollection
         
     }
     
-    func signUp(req: Request) throws -> EventLoopFuture<UserToken>  {
+    func signUp(req: Request) throws -> User.UserReponse  {
         
         try User.SignUp.validate(content: req)
         
@@ -33,19 +33,41 @@ struct UserController: RouteCollection
         )
 
         let _ = user.save(on: req.db).map {  user }
-        
         let token = try user.generateToken()
-        
-        return token.save(on: req.db).map { token }
+        let _ = token.save(on: req.db).map { token }
+        let userResponse =  User.UserReponse(id: user.id!, name: user.name, email: user.email, token: token.value)
+        return userResponse
     }
     
-    func signIn(req: Request) throws -> EventLoopFuture<UserToken>  {
+    func signIn(req: Request) throws -> User.UserReponse  {
         
         let user = try req.auth.require(User.self)
         
         let token = try user.generateToken()
         
-        return token.save(on: req.db).map { token }
+        getUserToken(req: req, user: user) { value in
+            if value.count > 0 {
+                
+                token.id = value[0].id
+                
+                let _ = token.update(on: req.db).map { token }
+            }
+            else {
+                
+                let _ = token.save(on: req.db).map { token }
+            }
+        }
+       
+        let userResponse =  User.UserReponse(id: user.id!, name: user.name, email: user.email, token: token.value)
+        return userResponse
+    }
+    func getUserToken(req: Request,user: User,completion: @escaping ([UserToken])-> ()) {
+        
+       let _ = UserToken.query(on: req.db)
+            .join(User.self, on: \User.$id == \UserToken.$user.$id)
+            .all().map {
+                completion($0)
+            }
     }
     
     func me(req: Request) throws -> User  {

@@ -8,6 +8,6 @@
 import Foundation
 
 struct SignIn: Encodable {
-    var name: String
+    var email: String
     var password: String
 }

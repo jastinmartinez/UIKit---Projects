@@ -68,3 +68,12 @@ extension User {
         )
     }
 }
+
+extension User {
+    struct  UserReponse : Content {
+        var id: UUID
+        var name: String
+        var email: String
+        var token: String
+    }
+}

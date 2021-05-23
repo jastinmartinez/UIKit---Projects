@@ -10,6 +10,9 @@
 		046813AD26586E9100797A72 /* DbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813AC26586E9100797A72 /* DbHelper.swift */; };
 		046813B02658724400797A72 /* SingUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813AF2658724400797A72 /* SingUp.swift */; };
 		046813B22658724D00797A72 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813B12658724D00797A72 /* SignIn.swift */; };
+		046813BF2659C2E600797A72 /* IURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813BE2659C2E600797A72 /* IURLRequest.swift */; };
+		046813C22659C46D00797A72 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813C12659C46D00797A72 /* Route.swift */; };
+		046813C72659CDF500797A72 /* InputValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813C62659CDF500797A72 /* InputValidation.swift */; };
 		047D9B3226543DFD0091298E /* IGetResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D9B3126543DFD0091298E /* IGetResource.swift */; };
 		048AEC5E2652D74900960670 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AEC5D2652D74900960670 /* RoundedButton.swift */; };
 		048AEC612652EECB00960670 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AEC602652EECB00960670 /* AuthenticationViewController.swift */; };
@@ -33,6 +36,9 @@
 		046813AC26586E9100797A72 /* DbHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbHelper.swift; sourceTree = "<group>"; };
 		046813AF2658724400797A72 /* SingUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUp.swift; sourceTree = "<group>"; };
 		046813B12658724D00797A72 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
+		046813BE2659C2E600797A72 /* IURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IURLRequest.swift; sourceTree = "<group>"; };
+		046813C12659C46D00797A72 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		046813C62659CDF500797A72 /* InputValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidation.swift; sourceTree = "<group>"; };
 		047D9B3126543DFD0091298E /* IGetResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGetResource.swift; sourceTree = "<group>"; };
 		048AEC5D2652D74900960670 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		048AEC602652EECB00960670 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +89,22 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
+		046813C02659C46500797A72 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				046813C12659C46D00797A72 /* Route.swift */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
+		046813C52659CDD200797A72 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				046813C62659CDF500797A72 /* InputValidation.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
 		048AEC372652CAC800960670 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +127,7 @@
 				048AEC672652F11B00960670 /* IWebService.swift */,
 				047D9B3126543DFD0091298E /* IGetResource.swift */,
 				04BBAE2726580AFD00815B03 /* IPostResource.swift */,
+				046813BE2659C2E600797A72 /* IURLRequest.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -122,6 +145,7 @@
 		04A23C1426545D5500DF4F9D /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				046813C52659CDD200797A72 /* Security */,
 				04A23C1B26545E5400DF4F9D /* Repository */,
 				04A23C1926545DC500DF4F9D /* Controller */,
 				04A23C1826545DBC00DF4F9D /* ViewModel */,
@@ -133,6 +157,7 @@
 		04A23C1526545D9300DF4F9D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				046813C02659C46500797A72 /* Routes */,
 				048AEC662652F10F00960670 /* Provider */,
 				048AEC372652CAC800960670 /* View */,
 				048AEC692652F22E00960670 /* Utils */,
@@ -286,12 +311,14 @@
 				048AEC6F26533B6200960670 /* HttpMethods.swift in Sources */,
 				04B90EEB264F63830099CAB9 /* HomeViewController.swift in Sources */,
 				046813B22658724D00797A72 /* SignIn.swift in Sources */,
+				046813C72659CDF500797A72 /* InputValidation.swift in Sources */,
 				04B90EE7264F63830099CAB9 /* AppDelegate.swift in Sources */,
 				048AEC6D2653001000960670 /* RouteName.swift in Sources */,
 				04BBAE2A26580B7800815B03 /* UserToken.swift in Sources */,
 				047D9B3226543DFD0091298E /* IGetResource.swift in Sources */,
 				048AEC682652F11B00960670 /* IWebService.swift in Sources */,
 				048AEC652652F06100960670 /* User.swift in Sources */,
+				046813BF2659C2E600797A72 /* IURLRequest.swift in Sources */,
 				04BBAE2826580AFD00815B03 /* IPostResource.swift in Sources */,
 				048AEC6B2652F54E00960670 /* AuthenticationViewModel.swift in Sources */,
 				048AEC612652EECB00960670 /* AuthenticationViewController.swift in Sources */,
@@ -300,6 +327,7 @@
 				046813B02658724400797A72 /* SingUp.swift in Sources */,
 				046813AD26586E9100797A72 /* DbHelper.swift in Sources */,
 				048AEC5E2652D74900960670 /* RoundedButton.swift in Sources */,
+				046813C22659C46D00797A72 /* Route.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

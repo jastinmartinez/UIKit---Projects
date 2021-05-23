@@ -8,23 +8,28 @@
 import Foundation
 
 class AuthenticationViewModel {
-    var userRepository: AuthenticationRepository
+    
+    let userRepository: AuthenticationRepository
     
     init() {
+        
         userRepository = AuthenticationRepository()
     }
-
-    func signUp(user: SignUp) {
+    
+    func signUp(user: SignUp,completion: @escaping (Bool)->())  {
         
-        var userDic: Dictionary<String,Any> = ["email": user.email,"name":user.name]
-            
-        userRepository.signUp(user: user){ userResponse in
-            
-            if let tryUserResponse = userResponse {
-                userDic["id"] =  tryUserResponse.id
-                userDic["token"] = tryUserResponse.value
-                DbHelper().saveUser(for: userDic)
-            }
+        userRepository.signUp(user: user){ userToken in
+            let userModel = User(id: userToken.id,name: user.name, email: user.email,token: userToken.value)
+            DbHelper().saveUser(userModel)
+            completion(DbHelper().isUserLoggedIn())
+        }
+    }
+    func signIn(user: SignIn,completion: @escaping (Bool)->())  {
+        
+        userRepository.signIn(user: user){ userToken in
+            let userModel = User(id: userToken.id,name: user.name, email: user.email,token: userToken.value)
+            DbHelper().saveUser(userModel)
+            completion(DbHelper().isUserLoggedIn())
         }
     }
 }

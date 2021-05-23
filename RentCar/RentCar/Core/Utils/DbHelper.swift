@@ -9,32 +9,39 @@ import Foundation
 
 final class DbHelper {
     
-    private let userdefault = UserDefaults.standard
-    private var userKey:String = "user"
-    private var userIsLoggedInKey:String = "userIsLoggedIn"
+    private let userDefault = UserDefaults.standard
+    private var userKey = "user"
+    private var userIsLoggedInKey = "userIsLoggedIn"
     
-    func saveUser(for dic: Dictionary<String,Any>) {
-        userdefault.set(dic,forKey: userKey)
+    func saveUser(_ user: User)  {
+        let userEncoded = try! JSONEncoder().encode(user)
+        userDefault.set(userEncoded ,forKey: userKey)
         setUserLoggedIn(bool: true)
+        userDefault.synchronize()
     }
     
     func getUser(completion: (User) -> ())  {
-        if let dic  = userdefault.dictionary(forKey: userKey)
-        {
-            if let id = dic["id"] as? UUID, let name = dic["name"] as? String,let email = dic["email"] as? String, let token = dic["token"] as? String
-            {
-                completion(User(id: id, name: name, email: email, token: token))
-            }
-        }
+        
+        guard let userData = userDefault.data(forKey: userKey) else { return }
+        let tryUserData = try! JSONDecoder().decode(User.self, from: userData)
+        completion(User(id: tryUserData.id, name: tryUserData.name, email: tryUserData.email, token: tryUserData.token))
+        
     }
     
     func setUserLoggedIn(bool: Bool) {
         
-        userdefault.set(bool, forKey: userIsLoggedInKey)
+        userDefault.set(bool, forKey: userIsLoggedInKey)
+        userDefault.synchronize()
     }
     
     func isUserLoggedIn() -> Bool {
+        return  userDefault.bool(forKey: userIsLoggedInKey)
         
-        return userdefault.bool(forKey: userIsLoggedInKey)
+    }
+    
+    func removeUser() {
+        
+        userDefault.removeObject(forKey: userKey)
+        userDefault.synchronize()
     }
 }
