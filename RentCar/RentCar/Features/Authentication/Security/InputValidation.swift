@@ -98,11 +98,21 @@ extension AuthenticationViewController {
     
     fileprivate func enableButtonWhenValidationFinish() {
         if let email = emailErrorLabel.text, let name = userErrorLabel.text,let password = passwordErrorLabel.text,let confirmpassword = confirmPasswordErrorLabel.text {
-            if (email.isEmpty && name.isEmpty && password.isEmpty && confirmpassword.isEmpty) {
-                authButton.isEnabled = true
-            }else {
-                authButton.isEnabled = false
+            if authSwithValue {
+                if (email.isEmpty && name.isEmpty && password.isEmpty && confirmpassword.isEmpty) {
+                    authButton.isEnabled = true
+                }else {
+                    authButton.isEnabled = false
+                }
             }
+            else {
+                if (email.isEmpty && password.isEmpty ) {
+                    authButton.isEnabled = true
+                }else {
+                    authButton.isEnabled = false
+                }
+            }
+            
         }
     }
     

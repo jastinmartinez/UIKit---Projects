@@ -15,7 +15,7 @@ struct UserController: RouteCollection
     func boot(routes: RoutesBuilder) throws {
         
         routes.post("signup", use: signUp)
-        routes.grouped(User.authenticator()).post("sign", use: signIn)
+        routes.grouped(User.authenticator()).post("signin", use: signIn)
         routes.grouped(UserToken.authenticator()).get("me", use: me)
         
     }
@@ -47,27 +47,27 @@ struct UserController: RouteCollection
         
         getUserToken(req: req, user: user) { value in
             if value.count > 0 {
-                
-                token.id = value[0].id
+               let _ = UserToken.query(on: req.db)
+                    .set(\.$value, to: token.value)
+                    .filter(\._$id == value[0].id!)
+                    .update()
+            }
+            else{
                 
                 let _ = token.update(on: req.db).map { token }
-            }
-            else {
-                
-                let _ = token.save(on: req.db).map { token }
             }
         }
        
         let userResponse =  User.UserReponse(id: user.id!, name: user.name, email: user.email, token: token.value)
         return userResponse
     }
-    func getUserToken(req: Request,user: User,completion: @escaping ([UserToken])-> ()) {
+    
+    fileprivate func getUserToken(req: Request,user: User,completion: @escaping ([UserToken]) -> ()) {
         
        let _ = UserToken.query(on: req.db)
             .join(User.self, on: \User.$id == \UserToken.$user.$id)
-            .all().map {
-                completion($0)
-            }
+            .all()
+            .map {completion($0)}
     }
     
     func me(req: Request) throws -> User  {

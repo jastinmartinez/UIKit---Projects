@@ -8,10 +8,10 @@
 import Foundation
 
 class User: Codable {
-    var id: UUID
-    var name: String
-    var email: String
-    var token: String
+    let id: UUID
+    let name: String
+    let email: String
+    let token: String
     
  
     init(id: UUID, name: String, email: String,token: String) {

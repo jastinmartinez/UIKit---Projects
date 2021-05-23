@@ -19,17 +19,20 @@ class AuthenticationViewModel {
     func signUp(user: SignUp,completion: @escaping (Bool)->())  {
         
         userRepository.signUp(user: user){ userToken in
-            let userModel = User(id: userToken.id,name: user.name, email: user.email,token: userToken.value)
+            let userModel = User(id: userToken.id,name: userToken.name, email: userToken.email,token: userToken.token)
             DbHelper().saveUser(userModel)
             completion(DbHelper().isUserLoggedIn())
         }
     }
-    func signIn(user: SignIn,completion: @escaping (Bool)->())  {
+    
+    func signIn(user: SignIn,completion: @escaping (IResult<Bool>)->())  {
         
-        userRepository.signIn(user: user){ userToken in
-            let userModel = User(id: userToken.id,name: user.name, email: user.email,token: userToken.value)
-            DbHelper().saveUser(userModel)
-            completion(DbHelper().isUserLoggedIn())
+        userRepository.signIn(user: user){ userResult in
+            if let user = userResult.result {
+                let userModel = User(id: user.id,name: user.name, email: user.email,token: user.token)
+                DbHelper().saveUser(userModel)
+            }
+            completion(IResult(result: DbHelper().isUserLoggedIn(), error: userResult.error))
         }
     }
 }
