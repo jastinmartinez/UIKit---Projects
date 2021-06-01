@@ -15,6 +15,6 @@ public func configure(_ app: Application) throws {
     app.migrations.add(User.Migration())
     app.migrations.add(UserToken.Migration())
     app.migrations.add(CombustibleType.Migration())
-    // register routes
+    // register routes/Users/mac/Projects/UIKit---Demos/E-Commerce/ECommerceAPI/Sources/App/Controllers/TodoController.swift
     try routes(app)
 }

@@ -16,31 +16,26 @@ final class DbHelper {
     func saveUser(_ user: User)  {
         let userEncoded = try! JSONEncoder().encode(user)
         userDefault.set(userEncoded ,forKey: userKey)
-        setUserLoggedIn(bool: true)
+        setUserLoggedIn(true)
         userDefault.synchronize()
     }
     
-    func getUser(completion: (User) -> ())  {
-        
-        guard let userData = userDefault.data(forKey: userKey) else { return }
+    var getUser: User?  {
+        guard let userData = userDefault.data(forKey: userKey) else { return nil }
         let tryUserData = try! JSONDecoder().decode(User.self, from: userData)
-        completion(User(id: tryUserData.id, name: tryUserData.name, email: tryUserData.email, token: tryUserData.token))
-        
+        return User(id: tryUserData.id, name: tryUserData.name, email: tryUserData.email, token: tryUserData.token)
     }
     
-    func setUserLoggedIn(bool: Bool) {
-        
+    func setUserLoggedIn(_ bool: Bool) {
         userDefault.set(bool, forKey: userIsLoggedInKey)
         userDefault.synchronize()
     }
     
     func isUserLoggedIn() -> Bool {
         return  userDefault.bool(forKey: userIsLoggedInKey)
-        
     }
     
     func removeUser() {
-        
         userDefault.removeObject(forKey: userKey)
         userDefault.synchronize()
     }

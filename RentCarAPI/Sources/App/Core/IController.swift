@@ -10,8 +10,7 @@ import Vapor
 
 protocol IController {
     associatedtype aType
-    var routeName: String { get }
-    func add(req: Request) throws -> EventLoopFuture<aType>
+    func create(req: Request) throws -> EventLoopFuture<aType>
     func update(req: Request) throws -> EventLoopFuture<HTTPStatus>
     func remove(req: Request) throws -> EventLoopFuture<HTTPStatus>
     func getAll(req: Request) throws -> EventLoopFuture<[aType]>
