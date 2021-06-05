@@ -12,10 +12,14 @@ import Foundation
 struct Constant {
     
     struct uRL {
+        
         private static let baseUrl =  "http://127.0.0.1:8080"
         static let signIn =  "\(baseUrl)/signin"
         static let signUp =  "\(baseUrl)/signup"
         static let combustibleType =  "\(baseUrl)/combustibletype"
+        static let vechileMark =  "\(baseUrl)/vehiclemark"
+        static let vehicleModel =  "\(baseUrl)/vehiclemodel"
+        static let vehicleType =  "\(baseUrl)/vehicletype"
     }
     
     struct storyBoardId {

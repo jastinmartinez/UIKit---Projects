@@ -13,7 +13,8 @@ class ModifyCombustibleTypeViewController: UIViewController {
     @IBOutlet weak var modifiedCombustibleTypeDescriptionTextField: UITextField!
     @IBOutlet weak var modifiedCombustibleTypeStateSwitch: UISwitch!
     
-    var combustibleTypePresenter: CombustibleTypePresenter!
+    var combustibleTypePresenter = CombustibleTypePresenter.shared
+    
     var combustibleType: CombustibleType!
     
     override func viewDidLoad() {

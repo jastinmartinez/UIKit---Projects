@@ -8,7 +8,7 @@
 import Foundation
 
 
-class CombustibleTypeService  {
+class CombustibleTypeService: IService  {
 
     func create(_ vm: CombustibleType, completion: @escaping (CombustibleType) -> () ) {
         APIService().request(url: RequestBuilder().prepare(url: Constant.uRL.combustibleType, model: vm, method: .post, requiredBearerToken: true)) { data, response, _ in

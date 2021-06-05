@@ -14,7 +14,6 @@
 		0402C57F26654D7900DF1735 /* bool+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C57E26654D7900DF1735 /* bool+ToString.swift */; };
 		0402C58126658A2A00DF1735 /* ObjectDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C58026658A2A00DF1735 /* ObjectDecodable.swift */; };
 		043A645626696392009C450F /* ModifyCombustibleTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A645526696392009C450F /* ModifyCombustibleTypeViewController.swift */; };
-		044AB623266BC0B200799ECF /* ModifyCombustibleTypeViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044AB622266BC0B200799ECF /* ModifyCombustibleTypeViewDelegate.swift */; };
 		044AB628266BD03500799ECF /* AddNewItemViewParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044AB627266BD03500799ECF /* AddNewItemViewParameters.swift */; };
 		046813AD26586E9100797A72 /* DbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813AC26586E9100797A72 /* DbHelper.swift */; };
 		046813B02658724400797A72 /* SingUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813AF2658724400797A72 /* SingUp.swift */; };
@@ -26,6 +25,14 @@
 		048AEC652652F06100960670 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AEC642652F06100960670 /* User.swift */; };
 		048AEC6B2652F54E00960670 /* AuthenticationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AEC6A2652F54E00960670 /* AuthenticationPresenter.swift */; };
 		048AEC6D2653001000960670 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AEC6C2653001000960670 /* Constant.swift */; };
+		0494E055266C1BCD0076EE04 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494E054266C1BCD0076EE04 /* VehicleModel.swift */; };
+		0494E057266C1BD50076EE04 /* VehicleMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494E056266C1BD50076EE04 /* VehicleMark.swift */; };
+		0494E059266C1BE60076EE04 /* VehicleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494E058266C1BE60076EE04 /* VehicleType.swift */; };
+		0494E05B266C1BED0076EE04 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494E05A266C1BED0076EE04 /* Customer.swift */; };
+		0494E05D266C1C390076EE04 /* VehicleMarkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494E05C266C1C390076EE04 /* VehicleMarkService.swift */; };
+		0494E05F266C1C5B0076EE04 /* IService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494E05E266C1C5B0076EE04 /* IService.swift */; };
+		0494E064266C23060076EE04 /* VehicleMarkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494E063266C23060076EE04 /* VehicleMarkPresenter.swift */; };
+		0494E067266C237D0076EE04 /* IPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494E066266C237D0076EE04 /* IPresenter.swift */; };
 		049EC0372663CC7A00FAAB0E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 049EC0362663CC7A00FAAB0E /* Alamofire */; };
 		049EC0392663CCFA00FAAB0E /* CombustibleTypeViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EC0382663CCFA00FAAB0E /* CombustibleTypeViewDelegate.swift */; };
 		049EC03C2663CE2000FAAB0E /* CombustibleTypeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EC03B2663CE2000FAAB0E /* CombustibleTypeService.swift */; };
@@ -60,7 +67,6 @@
 		0402C57E26654D7900DF1735 /* bool+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "bool+ToString.swift"; sourceTree = "<group>"; };
 		0402C58026658A2A00DF1735 /* ObjectDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDecodable.swift; sourceTree = "<group>"; };
 		043A645526696392009C450F /* ModifyCombustibleTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyCombustibleTypeViewController.swift; sourceTree = "<group>"; };
-		044AB622266BC0B200799ECF /* ModifyCombustibleTypeViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyCombustibleTypeViewDelegate.swift; sourceTree = "<group>"; };
 		044AB627266BD03500799ECF /* AddNewItemViewParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemViewParameters.swift; sourceTree = "<group>"; };
 		046813AC26586E9100797A72 /* DbHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbHelper.swift; sourceTree = "<group>"; };
 		046813AF2658724400797A72 /* SingUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUp.swift; sourceTree = "<group>"; };
@@ -72,6 +78,14 @@
 		048AEC642652F06100960670 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		048AEC6A2652F54E00960670 /* AuthenticationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPresenter.swift; sourceTree = "<group>"; };
 		048AEC6C2653001000960670 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		0494E054266C1BCD0076EE04 /* VehicleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModel.swift; sourceTree = "<group>"; };
+		0494E056266C1BD50076EE04 /* VehicleMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleMark.swift; sourceTree = "<group>"; };
+		0494E058266C1BE60076EE04 /* VehicleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleType.swift; sourceTree = "<group>"; };
+		0494E05A266C1BED0076EE04 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		0494E05C266C1C390076EE04 /* VehicleMarkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleMarkService.swift; sourceTree = "<group>"; };
+		0494E05E266C1C5B0076EE04 /* IService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IService.swift; sourceTree = "<group>"; };
+		0494E063266C23060076EE04 /* VehicleMarkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleMarkPresenter.swift; sourceTree = "<group>"; };
+		0494E066266C237D0076EE04 /* IPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPresenter.swift; sourceTree = "<group>"; };
 		049EC0382663CCFA00FAAB0E /* CombustibleTypeViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustibleTypeViewDelegate.swift; sourceTree = "<group>"; };
 		049EC03B2663CE2000FAAB0E /* CombustibleTypeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustibleTypeService.swift; sourceTree = "<group>"; };
 		049EC03D2663D01300FAAB0E /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
@@ -124,7 +138,6 @@
 			children = (
 				04ADA12C265D609E009DF878 /* CumbustibleTypePresenter.swift */,
 				049EC0382663CCFA00FAAB0E /* CombustibleTypeViewDelegate.swift */,
-				044AB622266BC0B200799ECF /* ModifyCombustibleTypeViewDelegate.swift */,
 			);
 			path = CombustibleType;
 			sourceTree = "<group>";
@@ -161,6 +174,7 @@
 				049EC0442663DE4E00FAAB0E /* IResult.swift */,
 				049EC0482663E79500FAAB0E /* RequestBuilder.swift */,
 				049EC0422663D65C00FAAB0E /* APIService.swift */,
+				0494E05E266C1C5B0076EE04 /* IService.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -219,6 +233,10 @@
 				046813B12658724D00797A72 /* SignIn.swift */,
 				04ADA12E265D60DC009DF878 /* CombustibleType.swift */,
 				049EC05A2664516100FAAB0E /* Mangament.swift */,
+				0494E054266C1BCD0076EE04 /* VehicleModel.swift */,
+				0494E056266C1BD50076EE04 /* VehicleMark.swift */,
+				0494E058266C1BE60076EE04 /* VehicleType.swift */,
+				0494E05A266C1BED0076EE04 /* Customer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -226,6 +244,9 @@
 		04681C392660730900953E38 /* APIService */ = {
 			isa = PBXGroup;
 			children = (
+				0494E053266C1BBE0076EE04 /* VehicleMark */,
+				0494E052266C1BB80076EE04 /* VehicleType */,
+				0494E051266C1BAC0076EE04 /* VehicleModel */,
 				043A645D266964B2009C450F /* Core */,
 				043A645C266964A4009C450F /* CombustibleType */,
 				043A645B2669649E009C450F /* Authentication */,
@@ -236,6 +257,10 @@
 		04681C3A266079FE00953E38 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				0494E065266C23170076EE04 /* Core */,
+				0494E062266C22E80076EE04 /* VehicleType */,
+				0494E061266C22E30076EE04 /* VehicleModel */,
+				0494E060266C22DB0076EE04 /* VehicleMark */,
 				043A64582669645F009C450F /* Authentication */,
 				043A645726696451009C450F /* CombustibleType */,
 			);
@@ -281,6 +306,58 @@
 				046813AC26586E9100797A72 /* DbHelper.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		0494E051266C1BAC0076EE04 /* VehicleModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VehicleModel;
+			sourceTree = "<group>";
+		};
+		0494E052266C1BB80076EE04 /* VehicleType */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VehicleType;
+			sourceTree = "<group>";
+		};
+		0494E053266C1BBE0076EE04 /* VehicleMark */ = {
+			isa = PBXGroup;
+			children = (
+				0494E05C266C1C390076EE04 /* VehicleMarkService.swift */,
+			);
+			path = VehicleMark;
+			sourceTree = "<group>";
+		};
+		0494E060266C22DB0076EE04 /* VehicleMark */ = {
+			isa = PBXGroup;
+			children = (
+				0494E063266C23060076EE04 /* VehicleMarkPresenter.swift */,
+			);
+			path = VehicleMark;
+			sourceTree = "<group>";
+		};
+		0494E061266C22E30076EE04 /* VehicleModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VehicleModel;
+			sourceTree = "<group>";
+		};
+		0494E062266C22E80076EE04 /* VehicleType */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VehicleType;
+			sourceTree = "<group>";
+		};
+		0494E065266C23170076EE04 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0494E066266C237D0076EE04 /* IPresenter.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		049EC04A2663EDA400FAAB0E /* Exception */ = {
@@ -416,18 +493,21 @@
 				04B90EEB264F63830099CAB9 /* HomeViewController.swift in Sources */,
 				049EC05D266452E400FAAB0E /* ManagementCollectionViewCell.swift in Sources */,
 				04748AE22667FEAC00B1935A /* CombustibleTypeViewController+DelegateView.swift in Sources */,
-				044AB623266BC0B200799ECF /* ModifyCombustibleTypeViewDelegate.swift in Sources */,
 				049EC0432663D65C00FAAB0E /* APIService.swift in Sources */,
 				046813B22658724D00797A72 /* SignIn.swift in Sources */,
 				0402C57026653DE000DF1735 /* AlertView.swift in Sources */,
 				046813C72659CDF500797A72 /* AuthenticationViewController+InputValidation.swift in Sources */,
+				0494E05F266C1C5B0076EE04 /* IService.swift in Sources */,
 				04B90EE7264F63830099CAB9 /* AppDelegate.swift in Sources */,
 				043A645626696392009C450F /* ModifyCombustibleTypeViewController.swift in Sources */,
 				0402C57A26654A1F00DF1735 /* CombustibleTypeTableViewCell.swift in Sources */,
+				0494E055266C1BCD0076EE04 /* VehicleModel.swift in Sources */,
 				0402C57C26654C8500DF1735 /* BindOutlets.swift in Sources */,
 				049EC04F26640DF100FAAB0E /* AuthenticationViewDelegate.swift in Sources */,
+				0494E05D266C1C390076EE04 /* VehicleMarkService.swift in Sources */,
 				0402C58126658A2A00DF1735 /* ObjectDecodable.swift in Sources */,
 				04ADA12F265D60DC009DF878 /* CombustibleType.swift in Sources */,
+				0494E05B266C1BED0076EE04 /* Customer.swift in Sources */,
 				048AEC6D2653001000960670 /* Constant.swift in Sources */,
 				04ADA128265C0FE5009DF878 /* CombustibleTypeViewController.swift in Sources */,
 				048AEC652652F06100960670 /* User.swift in Sources */,
@@ -440,14 +520,18 @@
 				049EC051266411FD00FAAB0E /* AuthenticationViewController+AuthenticationViewDelegate.swift in Sources */,
 				048AEC6B2652F54E00960670 /* AuthenticationPresenter.swift in Sources */,
 				044AB628266BD03500799ECF /* AddNewItemViewParameters.swift in Sources */,
+				0494E067266C237D0076EE04 /* IPresenter.swift in Sources */,
 				049EC05B2664516100FAAB0E /* Mangament.swift in Sources */,
 				0402C57F26654D7900DF1735 /* bool+ToString.swift in Sources */,
 				048AEC612652EECB00960670 /* AuthenticationViewController.swift in Sources */,
 				049EC057266450D200FAAB0E /* ManagementViewController.swift in Sources */,
+				0494E057266C1BD50076EE04 /* VehicleMark.swift in Sources */,
 				04B90EE9264F63830099CAB9 /* SceneDelegate.swift in Sources */,
 				046813B02658724400797A72 /* SingUp.swift in Sources */,
+				0494E059266C1BE60076EE04 /* VehicleType.swift in Sources */,
 				049EC0452663DE4E00FAAB0E /* IResult.swift in Sources */,
 				046813AD26586E9100797A72 /* DbHelper.swift in Sources */,
+				0494E064266C23060076EE04 /* VehicleMarkPresenter.swift in Sources */,
 				048AEC5E2652D74900960670 /* RoundedButton.swift in Sources */,
 				04ADA12D265D609E009DF878 /* CumbustibleTypePresenter.swift in Sources */,
 				049EC0592664511500FAAB0E /* ManagementViewController+CollectionView.swift in Sources */,

@@ -8,19 +8,20 @@
 import Foundation
 
 class CombustibleTypePresenter  {
+
+    private var combustibleTypeService = CombustibleTypeService()
     
+    static var shared: CombustibleTypePresenter = {
+        let instance = CombustibleTypePresenter()
+        return instance
+    }()
     
-    private var combustibleTypeService: CombustibleTypeService
     private(set) var combustibleTypes = [CombustibleType]() {
         didSet {
             self.combustibleTypeViewDelegate?.didArrayOfCombustibleChange()
         }
     }
    
-    init(service: CombustibleTypeService) {
-        self.combustibleTypeService = service
-    }
-    
     var combustibleTypeViewDelegate: CombustibleTypeViewDelegate?
     
     func create(vm: CombustibleType) {

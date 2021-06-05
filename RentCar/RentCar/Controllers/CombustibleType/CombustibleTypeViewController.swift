@@ -11,10 +11,9 @@ class CombustibleTypeViewController: UIViewController {
   
     @IBOutlet weak var combustibleTypeTableView: UITableView!
     
-    var combustibleTypePresenter: CombustibleTypePresenter!
+    var combustibleTypePresenter = CombustibleTypePresenter.shared
 
     override func viewDidLoad() {
-        combustibleTypePresenter = CombustibleTypePresenter(service: CombustibleTypeService())
         self.combustibleTypeTableView.dataSource = self
         self.combustibleTypeTableView.delegate = self
         self.combustibleTypePresenter.combustibleTypeViewDelegate = self

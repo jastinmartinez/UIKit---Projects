@@ -35,7 +35,6 @@ extension CombustibleTypeViewController: UITableViewDelegate,UITableViewDataSour
         if segue.identifier == Constant.segue.modifyCombustibleTypeSegue {
             let destionation = segue.destination as! ModifyCombustibleTypeViewController
             destionation.combustibleType = sender as? CombustibleType
-            destionation.combustibleTypePresenter = combustibleTypePresenter
         }
     }
 }
