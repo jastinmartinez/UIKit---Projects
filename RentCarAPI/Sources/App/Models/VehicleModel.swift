@@ -19,15 +19,19 @@ final class VehicleModel: ContenModel {
     @Field(key: "vehicle_model_description")
     var description: String
     
+    @Parent(key: "vehicle_mark_id")
+    var vehicleMark: VehicleMark
+    
     @Field(key: "vehicle_model_state")
     var state: Bool
     
     
     init() {}
     
-    init(id: UUID?,description: String, state: Bool) {
+    init(id: UUID?,description: String, state: Bool,vehicleMark: UUID) {
         self.id = id
         self.description = description
         self.state = state
+        self.$vehicleMark.id = vehicleMark
     }
 }

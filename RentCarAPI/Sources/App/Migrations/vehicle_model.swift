@@ -15,6 +15,7 @@ extension VehicleModel {
             database.schema("vehicle_model")
                 .id()
                 .field("vehicle_model_description",.string,.required)
+                .field("vehicle_mark_id",.uuid,.required,.references("vehicle_mark", "id"))
                 .field("vehicle_model_state",.bool,.required)
                 .create()
         }
