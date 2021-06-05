@@ -24,6 +24,7 @@ struct Constant {
     
     struct segue {
         static let combustibleTypeSegue = "combustibleTypeSegue"
+        static let modifyCombustibleTypeSegue = "modifyCombustibleTypeSegue"
     }
     
     struct reusableView {

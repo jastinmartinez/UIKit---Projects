@@ -7,14 +7,14 @@
 
 import Foundation
 
-final class ObjectCodable {
+struct ObjectCodable<T> where T: Codable {
     
-    func decode<T : Codable>(_ data: Data) -> T?  {
+   static func decode(single data: Data) -> T?  {
         
         return try? JSONDecoder().decode(T.self, from: data)
     }
     
-    func decode<T : Codable>(_ data: Data) -> [T]?  {
+   static  func decode(array data: Data) -> [T]?  {
         
         return try? JSONDecoder().decode([T].self, from: data)
     }

@@ -317,10 +317,64 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="combustibleTypeTableView" destination="GT3-qd-s2R" id="ubp-OU-AzF"/>
+                        <segue destination="iR6-NR-dfO" kind="show" identifier="modifyCombustibleTypeSegue" id="7qw-n4-0LF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INC-gd-MHk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6523" y="1040"/>
+        </scene>
+        <!--Modificar-->
+        <scene sceneID="keE-Oh-rjj">
+            <objects>
+                <viewController id="iR6-NR-dfO" customClass="ModifyCombustibleTypeViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cTy-ta-8Ja">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="ejT-KH-5QN">
+                                <rect key="frame" x="20" y="195" width="388" height="96"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9WX-uZ-Gle">
+                                        <rect key="frame" x="20" y="0.0" width="348" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LB-H8-Wx9">
+                                        <rect key="frame" x="169.66666666666666" y="65" width="51" height="31"/>
+                                    </switch>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="9WX-uZ-Gle" firstAttribute="leading" secondItem="ejT-KH-5QN" secondAttribute="leading" constant="20" id="3aI-P2-ycL"/>
+                                    <constraint firstAttribute="trailing" secondItem="9WX-uZ-Gle" secondAttribute="trailing" constant="20" id="ZNQ-D4-IEZ"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MFf-7U-TVJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ejT-KH-5QN" firstAttribute="leading" secondItem="cTy-ta-8Ja" secondAttribute="leadingMargin" id="Nhn-5d-RFS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ejT-KH-5QN" secondAttribute="trailing" id="ooN-QF-vdB"/>
+                            <constraint firstItem="ejT-KH-5QN" firstAttribute="top" secondItem="MFf-7U-TVJ" secondAttribute="top" constant="55" id="q6Y-2n-x6n"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Modificar" id="VtH-4y-nzH">
+                        <barButtonItem key="rightBarButtonItem" title="Modifcar" id="wj7-N2-s8Y">
+                            <connections>
+                                <action selector="modifyCombustibleTypeButtonPressed:" destination="iR6-NR-dfO" id="XFo-xH-rf4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="modifiedCombustibleTypeDescriptionTextField" destination="9WX-uZ-Gle" id="1yb-dO-VLK"/>
+                        <outlet property="modifiedCombustibleTypeStateSwitch" destination="7LB-H8-Wx9" id="y7g-K2-CoB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jHT-By-p9U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7260" y="1040"/>
         </scene>
         <!--App Tab Bar-->
         <scene sceneID="W4R-Od-E1p">

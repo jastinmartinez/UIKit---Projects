@@ -15,6 +15,5 @@ class ManagementViewController: UIViewController {
         super.viewDidLoad()
         self.managementCollectionVIew.dataSource = self
         self.managementCollectionVIew.delegate = self
-        
     }
 }

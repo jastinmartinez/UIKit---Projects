@@ -8,5 +8,6 @@
 import Foundation
 
 protocol CombustibleTypeViewDelegate: AnyObject {
-    func displayCumbustibleType(combustibleType: CombustibleType)
+    func didArrayOfCombustibleChange()
 }
+

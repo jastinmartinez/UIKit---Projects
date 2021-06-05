@@ -11,7 +11,7 @@ import Alamofire
 class AuthenticationService {
     
     func signUp(user: SignUp,completion:@escaping (Error?) -> ()) {
-        APIService().request(url: IRequestBuilder().prepare(url: Constant.uRL.signUp,model: user, method: .post)) { data, response, _  in
+        APIService().request(url: RequestBuilder().prepare(url: Constant.uRL.signUp,model: user, method: .post)) { data, response, _  in
             if let data = data {
                 let userDecoded = try? JSONDecoder().decode(User.self, from: data)
                 if let user = userDecoded {
@@ -26,7 +26,7 @@ class AuthenticationService {
         
         let addtionalHeader =  HTTPHeader(name: "Authorization", value: "Basic \(Data("\(user.email):\(user.password)".utf8).base64EncodedString())")
         
-        APIService().request(url: IRequestBuilder().prepare(url: Constant.uRL.signIn, header: addtionalHeader ,model: user, method: .post)) { data, response, _  in
+        APIService().request(url: RequestBuilder().prepare(url: Constant.uRL.signIn, header: addtionalHeader ,model: user, method: .post)) { data, response, _  in
             if let data = data {
                 let userDecoded = try? JSONDecoder().decode(User.self, from: data)
                 if let user = userDecoded {

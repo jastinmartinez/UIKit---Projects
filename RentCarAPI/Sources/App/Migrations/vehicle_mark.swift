@@ -8,17 +8,20 @@
 import Foundation
 import Fluent
 
-struct VehicleMark: Migration {
-    
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("vehicle_mark")
-            .id()
-            .field("vehicle_mark_description",.string,.required)
-            .field("vehicle_mark_state",.bool,.required)
-            .create()
-    }
-    
-    func revert(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("vehicle_mark").delete()
+extension VehicleMark {
+    struct Migration: Fluent.Migration {
+        
+        func prepare(on database: Database) -> EventLoopFuture<Void> {
+            database.schema("vehicle_mark")
+                .id()
+                .field("vehicle_mark_description",.string,.required)
+                .field("vehicle_mark_state",.bool,.required)
+                .create()
+        }
+        
+        func revert(on database: Database) -> EventLoopFuture<Void> {
+            database.schema("vehicle_mark").delete()
+        }
     }
 }
+

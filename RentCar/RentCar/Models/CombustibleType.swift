@@ -9,6 +9,6 @@ import Foundation
 
 struct CombustibleType: Codable {
     var id: UUID? = nil
-    let description: String
-    let state: Bool
+    var description: String = ""
+    var state: Bool = false
 }
