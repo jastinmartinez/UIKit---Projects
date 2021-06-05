@@ -18,5 +18,6 @@ public func configure(_ app: Application) throws {
     app.migrations.add(VehicleType.Migration())
     app.migrations.add(VehicleMark.Migration())
     app.migrations.add(VehicleModel.Migration())
+    
     try routes(app)
 }
