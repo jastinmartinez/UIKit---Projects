@@ -13,5 +13,5 @@ protocol IController {
     func create(req: Request) throws -> EventLoopFuture<aType>
     func update(req: Request) throws -> EventLoopFuture<HTTPStatus>
     func remove(req: Request) throws -> EventLoopFuture<HTTPStatus>
-    func getAll(req: Request) throws -> EventLoopFuture<[aType]>
+    func getModelsOfMark(req: Request) throws -> EventLoopFuture<[aType]>
 }

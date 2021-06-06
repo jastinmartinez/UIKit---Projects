@@ -33,5 +33,13 @@ extension MaintenanceViewController {
             vehicleTypePresenter.getAll()
             
         }
+        
+        else if self.presenterType is VehicleModelPresenter {
+            
+            let vehicleModelPresenter: VehicleModelPresenter = presenterType as! VehicleModelPresenter
+            vehicleModelPresenter.maintenanceViewDelegate = self
+            vehicleModelPresenter.getModelsOfMarks((modelType as! VehicleMark).id!)
+            
+        }
     }
 }

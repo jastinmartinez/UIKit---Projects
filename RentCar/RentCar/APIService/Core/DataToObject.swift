@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ObjectCodable<T> where T: Codable {
+struct DataToObject<T> where T: Codable {
     
    static func decode(single data: Data) -> T?  {
         

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Result<T,E> {
+struct ResponseResult<T,E> {
    var data: T
    var error: E
 }

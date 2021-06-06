@@ -7,6 +7,7 @@
 
 import Foundation
 import Vapor
+import Fluent
 
 final class VehicleModelController: RouteCollection,IController {
     
@@ -16,7 +17,7 @@ final class VehicleModelController: RouteCollection,IController {
         let vehicleModel = routes.grouped("vehiclemodel")
         vehicleModel.post( use: create)
         vehicleModel.put( use: update)
-        vehicleModel.get( use: getAll)
+        vehicleModel.get(":vehicle_mark_id",use: getModelsOfMark)
         vehicleModel.delete( use: remove)
     }
     
@@ -33,7 +34,7 @@ final class VehicleModelController: RouteCollection,IController {
             .flatMap({
                 $0.description = vehicleModel.description
                 $0.state = vehicleModel.state
-                $0.vehicleMark = vehicleModel.vehicleMark
+                $0.$vehicleMark.id = vehicleModel.$vehicleMark.id
                 return $0.update(on: req.db)
                     .transform(to: .ok)
             })
@@ -50,7 +51,11 @@ final class VehicleModelController: RouteCollection,IController {
             })
     }
     
-    func getAll(req: Request) throws -> EventLoopFuture<[VehicleModel]> {
-        return VehicleModel.query(on: req.db).all()
+    func getModelsOfMark(req: Request) throws -> EventLoopFuture<[VehicleModel]> {
+        
+       return VehicleModel.query(on: req.db)
+            .join(VehicleMark.self, on: \VehicleModel.$vehicleMark.$id == \VehicleMark.$id)
+            .filter(VehicleMark.self, \.$id ==  UUID.init(uuidString: req.parameters.get("vehicle_mark_id")!)!)
+            .all()
     }
 }

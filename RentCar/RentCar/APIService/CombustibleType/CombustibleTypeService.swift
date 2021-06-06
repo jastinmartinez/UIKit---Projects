@@ -13,7 +13,7 @@ class CombustibleTypeService: ServiceProtocol  {
     func create(_ vm: CombustibleType, completion: @escaping (CombustibleType) -> () ) {
         APIService().request(url: RequestBuilder().prepare(url: Constant.uRL.combustibleType, model: vm, method: .post, requiredBearerToken: true)) { data, response, _ in
             guard let data = data else {return}
-            if let combustible = ObjectCodable<CombustibleType>.decode(single: data) {
+            if let combustible = DataToObject<CombustibleType>.decode(single: data) {
                 completion(combustible)
             }
         }
@@ -26,7 +26,7 @@ class CombustibleTypeService: ServiceProtocol  {
     func getAll(completion: @escaping ([CombustibleType]) -> ()) {
         APIService().request(url: RequestBuilder<CombustibleType>().prepare(url: Constant.uRL.combustibleType, requiredBearerToken: true)) { data, response,error in
             guard let data = data else {return}
-            if let combustible = ObjectCodable<CombustibleType>.decode(array: data) {
+            if let combustible = DataToObject<CombustibleType>.decode(array: data) {
                 completion(combustible)
             }
         }

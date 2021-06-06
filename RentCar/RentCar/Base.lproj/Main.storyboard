@@ -3,6 +3,7 @@
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -270,7 +271,7 @@
                                 <rect key="frame" x="0.0" y="140" width="428" height="703"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="maintenanceTableViewCell" textLabel="0eo-ot-FpI" detailTextLabel="T5V-vr-hXk" style="IBUITableViewCellStyleValue1" id="lLB-hr-HPB" customClass="MaintenanceTypeTableViewCell" customModule="RentCar" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="maintenanceTableViewCell" textLabel="0eo-ot-FpI" detailTextLabel="T5V-vr-hXk" style="IBUITableViewCellStyleValue1" id="lLB-hr-HPB" customClass="MaintenanceTypeTableViewCell" customModule="RentCar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lLB-hr-HPB" id="ony-9n-xIL">
@@ -293,6 +294,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" name="AccentColor"/>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="0eo-ot-FpI" id="Np9-sn-ihO"/>
                                             <outlet property="stateLabel" destination="T5V-vr-hXk" id="IVU-vP-w8I"/>
@@ -363,7 +365,7 @@
                     <navigationItem key="navigationItem" title="Editando" id="VtH-4y-nzH">
                         <barButtonItem key="rightBarButtonItem" title="Guardar" id="wj7-N2-s8Y">
                             <connections>
-                                <action selector="modifyCombustibleTypeButtonPressed:" destination="iR6-NR-dfO" id="XFo-xH-rf4"/>
+                                <action selector="maintenanceModifySaveButtonPressed:" destination="iR6-NR-dfO" id="XFo-xH-rf4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -463,6 +465,9 @@
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="homekit" catalog="system" width="128" height="106"/>
         <image name="honda" width="512" height="340"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

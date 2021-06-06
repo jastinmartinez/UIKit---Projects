@@ -13,7 +13,9 @@ class MaintenanceViewController: UIViewController {
     
     var presenterType: PresenterTypeProtocol!
     
-    override func viewDidLoad() {
+    var modelType: ModelType!
+    
+    override func  viewDidLoad() {
         self.maintTableView.dataSource = self
         self.maintTableView.delegate = self
         initServices()

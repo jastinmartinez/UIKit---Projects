@@ -13,16 +13,22 @@ extension MaintenanceViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if presenterType is CombustibleTypePresenter {
-        
+            
             return (presenterType as! CombustibleTypePresenter).combustibleTypes.count
+            
         }
         else if presenterType is VehicleMarkPresenter {
             
             return (presenterType as! VehicleMarkPresenter).vehicleMarks.count
+            
         }
         else if presenterType is VehicleTypePresenter {
             
             return (presenterType as! VehicleTypePresenter).vehicleTypes.count
+        }
+        else if presenterType is VehicleModelPresenter {
+            
+            return (presenterType as! VehicleModelPresenter).vehicleModels.count
         }
         
         return 0
@@ -44,11 +50,16 @@ extension MaintenanceViewController: UITableViewDelegate,UITableViewDataSource {
             
             cell.bindDataToOulets(vm: (presenterType as! VehicleTypePresenter).vehicleTypes[indexPath.row])
         }
+        else if presenterType is VehicleModelPresenter {
+            
+            cell.bindDataToOulets(vm: (presenterType as! VehicleModelPresenter).vehicleModels[indexPath.row])
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == UITableViewCell.EditingStyle.delete {
             
             if presenterType is CombustibleTypePresenter {
@@ -60,9 +71,35 @@ extension MaintenanceViewController: UITableViewDelegate,UITableViewDataSource {
                 (presenterType as! VehicleMarkPresenter).remove(for: indexPath.row)
             }
             else if presenterType is VehicleTypePresenter {
-               
-               (presenterType as! VehicleTypePresenter).remove(for: indexPath.row)
-           }
+                
+                (presenterType as! VehicleTypePresenter).remove(for: indexPath.row)
+            }
+            else if presenterType is VehicleModelPresenter {
+                
+                (presenterType as! VehicleModelPresenter).remove(for: indexPath.row)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if presenterType is VehicleMarkPresenter {
+            
+            cell.accessoryType = .detailButton
+            
+        } else {
+            
+            cell.accessoryType = .none
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        
+        if presenterType is VehicleMarkPresenter {
+            modelType = (presenterType as! VehicleMarkPresenter).vehicleMarks[indexPath.row]
+            presenterType = VehicleModelPresenter()
+            self.viewDidLoad()
         }
     }
     
@@ -82,12 +119,17 @@ extension MaintenanceViewController: UITableViewDelegate,UITableViewDataSource {
             
             performSegue(withIdentifier: Constant.segue.maintenanceModifySegue, sender: (presenterType as! VehicleTypePresenter).vehicleTypes[indexPath.row])
         }
+        
+        else if presenterType is VehicleModelPresenter  {
+            
+            performSegue(withIdentifier: Constant.segue.maintenanceModifySegue, sender: (presenterType as! VehicleModelPresenter).vehicleModels[indexPath.row])
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       
+        
         if segue.identifier == Constant.segue.maintenanceModifySegue {
-           
+            
             let destionation = segue.destination as! MaintenanceModifyViewController
             
             if presenterType is CombustibleTypePresenter {
@@ -107,6 +149,13 @@ extension MaintenanceViewController: UITableViewDelegate,UITableViewDataSource {
                 destionation.presenterType = (presenterType as? VehicleTypePresenter)
                 destionation.modelType = (sender as? VehicleType)
             }
+            
+            else if presenterType is VehicleModelPresenter {
+                
+                destionation.presenterType = (presenterType as? VehicleModelPresenter)
+                destionation.modelType = (sender as? VehicleModel)
+            }
         }
+        
     }
 }

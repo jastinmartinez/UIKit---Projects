@@ -17,7 +17,7 @@ struct VehicleMarkController: RouteCollection,IController {
         vehicleMark.post(use: create)
         vehicleMark.put(use: update)
         vehicleMark.delete(use: remove)
-        vehicleMark.get(use: getAll)
+        vehicleMark.get(use: getModelsOfMark)
     }
     
     func create(req: Request) throws -> EventLoopFuture<VehicleMark> {
@@ -50,7 +50,7 @@ struct VehicleMarkController: RouteCollection,IController {
                         .transform(to: .ok)})
     }
     
-    func getAll(req: Request) throws -> EventLoopFuture<[VehicleMark]> {
+    func getModelsOfMark(req: Request) throws -> EventLoopFuture<[VehicleMark]> {
         return VehicleMark.query(on: req.db).all()
     }
 }

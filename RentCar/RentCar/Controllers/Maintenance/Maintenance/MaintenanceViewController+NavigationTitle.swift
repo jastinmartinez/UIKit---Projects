@@ -23,5 +23,9 @@ extension MaintenanceViewController {
         
             self.title = "Tipo Vehiculo"
        }
+        else if presenterType is VehicleModelPresenter {
+        
+            self.title = "Modelo Vehiculo"
+       }
     }
 }

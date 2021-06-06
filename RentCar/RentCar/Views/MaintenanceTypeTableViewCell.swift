@@ -40,5 +40,12 @@ class MaintenanceTypeTableViewCell: UITableViewCell, BindOutlets {
             stateLabel.text = vehicleType.state.ToString()
             
         }
+        
+        else if vm is VehicleModel {
+            
+            let vehicleModel = vm as! VehicleModel
+            descriptionLabel.text = vehicleModel.description
+            stateLabel.text = vehicleModel.state.ToString()
+        }
     }
 }

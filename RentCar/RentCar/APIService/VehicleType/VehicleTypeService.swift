@@ -14,7 +14,7 @@ class VehicleTypeService : ServiceProtocol {
     func create(_ vm: VehicleType, completion: @escaping (VehicleType) -> ()) {
         APIService().request(url: RequestBuilder().prepare(url: Constant.uRL.vehicleType, header: nil, model: vm, method: .post, requiredBearerToken: true)) { data, response, error in
             if let data = data {
-                if let vehicleType = ObjectCodable<VehicleType>.decode(single: data) {
+                if let vehicleType = DataToObject<VehicleType>.decode(single: data) {
                     completion(vehicleType)
                 }
             }
@@ -29,7 +29,7 @@ class VehicleTypeService : ServiceProtocol {
     func getAll(completion: @escaping ([VehicleType]) -> ()) {
         APIService().request(url: RequestBuilder<VehicleType>().prepare(url: Constant.uRL.vehicleType, header: nil, requiredBearerToken: true)) { data, res, error in
             if let data = data {
-                if let vehicleTypes = ObjectCodable<VehicleType>.decode(array: data) {
+                if let vehicleTypes = DataToObject<VehicleType>.decode(array: data) {
                     completion(vehicleTypes)
                 }
             }
