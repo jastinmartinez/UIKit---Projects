@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VehicleType: Codable {
+struct VehicleType: Codable, ModelType {
     var id: UUID?
     var description: String
     var state: Bool

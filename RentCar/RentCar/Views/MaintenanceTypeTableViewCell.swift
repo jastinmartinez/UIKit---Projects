@@ -24,11 +24,20 @@ class MaintenanceTypeTableViewCell: UITableViewCell, BindOutlets {
             descriptionLabel.text = combustibleType.description
             stateLabel.text = combustibleType.state.ToString()
             
-        } else if vm is VehicleMark {
+        }
+        else if vm is VehicleMark {
             
             let vehicleMark = vm as! VehicleMark
             descriptionLabel.text = vehicleMark.description
             stateLabel.text = vehicleMark.state.ToString()
+            
+        }
+        
+        else if vm is VehicleType {
+            
+            let vehicleType = vm as! VehicleType
+            descriptionLabel.text = vehicleType.description
+            stateLabel.text = vehicleType.state.ToString()
             
         }
     }

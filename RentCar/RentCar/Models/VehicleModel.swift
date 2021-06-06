@@ -6,3 +6,13 @@
 //
 
 import Foundation
+struct VehicleModel: Codable,ModelType {
+    var id: UUID?
+    var description: String
+    var vehicleMark: vehicleMarkID
+    var state: Bool
+}
+
+struct vehicleMarkID: Codable {
+    var id: UUID?
+}

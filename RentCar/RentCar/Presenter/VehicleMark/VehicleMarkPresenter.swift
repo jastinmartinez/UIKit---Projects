@@ -21,11 +21,6 @@ class VehicleMarkPresenter: PresenterProtocol,PresenterTypeProtocol {
         }
     }
     
-    static var shared: VehicleMarkPresenter = {
-       let instance = VehicleMarkPresenter()
-        return instance
-    }()
-    
     func create(_ vm: VehicleMark) {
         vehicleMarkService.create(vm) { vehicleMark in
             self.vehicleMarks.append(vehicleMark)
@@ -44,7 +39,7 @@ class VehicleMarkPresenter: PresenterProtocol,PresenterTypeProtocol {
     }
     
     func remove(for index: Int) {
-        vehicleMarkService.Delete(vm: vehicleMarks[index])
+        vehicleMarkService.remove(vehicleMarks[index])
         vehicleMarks.remove(at: index)
     }
 }

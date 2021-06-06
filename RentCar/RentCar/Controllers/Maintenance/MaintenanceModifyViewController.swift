@@ -36,6 +36,12 @@ class MaintenanceModifyViewController: UIViewController {
             vehicleMarkerPresenter.update(VehicleMark(id: (modelType as! VehicleMark).id, description: modifiedMaintenanceDescriptionTextField.text!, state: modifiedMaintenanceStateSwitch.isOn))
         }
         
+        else if presenterType is VehicleTypePresenter {
+    
+            let vehicleTypePresenter: VehicleTypePresenter = presenterType as! VehicleTypePresenter
+            vehicleTypePresenter.update(VehicleType(id: (modelType as! VehicleType).id, description: modifiedMaintenanceDescriptionTextField.text!, state: modifiedMaintenanceStateSwitch.isOn))
+        }
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -53,6 +59,14 @@ class MaintenanceModifyViewController: UIViewController {
             let vehicleMark: VehicleMark = vm as! VehicleMark
             self.modifiedMaintenanceDescriptionTextField.text = vehicleMark.description
             self.modifiedMaintenanceStateSwitch.isOn = vehicleMark.state
+            
+        }
+        
+        else if vm is VehicleType {
+            
+            let vehicleType: VehicleType = vm as! VehicleType
+            self.modifiedMaintenanceDescriptionTextField.text = vehicleType.description
+            self.modifiedMaintenanceStateSwitch.isOn = vehicleType.state
             
         }
     }

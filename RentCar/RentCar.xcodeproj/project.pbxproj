@@ -15,6 +15,10 @@
 		0402C58126658A2A00DF1735 /* ObjectDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C58026658A2A00DF1735 /* ObjectDecodable.swift */; };
 		042D0294266C46BF002F957C /* PresenterTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D0293266C46BF002F957C /* PresenterTypeProtocol.swift */; };
 		042D0296266C54C8002F957C /* MaintenanceViewController+NavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D0295266C54C8002F957C /* MaintenanceViewController+NavigationTitle.swift */; };
+		042D0299266C66E6002F957C /* VehicleTypeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D0298266C66E6002F957C /* VehicleTypeService.swift */; };
+		042D029B266C6859002F957C /* VehicleTypePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D029A266C6859002F957C /* VehicleTypePresenter.swift */; };
+		042D029D266C73C1002F957C /* MaintenanceViewController+InitServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D029C266C73C1002F957C /* MaintenanceViewController+InitServices.swift */; };
+		042D029F266C7439002F957C /* MaintenanceViewController+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D029E266C7439002F957C /* MaintenanceViewController+Add.swift */; };
 		043A645626696392009C450F /* MaintenanceModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A645526696392009C450F /* MaintenanceModifyViewController.swift */; };
 		044AB628266BD03500799ECF /* AddNewItemViewParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044AB627266BD03500799ECF /* AddNewItemViewParameters.swift */; };
 		046813AD26586E9100797A72 /* DbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813AC26586E9100797A72 /* DbHelper.swift */; };
@@ -71,6 +75,10 @@
 		0402C58026658A2A00DF1735 /* ObjectDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDecodable.swift; sourceTree = "<group>"; };
 		042D0293266C46BF002F957C /* PresenterTypeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterTypeProtocol.swift; sourceTree = "<group>"; };
 		042D0295266C54C8002F957C /* MaintenanceViewController+NavigationTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaintenanceViewController+NavigationTitle.swift"; sourceTree = "<group>"; };
+		042D0298266C66E6002F957C /* VehicleTypeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTypeService.swift; sourceTree = "<group>"; };
+		042D029A266C6859002F957C /* VehicleTypePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTypePresenter.swift; sourceTree = "<group>"; };
+		042D029C266C73C1002F957C /* MaintenanceViewController+InitServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaintenanceViewController+InitServices.swift"; sourceTree = "<group>"; };
+		042D029E266C7439002F957C /* MaintenanceViewController+Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaintenanceViewController+Add.swift"; sourceTree = "<group>"; };
 		043A645526696392009C450F /* MaintenanceModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceModifyViewController.swift; sourceTree = "<group>"; };
 		044AB627266BD03500799ECF /* AddNewItemViewParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemViewParameters.swift; sourceTree = "<group>"; };
 		046813AC26586E9100797A72 /* DbHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbHelper.swift; sourceTree = "<group>"; };
@@ -322,6 +330,7 @@
 		0494E052266C1BB80076EE04 /* VehicleType */ = {
 			isa = PBXGroup;
 			children = (
+				042D0298266C66E6002F957C /* VehicleTypeService.swift */,
 			);
 			path = VehicleType;
 			sourceTree = "<group>";
@@ -352,6 +361,7 @@
 		0494E062266C22E80076EE04 /* VehicleType */ = {
 			isa = PBXGroup;
 			children = (
+				042D029A266C6859002F957C /* VehicleTypePresenter.swift */,
 			);
 			path = VehicleType;
 			sourceTree = "<group>";
@@ -373,6 +383,8 @@
 				04ADA127265C0FE5009DF878 /* MaintenanceViewController.swift */,
 				043A645526696392009C450F /* MaintenanceModifyViewController.swift */,
 				042D0295266C54C8002F957C /* MaintenanceViewController+NavigationTitle.swift */,
+				042D029C266C73C1002F957C /* MaintenanceViewController+InitServices.swift */,
+				042D029E266C7439002F957C /* MaintenanceViewController+Add.swift */,
 			);
 			path = Maintenance;
 			sourceTree = "<group>";
@@ -525,6 +537,7 @@
 				0402C58126658A2A00DF1735 /* ObjectDecodable.swift in Sources */,
 				04ADA12F265D60DC009DF878 /* CombustibleType.swift in Sources */,
 				0494E05B266C1BED0076EE04 /* Customer.swift in Sources */,
+				042D029F266C7439002F957C /* MaintenanceViewController+Add.swift in Sources */,
 				048AEC6D2653001000960670 /* Constant.swift in Sources */,
 				04ADA128265C0FE5009DF878 /* MaintenanceViewController.swift in Sources */,
 				048AEC652652F06100960670 /* User.swift in Sources */,
@@ -533,12 +546,15 @@
 				04ADA11B265AA637009DF878 /* ErrorResponseStatusCode.swift in Sources */,
 				049EC03E2663D01300FAAB0E /* AuthenticationService.swift in Sources */,
 				049EC0492663E79500FAAB0E /* RequestBuilder.swift in Sources */,
+				042D0299266C66E6002F957C /* VehicleTypeService.swift in Sources */,
 				049EC03C2663CE2000FAAB0E /* CombustibleTypeService.swift in Sources */,
 				0402C5762665460A00DF1735 /* MaintenanceViewController+TableView.swift in Sources */,
 				049EC051266411FD00FAAB0E /* AuthenticationViewController+AuthenticationViewDelegate.swift in Sources */,
 				048AEC6B2652F54E00960670 /* AuthenticationPresenter.swift in Sources */,
 				044AB628266BD03500799ECF /* AddNewItemViewParameters.swift in Sources */,
+				042D029D266C73C1002F957C /* MaintenanceViewController+InitServices.swift in Sources */,
 				0494E067266C237D0076EE04 /* PresenterProtocol.swift in Sources */,
+				042D029B266C6859002F957C /* VehicleTypePresenter.swift in Sources */,
 				049EC05B2664516100FAAB0E /* Mangament.swift in Sources */,
 				0402C57F26654D7900DF1735 /* bool+ToString.swift in Sources */,
 				048AEC612652EECB00960670 /* AuthenticationViewController.swift in Sources */,

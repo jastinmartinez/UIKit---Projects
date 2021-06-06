@@ -17,5 +17,5 @@ protocol ServiceProtocol: AnyObject {
     
     func getAll(completion: @escaping ([aType]) -> ())
     
-    func Delete(vm: aType)
+    func remove(_ vm: aType)
 }

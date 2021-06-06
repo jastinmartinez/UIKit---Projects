@@ -35,7 +35,7 @@ class VehicleMarkService: ServiceProtocol {
         }
     }
     
-    func Delete(vm: VehicleMark) {
+    func remove(_ vm: VehicleMark) {
         APIService().request(url: RequestBuilder().prepare(url: Constant.uRL.vechileMark, header: nil, model: vm, method: .delete, requiredBearerToken: true)) {_,_,_ in}
     }
     

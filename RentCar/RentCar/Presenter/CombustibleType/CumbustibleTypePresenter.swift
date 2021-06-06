@@ -11,18 +11,13 @@ class CombustibleTypePresenter: PresenterTypeProtocol  {
 
     private var combustibleTypeService = CombustibleTypeService()
     
-    static var shared: CombustibleTypePresenter = {
-        let instance = CombustibleTypePresenter()
-        return instance
-    }()
-    
     private(set) var combustibleTypes = [CombustibleType]() {
         didSet {
-            self.combustibleTypeViewDelegate?.didArrayChange()
+            self.maintenanceViewDelegate?.didArrayChange()
         }
     }
    
-    var combustibleTypeViewDelegate: MaintenanceViewDelegateProtocol?
+    var maintenanceViewDelegate: MaintenanceViewDelegateProtocol?
     
     func create(vm: CombustibleType) {
         combustibleTypeService.create(vm) { newCombustibleType in
@@ -40,7 +35,7 @@ class CombustibleTypePresenter: PresenterTypeProtocol  {
     }
 
     func remove(for index: Int)  {
-        combustibleTypeService.Delete(vm: combustibleTypes[index])
+        combustibleTypeService.remove(combustibleTypes[index])
         combustibleTypes.remove(at: index)
     }
 }

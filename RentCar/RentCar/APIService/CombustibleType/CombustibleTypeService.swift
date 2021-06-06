@@ -32,7 +32,7 @@ class CombustibleTypeService: ServiceProtocol  {
         }
     }
     
-    func Delete(vm: CombustibleType) {
+    func remove(_ vm: CombustibleType) {
         APIService().request(url: RequestBuilder().prepare(url: Constant.uRL.combustibleType, model: vm, method: .delete, requiredBearerToken: true)){ _,_,_ in}
     }
 }

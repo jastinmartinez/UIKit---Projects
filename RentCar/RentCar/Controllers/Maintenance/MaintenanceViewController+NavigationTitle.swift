@@ -8,10 +8,20 @@
 import Foundation
 extension MaintenanceViewController {
     func setViewControllerTitle()  {
+       
         if presenterType is CombustibleTypePresenter {
+            
             self.title = "Tipo Combustible"
-        } else if presenterType is VehicleMarkPresenter {
-            self.title = "Marca Vehiclo"
         }
+        
+        else if presenterType is VehicleMarkPresenter {
+            
+            self.title = "Marca Vehiculo"
+        }
+        
+        else if presenterType is VehicleTypePresenter {
+        
+            self.title = "Tipo Vehiculo"
+       }
     }
 }

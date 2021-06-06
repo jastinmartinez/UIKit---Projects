@@ -20,6 +20,10 @@ extension MaintenanceViewController: UITableViewDelegate,UITableViewDataSource {
             
             return (presenterType as! VehicleMarkPresenter).vehicleMarks.count
         }
+        else if presenterType is VehicleTypePresenter {
+            
+            return (presenterType as! VehicleTypePresenter).vehicleTypes.count
+        }
         
         return 0
     }
@@ -36,6 +40,10 @@ extension MaintenanceViewController: UITableViewDelegate,UITableViewDataSource {
             
             cell.bindDataToOulets(vm: (presenterType as! VehicleMarkPresenter).vehicleMarks[indexPath.row])
         }
+        else if presenterType is VehicleTypePresenter {
+            
+            cell.bindDataToOulets(vm: (presenterType as! VehicleTypePresenter).vehicleTypes[indexPath.row])
+        }
         
         return cell
     }
@@ -51,6 +59,10 @@ extension MaintenanceViewController: UITableViewDelegate,UITableViewDataSource {
                 
                 (presenterType as! VehicleMarkPresenter).remove(for: indexPath.row)
             }
+            else if presenterType is VehicleTypePresenter {
+               
+               (presenterType as! VehicleTypePresenter).remove(for: indexPath.row)
+           }
         }
     }
     
@@ -64,6 +76,11 @@ extension MaintenanceViewController: UITableViewDelegate,UITableViewDataSource {
         else if presenterType is VehicleMarkPresenter  {
             
             performSegue(withIdentifier: Constant.segue.maintenanceModifySegue, sender: (presenterType as! VehicleMarkPresenter).vehicleMarks[indexPath.row])
+        }
+        
+        else if presenterType is VehicleTypePresenter  {
+            
+            performSegue(withIdentifier: Constant.segue.maintenanceModifySegue, sender: (presenterType as! VehicleTypePresenter).vehicleTypes[indexPath.row])
         }
     }
     
@@ -83,6 +100,12 @@ extension MaintenanceViewController: UITableViewDelegate,UITableViewDataSource {
                 
                 destionation.presenterType = (presenterType as? VehicleMarkPresenter)
                 destionation.modelType = (sender as? VehicleMark)
+            }
+            
+            else if presenterType is VehicleTypePresenter {
+                
+                destionation.presenterType = (presenterType as? VehicleTypePresenter)
+                destionation.modelType = (sender as? VehicleType)
             }
         }
     }

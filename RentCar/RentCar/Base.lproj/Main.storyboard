@@ -62,7 +62,7 @@
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p04-uP-vKl">
-                                        <rect key="frame" x="36" y="90.666666666666686" width="316.33333333333331" height="0.0"/>
+                                        <rect key="frame" x="36" y="90.666666666666686" width="316" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
@@ -189,7 +189,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="143"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="model" translatesAutoresizingMaskIntoConstraints="NO" id="Wxa-6f-gmv">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="employee" translatesAutoresizingMaskIntoConstraints="NO" id="Wxa-6f-gmv">
                                                     <rect key="frame" x="8" y="8" width="112" height="68"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="68" id="3ZT-oX-bEB"/>
@@ -313,7 +313,7 @@
                     <navigationItem key="navigationItem" title="Maint Ops" id="6N8-r5-Flw">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="jzv-Kp-nii">
                             <connections>
-                                <action selector="addCombustibleTypePressed:" destination="O0w-5s-AGr" id="vgb-Ed-z1Y"/>
+                                <action selector="addMaintenancePressed:" destination="O0w-5s-AGr" id="vgb-Ed-z1Y"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -459,10 +459,10 @@
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="bag.fill" catalog="system" width="128" height="128"/>
+        <image name="employee" width="512.0009765625" height="512.0009765625"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="homekit" catalog="system" width="128" height="106"/>
         <image name="honda" width="512" height="340"/>
-        <image name="model" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
