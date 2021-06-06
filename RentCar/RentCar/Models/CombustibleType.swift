@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CombustibleType: Codable {
+struct CombustibleType: Codable,ModelType {
     var id: UUID? = nil
     var description: String
     var state: Bool

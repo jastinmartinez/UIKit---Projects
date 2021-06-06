@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol IService: AnyObject {
+protocol ServiceProtocol: AnyObject {
     
     associatedtype aType
     

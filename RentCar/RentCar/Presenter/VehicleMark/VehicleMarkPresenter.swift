@@ -7,7 +7,9 @@
 
 import Foundation
 
-class VehicleMarkPresenter: IPresenter {
+class VehicleMarkPresenter: PresenterProtocol,PresenterTypeProtocol {
+    
+    var maintenanceViewDelegate: MaintenanceViewDelegateProtocol?
     
     typealias aType = VehicleMark
     
@@ -15,7 +17,7 @@ class VehicleMarkPresenter: IPresenter {
     
     private(set) var vehicleMarks = [VehicleMark]() {
         didSet {
-            
+            maintenanceViewDelegate?.didArrayChange()
         }
     }
     
@@ -24,7 +26,7 @@ class VehicleMarkPresenter: IPresenter {
         return instance
     }()
     
-    func create(vm: VehicleMark) {
+    func create(_ vm: VehicleMark) {
         vehicleMarkService.create(vm) { vehicleMark in
             self.vehicleMarks.append(vehicleMark)
         }
@@ -36,7 +38,7 @@ class VehicleMarkPresenter: IPresenter {
         }
     }
     
-    func update(vm: VehicleMark) {
+    func update(_ vm: VehicleMark) {
         vehicleMarks[vehicleMarks.firstIndex(where: {$0.id == vm.id})!] = vm
         vehicleMarkService.update(vm)
     }

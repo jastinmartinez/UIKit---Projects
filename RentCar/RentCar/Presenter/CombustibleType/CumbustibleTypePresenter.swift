@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CombustibleTypePresenter  {
+class CombustibleTypePresenter: PresenterTypeProtocol  {
 
     private var combustibleTypeService = CombustibleTypeService()
     
@@ -18,11 +18,11 @@ class CombustibleTypePresenter  {
     
     private(set) var combustibleTypes = [CombustibleType]() {
         didSet {
-            self.combustibleTypeViewDelegate?.didArrayOfCombustibleChange()
+            self.combustibleTypeViewDelegate?.didArrayChange()
         }
     }
    
-    var combustibleTypeViewDelegate: CombustibleTypeViewDelegate?
+    var combustibleTypeViewDelegate: MaintenanceViewDelegateProtocol?
     
     func create(vm: CombustibleType) {
         combustibleTypeService.create(vm) { newCombustibleType in
@@ -34,7 +34,7 @@ class CombustibleTypePresenter  {
             self.combustibleTypes = arrayOfCombustibleType
         }
     }
-    func update(vm: CombustibleType) {
+    func update(_ vm: CombustibleType) {
         combustibleTypes[combustibleTypes.firstIndex(where: {$0.id == vm.id})!] = vm
         self.combustibleTypeService.update(vm)
     }

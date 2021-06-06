@@ -235,7 +235,7 @@
                     <navigationItem key="navigationItem" title="Gestion" largeTitleDisplayMode="always" id="JBs-t4-SUa"/>
                     <connections>
                         <outlet property="managementCollectionVIew" destination="fSb-og-Ucd" id="MNe-hb-1t8"/>
-                        <segue destination="O0w-5s-AGr" kind="show" identifier="combustibleTypeSegue" id="aw1-PQ-1DJ"/>
+                        <segue destination="O0w-5s-AGr" kind="show" identifier="maintenanceSegue" id="aw1-PQ-1DJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kgg-b6-FAB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -261,7 +261,7 @@
         <!--Combustible Type View Controller-->
         <scene sceneID="q5f-jy-5Xs">
             <objects>
-                <viewController storyboardIdentifier="CombustibleTypeViewController" id="O0w-5s-AGr" userLabel="Combustible Type View Controller" customClass="CombustibleTypeViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="O0w-5s-AGr" userLabel="Combustible Type View Controller" customClass="MaintenanceViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kUI-q2-CWo">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -270,7 +270,7 @@
                                 <rect key="frame" x="0.0" y="140" width="428" height="703"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="combustibleTypeTableViewCell" textLabel="0eo-ot-FpI" detailTextLabel="T5V-vr-hXk" style="IBUITableViewCellStyleValue1" id="lLB-hr-HPB" customClass="CombustibleTypeTableViewCell" customModule="RentCar" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="maintenanceTableViewCell" textLabel="0eo-ot-FpI" detailTextLabel="T5V-vr-hXk" style="IBUITableViewCellStyleValue1" id="lLB-hr-HPB" customClass="MaintenanceTypeTableViewCell" customModule="RentCar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lLB-hr-HPB" id="ony-9n-xIL">
@@ -310,7 +310,7 @@
                             <constraint firstItem="a3d-pE-rjD" firstAttribute="trailing" secondItem="GT3-qd-s2R" secondAttribute="trailing" id="TDd-cs-lFu"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Tipo Combustible" id="6N8-r5-Flw">
+                    <navigationItem key="navigationItem" title="Maint Ops" id="6N8-r5-Flw">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="jzv-Kp-nii">
                             <connections>
                                 <action selector="addCombustibleTypePressed:" destination="O0w-5s-AGr" id="vgb-Ed-z1Y"/>
@@ -318,18 +318,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="combustibleTypeTableView" destination="GT3-qd-s2R" id="ubp-OU-AzF"/>
-                        <segue destination="iR6-NR-dfO" kind="show" identifier="modifyCombustibleTypeSegue" id="7qw-n4-0LF"/>
+                        <outlet property="maintTableView" destination="GT3-qd-s2R" id="ubp-OU-AzF"/>
+                        <segue destination="iR6-NR-dfO" kind="show" identifier="maintenanceModifySegue" id="7qw-n4-0LF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INC-gd-MHk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6523" y="1040"/>
+            <point key="canvasLocation" x="6523" y="1044"/>
         </scene>
-        <!--Modificar-->
+        <!--Editando-->
         <scene sceneID="keE-Oh-rjj">
             <objects>
-                <viewController id="iR6-NR-dfO" customClass="ModifyCombustibleTypeViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iR6-NR-dfO" customClass="MaintenanceModifyViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cTy-ta-8Ja">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -360,21 +360,21 @@
                             <constraint firstItem="ejT-KH-5QN" firstAttribute="top" secondItem="MFf-7U-TVJ" secondAttribute="top" constant="55" id="q6Y-2n-x6n"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Modificar" id="VtH-4y-nzH">
-                        <barButtonItem key="rightBarButtonItem" title="Modifcar" id="wj7-N2-s8Y">
+                    <navigationItem key="navigationItem" title="Editando" id="VtH-4y-nzH">
+                        <barButtonItem key="rightBarButtonItem" title="Guardar" id="wj7-N2-s8Y">
                             <connections>
                                 <action selector="modifyCombustibleTypeButtonPressed:" destination="iR6-NR-dfO" id="XFo-xH-rf4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="modifiedCombustibleTypeDescriptionTextField" destination="9WX-uZ-Gle" id="1yb-dO-VLK"/>
-                        <outlet property="modifiedCombustibleTypeStateSwitch" destination="7LB-H8-Wx9" id="y7g-K2-CoB"/>
+                        <outlet property="modifiedMaintenanceDescriptionTextField" destination="9WX-uZ-Gle" id="1yb-dO-VLK"/>
+                        <outlet property="modifiedMaintenanceStateSwitch" destination="7LB-H8-Wx9" id="y7g-K2-CoB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jHT-By-p9U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7260" y="1040"/>
+            <point key="canvasLocation" x="6523" y="1739"/>
         </scene>
         <!--App Tab Bar-->
         <scene sceneID="W4R-Od-E1p">

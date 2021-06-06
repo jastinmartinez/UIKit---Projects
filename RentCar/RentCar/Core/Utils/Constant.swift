@@ -27,8 +27,8 @@ struct Constant {
     }
     
     struct segue {
-        static let combustibleTypeSegue = "combustibleTypeSegue"
-        static let modifyCombustibleTypeSegue = "modifyCombustibleTypeSegue"
+        static let maintenanceSegue = "maintenanceSegue"
+        static let maintenanceModifySegue = "maintenanceModifySegue"
     }
     
     struct reusableView {
@@ -36,7 +36,7 @@ struct Constant {
     }
     
     struct tableViewCell {
-        static let combustibleTypeTableViewCell = "combustibleTypeTableViewCell"
+        static let maintenanceTypeTableViewCell = "maintenanceTableViewCell"
     }
 }
 

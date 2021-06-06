@@ -7,7 +7,7 @@
 
 import Foundation
 
-class VehicleMarkService: IService {
+class VehicleMarkService: ServiceProtocol {
     
     typealias aType = VehicleMark
     

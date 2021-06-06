@@ -7,15 +7,16 @@
 
 import Foundation
 
-protocol IPresenter: AnyObject {
+protocol PresenterProtocol: AnyObject {
     associatedtype aType
     
-    func create(vm: aType)
+    func create(_ vm: aType)
     
     func getAll()
     
-    func update(vm: aType)
+    func update(_ vm: aType)
     
     func remove(for index: Int)
     
 }
+

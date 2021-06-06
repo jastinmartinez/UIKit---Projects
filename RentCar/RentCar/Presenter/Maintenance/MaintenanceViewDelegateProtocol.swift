@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CombustibleTypeViewDelegate: AnyObject {
-    func didArrayOfCombustibleChange()
+protocol MaintenanceViewDelegateProtocol: AnyObject {
+    func didArrayChange()
 }
 
