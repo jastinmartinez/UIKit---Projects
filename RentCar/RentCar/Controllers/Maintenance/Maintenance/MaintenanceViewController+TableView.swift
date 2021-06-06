@@ -85,8 +85,12 @@ extension MaintenanceViewController: UITableViewDelegate,UITableViewDataSource {
         
         if presenterType is VehicleMarkPresenter {
             
-            cell.accessoryType = .detailButton
-            
+            if ((presenterType as! VehicleMarkPresenter).vehicleMarks[indexPath.row].state) {
+                cell.accessoryType = .detailButton
+            }
+            else {
+                cell.accessoryType = .none
+            }
         } else {
             
             cell.accessoryType = .none
