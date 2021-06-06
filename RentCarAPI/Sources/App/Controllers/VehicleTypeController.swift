@@ -15,7 +15,7 @@ struct VehicleTypeController: RouteCollection,IController {
         vehicleType.post( use: create)
         vehicleType.put( use: update)
         vehicleType.delete( use: remove)
-        vehicleType.get( use: getModelsOfMark)
+        vehicleType.get( use: getAll)
     }
     
     typealias aType = VehicleType
@@ -48,7 +48,7 @@ struct VehicleTypeController: RouteCollection,IController {
                             .transform(to: .ok)})
     }
     
-    func getModelsOfMark(req: Request) throws -> EventLoopFuture<[VehicleType]> {
+    func getAll(req: Request) throws -> EventLoopFuture<[VehicleType]> {
         return VehicleType.query(on: req.db).all()
     }
     

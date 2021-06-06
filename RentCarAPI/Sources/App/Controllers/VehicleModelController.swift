@@ -17,7 +17,7 @@ final class VehicleModelController: RouteCollection,IController {
         let vehicleModel = routes.grouped("vehiclemodel")
         vehicleModel.post( use: create)
         vehicleModel.put( use: update)
-        vehicleModel.get(":vehicle_mark_id",use: getModelsOfMark)
+        vehicleModel.get(":vehicle_mark_id",use: getAll)
         vehicleModel.delete( use: remove)
     }
     
@@ -46,12 +46,12 @@ final class VehicleModelController: RouteCollection,IController {
             .find(vehicleModel.id, on: req.db)
             .unwrap(or: Abort(.notFound))
             .flatMap(
-                {$0.delete(on: req.db)
-                .transform(to: .ok)
+                { $0.delete(on: req.db)
+                    .transform(to: .ok)
             })
     }
     
-    func getModelsOfMark(req: Request) throws -> EventLoopFuture<[VehicleModel]> {
+    func getAll(req: Request) throws -> EventLoopFuture<[VehicleModel]> {
         
        return VehicleModel.query(on: req.db)
             .join(VehicleMark.self, on: \VehicleModel.$vehicleMark.$id == \VehicleMark.$id)

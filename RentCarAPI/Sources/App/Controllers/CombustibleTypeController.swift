@@ -19,7 +19,7 @@ struct CombustibleTypeController: RouteCollection,IController {
         combustibleTypeRoute.post(use:create)
         combustibleTypeRoute.put(use:update)
         combustibleTypeRoute.delete(use: remove)
-        combustibleTypeRoute.get(use:getModelsOfMark)
+        combustibleTypeRoute.get(use:getAll)
     }
     
     func create(req: Request) throws -> EventLoopFuture<CombustibleType> {
@@ -51,7 +51,7 @@ struct CombustibleTypeController: RouteCollection,IController {
         
     }
     
-    func getModelsOfMark(req: Request) throws -> EventLoopFuture<[CombustibleType]> {
+    func getAll(req: Request) throws -> EventLoopFuture<[CombustibleType]> {
         
         return CombustibleType.query(on: req.db).all()
     }

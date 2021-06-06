@@ -14,6 +14,7 @@ class VehicleMarkPresenter: PresenterProtocol,PresenterTypeProtocol {
     typealias aType = VehicleMark
     
     private var vehicleMarkService = VehicleMarkService()
+    private var vehicleModelService = VehicleModelService()
     
     private(set) var vehicleMarks = [VehicleMark]() {
         didSet {
@@ -39,7 +40,14 @@ class VehicleMarkPresenter: PresenterProtocol,PresenterTypeProtocol {
     }
     
     func remove(for index: Int) {
-        vehicleMarkService.remove(vehicleMarks[index])
-        vehicleMarks.remove(at: index)
+        vehicleModelService.geModelsOfMark(VehicleMarkID: vehicleMarks[index].id!) { modelsOfMark in
+            if modelsOfMark.count == 0 {
+                self.vehicleMarkService.remove(self.vehicleMarks[index])
+                self.vehicleMarks.remove(at: index)
+            }
+            else {
+                self.maintenanceViewDelegate?.didErrorOcurred(title: "Marca Vehiculo", message: "\(self.vehicleMarks[index].description) no puede ser eliminada existen modelos vinculados")
+            }
+        }
     }
 }

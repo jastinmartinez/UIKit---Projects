@@ -7,6 +7,7 @@
 
 import Foundation
 import Vapor
+import Fluent
 
 struct VehicleMarkController: RouteCollection,IController {
     
@@ -17,7 +18,7 @@ struct VehicleMarkController: RouteCollection,IController {
         vehicleMark.post(use: create)
         vehicleMark.put(use: update)
         vehicleMark.delete(use: remove)
-        vehicleMark.get(use: getModelsOfMark)
+        vehicleMark.get(use: getAll)
     }
     
     func create(req: Request) throws -> EventLoopFuture<VehicleMark> {
@@ -43,14 +44,19 @@ struct VehicleMarkController: RouteCollection,IController {
     
     func remove(req: Request) throws -> EventLoopFuture<HTTPStatus> {
         let vehicleMark = try req.content.decode(VehicleMark.self)
+    
         return VehicleMark
             .find(vehicleMark.id, on: req.db)
             .unwrap(or: Abort(.notFound))
-            .flatMap({$0.delete(on: req.db)
-                        .transform(to: .ok)})
+            .flatMap({
+                $0.delete(on: req.db)
+                    .transform(to: .ok)
+            })
     }
+
     
-    func getModelsOfMark(req: Request) throws -> EventLoopFuture<[VehicleMark]> {
+    func getAll(req: Request) throws -> EventLoopFuture<[VehicleMark]> {
+    
         return VehicleMark.query(on: req.db).all()
     }
 }

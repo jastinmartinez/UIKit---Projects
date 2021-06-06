@@ -95,7 +95,6 @@ extension MaintenanceViewController: UITableViewDelegate,UITableViewDataSource {
             
             cell.accessoryType = .none
         }
-        
     }
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {

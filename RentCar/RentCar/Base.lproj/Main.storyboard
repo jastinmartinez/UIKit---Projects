@@ -259,10 +259,10 @@
             </objects>
             <point key="canvasLocation" x="7863" y="281"/>
         </scene>
-        <!--Combustible Type View Controller-->
+        <!--Maintenance View Controller-->
         <scene sceneID="q5f-jy-5Xs">
             <objects>
-                <viewController id="O0w-5s-AGr" userLabel="Combustible Type View Controller" customClass="MaintenanceViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="O0w-5s-AGr" userLabel="Maintenance View Controller" customClass="MaintenanceViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kUI-q2-CWo">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -312,7 +312,7 @@
                             <constraint firstItem="a3d-pE-rjD" firstAttribute="trailing" secondItem="GT3-qd-s2R" secondAttribute="trailing" id="TDd-cs-lFu"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Maint Ops" id="6N8-r5-Flw">
+                    <navigationItem key="navigationItem" title="Maintenance" id="6N8-r5-Flw">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="jzv-Kp-nii">
                             <connections>
                                 <action selector="addMaintenancePressed:" destination="O0w-5s-AGr" id="vgb-Ed-z1Y"/>

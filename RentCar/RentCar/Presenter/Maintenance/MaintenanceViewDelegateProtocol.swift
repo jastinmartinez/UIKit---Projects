@@ -9,5 +9,6 @@ import Foundation
 
 protocol MaintenanceViewDelegateProtocol: AnyObject {
     func didArrayChange()
+    func didErrorOcurred(title:String, message:String)
 }
 
