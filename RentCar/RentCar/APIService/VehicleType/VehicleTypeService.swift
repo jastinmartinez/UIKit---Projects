@@ -40,8 +40,4 @@ class VehicleTypeService : ServiceProtocol {
         APIService().request(url: RequestBuilder().prepare(url: Constant.uRL.vehicleType, header: nil, model: vm, method: .delete, requiredBearerToken: true)) { _, _, _ in
         }
     }
-    
-
-    
-    
 }
