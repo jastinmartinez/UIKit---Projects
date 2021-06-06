@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+struct Customer: Codable {
+   
+    var id: UUID?
+    var name: String
+    var customerID: String
+    var creditCard: String
+    var creditLimit: Double
+    var personType: String
+    var state: Bool
+    
+}

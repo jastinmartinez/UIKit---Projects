@@ -30,6 +30,8 @@
 		04831364266D1F5E009F3389 /* VehicleModelPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04831363266D1F5E009F3389 /* VehicleModelPresenter.swift */; };
 		04831366266D2926009F3389 /* MaintenanceModifyViewController+ModifyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04831365266D2926009F3389 /* MaintenanceModifyViewController+ModifyItem.swift */; };
 		04831368266D29C3009F3389 /* MaintenanceModifyViewController+DidItemSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04831367266D29C3009F3389 /* MaintenanceModifyViewController+DidItemSelected.swift */; };
+		0483136E266D7BA4009F3389 /* CustomerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483136D266D7BA4009F3389 /* CustomerService.swift */; };
+		04831372266D7BEF009F3389 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04831371266D7BEF009F3389 /* Employee.swift */; };
 		048AEC5E2652D74900960670 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AEC5D2652D74900960670 /* RoundedButton.swift */; };
 		048AEC612652EECB00960670 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AEC602652EECB00960670 /* AuthenticationViewController.swift */; };
 		048AEC652652F06100960670 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AEC642652F06100960670 /* User.swift */; };
@@ -94,6 +96,8 @@
 		04831363266D1F5E009F3389 /* VehicleModelPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModelPresenter.swift; sourceTree = "<group>"; };
 		04831365266D2926009F3389 /* MaintenanceModifyViewController+ModifyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaintenanceModifyViewController+ModifyItem.swift"; sourceTree = "<group>"; };
 		04831367266D29C3009F3389 /* MaintenanceModifyViewController+DidItemSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaintenanceModifyViewController+DidItemSelected.swift"; sourceTree = "<group>"; };
+		0483136D266D7BA4009F3389 /* CustomerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerService.swift; sourceTree = "<group>"; };
+		04831371266D7BEF009F3389 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		048AEC5D2652D74900960670 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		048AEC602652EECB00960670 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		048AEC642652F06100960670 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -256,6 +260,7 @@
 				0494E058266C1BE60076EE04 /* VehicleType.swift */,
 				0494E05A266C1BED0076EE04 /* Customer.swift */,
 				0494E068266C3A720076EE04 /* ModelType.swift */,
+				04831371266D7BEF009F3389 /* Employee.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 		0483136B266D7B55009F3389 /* Customer */ = {
 			isa = PBXGroup;
 			children = (
+				0483136D266D7BA4009F3389 /* CustomerService.swift */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -567,6 +573,7 @@
 				049EC05D266452E400FAAB0E /* ManagementCollectionViewCell.swift in Sources */,
 				04748AE22667FEAC00B1935A /* MaintenanceViewController+DelegateView.swift in Sources */,
 				049EC0432663D65C00FAAB0E /* APIService.swift in Sources */,
+				04831372266D7BEF009F3389 /* Employee.swift in Sources */,
 				046813B22658724D00797A72 /* SignIn.swift in Sources */,
 				0402C57026653DE000DF1735 /* AlertView.swift in Sources */,
 				046813C72659CDF500797A72 /* AuthenticationViewController+InputValidation.swift in Sources */,
@@ -606,6 +613,7 @@
 				0402C57F26654D7900DF1735 /* bool+ToString.swift in Sources */,
 				048AEC612652EECB00960670 /* AuthenticationViewController.swift in Sources */,
 				049EC057266450D200FAAB0E /* ManagementViewController.swift in Sources */,
+				0483136E266D7BA4009F3389 /* CustomerService.swift in Sources */,
 				0494E057266C1BD50076EE04 /* VehicleMark.swift in Sources */,
 				04B90EE9264F63830099CAB9 /* SceneDelegate.swift in Sources */,
 				04831364266D1F5E009F3389 /* VehicleModelPresenter.swift in Sources */,

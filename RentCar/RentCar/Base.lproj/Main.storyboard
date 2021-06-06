@@ -237,6 +237,7 @@
                     <connections>
                         <outlet property="managementCollectionVIew" destination="fSb-og-Ucd" id="MNe-hb-1t8"/>
                         <segue destination="O0w-5s-AGr" kind="show" identifier="maintenanceSegue" id="aw1-PQ-1DJ"/>
+                        <segue destination="ICq-GQ-VRp" kind="show" identifier="customerSegue" id="zDi-Yz-874"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kgg-b6-FAB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -327,6 +328,108 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INC-gd-MHk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6523" y="997"/>
+        </scene>
+        <!--Cliente-->
+        <scene sceneID="rHt-XW-kWv">
+            <objects>
+                <tableViewController id="ICq-GQ-VRp" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HNr-Kf-sae">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customerTableViewCell" id="noG-wO-Wnh">
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="noG-wO-Wnh" id="Xok-vY-ZRB">
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ICq-GQ-VRp" id="Xhr-9k-NO3"/>
+                            <outlet property="delegate" destination="ICq-GQ-VRp" id="PaF-Qm-n3Y"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Cliente" id="Qhc-FW-Hxm">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Y3A-pn-VkH">
+                            <connections>
+                                <segue destination="5sp-r4-hg6" kind="show" identifier="newCustomerSegue" id="RVM-IW-T1t"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BXw-L2-Bqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7283" y="997"/>
+        </scene>
+        <!--Nuevo-->
+        <scene sceneID="Vew-h5-SR0">
+            <objects>
+                <viewController id="5sp-r4-hg6" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bep-Tf-xSE">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="y6o-Nc-CMO">
+                                <rect key="frame" x="20" y="186" width="388" height="283"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cedula" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="32j-Ll-sDa">
+                                        <rect key="frame" x="20" y="0.0" width="348" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wh9-A0-jNo">
+                                        <rect key="frame" x="20" y="63" width="348" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No. Tarjeta CR" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rVI-Us-WZj">
+                                        <rect key="frame" x="20" y="126" width="348" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="cc-number"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Limite Credito" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="it1-s3-Sie">
+                                        <rect key="frame" x="20" y="189" width="348" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qdq-GV-uah">
+                                        <rect key="frame" x="125.66666666666666" y="252" width="136.99999999999997" height="32"/>
+                                        <segments>
+                                            <segment title="Fisica"/>
+                                            <segment title="Juridica"/>
+                                        </segments>
+                                    </segmentedControl>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="it1-s3-Sie" secondAttribute="trailing" constant="20" id="AWw-ej-I5g"/>
+                                    <constraint firstItem="rVI-Us-WZj" firstAttribute="leading" secondItem="y6o-Nc-CMO" secondAttribute="leading" constant="20" id="C0v-VI-bqy"/>
+                                    <constraint firstAttribute="trailing" secondItem="wh9-A0-jNo" secondAttribute="trailing" constant="20" id="CDN-aJ-Qmq"/>
+                                    <constraint firstAttribute="trailing" secondItem="rVI-Us-WZj" secondAttribute="trailing" constant="20" id="DSb-10-75n"/>
+                                    <constraint firstItem="32j-Ll-sDa" firstAttribute="leading" secondItem="y6o-Nc-CMO" secondAttribute="leading" constant="20" id="K3T-Cx-aci"/>
+                                    <constraint firstItem="it1-s3-Sie" firstAttribute="leading" secondItem="y6o-Nc-CMO" secondAttribute="leading" constant="20" id="T8n-U8-qPf"/>
+                                    <constraint firstItem="wh9-A0-jNo" firstAttribute="leading" secondItem="y6o-Nc-CMO" secondAttribute="leading" constant="20" id="ggv-Rb-cF7"/>
+                                    <constraint firstAttribute="trailing" secondItem="32j-Ll-sDa" secondAttribute="trailing" constant="20" id="og3-sn-Ma9"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fSG-H2-9U2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="y6o-Nc-CMO" firstAttribute="leading" secondItem="Bep-Tf-xSE" secondAttribute="leadingMargin" id="SGH-CI-JLt"/>
+                            <constraint firstItem="y6o-Nc-CMO" firstAttribute="top" secondItem="fSG-H2-9U2" secondAttribute="top" constant="46" id="WA0-hf-DRX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="y6o-Nc-CMO" secondAttribute="trailing" id="c7U-3n-roR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Nuevo" id="STP-3P-1wi">
+                        <barButtonItem key="rightBarButtonItem" title="Guardar" id="jDd-yu-HY2"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4fB-Hq-IAa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8028.5046728971956" y="996.54427645788348"/>
         </scene>
         <!--Editando-->
         <scene sceneID="keE-Oh-rjj">
