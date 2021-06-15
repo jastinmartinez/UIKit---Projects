@@ -133,7 +133,7 @@ extension MaintenanceViewController: UITableViewDelegate,UITableViewDataSource {
         
         if segue.identifier == Constant.segue.maintenanceModifySegue {
             
-            let destionation = segue.destination as! MaintenanceModifyViewController
+            let destionation = segue.destination as! ModifyMaintenanceViewController
             
             if presenterType is CombustibleTypePresenter {
                 

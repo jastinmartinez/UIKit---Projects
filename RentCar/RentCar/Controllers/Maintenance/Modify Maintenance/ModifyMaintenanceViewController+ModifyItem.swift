@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension MaintenanceModifyViewController {
+extension ModifyMaintenanceViewController {
     
     func modifyItem()  {
         

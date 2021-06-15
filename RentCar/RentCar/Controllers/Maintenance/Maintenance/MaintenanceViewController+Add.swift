@@ -35,7 +35,7 @@ extension MaintenanceViewController {
         
         else if self.presenterType is VehicleTypePresenter {
             
-            alert = AlertView().newItem(parameter: AddNewItemViewParameters(title: "Modelo Vehiculo", message: "Nuevo", placeholder: "Descripcion")) { value in
+            alert = AlertView().newItem(parameter: AddNewItemViewParameters(title: "Tipo Vehiculo", message: "Nuevo", placeholder: "Descripcion")) { value in
                 
                 let vehicleTypePresenter: VehicleTypePresenter = self.presenterType as! VehicleTypePresenter
                 vehicleTypePresenter.create(VehicleType(description: value, state: true))

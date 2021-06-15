@@ -21,6 +21,8 @@ extension Customer {
                 .field("customer_credit_limit",.double,.required)
                 .field("customer_person_type",.string,.required)
                 .field("customer_state",.bool,.required)
+                .unique(on: "customer_id")
+                .unique(on: "customer_credit_card")
                 .create()
         }
         func revert(on database: Database) -> EventLoopFuture<Void> {

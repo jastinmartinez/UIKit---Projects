@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MaintenanceModifyViewController: UIViewController {
+class ModifyMaintenanceViewController: UIViewController {
     
     @IBOutlet weak var modifiedMaintenanceDescriptionTextField: UITextField!
     @IBOutlet weak var modifiedMaintenanceStateSwitch: UISwitch!

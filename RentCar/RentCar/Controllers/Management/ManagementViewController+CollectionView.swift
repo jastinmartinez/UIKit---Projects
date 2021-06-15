@@ -21,6 +21,7 @@ extension ManagementViewController: UICollectionViewDelegate,UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         performSegue(withIdentifier: managementMenuData[indexPath.row].segue, sender: managementMenuData[indexPath.row])
     }
     

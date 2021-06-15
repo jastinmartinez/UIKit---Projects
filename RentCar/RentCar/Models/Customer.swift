@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Customer: Codable {
+struct Customer: Codable,ModelType {
    
-    var id: UUID?
+    var id: UUID? = nil
     var name: String
     var customerID: String
     var creditCard: String

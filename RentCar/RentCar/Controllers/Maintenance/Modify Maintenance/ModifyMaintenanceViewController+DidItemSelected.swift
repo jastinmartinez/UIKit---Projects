@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension MaintenanceModifyViewController {
+extension ModifyMaintenanceViewController {
     
     func didItemSelected(_ vm: ModelType) {
         

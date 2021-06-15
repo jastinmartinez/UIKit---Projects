@@ -149,23 +149,7 @@
             </objects>
             <point key="canvasLocation" x="5410" y="-1300"/>
         </scene>
-        <!--Inicio-->
-        <scene sceneID="VDz-PB-RLy">
-            <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="eZh-ho-IgO" customClass="HomeViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="H5c-11-zSJ">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="HTR-EM-Kgl"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Inicio" largeTitleDisplayMode="always" id="Ubt-Gq-NWM"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sBq-k2-He0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5127" y="281"/>
-        </scene>
-        <!--Gestion-->
+        <!--JMB Rental Car-->
         <scene sceneID="YTx-xV-ijd">
             <objects>
                 <viewController id="Cyk-J0-irY" customClass="ManagementViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
@@ -233,7 +217,7 @@
                             <constraint firstItem="fSb-og-Ucd" firstAttribute="leading" secondItem="ifV-g7-Uzr" secondAttribute="leading" id="vMB-yl-Uyo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Gestion" largeTitleDisplayMode="always" id="JBs-t4-SUa"/>
+                    <navigationItem key="navigationItem" title="JMB Rental Car" largeTitleDisplayMode="always" id="JBs-t4-SUa"/>
                     <connections>
                         <outlet property="managementCollectionVIew" destination="fSb-og-Ucd" id="MNe-hb-1t8"/>
                         <segue destination="O0w-5s-AGr" kind="show" identifier="maintenanceSegue" id="aw1-PQ-1DJ"/>
@@ -327,24 +311,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INC-gd-MHk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6523" y="997"/>
+            <point key="canvasLocation" x="5980" y="1031"/>
         </scene>
         <!--Cliente-->
         <scene sceneID="rHt-XW-kWv">
             <objects>
-                <tableViewController id="ICq-GQ-VRp" sceneMemberID="viewController">
+                <tableViewController id="ICq-GQ-VRp" customClass="CustomerTableViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HNr-Kf-sae">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customerTableViewCell" id="noG-wO-Wnh">
-                                <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="customerTableViewCell" textLabel="CDj-OJ-yQB" detailTextLabel="TLp-xf-4Um" rowHeight="57" style="IBUITableViewCellStyleValue1" id="noG-wO-Wnh" customClass="CustomerTableViewCell" customModule="RentCar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="57"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="noG-wO-Wnh" id="Xok-vY-ZRB">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="57"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CDj-OJ-yQB">
+                                            <rect key="frame" x="20" y="22" width="25" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TLp-xf-4Um">
+                                            <rect key="frame" x="375.33333333333331" y="22" width="32.666666666666664" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="tintColor" red="0.094117647060000004" green="0.35294117650000001" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </tableViewCellContentView>
+                                <color key="tintColor" red="0.094117647060000004" green="0.35294117650000001" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="customerNameTextField" destination="CDj-OJ-yQB" id="J49-Sy-tWH"/>
+                                    <outlet property="customerStateTextField" destination="TLp-xf-4Um" id="Ids-au-xjM"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -355,53 +361,86 @@
                     <navigationItem key="navigationItem" title="Cliente" id="Qhc-FW-Hxm">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Y3A-pn-VkH">
                             <connections>
-                                <segue destination="5sp-r4-hg6" kind="show" identifier="newCustomerSegue" id="RVM-IW-T1t"/>
+                                <action selector="addCustomerButtonPressed:" destination="ICq-GQ-VRp" id="46O-kg-EDx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="5sp-r4-hg6" kind="show" identifier="addOrEditCustomerSegue" id="zo5-bM-04R"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXw-L2-Bqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7283" y="997"/>
+            <point key="canvasLocation" x="6843.925233644859" y="1004.9676025917927"/>
         </scene>
         <!--Nuevo-->
         <scene sceneID="Vew-h5-SR0">
             <objects>
-                <viewController id="5sp-r4-hg6" sceneMemberID="viewController">
+                <viewController id="5sp-r4-hg6" customClass="AddOrEditCustomerViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bep-Tf-xSE">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="y6o-Nc-CMO">
-                                <rect key="frame" x="20" y="186" width="388" height="283"/>
+                                <rect key="frame" x="20" y="186" width="388" height="343"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cedula" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="32j-Ll-sDa">
                                         <rect key="frame" x="20" y="0.0" width="348" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azi-8s-zWJ">
+                                        <rect key="frame" x="169" y="48.666666666666657" width="50" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wh9-A0-jNo">
                                         <rect key="frame" x="20" y="63" width="348" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="name"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No. Tarjeta CR" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rVI-Us-WZj">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gB-o3-F1D">
+                                        <rect key="frame" x="169" y="111.66666666666669" width="50" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="4221352001445600" borderStyle="roundedRect" placeholder="No. Tarjeta CR" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rVI-Us-WZj">
                                         <rect key="frame" x="20" y="126" width="348" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="cc-number"/>
                                     </textField>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1z-mi-QHX">
+                                        <rect key="frame" x="169" y="174.66666666666669" width="50" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Limite Credito" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="it1-s3-Sie">
                                         <rect key="frame" x="20" y="189" width="348" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMi-bz-bac">
+                                        <rect key="frame" x="169" y="237.66666666666669" width="50" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qdq-GV-uah">
                                         <rect key="frame" x="125.66666666666666" y="252" width="136.99999999999997" height="32"/>
                                         <segments>
                                             <segment title="Fisica"/>
                                             <segment title="Juridica"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="customerPersonTypeSegmentControlValueChange:" destination="5sp-r4-hg6" eventType="valueChanged" id="Twz-37-5bW"/>
+                                        </connections>
                                     </segmentedControl>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SNz-YC-b09">
+                                        <rect key="frame" x="169.66666666666666" y="312" width="51" height="31"/>
+                                    </switch>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="it1-s3-Sie" secondAttribute="trailing" constant="20" id="AWw-ej-I5g"/>
@@ -424,17 +463,33 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Nuevo" id="STP-3P-1wi">
-                        <barButtonItem key="rightBarButtonItem" title="Guardar" id="jDd-yu-HY2"/>
+                        <barButtonItem key="rightBarButtonItem" title="Guardar" id="jDd-yu-HY2">
+                            <connections>
+                                <action selector="AddCustomerSaveButtonPressed:" destination="5sp-r4-hg6" id="fGe-d2-Tvt"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="customerCreditCardErrorLabel" destination="F1z-mi-QHX" id="oRA-sL-srs"/>
+                        <outlet property="customerCreditCardTextField" destination="rVI-Us-WZj" id="ile-hw-wvS"/>
+                        <outlet property="customerCreditLimitErrorLabel" destination="mMi-bz-bac" id="vsd-jC-ZkO"/>
+                        <outlet property="customerCreditLimitTextField" destination="it1-s3-Sie" id="2tT-m2-3SQ"/>
+                        <outlet property="customerIDErrorLabel" destination="Azi-8s-zWJ" id="Dea-a9-pD7"/>
+                        <outlet property="customerIDTextField" destination="32j-Ll-sDa" id="bJA-Xp-hQa"/>
+                        <outlet property="customerNameErrorLabel" destination="9gB-o3-F1D" id="HTF-KB-ggL"/>
+                        <outlet property="customerNameTextField" destination="wh9-A0-jNo" id="8We-RS-3M8"/>
+                        <outlet property="customerPersonTypeSegmentedControl" destination="qdq-GV-uah" id="lMm-rk-VCW"/>
+                        <outlet property="customerStateSwitch" destination="SNz-YC-b09" id="Szx-u2-w5B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fB-Hq-IAa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8028.5046728971956" y="996.54427645788348"/>
+            <point key="canvasLocation" x="7557" y="1005"/>
         </scene>
         <!--Editando-->
         <scene sceneID="keE-Oh-rjj">
             <objects>
-                <viewController id="iR6-NR-dfO" customClass="MaintenanceModifyViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iR6-NR-dfO" customClass="ModifyMaintenanceViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cTy-ta-8Ja">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -493,7 +548,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Zsj-0h-qGd" kind="relationship" relationship="viewControllers" id="Lbi-uo-Md8"/>
                         <segue destination="wCn-Fs-y2S" kind="relationship" relationship="viewControllers" id="i5M-dS-naM"/>
                         <segue destination="drq-pn-EXG" kind="relationship" relationship="viewControllers" id="2f0-pF-0TA"/>
                     </connections>
@@ -502,11 +556,11 @@
             </objects>
             <point key="canvasLocation" x="5428" y="-472"/>
         </scene>
-        <!--Gestion-->
+        <!--Inicio-->
         <scene sceneID="ebM-JR-Era">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wCn-Fs-y2S" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Gestion" image="bag.fill" catalog="system" id="qUd-Uc-3w5"/>
+                    <tabBarItem key="tabBarItem" title="Inicio" image="homekit" catalog="system" id="qUd-Uc-3w5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="iSg-uk-a2x">
                         <rect key="frame" x="0.0" y="44" width="428" height="96"/>
@@ -520,7 +574,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7L-ZJ-88w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5829" y="281"/>
+            <point key="canvasLocation" x="5776" y="281"/>
         </scene>
         <!--Configuracion-->
         <scene sceneID="XBO-08-eBJ">
@@ -541,29 +595,9 @@
             </objects>
             <point key="canvasLocation" x="7192" y="281"/>
         </scene>
-        <!--Inicio-->
-        <scene sceneID="0qs-TP-Dey">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zsj-0h-qGd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Inicio" image="homekit" catalog="system" id="tjz-Rd-Xeh"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="nsZ-g4-1Si">
-                        <rect key="frame" x="0.0" y="44" width="428" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="eZh-ho-IgO" kind="relationship" relationship="rootViewController" id="oln-3K-G8d"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hCS-Dl-Ew5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4442.5233644859809" y="280.56155507559396"/>
-        </scene>
     </scenes>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
-        <image name="bag.fill" catalog="system" width="128" height="128"/>
         <image name="employee" width="512.0009765625" height="512.0009765625"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="homekit" catalog="system" width="128" height="106"/>

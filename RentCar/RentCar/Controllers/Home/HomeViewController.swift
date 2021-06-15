@@ -9,14 +9,12 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var homeCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-    }
-    
-    @IBAction func logoutPressed(_ sender: Any) {
-        DbHelper().removeUser()
-        DbHelper().setUserLoggedIn( false)
+        homeCollectionView.dataSource = self
+        homeCollectionView.delegate = self
     }
 }
 

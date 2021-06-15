@@ -20,6 +20,9 @@ struct Constant {
         static let vechileMark =  "\(baseUrl)/vehiclemark"
         static let vehicleModel =  "\(baseUrl)/vehiclemodel"
         static let vehicleType =  "\(baseUrl)/vehicletype"
+        static let customer =  "\(baseUrl)/customer"
+        static let customerValidation =  "\(customer)/validation"
+        static let employee =  "\(baseUrl)/employee"
     }
     
     struct storyBoardId {
@@ -29,14 +32,18 @@ struct Constant {
     struct segue {
         static let maintenanceSegue = "maintenanceSegue"
         static let maintenanceModifySegue = "maintenanceModifySegue"
+        static let customerSegue = "customerSegue"
+        static let addOrEditCustomerSegue = "addOrEditCustomerSegue"
     }
     
     struct reusableView {
+        static let homeCollectionReusableView = "homeCollectionReusableView"
         static let managementReusableView = "ManagementReusableView"
     }
     
     struct tableViewCell {
         static let maintenanceTypeTableViewCell = "maintenanceTableViewCell"
+        static let customerTableViewCell = "customerTableViewCell"
     }
 }
 

@@ -19,17 +19,17 @@
 		042D029B266C6859002F957C /* VehicleTypePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D029A266C6859002F957C /* VehicleTypePresenter.swift */; };
 		042D029D266C73C1002F957C /* MaintenanceViewController+InitServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D029C266C73C1002F957C /* MaintenanceViewController+InitServices.swift */; };
 		042D029F266C7439002F957C /* MaintenanceViewController+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D029E266C7439002F957C /* MaintenanceViewController+Add.swift */; };
-		043A645626696392009C450F /* MaintenanceModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A645526696392009C450F /* MaintenanceModifyViewController.swift */; };
+		043A645626696392009C450F /* ModifyMaintenanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A645526696392009C450F /* ModifyMaintenanceViewController.swift */; };
 		044AB628266BD03500799ECF /* AddNewItemViewParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044AB627266BD03500799ECF /* AddNewItemViewParameters.swift */; };
 		046813AD26586E9100797A72 /* DbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813AC26586E9100797A72 /* DbHelper.swift */; };
 		046813B02658724400797A72 /* SingUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813AF2658724400797A72 /* SingUp.swift */; };
 		046813B22658724D00797A72 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813B12658724D00797A72 /* SignIn.swift */; };
 		046813C72659CDF500797A72 /* AuthenticationViewController+InputValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813C62659CDF500797A72 /* AuthenticationViewController+InputValidation.swift */; };
-		04748AE22667FEAC00B1935A /* MaintenanceViewController+DelegateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04748AE12667FEAC00B1935A /* MaintenanceViewController+DelegateView.swift */; };
+		04748AE22667FEAC00B1935A /* MaintenanceViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04748AE12667FEAC00B1935A /* MaintenanceViewController+ViewDelegate.swift */; };
 		04831362266D1DD4009F3389 /* VehicleModelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04831361266D1DD4009F3389 /* VehicleModelService.swift */; };
 		04831364266D1F5E009F3389 /* VehicleModelPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04831363266D1F5E009F3389 /* VehicleModelPresenter.swift */; };
-		04831366266D2926009F3389 /* MaintenanceModifyViewController+ModifyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04831365266D2926009F3389 /* MaintenanceModifyViewController+ModifyItem.swift */; };
-		04831368266D29C3009F3389 /* MaintenanceModifyViewController+DidItemSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04831367266D29C3009F3389 /* MaintenanceModifyViewController+DidItemSelected.swift */; };
+		04831366266D2926009F3389 /* ModifyMaintenanceViewController+ModifyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04831365266D2926009F3389 /* ModifyMaintenanceViewController+ModifyItem.swift */; };
+		04831368266D29C3009F3389 /* ModifyMaintenanceViewController+DidItemSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04831367266D29C3009F3389 /* ModifyMaintenanceViewController+DidItemSelected.swift */; };
 		0483136E266D7BA4009F3389 /* CustomerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483136D266D7BA4009F3389 /* CustomerService.swift */; };
 		04831372266D7BEF009F3389 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04831371266D7BEF009F3389 /* Employee.swift */; };
 		048AEC5E2652D74900960670 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AEC5D2652D74900960670 /* RoundedButton.swift */; };
@@ -54,7 +54,7 @@
 		049EC0452663DE4E00FAAB0E /* ResponseResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EC0442663DE4E00FAAB0E /* ResponseResult.swift */; };
 		049EC0492663E79500FAAB0E /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EC0482663E79500FAAB0E /* RequestBuilder.swift */; };
 		049EC04F26640DF100FAAB0E /* AuthenticationViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EC04E26640DF100FAAB0E /* AuthenticationViewDelegate.swift */; };
-		049EC051266411FD00FAAB0E /* AuthenticationViewController+AuthenticationViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EC050266411FD00FAAB0E /* AuthenticationViewController+AuthenticationViewDelegate.swift */; };
+		049EC051266411FD00FAAB0E /* AuthenticationViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EC050266411FD00FAAB0E /* AuthenticationViewController+ViewDelegate.swift */; };
 		049EC057266450D200FAAB0E /* ManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EC056266450D200FAAB0E /* ManagementViewController.swift */; };
 		049EC0592664511500FAAB0E /* ManagementViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EC0582664511500FAAB0E /* ManagementViewController+CollectionView.swift */; };
 		049EC05B2664516100FAAB0E /* Mangament.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EC05A2664516100FAAB0E /* Mangament.swift */; };
@@ -70,6 +70,19 @@
 		04B90EEE264F63830099CAB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B90EEC264F63830099CAB9 /* Main.storyboard */; };
 		04B90EF0264F63860099CAB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B90EEF264F63860099CAB9 /* Assets.xcassets */; };
 		04B90EF3264F63860099CAB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B90EF1264F63860099CAB9 /* LaunchScreen.storyboard */; };
+		04DFAB272671713000D36A17 /* CreditCardValidator in Frameworks */ = {isa = PBXBuildFile; productRef = 04DFAB262671713000D36A17 /* CreditCardValidator */; };
+		04E667BD266D9B2B003B3140 /* CustomerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E667BC266D9B2B003B3140 /* CustomerTableViewController.swift */; };
+		04E667BF266D9B80003B3140 /* AddOrEditCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E667BE266D9B80003B3140 /* AddOrEditCustomerViewController.swift */; };
+		04E667C1266DAFB4003B3140 /* HomeViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E667C0266DAFB4003B3140 /* HomeViewController+CollectionView.swift */; };
+		04E667C3266DAFFF003B3140 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E667C2266DAFFF003B3140 /* Home.swift */; };
+		04E667C5266DB354003B3140 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E667C4266DB354003B3140 /* HomeCollectionViewCell.swift */; };
+		04F109E5266FF17600AD224D /* AddOrEditCustomerViewController+TextFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F109E4266FF17600AD224D /* AddOrEditCustomerViewController+TextFieldValidation.swift */; };
+		04F109E82670122100AD224D /* CustomerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F109E72670122100AD224D /* CustomerPresenter.swift */; };
+		04F109EA2670136800AD224D /* CustomerViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F109E92670136800AD224D /* CustomerViewDelegateProtocol.swift */; };
+		04F109EE267025B300AD224D /* CustomerTableViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F109ED267025B300AD224D /* CustomerTableViewController+ViewDelegate.swift */; };
+		04F109F0267026CF00AD224D /* CustomerTableViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F109EF267026CF00AD224D /* CustomerTableViewController+TableView.swift */; };
+		04F109F226702B6E00AD224D /* CustomerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F109F126702B6E00AD224D /* CustomerTableViewCell.swift */; };
+		04F109F426702CF500AD224D /* Double+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F109F326702CF500AD224D /* Double+ToString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,17 +98,17 @@
 		042D029A266C6859002F957C /* VehicleTypePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTypePresenter.swift; sourceTree = "<group>"; };
 		042D029C266C73C1002F957C /* MaintenanceViewController+InitServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaintenanceViewController+InitServices.swift"; sourceTree = "<group>"; };
 		042D029E266C7439002F957C /* MaintenanceViewController+Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaintenanceViewController+Add.swift"; sourceTree = "<group>"; };
-		043A645526696392009C450F /* MaintenanceModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceModifyViewController.swift; sourceTree = "<group>"; };
+		043A645526696392009C450F /* ModifyMaintenanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyMaintenanceViewController.swift; sourceTree = "<group>"; };
 		044AB627266BD03500799ECF /* AddNewItemViewParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemViewParameters.swift; sourceTree = "<group>"; };
 		046813AC26586E9100797A72 /* DbHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbHelper.swift; sourceTree = "<group>"; };
 		046813AF2658724400797A72 /* SingUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUp.swift; sourceTree = "<group>"; };
 		046813B12658724D00797A72 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		046813C62659CDF500797A72 /* AuthenticationViewController+InputValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticationViewController+InputValidation.swift"; sourceTree = "<group>"; };
-		04748AE12667FEAC00B1935A /* MaintenanceViewController+DelegateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaintenanceViewController+DelegateView.swift"; sourceTree = "<group>"; };
+		04748AE12667FEAC00B1935A /* MaintenanceViewController+ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaintenanceViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
 		04831361266D1DD4009F3389 /* VehicleModelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModelService.swift; sourceTree = "<group>"; };
 		04831363266D1F5E009F3389 /* VehicleModelPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModelPresenter.swift; sourceTree = "<group>"; };
-		04831365266D2926009F3389 /* MaintenanceModifyViewController+ModifyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaintenanceModifyViewController+ModifyItem.swift"; sourceTree = "<group>"; };
-		04831367266D29C3009F3389 /* MaintenanceModifyViewController+DidItemSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaintenanceModifyViewController+DidItemSelected.swift"; sourceTree = "<group>"; };
+		04831365266D2926009F3389 /* ModifyMaintenanceViewController+ModifyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModifyMaintenanceViewController+ModifyItem.swift"; sourceTree = "<group>"; };
+		04831367266D29C3009F3389 /* ModifyMaintenanceViewController+DidItemSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModifyMaintenanceViewController+DidItemSelected.swift"; sourceTree = "<group>"; };
 		0483136D266D7BA4009F3389 /* CustomerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerService.swift; sourceTree = "<group>"; };
 		04831371266D7BEF009F3389 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		048AEC5D2652D74900960670 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -119,7 +132,7 @@
 		049EC0442663DE4E00FAAB0E /* ResponseResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseResult.swift; sourceTree = "<group>"; };
 		049EC0482663E79500FAAB0E /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		049EC04E26640DF100FAAB0E /* AuthenticationViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewDelegate.swift; sourceTree = "<group>"; };
-		049EC050266411FD00FAAB0E /* AuthenticationViewController+AuthenticationViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticationViewController+AuthenticationViewDelegate.swift"; sourceTree = "<group>"; };
+		049EC050266411FD00FAAB0E /* AuthenticationViewController+ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticationViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
 		049EC056266450D200FAAB0E /* ManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementViewController.swift; sourceTree = "<group>"; };
 		049EC0582664511500FAAB0E /* ManagementViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagementViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		049EC05A2664516100FAAB0E /* Mangament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mangament.swift; sourceTree = "<group>"; };
@@ -137,6 +150,18 @@
 		04B90EEF264F63860099CAB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04B90EF2264F63860099CAB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04B90EF4264F63860099CAB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04E667BC266D9B2B003B3140 /* CustomerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTableViewController.swift; sourceTree = "<group>"; };
+		04E667BE266D9B80003B3140 /* AddOrEditCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditCustomerViewController.swift; sourceTree = "<group>"; };
+		04E667C0266DAFB4003B3140 /* HomeViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+CollectionView.swift"; sourceTree = "<group>"; };
+		04E667C2266DAFFF003B3140 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		04E667C4266DB354003B3140 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		04F109E4266FF17600AD224D /* AddOrEditCustomerViewController+TextFieldValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddOrEditCustomerViewController+TextFieldValidation.swift"; sourceTree = "<group>"; };
+		04F109E72670122100AD224D /* CustomerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerPresenter.swift; sourceTree = "<group>"; };
+		04F109E92670136800AD224D /* CustomerViewDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewDelegateProtocol.swift; sourceTree = "<group>"; };
+		04F109ED267025B300AD224D /* CustomerTableViewController+ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerTableViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
+		04F109EF267026CF00AD224D /* CustomerTableViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerTableViewController+TableView.swift"; sourceTree = "<group>"; };
+		04F109F126702B6E00AD224D /* CustomerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTableViewCell.swift; sourceTree = "<group>"; };
+		04F109F326702CF500AD224D /* Double+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+ToString.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04DFAB272671713000D36A17 /* CreditCardValidator in Frameworks */,
 				049EC0372663CC7A00FAAB0E /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				0402C57E26654D7900DF1735 /* bool+ToString.swift */,
+				04F109F326702CF500AD224D /* Double+ToString.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -217,7 +244,7 @@
 			children = (
 				046813C62659CDF500797A72 /* AuthenticationViewController+InputValidation.swift */,
 				048AEC602652EECB00960670 /* AuthenticationViewController.swift */,
-				049EC050266411FD00FAAB0E /* AuthenticationViewController+AuthenticationViewDelegate.swift */,
+				049EC050266411FD00FAAB0E /* AuthenticationViewController+ViewDelegate.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -229,13 +256,6 @@
 				049EC056266450D200FAAB0E /* ManagementViewController.swift */,
 			);
 			path = Management;
-			sourceTree = "<group>";
-		};
-		044AB624266BC7E300799ECF /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helper;
 			sourceTree = "<group>";
 		};
 		046813B42658808800797A72 /* App */ = {
@@ -261,6 +281,7 @@
 				0494E05A266C1BED0076EE04 /* Customer.swift */,
 				0494E068266C3A720076EE04 /* ModelType.swift */,
 				04831371266D7BEF009F3389 /* Employee.swift */,
+				04E667C2266DAFFF003B3140 /* Home.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -283,6 +304,7 @@
 		04681C3A266079FE00953E38 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				04F109E62670121600AD224D /* Customer */,
 				042D0297266C5696002F957C /* Maintenance */,
 				0494E065266C23170076EE04 /* Core */,
 				0494E062266C22E80076EE04 /* VehicleType */,
@@ -297,6 +319,7 @@
 		04681C3C26607A3F00953E38 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				04E667BB266D9B15003B3140 /* Customer */,
 				0494E06A266C3CA50076EE04 /* Maintenance */,
 				043A646026696594009C450F /* Management */,
 				043A645F26696575009C450F /* Authentication */,
@@ -309,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				04B90EEA264F63830099CAB9 /* HomeViewController.swift */,
+				04E667C0266DAFB4003B3140 /* HomeViewController+CollectionView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -322,6 +346,8 @@
 				0402C57926654A1F00DF1735 /* MaintenanceTypeTableViewCell.swift */,
 				0402C57B26654C8500DF1735 /* BindOutlets.swift */,
 				044AB627266BD03500799ECF /* AddNewItemViewParameters.swift */,
+				04E667C4266DB354003B3140 /* HomeCollectionViewCell.swift */,
+				04F109F126702B6E00AD224D /* CustomerTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -329,7 +355,7 @@
 		04831369266D2A7E009F3389 /* Maintenance */ = {
 			isa = PBXGroup;
 			children = (
-				04748AE12667FEAC00B1935A /* MaintenanceViewController+DelegateView.swift */,
+				04748AE12667FEAC00B1935A /* MaintenanceViewController+ViewDelegate.swift */,
 				0402C5752665460A00DF1735 /* MaintenanceViewController+TableView.swift */,
 				04ADA127265C0FE5009DF878 /* MaintenanceViewController.swift */,
 				042D0295266C54C8002F957C /* MaintenanceViewController+NavigationTitle.swift */,
@@ -339,14 +365,14 @@
 			path = Maintenance;
 			sourceTree = "<group>";
 		};
-		0483136A266D2A83009F3389 /* Maintenance Modify */ = {
+		0483136A266D2A83009F3389 /* Modify Maintenance */ = {
 			isa = PBXGroup;
 			children = (
-				043A645526696392009C450F /* MaintenanceModifyViewController.swift */,
-				04831365266D2926009F3389 /* MaintenanceModifyViewController+ModifyItem.swift */,
-				04831367266D29C3009F3389 /* MaintenanceModifyViewController+DidItemSelected.swift */,
+				043A645526696392009C450F /* ModifyMaintenanceViewController.swift */,
+				04831365266D2926009F3389 /* ModifyMaintenanceViewController+ModifyItem.swift */,
+				04831367266D29C3009F3389 /* ModifyMaintenanceViewController+DidItemSelected.swift */,
 			);
-			path = "Maintenance Modify";
+			path = "Modify Maintenance";
 			sourceTree = "<group>";
 		};
 		0483136B266D7B55009F3389 /* Customer */ = {
@@ -433,7 +459,7 @@
 		0494E06A266C3CA50076EE04 /* Maintenance */ = {
 			isa = PBXGroup;
 			children = (
-				0483136A266D2A83009F3389 /* Maintenance Modify */,
+				0483136A266D2A83009F3389 /* Modify Maintenance */,
 				04831369266D2A7E009F3389 /* Maintenance */,
 			);
 			path = Maintenance;
@@ -448,15 +474,14 @@
 			path = Exception;
 			sourceTree = "<group>";
 		};
-		049EC04B2663EDCA00FAAB0E /* Core */ = {
+		049EC04B2663EDCA00FAAB0E /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				044AB624266BC7E300799ECF /* Helper */,
 				0402C57D26654D6500DF1735 /* Extension */,
 				048AEC692652F22E00960670 /* Utils */,
 				049EC04A2663EDA400FAAB0E /* Exception */,
 			);
-			path = Core;
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		04B90EDA264F63830099CAB9 = {
@@ -478,7 +503,7 @@
 		04B90EE5264F63830099CAB9 /* RentCar */ = {
 			isa = PBXGroup;
 			children = (
-				049EC04B2663EDCA00FAAB0E /* Core */,
+				049EC04B2663EDCA00FAAB0E /* Helper */,
 				04681C3E26607AC400953E38 /* Views */,
 				04681C3C26607A3F00953E38 /* Controllers */,
 				04681C3A266079FE00953E38 /* Presenter */,
@@ -491,6 +516,27 @@
 				04B90EF4264F63860099CAB9 /* Info.plist */,
 			);
 			path = RentCar;
+			sourceTree = "<group>";
+		};
+		04E667BB266D9B15003B3140 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				04E667BC266D9B2B003B3140 /* CustomerTableViewController.swift */,
+				04E667BE266D9B80003B3140 /* AddOrEditCustomerViewController.swift */,
+				04F109E4266FF17600AD224D /* AddOrEditCustomerViewController+TextFieldValidation.swift */,
+				04F109ED267025B300AD224D /* CustomerTableViewController+ViewDelegate.swift */,
+				04F109EF267026CF00AD224D /* CustomerTableViewController+TableView.swift */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		04F109E62670121600AD224D /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				04F109E72670122100AD224D /* CustomerPresenter.swift */,
+				04F109E92670136800AD224D /* CustomerViewDelegateProtocol.swift */,
+			);
+			path = Customer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -511,6 +557,7 @@
 			name = RentCar;
 			packageProductDependencies = (
 				049EC0362663CC7A00FAAB0E /* Alamofire */,
+				04DFAB262671713000D36A17 /* CreditCardValidator */,
 			);
 			productName = RentCar;
 			productReference = 04B90EE3264F63830099CAB9 /* RentCar.app */;
@@ -541,6 +588,7 @@
 			mainGroup = 04B90EDA264F63830099CAB9;
 			packageReferences = (
 				049EC0352663CC7A00FAAB0E /* XCRemoteSwiftPackageReference "Alamofire" */,
+				04DFAB252671713000D36A17 /* XCRemoteSwiftPackageReference "CreditCardValidator" */,
 			);
 			productRefGroup = 04B90EE4264F63830099CAB9 /* Products */;
 			projectDirPath = "";
@@ -571,20 +619,27 @@
 			files = (
 				04B90EEB264F63830099CAB9 /* HomeViewController.swift in Sources */,
 				049EC05D266452E400FAAB0E /* ManagementCollectionViewCell.swift in Sources */,
-				04748AE22667FEAC00B1935A /* MaintenanceViewController+DelegateView.swift in Sources */,
+				04748AE22667FEAC00B1935A /* MaintenanceViewController+ViewDelegate.swift in Sources */,
 				049EC0432663D65C00FAAB0E /* APIService.swift in Sources */,
+				04E667C1266DAFB4003B3140 /* HomeViewController+CollectionView.swift in Sources */,
 				04831372266D7BEF009F3389 /* Employee.swift in Sources */,
+				04F109EE267025B300AD224D /* CustomerTableViewController+ViewDelegate.swift in Sources */,
+				04F109E5266FF17600AD224D /* AddOrEditCustomerViewController+TextFieldValidation.swift in Sources */,
 				046813B22658724D00797A72 /* SignIn.swift in Sources */,
 				0402C57026653DE000DF1735 /* AlertView.swift in Sources */,
 				046813C72659CDF500797A72 /* AuthenticationViewController+InputValidation.swift in Sources */,
 				0494E05F266C1C5B0076EE04 /* ServiceProtocol.swift in Sources */,
 				04B90EE7264F63830099CAB9 /* AppDelegate.swift in Sources */,
-				043A645626696392009C450F /* MaintenanceModifyViewController.swift in Sources */,
+				043A645626696392009C450F /* ModifyMaintenanceViewController.swift in Sources */,
 				0402C57A26654A1F00DF1735 /* MaintenanceTypeTableViewCell.swift in Sources */,
+				04F109F226702B6E00AD224D /* CustomerTableViewCell.swift in Sources */,
+				04E667C3266DAFFF003B3140 /* Home.swift in Sources */,
+				04E667BD266D9B2B003B3140 /* CustomerTableViewController.swift in Sources */,
+				04E667BF266D9B80003B3140 /* AddOrEditCustomerViewController.swift in Sources */,
 				0494E055266C1BCD0076EE04 /* VehicleModel.swift in Sources */,
 				0402C57C26654C8500DF1735 /* BindOutlets.swift in Sources */,
 				049EC04F26640DF100FAAB0E /* AuthenticationViewDelegate.swift in Sources */,
-				04831368266D29C3009F3389 /* MaintenanceModifyViewController+DidItemSelected.swift in Sources */,
+				04831368266D29C3009F3389 /* ModifyMaintenanceViewController+DidItemSelected.swift in Sources */,
 				0494E05D266C1C390076EE04 /* VehicleMarkService.swift in Sources */,
 				0402C58126658A2A00DF1735 /* DataToObject.swift in Sources */,
 				04ADA12F265D60DC009DF878 /* CombustibleType.swift in Sources */,
@@ -592,6 +647,7 @@
 				042D029F266C7439002F957C /* MaintenanceViewController+Add.swift in Sources */,
 				048AEC6D2653001000960670 /* Constant.swift in Sources */,
 				04ADA128265C0FE5009DF878 /* MaintenanceViewController.swift in Sources */,
+				04F109EA2670136800AD224D /* CustomerViewDelegateProtocol.swift in Sources */,
 				048AEC652652F06100960670 /* User.swift in Sources */,
 				04ADA120265AC0FD009DF878 /* GetErrorResponseStatusCode.swift in Sources */,
 				042D0296266C54C8002F957C /* MaintenanceViewController+NavigationTitle.swift in Sources */,
@@ -601,9 +657,12 @@
 				042D0299266C66E6002F957C /* VehicleTypeService.swift in Sources */,
 				049EC03C2663CE2000FAAB0E /* CombustibleTypeService.swift in Sources */,
 				0402C5762665460A00DF1735 /* MaintenanceViewController+TableView.swift in Sources */,
-				049EC051266411FD00FAAB0E /* AuthenticationViewController+AuthenticationViewDelegate.swift in Sources */,
-				04831366266D2926009F3389 /* MaintenanceModifyViewController+ModifyItem.swift in Sources */,
+				049EC051266411FD00FAAB0E /* AuthenticationViewController+ViewDelegate.swift in Sources */,
+				04F109E82670122100AD224D /* CustomerPresenter.swift in Sources */,
+				04F109F426702CF500AD224D /* Double+ToString.swift in Sources */,
+				04831366266D2926009F3389 /* ModifyMaintenanceViewController+ModifyItem.swift in Sources */,
 				048AEC6B2652F54E00960670 /* AuthenticationPresenter.swift in Sources */,
+				04E667C5266DB354003B3140 /* HomeCollectionViewCell.swift in Sources */,
 				044AB628266BD03500799ECF /* AddNewItemViewParameters.swift in Sources */,
 				042D029D266C73C1002F957C /* MaintenanceViewController+InitServices.swift in Sources */,
 				04831362266D1DD4009F3389 /* VehicleModelService.swift in Sources */,
@@ -620,6 +679,7 @@
 				046813B02658724400797A72 /* SingUp.swift in Sources */,
 				0494E059266C1BE60076EE04 /* VehicleType.swift in Sources */,
 				049EC0452663DE4E00FAAB0E /* ResponseResult.swift in Sources */,
+				04F109F0267026CF00AD224D /* CustomerTableViewController+TableView.swift in Sources */,
 				042D0294266C46BF002F957C /* PresenterTypeProtocol.swift in Sources */,
 				046813AD26586E9100797A72 /* DbHelper.swift in Sources */,
 				0494E069266C3A720076EE04 /* ModelType.swift in Sources */,
@@ -839,6 +899,14 @@
 				minimumVersion = 5.4.3;
 			};
 		};
+		04DFAB252671713000D36A17 /* XCRemoteSwiftPackageReference "CreditCardValidator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vitkuzmenko/CreditCardValidator.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -846,6 +914,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 049EC0352663CC7A00FAAB0E /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		04DFAB262671713000D36A17 /* CreditCardValidator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04DFAB252671713000D36A17 /* XCRemoteSwiftPackageReference "CreditCardValidator" */;
+			productName = CreditCardValidator;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

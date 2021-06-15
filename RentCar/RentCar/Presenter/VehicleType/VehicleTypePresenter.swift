@@ -44,7 +44,6 @@ class VehicleTypePresenter: PresenterProtocol,PresenterTypeProtocol {
     
     func remove(for index: Int) {
         vehicleTypeService.remove(vehicleTypes[index])
-        
         vehicleTypes.remove(at: index)
     }
 }
