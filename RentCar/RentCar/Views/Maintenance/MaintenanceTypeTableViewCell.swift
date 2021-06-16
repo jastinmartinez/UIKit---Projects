@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MaintenanceTypeTableViewCell: UITableViewCell, BindOutlets {
+class MaintenanceTypeTableViewCell: UITableViewCell, BindOutletsProtocol {
     
     typealias aType = ModelType
     

@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 struct Constant {
     
     struct uRL {
@@ -34,6 +32,7 @@ struct Constant {
         static let maintenanceModifySegue = "maintenanceModifySegue"
         static let customerSegue = "customerSegue"
         static let addOrEditCustomerSegue = "addOrEditCustomerSegue"
+        static let addOrEditEmployeeSegue = "addOrEditEmployeeSegue"
     }
     
     struct reusableView {
@@ -44,6 +43,7 @@ struct Constant {
     struct tableViewCell {
         static let maintenanceTypeTableViewCell = "maintenanceTableViewCell"
         static let customerTableViewCell = "customerTableViewCell"
+        static let employeeTableViewCell = "employeeTableViewCell"
     }
 }
 

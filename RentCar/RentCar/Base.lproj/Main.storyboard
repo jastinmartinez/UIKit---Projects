@@ -222,6 +222,7 @@
                         <outlet property="managementCollectionVIew" destination="fSb-og-Ucd" id="MNe-hb-1t8"/>
                         <segue destination="O0w-5s-AGr" kind="show" identifier="maintenanceSegue" id="aw1-PQ-1DJ"/>
                         <segue destination="ICq-GQ-VRp" kind="show" identifier="customerSegue" id="zDi-Yz-874"/>
+                        <segue destination="b8p-M3-qdy" kind="show" identifier="employeeSegue" id="Sen-zs-a38"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kgg-b6-FAB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -231,14 +232,16 @@
         <!--Configuracion-->
         <scene sceneID="SQC-RG-hoc">
             <objects>
-                <viewController id="yKc-n4-PNd" sceneMemberID="viewController">
+                <viewController id="yKc-n4-PNd" customClass="ConfigurationViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NOt-06-O3V">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="5ee-Zg-vTi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Configuracion" id="aXc-4m-lV6"/>
+                    <navigationItem key="navigationItem" title="Configuracion" id="aXc-4m-lV6">
+                        <barButtonItem key="rightBarButtonItem" title="Cerra Sesion" id="rqP-r3-H2W"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WAe-ux-ZkK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -313,6 +316,146 @@
             </objects>
             <point key="canvasLocation" x="5980" y="1031"/>
         </scene>
+        <!--Nuevo-->
+        <scene sceneID="xqw-og-Gu3">
+            <objects>
+                <viewController id="NJb-9A-I8a" customClass="AddOrEditEmployeeViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EOY-lN-BUH">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="hUl-9g-Rmb">
+                                <rect key="frame" x="20" y="186" width="388" height="550"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cedula" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OVz-x9-p6e">
+                                        <rect key="frame" x="20" y="0.0" width="348" height="34"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="awi-D6-zpe">
+                                        <rect key="frame" x="20" y="68" width="348" height="34"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wJM-QL-Uvg">
+                                        <rect key="frame" x="64" y="136" width="260" height="32"/>
+                                        <segments>
+                                            <segment title="Matutino"/>
+                                            <segment title="Vespertino"/>
+                                            <segment title="Nocturno"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Portciento Comision $ 0.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="spF-fi-nVz">
+                                        <rect key="frame" x="20" y="201" width="348" height="34"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="dlq-3r-Yit">
+                                        <rect key="frame" x="34" y="269" width="320" height="216"/>
+                                        <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                                            <!--1970-01-01 11:00:00 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2YS-Wk-ZY8">
+                                        <rect key="frame" x="169.66666666666666" y="519" width="51" height="31"/>
+                                    </switch>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="spF-fi-nVz" secondAttribute="trailing" constant="20" id="2f9-BV-jHp"/>
+                                    <constraint firstAttribute="trailing" secondItem="awi-D6-zpe" secondAttribute="trailing" constant="20" id="3PN-qL-km7"/>
+                                    <constraint firstItem="awi-D6-zpe" firstAttribute="leading" secondItem="hUl-9g-Rmb" secondAttribute="leading" constant="20" id="7IB-ZR-dnz"/>
+                                    <constraint firstItem="spF-fi-nVz" firstAttribute="leading" secondItem="hUl-9g-Rmb" secondAttribute="leading" constant="20" id="Ab0-iw-pqR"/>
+                                    <constraint firstAttribute="trailing" secondItem="OVz-x9-p6e" secondAttribute="trailing" constant="20" id="Ia0-Cu-4y0"/>
+                                    <constraint firstItem="OVz-x9-p6e" firstAttribute="leading" secondItem="hUl-9g-Rmb" secondAttribute="leading" constant="20" id="abe-gi-8Wk"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qXP-h6-dkw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hUl-9g-Rmb" firstAttribute="top" secondItem="qXP-h6-dkw" secondAttribute="top" constant="46" id="WmA-PA-Lof"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hUl-9g-Rmb" secondAttribute="trailing" id="dB1-fN-Srk"/>
+                            <constraint firstItem="hUl-9g-Rmb" firstAttribute="leading" secondItem="EOY-lN-BUH" secondAttribute="leadingMargin" id="lrX-DU-Csx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Nuevo" id="Wqd-j1-Hlo">
+                        <barButtonItem key="rightBarButtonItem" title="Guardar" id="STH-ep-fVx">
+                            <connections>
+                                <action selector="employeeSaveButtonPressed:" destination="NJb-9A-I8a" id="RFf-oW-gSb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="employeeCommisionPercentTextField" destination="spF-fi-nVz" id="70q-gM-ObT"/>
+                        <outlet property="employeeIDTextField" destination="OVz-x9-p6e" id="iOj-Rt-RNz"/>
+                        <outlet property="employeeJobShiftSegementedControl" destination="wJM-QL-Uvg" id="tIO-pq-8fC"/>
+                        <outlet property="employeeNameTextField" destination="awi-D6-zpe" id="fmI-AK-41a"/>
+                        <outlet property="employeeStartDateDatePicker" destination="dlq-3r-Yit" id="97J-fU-Ahe"/>
+                        <outlet property="employeeStateSwitch" destination="2YS-Wk-ZY8" id="gaB-Zr-KX0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ukg-7J-qM0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4596.7289719626169" y="1030.8855291576674"/>
+        </scene>
+        <!--Empleado-->
+        <scene sceneID="MTT-C4-mPV">
+            <objects>
+                <tableViewController id="b8p-M3-qdy" customClass="EmployeeTableViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rfk-CY-6hm">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="employeeTableViewCell" textLabel="1KZ-kB-LYs" detailTextLabel="omj-BG-9Zr" style="IBUITableViewCellStyleValue1" id="E8x-RG-ofk" customClass="EmployeeTableViewCell" customModule="RentCar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E8x-RG-ofk" id="gs7-yo-cRQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1KZ-kB-LYs">
+                                            <rect key="frame" x="20" y="15" width="31" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="state" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="omj-BG-9Zr">
+                                            <rect key="frame" x="379.66666666666669" y="15" width="28.333333333333332" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="employeeNameLabel" destination="1KZ-kB-LYs" id="kiU-6x-mjE"/>
+                                    <outlet property="employeeStateLabel" destination="omj-BG-9Zr" id="h2r-3G-UBB"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="b8p-M3-qdy" id="y2g-Xq-TGN"/>
+                            <outlet property="delegate" destination="b8p-M3-qdy" id="qmG-8C-bHw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Empleado" id="znN-9K-xfJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wJ8-Hh-DSF">
+                            <connections>
+                                <action selector="addOrEditCustomerButtonPressed:" destination="b8p-M3-qdy" id="Txj-J7-gk9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="NJb-9A-I8a" kind="show" identifier="addOrEditEmployeeSegue" id="4ra-Dx-TEu"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="igk-wm-jAP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5289" y="1031"/>
+        </scene>
         <!--Cliente-->
         <scene sceneID="rHt-XW-kWv">
             <objects>
@@ -371,7 +514,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXw-L2-Bqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6843.925233644859" y="1004.9676025917927"/>
+            <point key="canvasLocation" x="6673" y="1031"/>
         </scene>
         <!--Nuevo-->
         <scene sceneID="Vew-h5-SR0">
@@ -406,7 +549,7 @@
                                         <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="4221352001445600" borderStyle="roundedRect" placeholder="No. Tarjeta CR" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rVI-Us-WZj">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No. Tarjeta CR" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rVI-Us-WZj">
                                         <rect key="frame" x="20" y="126" width="348" height="34"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="cc-number"/>
@@ -484,7 +627,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fB-Hq-IAa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7557" y="1005"/>
+            <point key="canvasLocation" x="7399" y="1031"/>
         </scene>
         <!--Editando-->
         <scene sceneID="keE-Oh-rjj">

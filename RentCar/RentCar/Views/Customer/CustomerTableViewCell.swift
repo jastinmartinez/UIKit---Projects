@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomerTableViewCell: UITableViewCell,BindOutlets {
+class CustomerTableViewCell: UITableViewCell,BindOutletsProtocol {
    
     @IBOutlet weak var customerStateTextField: UILabel!
     @IBOutlet weak var customerNameTextField: UILabel!

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DbHelper {
+final class UserDefaultsDbHelper {
     
     private let userDefault = UserDefaults.standard
     private var userKey = "user"

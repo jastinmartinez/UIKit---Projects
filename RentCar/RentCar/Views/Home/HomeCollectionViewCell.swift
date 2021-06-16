@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeCollectionViewCell: UICollectionViewCell,BindOutlets {
+class HomeCollectionViewCell: UICollectionViewCell,BindOutletsProtocol {
     
     typealias aType = Home
     

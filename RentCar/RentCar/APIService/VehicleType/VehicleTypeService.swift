@@ -12,7 +12,7 @@ class VehicleTypeService : ServiceProtocol {
     typealias aType = VehicleType
     
     func create(_ vm: VehicleType, completion: @escaping (VehicleType) -> ()) {
-        APIService().request(url: RequestBuilder().prepare(url: Constant.uRL.vehicleType, header: nil, model: vm, method: .post, requiredBearerToken: true)) { data, response, error in
+        APIService().request(url: URLRequestBuilder().prepare(url: Constant.uRL.vehicleType, addtionalHeaders: nil, model: vm, method: .post, requiredBearerToken: true)) { data, response, error in
             if let data = data {
                 if let vehicleType = DataToObject<VehicleType>.decode(single: data) {
                     completion(vehicleType)
@@ -22,12 +22,12 @@ class VehicleTypeService : ServiceProtocol {
     }
     
     func update(_ vm: VehicleType) {
-        APIService().request(url: RequestBuilder().prepare(url: Constant.uRL.vehicleType, header: nil, model: vm, method: .put, requiredBearerToken: true)) { _, _, _ in
+        APIService().request(url: URLRequestBuilder().prepare(url: Constant.uRL.vehicleType, addtionalHeaders: nil, model: vm, method: .put, requiredBearerToken: true)) { _, _, _ in
         }
     }
     
     func getAll(completion: @escaping ([VehicleType]) -> ()) {
-        APIService().request(url: RequestBuilder<VehicleType>().prepare(url: Constant.uRL.vehicleType, header: nil, requiredBearerToken: true)) { data, res, error in
+        APIService().request(url: URLRequestBuilder<VehicleType>().prepare(url: Constant.uRL.vehicleType, addtionalHeaders: nil, requiredBearerToken: true)) { data, res, error in
             if let data = data {
                 if let vehicleTypes = DataToObject<VehicleType>.decode(array: data) {
                     completion(vehicleTypes)
@@ -37,7 +37,7 @@ class VehicleTypeService : ServiceProtocol {
     }
     
     func remove(_ vm: VehicleType) {
-        APIService().request(url: RequestBuilder().prepare(url: Constant.uRL.vehicleType, header: nil, model: vm, method: .delete, requiredBearerToken: true)) { _, _, _ in
+        APIService().request(url: URLRequestBuilder().prepare(url: Constant.uRL.vehicleType, addtionalHeaders: nil, model: vm, method: .delete, requiredBearerToken: true)) { _, _, _ in
         }
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-protocol BindOutlets {
+protocol BindOutletsProtocol {
     associatedtype aType
     func bindDataToOulets(vm: aType)
 }

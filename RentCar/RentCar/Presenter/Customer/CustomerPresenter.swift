@@ -32,7 +32,7 @@ class CustomerPresenter: PresenterTypeProtocol {
     
     fileprivate func customerDataValidation(vm:Customer,iDFilters: @escaping (Customer) -> (Bool), creditCardFilters: @escaping (Customer)->(Bool),isValidation: @escaping (Bool) -> ()) {
         
-        customerService.verifyCustomerID(vm: vm) { existCustomer in
+        customerService.verifyCustomerID(vm) { existCustomer in
             
             if !existCustomer.isEmpty {
                 

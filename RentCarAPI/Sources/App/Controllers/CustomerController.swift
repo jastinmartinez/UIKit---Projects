@@ -16,7 +16,7 @@ struct CustomerController: RouteCollection {
         
         let customerRoute = routes.grouped("customer")
         customerRoute.get(use: getAll)
-        customerRoute.post("validation",use: validation)
+        customerRoute.post("validation",use: customerIDAndCreditCardValidation)
         customerRoute.post(use: create)
         customerRoute.put(use: update)
         customerRoute.delete(use: remove)
@@ -62,7 +62,7 @@ struct CustomerController: RouteCollection {
             )
     }
     
-    func validation(_ req: Request) throws -> EventLoopFuture<[Customer]> {
+    func customerIDAndCreditCardValidation(_ req: Request) throws -> EventLoopFuture<[Customer]> {
         let customer = try req.content.decode(Customer.self)
         return Customer.query(on: req.db)
             .group(.or) {
