@@ -20,6 +20,7 @@ class EmployeeTableViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
         employeePresenter.employeeViewDelegate = self
+        employeePresenter.getAll()
     }
     
     @IBAction func addOrEditCustomerButtonPressed(_ sender: Any) {

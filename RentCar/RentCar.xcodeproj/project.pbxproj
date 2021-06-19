@@ -32,6 +32,8 @@
 		045C9474267972120032E35C /* EmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C9473267972120032E35C /* EmployeeTableViewCell.swift */; };
 		045C94762679759F0032E35C /* AddOrEditViewController+Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C94752679759F0032E35C /* AddOrEditViewController+Validations.swift */; };
 		045C9479267977B30032E35C /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C9478267977B30032E35C /* ConfigurationViewController.swift */; };
+		045C947D267A3EE60032E35C /* EmployeeIDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C947C267A3EE60032E35C /* EmployeeIDTextField.swift */; };
+		045C9481267A3F510032E35C /* EmployeeCommisionPercentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C9480267A3F510032E35C /* EmployeeCommisionPercentTextField.swift */; };
 		046813AD26586E9100797A72 /* UserDefaultsDbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813AC26586E9100797A72 /* UserDefaultsDbHelper.swift */; };
 		046813B02658724400797A72 /* SingUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813AF2658724400797A72 /* SingUp.swift */; };
 		046813B22658724D00797A72 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046813B12658724D00797A72 /* SignIn.swift */; };
@@ -81,6 +83,8 @@
 		04B90EEE264F63830099CAB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B90EEC264F63830099CAB9 /* Main.storyboard */; };
 		04B90EF0264F63860099CAB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B90EEF264F63860099CAB9 /* Assets.xcassets */; };
 		04B90EF3264F63860099CAB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B90EF1264F63860099CAB9 /* LaunchScreen.storyboard */; };
+		04C03847267E3B4300C34C1A /* EnableValidationLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C03846267E3B4300C34C1A /* EnableValidationLabels.swift */; };
+		04C0384B267E885F00C34C1A /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0384A267E885F00C34C1A /* Date+ToString.swift */; };
 		04DFAB272671713000D36A17 /* CreditCardValidator in Frameworks */ = {isa = PBXBuildFile; productRef = 04DFAB262671713000D36A17 /* CreditCardValidator */; };
 		04E667BD266D9B2B003B3140 /* CustomerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E667BC266D9B2B003B3140 /* CustomerTableViewController.swift */; };
 		04E667BF266D9B80003B3140 /* AddOrEditCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E667BE266D9B80003B3140 /* AddOrEditCustomerViewController.swift */; };
@@ -122,6 +126,8 @@
 		045C9473267972120032E35C /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
 		045C94752679759F0032E35C /* AddOrEditViewController+Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddOrEditViewController+Validations.swift"; sourceTree = "<group>"; };
 		045C9478267977B30032E35C /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
+		045C947C267A3EE60032E35C /* EmployeeIDTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeIDTextField.swift; sourceTree = "<group>"; };
+		045C9480267A3F510032E35C /* EmployeeCommisionPercentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCommisionPercentTextField.swift; sourceTree = "<group>"; };
 		046813AC26586E9100797A72 /* UserDefaultsDbHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDbHelper.swift; sourceTree = "<group>"; };
 		046813AF2658724400797A72 /* SingUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUp.swift; sourceTree = "<group>"; };
 		046813B12658724D00797A72 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
@@ -172,6 +178,8 @@
 		04B90EEF264F63860099CAB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04B90EF2264F63860099CAB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04B90EF4264F63860099CAB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04C03846267E3B4300C34C1A /* EnableValidationLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableValidationLabels.swift; sourceTree = "<group>"; };
+		04C0384A267E885F00C34C1A /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
 		04E667BC266D9B2B003B3140 /* CustomerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTableViewController.swift; sourceTree = "<group>"; };
 		04E667BE266D9B80003B3140 /* AddOrEditCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditCustomerViewController.swift; sourceTree = "<group>"; };
 		04E667C0266DAFB4003B3140 /* HomeViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+CollectionView.swift"; sourceTree = "<group>"; };
@@ -204,6 +212,7 @@
 			children = (
 				0402C57E26654D7900DF1735 /* bool+ToString.swift */,
 				04F109F326702CF500AD224D /* Double+ToString.swift */,
+				04C0384A267E885F00C34C1A /* Date+ToString.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -283,11 +292,10 @@
 		045C945B26793AD00032E35C /* Employee */ = {
 			isa = PBXGroup;
 			children = (
+				045C947B267A35D50032E35C /* AddOrEdit */,
 				045C945C26793B7F0032E35C /* EmployeeTableViewController.swift */,
-				045C945E26793B960032E35C /* AddOrEditEmployeeViewController.swift */,
 				045C94692679713A0032E35C /* EmployeeTableViewController+TableView.swift */,
 				045C946B2679716D0032E35C /* EmployeeTableViewController+ViewDelegate.swift */,
-				045C94752679759F0032E35C /* AddOrEditViewController+Validations.swift */,
 			);
 			path = Employee;
 			sourceTree = "<group>";
@@ -305,6 +313,8 @@
 			isa = PBXGroup;
 			children = (
 				045C9473267972120032E35C /* EmployeeTableViewCell.swift */,
+				045C947C267A3EE60032E35C /* EmployeeIDTextField.swift */,
+				045C9480267A3F510032E35C /* EmployeeCommisionPercentTextField.swift */,
 			);
 			path = Employee;
 			sourceTree = "<group>";
@@ -358,6 +368,24 @@
 				045C9478267977B30032E35C /* ConfigurationViewController.swift */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		045C947A267A35C40032E35C /* AddOrEdit */ = {
+			isa = PBXGroup;
+			children = (
+				04E667BE266D9B80003B3140 /* AddOrEditCustomerViewController.swift */,
+				04F109E4266FF17600AD224D /* AddOrEditCustomerViewController+TextFieldValidation.swift */,
+			);
+			path = AddOrEdit;
+			sourceTree = "<group>";
+		};
+		045C947B267A35D50032E35C /* AddOrEdit */ = {
+			isa = PBXGroup;
+			children = (
+				045C94752679759F0032E35C /* AddOrEditViewController+Validations.swift */,
+				045C945E26793B960032E35C /* AddOrEditEmployeeViewController.swift */,
+			);
+			path = AddOrEdit;
 			sourceTree = "<group>";
 		};
 		046813B42658808800797A72 /* App */ = {
@@ -455,27 +483,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		04831369266D2A7E009F3389 /* Maintenance */ = {
-			isa = PBXGroup;
-			children = (
-				04748AE12667FEAC00B1935A /* MaintenanceViewController+ViewDelegate.swift */,
-				0402C5752665460A00DF1735 /* MaintenanceViewController+TableView.swift */,
-				04ADA127265C0FE5009DF878 /* MaintenanceViewController.swift */,
-				042D0295266C54C8002F957C /* MaintenanceViewController+NavigationTitle.swift */,
-				042D029C266C73C1002F957C /* MaintenanceViewController+InitServices.swift */,
-				042D029E266C7439002F957C /* MaintenanceViewController+Add.swift */,
-			);
-			path = Maintenance;
-			sourceTree = "<group>";
-		};
-		0483136A266D2A83009F3389 /* Modify Maintenance */ = {
+		0483136A266D2A83009F3389 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
 				043A645526696392009C450F /* ModifyMaintenanceViewController.swift */,
 				04831365266D2926009F3389 /* ModifyMaintenanceViewController+ModifyItem.swift */,
 				04831367266D29C3009F3389 /* ModifyMaintenanceViewController+DidItemSelected.swift */,
 			);
-			path = "Modify Maintenance";
+			path = Edit;
 			sourceTree = "<group>";
 		};
 		0483136B266D7B55009F3389 /* Customer */ = {
@@ -500,6 +515,7 @@
 				048AEC6C2653001000960670 /* Constant.swift */,
 				046813AC26586E9100797A72 /* UserDefaultsDbHelper.swift */,
 				045C946526796B890032E35C /* UserDocumentId.swift */,
+				04C03846267E3B4300C34C1A /* EnableValidationLabels.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -564,8 +580,13 @@
 		0494E06A266C3CA50076EE04 /* Maintenance */ = {
 			isa = PBXGroup;
 			children = (
-				0483136A266D2A83009F3389 /* Modify Maintenance */,
-				04831369266D2A7E009F3389 /* Maintenance */,
+				04748AE12667FEAC00B1935A /* MaintenanceViewController+ViewDelegate.swift */,
+				0402C5752665460A00DF1735 /* MaintenanceViewController+TableView.swift */,
+				04ADA127265C0FE5009DF878 /* MaintenanceViewController.swift */,
+				042D0295266C54C8002F957C /* MaintenanceViewController+NavigationTitle.swift */,
+				042D029C266C73C1002F957C /* MaintenanceViewController+InitServices.swift */,
+				042D029E266C7439002F957C /* MaintenanceViewController+Add.swift */,
+				0483136A266D2A83009F3389 /* Edit */,
 			);
 			path = Maintenance;
 			sourceTree = "<group>";
@@ -626,9 +647,8 @@
 		04E667BB266D9B15003B3140 /* Customer */ = {
 			isa = PBXGroup;
 			children = (
+				045C947A267A35C40032E35C /* AddOrEdit */,
 				04E667BC266D9B2B003B3140 /* CustomerTableViewController.swift */,
-				04E667BE266D9B80003B3140 /* AddOrEditCustomerViewController.swift */,
-				04F109E4266FF17600AD224D /* AddOrEditCustomerViewController+TextFieldValidation.swift */,
 				04F109ED267025B300AD224D /* CustomerTableViewController+ViewDelegate.swift */,
 				04F109EF267026CF00AD224D /* CustomerTableViewController+TableView.swift */,
 			);
@@ -727,6 +747,7 @@
 				04748AE22667FEAC00B1935A /* MaintenanceViewController+ViewDelegate.swift in Sources */,
 				049EC0432663D65C00FAAB0E /* APIService.swift in Sources */,
 				04E667C1266DAFB4003B3140 /* HomeViewController+CollectionView.swift in Sources */,
+				045C947D267A3EE60032E35C /* EmployeeIDTextField.swift in Sources */,
 				04831372266D7BEF009F3389 /* Employee.swift in Sources */,
 				04F109EE267025B300AD224D /* CustomerTableViewController+ViewDelegate.swift in Sources */,
 				04F109E5266FF17600AD224D /* AddOrEditCustomerViewController+TextFieldValidation.swift in Sources */,
@@ -743,6 +764,7 @@
 				04E667C3266DAFFF003B3140 /* Home.swift in Sources */,
 				04E667BD266D9B2B003B3140 /* CustomerTableViewController.swift in Sources */,
 				04E667BF266D9B80003B3140 /* AddOrEditCustomerViewController.swift in Sources */,
+				045C9481267A3F510032E35C /* EmployeeCommisionPercentTextField.swift in Sources */,
 				0494E055266C1BCD0076EE04 /* VehicleModel.swift in Sources */,
 				0402C57C26654C8500DF1735 /* BindOutletsProtocol.swift in Sources */,
 				049EC04F26640DF100FAAB0E /* AuthenticationViewDelegate.swift in Sources */,
@@ -763,6 +785,7 @@
 				04ADA11B265AA637009DF878 /* ErrorResponseStatusCode.swift in Sources */,
 				045C94642679691C0032E35C /* EmployeePresenter.swift in Sources */,
 				049EC03E2663D01300FAAB0E /* AuthenticationService.swift in Sources */,
+				04C0384B267E885F00C34C1A /* Date+ToString.swift in Sources */,
 				049EC0492663E79500FAAB0E /* URLRequestBuilder.swift in Sources */,
 				042D0299266C66E6002F957C /* VehicleTypeService.swift in Sources */,
 				049EC03C2663CE2000FAAB0E /* CombustibleTypeService.swift in Sources */,
@@ -780,6 +803,7 @@
 				04831362266D1DD4009F3389 /* VehicleModelService.swift in Sources */,
 				0494E067266C237D0076EE04 /* PresenterProtocol.swift in Sources */,
 				042D029B266C6859002F957C /* VehicleTypePresenter.swift in Sources */,
+				04C03847267E3B4300C34C1A /* EnableValidationLabels.swift in Sources */,
 				045C945F26793B960032E35C /* AddOrEditEmployeeViewController.swift in Sources */,
 				049EC05B2664516100FAAB0E /* Mangament.swift in Sources */,
 				0402C57F26654D7900DF1735 /* bool+ToString.swift in Sources */,

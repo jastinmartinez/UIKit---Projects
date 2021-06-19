@@ -7,7 +7,7 @@
 
 import Foundation
 
-class EmployeePresenter {
+class EmployeePresenter : PresenterTypeProtocol {
     
     private var employeeService: EmployeeService = EmployeeService()
     
@@ -37,9 +37,11 @@ class EmployeePresenter {
                 
                 if existEmployee.filter(iDFilters).count > 0 {
                     isValidation(self.errorMesssage(title: "Empleado", message: "La Cedula \(vm.employeeID) se encuentra registrada"))
+                    isValidation(true)
                 }
+            }else {
+                isValidation(false)
             }
-            isValidation(false)
         }
     }
     

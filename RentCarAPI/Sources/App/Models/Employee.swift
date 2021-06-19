@@ -26,17 +26,17 @@ final class Employee: ContenModel {
     var jobShift: String
     
     @Field(key: "employee_commission_percent")
-    var commissionPercent: Double
+    var commissionPercent: Int
     
     @Field(key: "employee_started_date")
-    var startedDate: Date
+    var startedDate: String
     
     @Field(key: "employee_state")
     var state: Bool
     
     init() { }
     
-    init(id: UUID?,employeeID: String,name: String, jobShift: String,commissionPercent: Double,startedDate: Date, state: Bool)
+    init(id: UUID?,employeeID: String,name: String, jobShift: String,commissionPercent: Int,startedDate: String, state: Bool)
     {
         self.id = id
         self.employeeID = employeeID

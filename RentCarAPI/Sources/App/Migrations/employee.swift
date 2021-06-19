@@ -18,8 +18,8 @@ extension Employee {
                 .field("employee_id",.string,.required)
                 .field("employee_name",.string,.required)
                 .field("employee_job_shift",.string,.required)
-                .field("employee_commission_percent",.double,.required)
-                .field("employee_started_date",.date,.required)
+                .field("employee_commission_percent",.int,.required)
+                .field("employee_started_date",.string,.required)
                 .field("employee_state",.bool,.required)
                 .create()
         }

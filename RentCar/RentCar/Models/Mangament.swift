@@ -21,6 +21,6 @@ let managementMenuData =
     Management(name: "Marca / Modelo Vehiculo", image: "mark",segue: Constant.segue.maintenanceSegue, presenterType: VehicleMarkPresenter()),
     Management(name: "Tipo Vehiculo", image: "type",segue: Constant.segue.maintenanceSegue, presenterType: VehicleTypePresenter()),
     Management(name: "Cliente", image: "customer",segue: Constant.segue.customerSegue, presenterType: CustomerPresenter()),
-    Management(name: "Empleado", image: "employee",segue: Constant.segue.customerSegue, presenterType: CustomerPresenter())
+    Management(name: "Empleado", image: "employee",segue: Constant.segue.employeeSegue, presenterType: EmployeePresenter())
 ]
 

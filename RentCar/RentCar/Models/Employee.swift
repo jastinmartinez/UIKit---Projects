@@ -13,8 +13,7 @@ struct Employee : Codable
     var name: String
     var employeeID: String
     var jobShift: String
-    var comissionPercent: Double
-    var startDate: Date
+    var commissionPercent: Int
+    var startedDate: String
     var state: Bool
-
 }

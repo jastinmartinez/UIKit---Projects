@@ -38,7 +38,7 @@ class EmployeeService: ServiceProtocol {
     }
     
     func verifyEmployeeID(_ vm: Employee,completion: @escaping ([Employee]) -> ()) {
-        APIService().request(url: URLRequestBuilder().prepare(url: Constant.uRL.employee, model: vm, method: .post)) { data, res, error in
+        APIService().request(url: URLRequestBuilder().prepare(url: Constant.uRL.employeeValidation, model: vm, method: .post)) { data, res, error in
             if let data = data {
                 if let employee = DataToObject<Employee>.decode(array: data) {
                     completion(employee)

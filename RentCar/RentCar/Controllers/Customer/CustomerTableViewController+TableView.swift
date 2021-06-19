@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 extension CustomerTableViewController {
-    
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return customerPresenter.customers.count
     }
     

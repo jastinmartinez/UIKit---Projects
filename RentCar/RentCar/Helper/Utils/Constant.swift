@@ -21,6 +21,7 @@ struct Constant {
         static let customer =  "\(baseUrl)/customer"
         static let customerValidation =  "\(customer)/validation"
         static let employee =  "\(baseUrl)/employee"
+        static let employeeValidation =  "\(employee)/validation"
     }
     
     struct storyBoardId {
@@ -31,6 +32,7 @@ struct Constant {
         static let maintenanceSegue = "maintenanceSegue"
         static let maintenanceModifySegue = "maintenanceModifySegue"
         static let customerSegue = "customerSegue"
+        static let employeeSegue = "employeeSegue"
         static let addOrEditCustomerSegue = "addOrEditCustomerSegue"
         static let addOrEditEmployeeSegue = "addOrEditEmployeeSegue"
     }

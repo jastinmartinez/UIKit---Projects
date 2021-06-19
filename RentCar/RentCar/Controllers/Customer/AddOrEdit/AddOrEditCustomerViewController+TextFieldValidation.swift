@@ -81,7 +81,7 @@ extension AddOrEditCustomerViewController: UITextFieldDelegate {
     
     func isInputValidationComplete(completion: (Bool) -> ()) {
         if let id = customerIDErrorLabel.text, let name = customerNameErrorLabel.text,let creditLimit = customerCreditLimitErrorLabel.text, let creditCard = customerCreditCardErrorLabel.text {
-            completion( id.isEmpty && name.isEmpty && creditLimit.isEmpty && creditCard.isEmpty)
+            completion( id.isEmpty && name.isEmpty && creditLimit.isEmpty && creditCard.isEmpty && !customerIDTextField.text!.isEmpty && !customerNameTextField.text!.isEmpty && !customerCreditCardTextField.text!.isEmpty && !customerCreditLimitTextField.text!.isEmpty)
        }
    }
     

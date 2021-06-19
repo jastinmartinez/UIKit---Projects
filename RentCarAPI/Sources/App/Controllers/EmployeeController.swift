@@ -17,7 +17,7 @@ struct EmployeeController: RouteCollection {
         employeeRoute.put(use: update)
         employeeRoute.delete(use: remove)
         employeeRoute.get(use: getAll)
-        employeeRoute.post(use: employeeIDValidation)
+        employeeRoute.post("validation",use: employeeIDValidation)
     }
     
     func create(_ req: Request) throws -> EventLoopFuture<Employee> {

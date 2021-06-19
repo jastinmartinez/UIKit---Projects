@@ -14,7 +14,6 @@ extension CustomerTableViewController: CustomerViewDelegateProtocol {
     }
     
     func didCustomersChange() {
-        
         self.tableView.reloadData()
     }
 }

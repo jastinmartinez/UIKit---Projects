@@ -325,18 +325,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="hUl-9g-Rmb">
-                                <rect key="frame" x="20" y="186" width="388" height="550"/>
+                                <rect key="frame" x="20" y="186" width="388" height="485"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cedula" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OVz-x9-p6e">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cedula" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OVz-x9-p6e" customClass="EmployeeIDTextField" customModule="RentCar" customModuleProvider="target">
                                         <rect key="frame" x="20" y="0.0" width="348" height="34"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuQ-tw-rPR">
+                                        <rect key="frame" x="169" y="51" width="50" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="awi-D6-zpe">
                                         <rect key="frame" x="20" y="68" width="348" height="34"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTL-Wy-cAp">
+                                        <rect key="frame" x="169" y="119" width="50" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wJM-QL-Uvg">
                                         <rect key="frame" x="64" y="136" width="260" height="32"/>
                                         <segments>
@@ -344,20 +356,32 @@
                                             <segment title="Vespertino"/>
                                             <segment title="Nocturno"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="employeeJobShiftSegmentedControlValueChanged:" destination="NJb-9A-I8a" eventType="valueChanged" id="TPb-mo-1y4"/>
+                                        </connections>
                                     </segmentedControl>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Portciento Comision $ 0.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="spF-fi-nVz">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Portciento Comision % 0.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="spF-fi-nVz" customClass="EmployeeCommisionPercentTextField" customModule="RentCar" customModuleProvider="target">
                                         <rect key="frame" x="20" y="201" width="348" height="34"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZR3-VO-7HP">
+                                        <rect key="frame" x="169" y="252" width="50" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="dlq-3r-Yit">
                                         <rect key="frame" x="34" y="269" width="320" height="216"/>
                                         <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
                                             <!--1970-01-01 11:00:00 +0000-->
                                         </date>
+                                        <connections>
+                                            <action selector="employeeStartedDateDatePickerValueChanged:" destination="NJb-9A-I8a" eventType="valueChanged" id="yVD-1S-yxN"/>
+                                        </connections>
                                     </datePicker>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2YS-Wk-ZY8">
-                                        <rect key="frame" x="169.66666666666666" y="519" width="51" height="31"/>
+                                    <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2YS-Wk-ZY8">
+                                        <rect key="frame" x="169.66666666666666" y="485" width="51" height="0.0"/>
                                     </switch>
                                 </subviews>
                                 <constraints>
@@ -386,9 +410,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="employeeCommisionPercentErrorLabel" destination="ZR3-VO-7HP" id="OmM-bw-vBT"/>
                         <outlet property="employeeCommisionPercentTextField" destination="spF-fi-nVz" id="70q-gM-ObT"/>
+                        <outlet property="employeeIDErrorLabel" destination="AuQ-tw-rPR" id="6kH-On-Jrb"/>
                         <outlet property="employeeIDTextField" destination="OVz-x9-p6e" id="iOj-Rt-RNz"/>
                         <outlet property="employeeJobShiftSegementedControl" destination="wJM-QL-Uvg" id="tIO-pq-8fC"/>
+                        <outlet property="employeeNameErrorLabel" destination="aTL-Wy-cAp" id="uYY-YZ-KPf"/>
                         <outlet property="employeeNameTextField" destination="awi-D6-zpe" id="fmI-AK-41a"/>
                         <outlet property="employeeStartDateDatePicker" destination="dlq-3r-Yit" id="97J-fU-Ahe"/>
                         <outlet property="employeeStateSwitch" destination="2YS-Wk-ZY8" id="gaB-Zr-KX0"/>
@@ -525,7 +552,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="y6o-Nc-CMO">
-                                <rect key="frame" x="20" y="186" width="388" height="343"/>
+                                <rect key="frame" x="20" y="186" width="388" height="283"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cedula" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="32j-Ll-sDa">
                                         <rect key="frame" x="20" y="0.0" width="348" height="34"/>
@@ -581,8 +608,8 @@
                                             <action selector="customerPersonTypeSegmentControlValueChange:" destination="5sp-r4-hg6" eventType="valueChanged" id="Twz-37-5bW"/>
                                         </connections>
                                     </segmentedControl>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SNz-YC-b09">
-                                        <rect key="frame" x="169.66666666666666" y="312" width="51" height="31"/>
+                                    <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SNz-YC-b09">
+                                        <rect key="frame" x="169.66666666666666" y="283" width="51" height="0.0"/>
                                     </switch>
                                 </subviews>
                                 <constraints>
