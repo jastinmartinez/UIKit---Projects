@@ -15,14 +15,13 @@ extension AddOrEditEmployeeViewController: UITextFieldDelegate {
         if textField is EmployeeIDTextField {
             
            return  CharacterSet(charactersIn: "1234567890").isSuperset(of: CharacterSet(charactersIn: string)) && range.location <= 10
-            
         }
         
         if textField is EmployeeCommisionPercentTextField {
         
-            return  CharacterSet(charactersIn: "1234567890.").isSuperset(of: CharacterSet(charactersIn: string)) && range.location <= 1
-       
+            return  CharacterSet(charactersIn: "1234567890").isSuperset(of: CharacterSet(charactersIn: string)) && range.location <= 1
         }
+        
         return true
     }
     

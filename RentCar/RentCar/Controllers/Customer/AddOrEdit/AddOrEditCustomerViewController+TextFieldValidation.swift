@@ -21,52 +21,46 @@ extension AddOrEditCustomerViewController: UITextFieldDelegate {
     @objc private func creditCard(_ value: UITextField) {
         
         if !CreditCardValidator(value.text!).isValid || value.text!.count != 16{
-            customerCreditCardErrorLabel.text = "Tarjeta Invalida"
-            customerCreditCardErrorLabel.isHidden = false
+            EnableValidationLabels().enable(label: customerCreditCardErrorLabel,message: "Tarjeta Invalida")
         }
         else {
-            customerCreditCardErrorLabel.text = ""
-            customerCreditCardErrorLabel.isHidden = true
+            EnableValidationLabels().enable(label: customerCreditCardErrorLabel,setHidden: true)
         }
     }
     
     @objc private func name(_ value: UITextField) {
         
-        if   value.text!.isEmpty{
-            customerNameErrorLabel.text = "Digitar Nombre"
-            customerNameErrorLabel.isHidden = false
+        if value.text!.isEmpty{
+            
+            EnableValidationLabels().enable(label: customerNameErrorLabel,message: "Digitar Nombre")
         }
         else {
-            customerNameErrorLabel.text = ""
-            customerNameErrorLabel.isHidden = true
+            EnableValidationLabels().enable(label: customerNameErrorLabel,setHidden: true)
         }
     }
     
     @objc private func creditLimit(_ value: UITextField) {
         
         if   value.text!.isEmpty{
-            customerCreditLimitErrorLabel.text = "Digitar Limite de Credito"
-            customerCreditLimitErrorLabel.isHidden = false
+            EnableValidationLabels().enable(label: customerCreditLimitErrorLabel,message: "Digitar Limite de Credito")
         }
         else {
-            customerCreditLimitErrorLabel.text = ""
-            customerCreditLimitErrorLabel.isHidden = true
+            EnableValidationLabels().enable(label: customerCreditLimitErrorLabel,setHidden: true)
         }
     }
     
     @objc private func iD(_ value: UITextField) {
         
         if   value.text!.isEmpty{
-            customerIDErrorLabel.text = "Digitar Cedula"
-            customerIDErrorLabel.isHidden = false
+            EnableValidationLabels().enable(label: customerIDErrorLabel,message: "Digitar Cedula")
+    
         }
         else if (!UserDocumentId().verify(value.text!)) {
-            customerIDErrorLabel.text = "Cedula Invalida"
-            customerIDErrorLabel.isHidden = false
+            EnableValidationLabels().enable(label: customerIDErrorLabel,message: "Cedula Invalida")
+         
         }
         else {
-            customerIDErrorLabel.text = ""
-            customerIDErrorLabel.isHidden = true
+            EnableValidationLabels().enable(label: customerIDErrorLabel,setHidden: true)
         }
     }
     

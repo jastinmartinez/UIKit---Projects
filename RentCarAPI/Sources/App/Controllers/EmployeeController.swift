@@ -36,6 +36,7 @@ struct EmployeeController: RouteCollection {
                 $0.name = employee.name
                 $0.employeeID = employee.employeeID
                 $0.jobShift = employee.jobShift
+                $0.commissionPercent = employee.commissionPercent
                 $0.startedDate = employee.startedDate
                 $0.state = employee.state
                 

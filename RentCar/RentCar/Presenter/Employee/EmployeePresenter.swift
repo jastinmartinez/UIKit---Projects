@@ -10,12 +10,7 @@ import Foundation
 class EmployeePresenter : PresenterTypeProtocol {
     
     private var employeeService: EmployeeService = EmployeeService()
-    
-    static var shared: EmployeePresenter = {
-        let instance = EmployeePresenter()
-        return instance
-    }()
-    
+
     var employeeViewDelegate: EmployeeViewDelegateProtocol?
     
     private(set) var employees = [Employee]() {
@@ -34,14 +29,11 @@ class EmployeePresenter : PresenterTypeProtocol {
         employeeService.verifyEmployeeID(vm) { existEmployee in
             
             if !existEmployee.isEmpty {
-                
                 if existEmployee.filter(iDFilters).count > 0 {
                     isValidation(self.errorMesssage(title: "Empleado", message: "La Cedula \(vm.employeeID) se encuentra registrada"))
-                    isValidation(true)
                 }
-            }else {
-                isValidation(false)
             }
+            isValidation(false)
         }
     }
     
@@ -67,7 +59,6 @@ class EmployeePresenter : PresenterTypeProtocol {
                 
                 self.employees[self.employees.firstIndex(where: {$0.id == vm.id})!] = vm
                 self.employeeService.update(vm)
-                
             }
             notifyViewValidationStatus(isValidationTriggered)
         }
@@ -83,5 +74,4 @@ class EmployeePresenter : PresenterTypeProtocol {
             self.employees = employees
         }
     }
-
 }

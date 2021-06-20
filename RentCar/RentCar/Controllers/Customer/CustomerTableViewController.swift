@@ -10,7 +10,7 @@ import UIKit
 
 class CustomerTableViewController: UITableViewController  {
     
-    var customerPresenter = CustomerPresenter.shared
+    private(set) var customerPresenter = CustomerPresenter()
     
     override func viewDidLoad() {
         customerPresenter.getAll()
@@ -23,4 +23,5 @@ class CustomerTableViewController: UITableViewController  {
     @IBAction func addCustomerButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: Constant.segue.addOrEditCustomerSegue, sender: nil)
     }
+    
 }

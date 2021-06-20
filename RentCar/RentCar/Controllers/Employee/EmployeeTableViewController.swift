@@ -9,7 +9,7 @@ import UIKit
 
 class EmployeeTableViewController: UITableViewController {
  
-    var employeePresenter = EmployeePresenter.shared
+    private(set) var employeePresenter: EmployeePresenter = EmployeePresenter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,5 +25,15 @@ class EmployeeTableViewController: UITableViewController {
     
     @IBAction func addOrEditCustomerButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: Constant.segue.addOrEditEmployeeSegue, sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constant.segue.addOrEditEmployeeSegue {
+            let destinationAddOrEditEmployeeViewController = (segue.destination as! AddOrEditEmployeeViewController)
+            destinationAddOrEditEmployeeViewController.employeePresenter = employeePresenter
+            if let employee = sender {
+                destinationAddOrEditEmployeeViewController.employee = employee as? Employee
+            }
+        }
     }
 }

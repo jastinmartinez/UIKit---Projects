@@ -14,6 +14,7 @@ extension EmployeeTableViewController {
         
         return employeePresenter.employees.count
     }
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             employeePresenter.remove(indexPath.row)
@@ -24,5 +25,10 @@ extension EmployeeTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constant.tableViewCell.employeeTableViewCell) as! EmployeeTableViewCell
         cell.bindDataToOulets(vm: employeePresenter.employees[indexPath.row])
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+        performSegue(withIdentifier: Constant.segue.addOrEditEmployeeSegue, sender:  employeePresenter.employees[indexPath.row])
     }
 }

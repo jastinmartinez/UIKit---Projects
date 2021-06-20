@@ -19,12 +19,6 @@ class CustomerPresenter: PresenterTypeProtocol {
         }
     }
     
-    static var shared: CustomerPresenter = {
-        let instance = CustomerPresenter()
-        return instance
-    }()
-    
-    
     private func errorMesssage(title:String,message:String ) -> Bool {
         self.customerViewDelegateProtocol.didErrorOcurred(title: title, message: message)
         return true
@@ -78,13 +72,11 @@ class CustomerPresenter: PresenterTypeProtocol {
     }
     
     func remove(_ index: Int) {
-        
         customerService.remove(customers[index])
         customers.remove(at: index)
     }
     
     func getAll() {
-        
         customerService.getAll { _customers in
             self.customers = _customers
         }

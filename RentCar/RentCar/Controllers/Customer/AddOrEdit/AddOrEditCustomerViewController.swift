@@ -21,7 +21,7 @@ class AddOrEditCustomerViewController: UIViewController {
     @IBOutlet weak var customerNameErrorLabel: UILabel!
     @IBOutlet weak var customerStateSwitch: UISwitch!
     
-    var customerPresenter = CustomerPresenter.shared
+    var customerPresenter: CustomerPresenter?
     var customer: Customer?
     
     private var personType: String!
@@ -44,14 +44,14 @@ class AddOrEditCustomerViewController: UIViewController {
         isInputValidationComplete { isValid in
             if isValid {
                 if customer != nil {
-                    customerPresenter.update(Customer(id: customer?.id,name: customerNameTextField.text!, customerID: customerIDTextField.text!, creditCard: customerCreditCardTextField.text!, creditLimit: Double.init(customerCreditLimitTextField.text!)! , personType:  personType, state: customerStateSwitch.isOn)) { validation in
+                    customerPresenter?.update(Customer(id: customer?.id,name: customerNameTextField.text!, customerID: customerIDTextField.text!, creditCard: customerCreditCardTextField.text!, creditLimit: Double.init(customerCreditLimitTextField.text!)! , personType:  personType, state: customerStateSwitch.isOn)) { validation in
                         if validation == false {
                             self.navigationController?.popViewController(animated: true)
                         }
                     }
                    
                 } else {
-                    customerPresenter.create(Customer(name: customerNameTextField.text!, customerID: customerIDTextField.text!, creditCard: customerCreditCardTextField.text!, creditLimit: Double.init(customerCreditLimitTextField.text!)! , personType:  personType, state: true)) { validation in
+                    customerPresenter?.create(Customer(name: customerNameTextField.text!, customerID: customerIDTextField.text!, creditCard: customerCreditCardTextField.text!, creditLimit: Double.init(customerCreditLimitTextField.text!)! , personType:  personType, state: true)) { validation in
                         if validation == false {
                             self.navigationController?.popViewController(animated: true)
                         }
@@ -74,7 +74,7 @@ extension AddOrEditCustomerViewController {
             self.customerNameTextField.text = customer.name
             self.customerCreditCardTextField.text = customer.creditCard
             self.customerCreditLimitTextField.text = customer.creditLimit.ToString()
-            let personTypeIndex = searchAndSetPersonType(customer.personType)
+            let personTypeIndex = stringInSegmentedControl().search(customer.personType, segmentedControl: customerPersonTypeSegmentedControl)
             if personTypeIndex > -1 {
                  self.customerPersonTypeSegmentedControl.selectedSegmentIndex = personTypeIndex
                  self.personType = self.customerPersonTypeSegmentedControl.titleForSegment(at: personTypeIndex)
@@ -83,18 +83,7 @@ extension AddOrEditCustomerViewController {
             self.customerStateSwitch.isOn = customer.state
         }
         else {
-            
             self.personType = customerPersonTypeSegmentedControl.titleForSegment(at: 0)!
         }
-    }
-    
-    fileprivate func searchAndSetPersonType(_ personType: String) -> Int {
-
-        for index in 0...customerPersonTypeSegmentedControl.numberOfSegments {
-            if personType == customerPersonTypeSegmentedControl.titleForSegment(at: index)! {
-                return index
-            }
-        }
-        return -1
     }
 }

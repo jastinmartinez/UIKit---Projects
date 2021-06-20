@@ -7,10 +7,10 @@
 
 import Foundation
 extension Date {
-   
-    func ToFormatedDate() -> String {
-        let dateFomart = DateFormatter()
-        dateFomart.dateFormat = "yyyy-MM-dd"
-        return dateFomart.string(from: self)
+    
+    func toString() -> String {
+        
+        return  SetDateFormat().to.string(from: self)
+        
     }
 }

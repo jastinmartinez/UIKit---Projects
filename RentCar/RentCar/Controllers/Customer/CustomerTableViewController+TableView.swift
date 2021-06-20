@@ -28,9 +28,10 @@ extension CustomerTableViewController {
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constant.segue.addOrEditCustomerSegue {
-            let addOrEditCustomerDestination = segue.destination as! AddOrEditCustomerViewController
+            let destinationAddOrEdirCustomerViewController = segue.destination as! AddOrEditCustomerViewController
+            destinationAddOrEdirCustomerViewController.customerPresenter = customerPresenter
             if let customer = sender  {
-                addOrEditCustomerDestination.customer = (customer as! Customer)
+                destinationAddOrEdirCustomerViewController.customer = (customer as? Customer)
             }
         }
     }
