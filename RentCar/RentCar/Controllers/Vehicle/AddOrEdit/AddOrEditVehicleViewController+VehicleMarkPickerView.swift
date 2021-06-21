@@ -46,6 +46,23 @@ extension AddOrEditVehicleViewController: UIPickerViewDataSource,UIPickerViewDel
             vehicleModelPresenter.getModelsOfMarks(vehicleMarkPresenter.vehicleMarks[row])
             
             self.vehicleVehicleModelPickerView.reloadAllComponents()
+            
+            self.vehicleMarkID = vehicleMarkPresenter.vehicleMarks[row].id
+            
+            self.vehicleModelID = vehicleModelPresenter.vehicleModels.first(where: {$0.vehicleMark.id == vehicleMarkID})?.id
+            
+        }
+        else if pickerView is CombustibleTypePickerView {
+            
+            self.combustibleTypeID = combustibleTypePresenter.combustibleTypes[row].id
+        }
+        else if pickerView is VehicleTypePickerView {
+            
+            self.vehicleTypeID = vehicleTypePresenter.vehicleTypes[row].id
+        }
+        else if pickerView is VehicleModelPickerView {
+            
+            self.vehicleModelID = vehicleModelPresenter.vehicleModels[row].id
         }
     }
     

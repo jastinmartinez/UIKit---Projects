@@ -7,7 +7,9 @@
 
 import UIKit
 
-class VehicleTableViewController: UITableViewController {
+class VehicleCollectionView: UICollectionViewController {
+    
+    var vehiclePresenter = VehiclePresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,8 +17,8 @@ class VehicleTableViewController: UITableViewController {
     }
     
     func initViewDidLoad() {
-        tableView.dataSource = self
-        tableView.delegate = self
+        vehiclePresenter.getAll()
+        vehiclePresenter.vehicleViewDelegatePrtocol = self
     }
     
     @IBAction func addOrEditVehicleButtonPressed(_ sender: Any) {

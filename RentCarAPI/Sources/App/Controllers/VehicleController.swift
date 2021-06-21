@@ -17,7 +17,7 @@ struct VehicleController: RouteCollection {
         vehicle.delete( use: delete)
         vehicle.put( use: update)
         vehicle.get( use: getAll)
-        vehicle.get("validation", use: vehicleMultipleValidations)
+        vehicle.post("validation", use: vehicleMultipleValidations)
     }
     
     func add(req: Request) throws -> EventLoopFuture<Vehicle> {
@@ -67,7 +67,6 @@ struct VehicleController: RouteCollection {
                 
             group in group
             .filter(\.$chasisNumber == vehicle.chasisNumber)
-            .filter(\.$engineNumber == vehicle.engineNumber)
             .filter(\.$plate == vehicle.plate)
                 
             }

@@ -17,12 +17,14 @@ extension AddOrEditVehicleViewController: UITextFieldDelegate {
          
             return range.location <= 11
             
-        } else if textField is VehicleChasisNumberTextField ||  textField is VehicleEngineNumberTextField{
-            
+        } else if textField is VehicleChasisNumberTextField || textField is VehicleEngineNumberTextField{
+        
             return range.location <= 16
         }
         
-        return true
+        else {
+            return true
+        }
     }
     
     @objc private func vehicleDescription(_ textField: UITextField) {
@@ -75,8 +77,8 @@ extension AddOrEditVehicleViewController: UITextFieldDelegate {
     
     func isInputValidationComplete(completion: (Bool) -> ()) {
         
-        if let engineNumber = vehicleEngineNumberErrorLabel.text, let chasisNumber = vehicleChasisNumberErrorLabel.text, let vehiclePlate = vehiclePlateTextField.text  {
-            completion( engineNumber.isEmpty && chasisNumber.isEmpty && vehiclePlate.isEmpty && !vehicleEngineNumberTextField.text!.isEmpty && !vehicleChasisNumberTextField.text!.isEmpty && !vehiclePlateTextField.text!.isEmpty
+        if let engineNumber = vehicleEngineNumberErrorLabel.text, let chasisNumber = vehicleChasisNumberErrorLabel.text, let vehiclePlate = vehiclePlateErroLabel.text , let description = vehicleDescriptionErrorLabel.text  {
+            completion(description.isEmpty && engineNumber.isEmpty && chasisNumber.isEmpty && vehiclePlate.isEmpty && !vehicleEngineNumberTextField.text!.isEmpty && !vehicleChasisNumberTextField.text!.isEmpty && !vehiclePlateTextField.text!.isEmpty
                             && (vehicleTypeID != nil)
                             && (vehicleModelID != nil)
                             && (vehicleMarkID != nil)

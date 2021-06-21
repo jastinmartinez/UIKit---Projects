@@ -26,7 +26,7 @@ class AddOrEditVehicleViewController: UIViewController {
     @IBOutlet weak var vehiclePlateErroLabel: UILabel!
     
     
-    var vehiclePresenter: VehiclePresenter?
+    var vehiclePresenter = VehiclePresenter()
     var vehicleTypePresenter = VehicleTypePresenter()
     var vehicleModelPresenter = VehicleModelPresenter()
     var vehicleMarkPresenter = VehicleMarkPresenter()
@@ -48,7 +48,12 @@ class AddOrEditVehicleViewController: UIViewController {
     @IBAction func vehicleSavedButtonPressed(_ sender: Any) {
         isInputValidationComplete { isValidationComplete in
             if isValidationComplete {
-                vehiclePresenter?.create(Vehicle(description: vehicleDescriptionTextField.text!, chasisNumber: vehicleChasisNumberTextField.text!, engineNumber: vehicleEngineNumberTextField.text!, plate: vehiclePlateTextField.text!, vehicleType: ParentModel(id: vehicleTypeID), vehicleMark: ParentModel(id: vehicleMarkID), vehicleModel: ParentModel(id: vehicleModelID), combustibleType: ParentModel(id: combustibleTypeID), state: true))
+                vehiclePresenter.create(Vehicle(description: vehicleDescriptionTextField.text!, chasisNumber: vehicleChasisNumberTextField.text!, engineNumber: vehicleEngineNumberTextField.text!, plate: vehiclePlateTextField.text!, vehicleType: ParentModel(id: vehicleTypeID), vehicleMark: ParentModel(id: vehicleMarkID), vehicleModel: ParentModel(id: vehicleModelID), combustibleType: ParentModel(id: combustibleTypeID), state: true)) {
+                    isValidationComplete in
+                    if !isValidationComplete {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
             }
         }
     }

@@ -21,8 +21,9 @@ struct Constant {
         static let customer =  "\(baseUrl)/customer"
         static let customerValidation =  "\(customer)/validation"
         static let employee =  "\(baseUrl)/employee"
-        static let vehicle =  "\(baseUrl)/vehicle"
         static let employeeValidation =  "\(employee)/validation"
+        static let vehicle =  "\(baseUrl)/vehicle"
+        static let vehicleValidation =  "\(vehicle)/validation"
     }
     
     struct storyBoardId {
@@ -43,6 +44,7 @@ struct Constant {
     struct reusableView {
         static let homeCollectionReusableView = "homeCollectionReusableView"
         static let managementReusableView = "ManagementReusableView"
+        static let vehicleReusableView = "vehicleReusableView"
     }
     
     struct tableViewCell {

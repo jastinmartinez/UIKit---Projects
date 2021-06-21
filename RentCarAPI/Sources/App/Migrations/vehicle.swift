@@ -19,8 +19,10 @@ extension Vehicle {
                 .field("vehicle_vehicle_type",.uuid,.required,.references("vehicle_type", .id))
                 .field("vehicle_vehicle_mark",.uuid,.required,.references("vehicle_mark", .id))
                 .field("vehicle_vehicle_model",.uuid,.required,.references("vehicle_model", .id))
-                .field("vehicle_combustible_type",.uuid,.required,.references("vehicle_type", .id))
+                .field("vehicle_combustible_type",.uuid,.required,.references("combustible_type", .id))
                 .field("vehicle_state",.bool,.required)
+                .unique(on: "vehicle_chasis_number")
+                .unique(on: "vehicle_plate")
                 .create()
         }
         

@@ -223,7 +223,7 @@
                         <segue destination="O0w-5s-AGr" kind="show" identifier="maintenanceSegue" id="aw1-PQ-1DJ"/>
                         <segue destination="ICq-GQ-VRp" kind="show" identifier="customerSegue" id="zDi-Yz-874"/>
                         <segue destination="b8p-M3-qdy" kind="show" identifier="employeeSegue" id="Sen-zs-a38"/>
-                        <segue destination="VGl-Ox-hXi" kind="show" identifier="vehicleSegue" id="xC8-I9-IJo"/>
+                        <segue destination="L3H-Md-QO2" kind="show" identifier="vehicleSegue" id="8q7-ir-rW6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kgg-b6-FAB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -357,6 +357,9 @@
                                         <rect key="frame" x="20" y="86" width="348" height="34"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Mpu-fh-WzW" id="XSk-jk-EkR"/>
+                                        </connections>
                                     </textField>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYE-Qi-Yvf">
                                         <rect key="frame" x="169" y="124.66666666666669" width="50" height="0.0"/>
@@ -372,7 +375,7 @@
                                             <outlet property="delegate" destination="Mpu-fh-WzW" id="XHr-7j-UyF"/>
                                         </connections>
                                     </textField>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRa-7b-7sz">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRa-7b-7sz" userLabel="Vehicle Plate Error Label">
                                         <rect key="frame" x="169" y="167.66666666666669" width="50" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
                                         <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -511,43 +514,73 @@
             </objects>
             <point key="canvasLocation" x="3035" y="1052"/>
         </scene>
-        <!--Vehicle-->
-        <scene sceneID="pLl-Yw-Qnr">
+        <!--Vehiclo-->
+        <scene sceneID="wpI-s9-80j">
             <objects>
-                <tableViewController id="VGl-Ox-hXi" userLabel="Vehicle" customClass="VehicleTableViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RwD-JL-xLX">
+                <collectionViewController id="L3H-Md-QO2" customClass="VehicleCollectionView" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dmd-PD-RYR">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="vehicleTableViewCell" rowHeight="195" id="igp-KS-6ES">
-                                <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="195"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="igp-KS-6ES" id="aT8-L9-22h" customClass="VehicleView" customModule="RentCar" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="195"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="j17-IO-jvO">
+                            <size key="itemSize" width="250" height="187"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="vehicleReusableView" id="tEN-Lc-6Ct" customClass="VehicleCollectionViewCell" customModule="RentCar" customModuleProvider="target">
+                                <rect key="frame" x="89" y="0.0" width="250" height="187"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DXk-Z6-jdQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="187"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tU-uo-JyX" customClass="VehicleView" customModule="RentCar" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="187"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPI-ZN-d9G">
+                                                    <rect key="frame" x="20" y="33" width="41" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="OPI-ZN-d9G" secondAttribute="bottom" constant="133" id="Fwt-K8-Wqk"/>
+                                                <constraint firstItem="OPI-ZN-d9G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7tU-uo-JyX" secondAttribute="leading" constant="20" symbolic="YES" id="aG6-aO-FBv"/>
+                                                <constraint firstAttribute="trailing" secondItem="OPI-ZN-d9G" secondAttribute="trailing" constant="189" id="hyB-0b-veD"/>
+                                                <constraint firstItem="OPI-ZN-d9G" firstAttribute="top" secondItem="7tU-uo-JyX" secondAttribute="top" constant="33" id="k99-B3-iVj"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="7tU-uo-JyX" secondAttribute="bottom" id="NP5-7c-E61"/>
+                                        <constraint firstItem="7tU-uo-JyX" firstAttribute="top" secondItem="DXk-Z6-jdQ" secondAttribute="top" id="Z3I-uH-dkV"/>
+                                        <constraint firstAttribute="trailing" secondItem="7tU-uo-JyX" secondAttribute="trailing" id="eet-Ri-0wU"/>
+                                        <constraint firstItem="7tU-uo-JyX" firstAttribute="leading" secondItem="DXk-Z6-jdQ" secondAttribute="leading" id="tO6-0c-prl"/>
+                                    </constraints>
+                                </collectionViewCellContentView>
+                                <size key="customSize" width="250" height="187"/>
+                                <connections>
+                                    <outlet property="vehicleDescriptionLabel" destination="OPI-ZN-d9G" id="vJ0-ev-U5U"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
                         <connections>
-                            <outlet property="dataSource" destination="VGl-Ox-hXi" id="FJI-9S-jaK"/>
-                            <outlet property="delegate" destination="VGl-Ox-hXi" id="8ra-kP-BFw"/>
+                            <outlet property="dataSource" destination="L3H-Md-QO2" id="g0D-3E-y9h"/>
+                            <outlet property="delegate" destination="L3H-Md-QO2" id="OBK-Az-bIM"/>
                         </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Vehiculos" id="7CP-bw-NGG">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cxg-FG-gxi">
-                            <connections>
-                                <action selector="addOrEditVehicleButtonPressed:" destination="VGl-Ox-hXi" id="Utz-DV-BXu"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Vehiclo" id="ghI-8S-LE9"/>
                     <connections>
-                        <segue destination="Mpu-fh-WzW" kind="show" identifier="addOrEditVehicleSegue" id="7LX-2e-Gn4"/>
+                        <segue destination="Mpu-fh-WzW" kind="show" identifier="addOrEditVehicleSegue" id="gal-oD-rkt"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JDg-tb-GG7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g2s-qk-Uo7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3887.3831775700933" y="1020.5183585313175"/>
+            <point key="canvasLocation" x="3758.4112149532707" y="1051.6198704103672"/>
         </scene>
         <!--Add Or Edit Employee-->
         <scene sceneID="xqw-og-Gu3">
