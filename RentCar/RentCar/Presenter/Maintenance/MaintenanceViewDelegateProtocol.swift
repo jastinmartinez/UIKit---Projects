@@ -12,3 +12,10 @@ protocol MaintenanceViewDelegateProtocol: AnyObject {
     func didErrorOcurred(title:String, message:String)
 }
 
+extension MaintenanceViewDelegateProtocol {
+ 
+    func didErrorOcurred(title:String, message:String) {
+        /*setting up default implementation caused not all the time we notify errors*/
+    }
+}
+

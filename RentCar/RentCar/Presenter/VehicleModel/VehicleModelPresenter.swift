@@ -14,6 +14,7 @@ class VehicleModelPresenter: PresenterTypeProtocol {
     init() {
         vehicleModelService = VehicleModelService()
     }
+    private var vehicleModelsOfMark = [VehicleModel]()
     
     private(set) var vehicleModels = [VehicleModel]() {
         
@@ -21,6 +22,7 @@ class VehicleModelPresenter: PresenterTypeProtocol {
             self.maintenanceViewDelegate?.didArrayChange()
         }
     }
+    
     var maintenanceViewDelegate: MaintenanceViewDelegateProtocol?
     
     typealias aType = VehicleModel
@@ -31,12 +33,23 @@ class VehicleModelPresenter: PresenterTypeProtocol {
         }
     }
     
+    func getAllWithAvailableState() {
+        vehicleModelService.getAll { vehicleModels in
+            self.vehicleModelsOfMark = vehicleModels.filter({$0.state})
+        }
+    }
+    
     func getModelsOfMarks(_ vm: UUID) {
         vehicleModelService.geModelsOfMark(VehicleMarkID: vm) { vehicleModels in
             self.vehicleModels = vehicleModels
         }
     }
     
+    func getModelsOfMarks(_ vm: VehicleMark) {
+        self.vehicleModels = self.vehicleModelsOfMark
+        self.vehicleModels = vehicleModels.filter{$0.vehicleMark.id == vm.id}
+    }
+
     func update(_ vm: VehicleModel) {
         vehicleModels[vehicleModels.firstIndex(where: {$0.id == vm.id})!] = vm
         vehicleModelService.update(vm)

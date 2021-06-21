@@ -149,10 +149,10 @@
             </objects>
             <point key="canvasLocation" x="5410" y="-1300"/>
         </scene>
-        <!--JMB Rental Car-->
+        <!--Management-->
         <scene sceneID="YTx-xV-ijd">
             <objects>
-                <viewController id="Cyk-J0-irY" customClass="ManagementViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Cyk-J0-irY" userLabel="Management" customClass="ManagementViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wrq-1a-xIT">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -223,6 +223,7 @@
                         <segue destination="O0w-5s-AGr" kind="show" identifier="maintenanceSegue" id="aw1-PQ-1DJ"/>
                         <segue destination="ICq-GQ-VRp" kind="show" identifier="customerSegue" id="zDi-Yz-874"/>
                         <segue destination="b8p-M3-qdy" kind="show" identifier="employeeSegue" id="Sen-zs-a38"/>
+                        <segue destination="VGl-Ox-hXi" kind="show" identifier="vehicleSegue" id="xC8-I9-IJo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kgg-b6-FAB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -316,10 +317,242 @@
             </objects>
             <point key="canvasLocation" x="5980" y="1031"/>
         </scene>
-        <!--Nuevo-->
+        <!--Add Or Edit Vehicle-->
+        <scene sceneID="c3f-45-3xq">
+            <objects>
+                <viewController id="Mpu-fh-WzW" userLabel="Add Or Edit Vehicle" customClass="AddOrEditVehicleViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Whx-UA-dMA">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="N5I-Si-Kn1">
+                                <rect key="frame" x="20" y="161" width="388" height="609"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Descripcion" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Edx-gR-Osn">
+                                        <rect key="frame" x="20" y="0.0" width="348" height="34"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRh-6w-hHL">
+                                        <rect key="frame" x="169" y="38.666666666666657" width="50" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No. Chasis" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Ub-ml-plR" customClass="VehicleChasisNumberTextField" customModule="RentCar" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="43" width="348" height="34"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Mpu-fh-WzW" id="8um-tN-tFL"/>
+                                        </connections>
+                                    </textField>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTH-Cm-mXH">
+                                        <rect key="frame" x="169" y="81.666666666666657" width="50" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No. Motor" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cx0-UO-vn4" customClass="VehicleEngineNumberTextField" customModule="RentCar" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="86" width="348" height="34"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYE-Qi-Yvf">
+                                        <rect key="frame" x="169" y="124.66666666666669" width="50" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No. Placa" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KSR-8K-hbr" customClass="VehiclePlateTextField" customModule="RentCar" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="129" width="348" height="34"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Mpu-fh-WzW" id="XHr-7j-UyF"/>
+                                        </connections>
+                                    </textField>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRa-7b-7sz">
+                                        <rect key="frame" x="169" y="167.66666666666669" width="50" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="Oos-HV-Z7T">
+                                        <rect key="frame" x="0.0" y="172" width="388" height="214"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="zyt-Tg-onE">
+                                                <rect key="frame" x="0.0" y="0.0" width="178" height="214"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tipo Vehiclo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQv-y7-vGa">
+                                                        <rect key="frame" x="0.0" y="0.0" width="178" height="18"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
+                                                        <color key="textColor" red="0.015686274510000001" green="0.39607843139999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="4h6-H4-nhh" customClass="VehicleTypePickerView" customModule="RentCar" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="-2" width="178" height="216"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="Mpu-fh-WzW" id="bas-m7-MOq"/>
+                                                            <outlet property="delegate" destination="Mpu-fh-WzW" id="Wi7-pi-5LE"/>
+                                                        </connections>
+                                                    </pickerView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="cbj-vv-njn">
+                                                <rect key="frame" x="210" y="0.0" width="178" height="214"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Marca Vehiclo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRu-sf-93Q">
+                                                        <rect key="frame" x="0.0" y="0.0" width="178" height="18"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
+                                                        <color key="textColor" red="0.015686274510000001" green="0.39607843139999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S7B-5O-IRc" customClass="VehicleMarkPickerView" customModule="RentCar" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="-2" width="178" height="216"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="Mpu-fh-WzW" id="vlf-wX-hhq"/>
+                                                            <outlet property="delegate" destination="Mpu-fh-WzW" id="7Ol-h5-r9Z"/>
+                                                        </connections>
+                                                    </pickerView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="7Ig-7K-eGh">
+                                        <rect key="frame" x="0.0" y="395" width="388" height="214"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="2LF-2I-4Q8">
+                                                <rect key="frame" x="0.0" y="0.0" width="178" height="214"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Modelo Vehiclo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LJ-Lv-Z2N">
+                                                        <rect key="frame" x="0.0" y="0.0" width="178" height="18"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
+                                                        <color key="textColor" red="0.015686274510000001" green="0.39607843139999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hxV-6e-3Bh" customClass="VehicleModelPickerView" customModule="RentCar" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="-2" width="178" height="216"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="Mpu-fh-WzW" id="Kte-i0-bev"/>
+                                                            <outlet property="delegate" destination="Mpu-fh-WzW" id="bdd-kb-LYn"/>
+                                                        </connections>
+                                                    </pickerView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="m2c-hP-zYO">
+                                                <rect key="frame" x="210" y="0.0" width="178" height="214"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Tipo Combustible" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FW-4b-nrq">
+                                                        <rect key="frame" x="0.0" y="0.0" width="178" height="18"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
+                                                        <color key="textColor" red="0.015686274510000001" green="0.39607843139999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QT9-5G-rCV" customClass="CombustibleTypePickerView" customModule="RentCar" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="-2" width="178" height="216"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="Mpu-fh-WzW" id="7OQ-ap-5uZ"/>
+                                                            <outlet property="delegate" destination="Mpu-fh-WzW" id="qzA-nu-2JF"/>
+                                                        </connections>
+                                                    </pickerView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dUH-Uq-4o9">
+                                        <rect key="frame" x="169.66666666666666" y="609" width="51" height="0.0"/>
+                                    </switch>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="3Ub-ml-plR" secondAttribute="trailing" constant="20" id="14A-04-epV"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cx0-UO-vn4" secondAttribute="trailing" constant="20" id="6cH-VN-gEc"/>
+                                    <constraint firstItem="KSR-8K-hbr" firstAttribute="leading" secondItem="N5I-Si-Kn1" secondAttribute="leading" constant="20" id="FkZ-xV-MhN"/>
+                                    <constraint firstAttribute="trailing" secondItem="Edx-gR-Osn" secondAttribute="trailing" constant="20" id="LPr-eL-tw4"/>
+                                    <constraint firstItem="Cx0-UO-vn4" firstAttribute="leading" secondItem="N5I-Si-Kn1" secondAttribute="leading" constant="20" id="ZOZ-c2-tJB"/>
+                                    <constraint firstItem="Edx-gR-Osn" firstAttribute="leading" secondItem="N5I-Si-Kn1" secondAttribute="leading" constant="20" id="l3T-oj-ZOW"/>
+                                    <constraint firstItem="3Ub-ml-plR" firstAttribute="leading" secondItem="N5I-Si-Kn1" secondAttribute="leading" constant="20" id="qOo-Bx-Wn7"/>
+                                    <constraint firstAttribute="trailing" secondItem="KSR-8K-hbr" secondAttribute="trailing" constant="20" id="sIn-PZ-1MS"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3gb-gl-36L"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="N5I-Si-Kn1" secondAttribute="trailing" id="11s-xl-5si"/>
+                            <constraint firstItem="N5I-Si-Kn1" firstAttribute="leading" secondItem="Whx-UA-dMA" secondAttribute="leadingMargin" id="NBz-CI-nRf"/>
+                            <constraint firstItem="N5I-Si-Kn1" firstAttribute="top" secondItem="3gb-gl-36L" secondAttribute="top" constant="21" id="TNa-Ua-Eng"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Nuevo" id="Wa1-gU-N9N">
+                        <barButtonItem key="rightBarButtonItem" title="Guardar" id="ANG-lm-7HB">
+                            <color key="tintColor" red="0.015686274510000001" green="0.39607843139999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="vehicleSavedButtonPressed:" destination="Mpu-fh-WzW" id="9IB-Cu-3bO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="vehicleChasisNumberErrorLabel" destination="uTH-Cm-mXH" id="1YM-gP-ael"/>
+                        <outlet property="vehicleChasisNumberTextField" destination="3Ub-ml-plR" id="bBA-pB-Jt0"/>
+                        <outlet property="vehicleCombustibleTypePickerView" destination="QT9-5G-rCV" id="uqj-tC-S2q"/>
+                        <outlet property="vehicleDescriptionErrorLabel" destination="NRh-6w-hHL" id="osh-FB-tHg"/>
+                        <outlet property="vehicleDescriptionTextField" destination="Edx-gR-Osn" id="MUj-ie-8QW"/>
+                        <outlet property="vehicleEngineNumberErrorLabel" destination="EYE-Qi-Yvf" id="9NS-eQ-zXe"/>
+                        <outlet property="vehicleEngineNumberTextField" destination="Cx0-UO-vn4" id="x6R-Pv-T9f"/>
+                        <outlet property="vehiclePlateErroLabel" destination="nRa-7b-7sz" id="Qar-yP-8y8"/>
+                        <outlet property="vehiclePlateTextField" destination="KSR-8K-hbr" id="WQ7-wT-HEy"/>
+                        <outlet property="vehicleVehicleMarkPickerView" destination="S7B-5O-IRc" id="327-hQ-s3y"/>
+                        <outlet property="vehicleVehicleModelPickerView" destination="hxV-6e-3Bh" id="ZyE-6F-Z8X"/>
+                        <outlet property="vehicleVehicleTypePickerView" destination="4h6-H4-nhh" id="7wZ-QJ-aHV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VnG-JH-YBh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3035" y="1052"/>
+        </scene>
+        <!--Vehicle-->
+        <scene sceneID="pLl-Yw-Qnr">
+            <objects>
+                <tableViewController id="VGl-Ox-hXi" userLabel="Vehicle" customClass="VehicleTableViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RwD-JL-xLX">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="vehicleTableViewCell" rowHeight="195" id="igp-KS-6ES">
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="195"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="igp-KS-6ES" id="aT8-L9-22h" customClass="VehicleView" customModule="RentCar" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="195"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="VGl-Ox-hXi" id="FJI-9S-jaK"/>
+                            <outlet property="delegate" destination="VGl-Ox-hXi" id="8ra-kP-BFw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Vehiculos" id="7CP-bw-NGG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cxg-FG-gxi">
+                            <connections>
+                                <action selector="addOrEditVehicleButtonPressed:" destination="VGl-Ox-hXi" id="Utz-DV-BXu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="Mpu-fh-WzW" kind="show" identifier="addOrEditVehicleSegue" id="7LX-2e-Gn4"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JDg-tb-GG7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3887.3831775700933" y="1020.5183585313175"/>
+        </scene>
+        <!--Add Or Edit Employee-->
         <scene sceneID="xqw-og-Gu3">
             <objects>
-                <viewController id="NJb-9A-I8a" customClass="AddOrEditEmployeeViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NJb-9A-I8a" userLabel="Add Or Edit Employee" customClass="AddOrEditEmployeeViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EOY-lN-BUH">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -425,10 +658,10 @@
             </objects>
             <point key="canvasLocation" x="4596.7289719626169" y="1030.8855291576674"/>
         </scene>
-        <!--Empleado-->
+        <!--Employee-->
         <scene sceneID="MTT-C4-mPV">
             <objects>
-                <tableViewController id="b8p-M3-qdy" customClass="EmployeeTableViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="b8p-M3-qdy" userLabel="Employee" customClass="EmployeeTableViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rfk-CY-6hm">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -483,10 +716,10 @@
             </objects>
             <point key="canvasLocation" x="5289" y="1031"/>
         </scene>
-        <!--Cliente-->
+        <!--Customer-->
         <scene sceneID="rHt-XW-kWv">
             <objects>
-                <tableViewController id="ICq-GQ-VRp" customClass="CustomerTableViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ICq-GQ-VRp" userLabel="Customer" customClass="CustomerTableViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HNr-Kf-sae">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -543,10 +776,10 @@
             </objects>
             <point key="canvasLocation" x="6673" y="1031"/>
         </scene>
-        <!--Nuevo-->
+        <!--Add Or Edit Customer-->
         <scene sceneID="Vew-h5-SR0">
             <objects>
-                <viewController id="5sp-r4-hg6" customClass="AddOrEditCustomerViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5sp-r4-hg6" userLabel="Add Or Edit Customer" customClass="AddOrEditCustomerViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bep-Tf-xSE">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -656,10 +889,10 @@
             </objects>
             <point key="canvasLocation" x="7399" y="1031"/>
         </scene>
-        <!--Editando-->
+        <!--Edit Maintenance-->
         <scene sceneID="keE-Oh-rjj">
             <objects>
-                <viewController id="iR6-NR-dfO" customClass="ModifyMaintenanceViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iR6-NR-dfO" userLabel="Edit Maintenance" customClass="ModifyMaintenanceViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cTy-ta-8Ja">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -706,10 +939,10 @@
             </objects>
             <point key="canvasLocation" x="6523" y="1739"/>
         </scene>
-        <!--App Tab Bar-->
+        <!--Home Tab Bar-->
         <scene sceneID="W4R-Od-E1p">
             <objects>
-                <tabBarController storyboardIdentifier="AppTabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="oSe-fc-EXx" userLabel="App Tab Bar" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="AppTabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="oSe-fc-EXx" userLabel="Home Tab Bar" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="qTW-67-6bg"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oQv-sy-XJh">
@@ -726,10 +959,10 @@
             </objects>
             <point key="canvasLocation" x="5428" y="-472"/>
         </scene>
-        <!--Inicio-->
+        <!--Home-->
         <scene sceneID="ebM-JR-Era">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wCn-Fs-y2S" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wCn-Fs-y2S" userLabel="Home" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Inicio" image="homekit" catalog="system" id="qUd-Uc-3w5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="iSg-uk-a2x">

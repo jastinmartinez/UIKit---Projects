@@ -47,7 +47,7 @@ extension MaintenanceViewController {
             alert = AlertView().newItem(parameter: AddNewItemViewParameters(title: "Modelo Vehiculo", message: "Nuevo", placeholder: "Descripcion")) { value in
                 
                 let vehicleModelPresenter: VehicleModelPresenter = self.presenterType as! VehicleModelPresenter
-                vehicleModelPresenter.create(VehicleModel(description: value, vehicleMark: vehicleMarkID(id: (self.modelType as! VehicleMark).id), state: true))
+                vehicleModelPresenter.create(VehicleModel(description: value, vehicleMark: ParentModel(id: (self.modelType as! VehicleMark).id), state: true))
             }
         }
         

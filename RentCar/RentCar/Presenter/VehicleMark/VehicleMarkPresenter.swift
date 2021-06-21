@@ -33,6 +33,11 @@ class VehicleMarkPresenter: PresenterProtocol,PresenterTypeProtocol {
             self.vehicleMarks = vehicleMarks
         }
     }
+    func getAllWithAvailableState() {
+        vehicleMarkService.getAll { vehicleMarks in
+            self.vehicleMarks = vehicleMarks.filter({$0.state})
+        }
+    }
     
     func update(_ vm: VehicleMark) {
         vehicleMarks[vehicleMarks.firstIndex(where: {$0.id == vm.id})!] = vm

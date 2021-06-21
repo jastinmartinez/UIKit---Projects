@@ -36,6 +36,11 @@ class VehicleTypePresenter: PresenterProtocol,PresenterTypeProtocol {
             self.vehicleTypes = vehicleTypes
         }
     }
+    func getAllWithAvailableState() {
+        vehicleTypeService.getAll { vehicleTypes in
+            self.vehicleTypes = vehicleTypes.filter({$0.state})
+        }
+    }
     
     func update(_ vm: VehicleType) {
         vehicleTypeService.update(vm)

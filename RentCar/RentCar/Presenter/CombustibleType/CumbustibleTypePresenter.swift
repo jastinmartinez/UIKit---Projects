@@ -29,6 +29,11 @@ class CombustibleTypePresenter: PresenterTypeProtocol  {
             self.combustibleTypes = arrayOfCombustibleType
         }
     }
+    func getAllWithAvailableState()  {
+        combustibleTypeService.getAll() { arrayOfCombustibleType in
+            self.combustibleTypes = arrayOfCombustibleType.filter({$0.state})
+        }
+    }
     func update(_ vm: CombustibleType) {
         combustibleTypes[combustibleTypes.firstIndex(where: {$0.id == vm.id})!] = vm
         self.combustibleTypeService.update(vm)

@@ -7,7 +7,9 @@
 
 import Foundation
 
-class VehicleModelService {
+class VehicleModelService: ServiceProtocol {
+  
+    
     
     func create(_ vm: VehicleModel, completion: @escaping (VehicleModel) -> ()) {
         APIService().request(url: URLRequestBuilder().prepare(url: Constant.uRL.vehicleModel, addtionalHeaders: nil, model: vm, method: .post, requiredBearerToken: true)) { data, res, error in
@@ -28,6 +30,16 @@ class VehicleModelService {
             if let data = data {
                 if let vehicleModels = DataToObject<VehicleModel>.decode(array: data) {
                     completion(vehicleModels)
+                }
+            }
+        }
+    }
+    
+    func getAll(completion: @escaping ([VehicleModel]) -> ()) {
+        APIService().request(url: URLRequestBuilder<VehicleModel>().prepare(url: Constant.uRL.vehicleModel)) { data, res, error in
+            if let data = data {
+                if let vehicleModel = DataToObject<VehicleModel>.decode(array: data) {
+                    completion(vehicleModel)
                 }
             }
         }
