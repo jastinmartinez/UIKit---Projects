@@ -14,7 +14,7 @@ class VehicleModelPresenter: PresenterTypeProtocol {
     init() {
         vehicleModelService = VehicleModelService()
     }
-    private var vehicleModelsOfMark = [VehicleModel]()
+    private(set) var vehicleModelsOfMark = [VehicleModel]()
     
     private(set) var vehicleModels = [VehicleModel]() {
         
@@ -46,8 +46,13 @@ class VehicleModelPresenter: PresenterTypeProtocol {
     }
     
     func getModelsOfMarks(_ vm: VehicleMark) {
-        self.vehicleModels = self.vehicleModelsOfMark
-        self.vehicleModels = vehicleModels.filter{$0.vehicleMark.id == vm.id}
+        let temp = self.vehicleModelsOfMark
+        self.vehicleModels = temp.filter{$0.vehicleMark.id == vm.id}
+    }
+    
+    func getModelsOfMarks(for edit: VehicleMark,filter: (VehicleModel) -> (Bool)) {
+        let temp = self.vehicleModelsOfMark
+        self.vehicleModels = temp.filter(filter)
     }
 
     func update(_ vm: VehicleModel) {

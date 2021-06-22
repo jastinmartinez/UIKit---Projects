@@ -7,10 +7,10 @@
 
 import Foundation
 
-extension VehicleCollectionView: VehicleViewDelegateProtocol {
+extension VehicleTableViewController: VehicleViewDelegateProtocol {
     
     func didVehicleArrayChange() {
-        self.collectionView.reloadData()
+        self.tableView.reloadData()
     }
     
     func didErrorOcurred(title: String, message: String) {

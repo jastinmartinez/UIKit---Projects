@@ -31,11 +31,11 @@ extension AddOrEditVehicleViewController: UITextFieldDelegate {
     
         if textField.text!.isEmpty {
            
-            EnableValidationLabels().enable(label: vehicleDescriptionErrorLabel,message: "Digitar Descripcion")
+            EnableOutlets().label(label: vehicleDescriptionErrorLabel,message: "Digitar Descripcion")
         }
         else {
             
-            EnableValidationLabels().enable(label: vehicleDescriptionErrorLabel,setHidden: true)
+            EnableOutlets().label(label: vehicleDescriptionErrorLabel,setHidden: true)
         }
     }
     
@@ -43,11 +43,11 @@ extension AddOrEditVehicleViewController: UITextFieldDelegate {
        
         if textField.text!.isEmpty {
             
-            EnableValidationLabels().enable(label: vehicleEngineNumberErrorLabel,message: "Digitar Numero Motor")
+            EnableOutlets().label(label: vehicleEngineNumberErrorLabel,message: "Digitar Numero Motor")
         }
         else {
             
-            EnableValidationLabels().enable(label: vehicleEngineNumberErrorLabel,setHidden: true)
+            EnableOutlets().label(label: vehicleEngineNumberErrorLabel,setHidden: true)
         }
     }
     
@@ -55,11 +55,11 @@ extension AddOrEditVehicleViewController: UITextFieldDelegate {
         
         if textField.text!.isEmpty {
             
-            EnableValidationLabels().enable(label: vehicleChasisNumberErrorLabel,message: "Digitar Numero Chasis")
+            EnableOutlets().label(label: vehicleChasisNumberErrorLabel,message: "Digitar Numero Chasis")
         }
         else {
             
-            EnableValidationLabels().enable(label: vehicleChasisNumberErrorLabel,setHidden: true)
+            EnableOutlets().label(label: vehicleChasisNumberErrorLabel,setHidden: true)
         }
     }
     
@@ -67,11 +67,11 @@ extension AddOrEditVehicleViewController: UITextFieldDelegate {
         
         if textField.text!.isEmpty {
             
-            EnableValidationLabels().enable(label: vehiclePlateErroLabel,message: "Digitar Placa")
+            EnableOutlets().label(label: vehiclePlateErroLabel,message: "Digitar Placa")
         }
         else {
             
-            EnableValidationLabels().enable(label: vehiclePlateErroLabel,setHidden: true)
+            EnableOutlets().label(label: vehiclePlateErroLabel,setHidden: true)
         }
     }
     

@@ -32,13 +32,18 @@ class VehiclePresenter {
         vehicleService.vehicleValidation(vm){ existVehicle in
             
             if !existVehicle.isEmpty {
+                
                 if existVehicle.filter(chasisNumber).count > 0 {
+                    
                     isValidation(self.errorMesssage(title: "Vehiclo", message: "El No. de chasis \(vm.chasisNumber) se encuentra registrado"))
                 }
+                
                 if existVehicle.filter(plate).count > 0 {
+                    
                     isValidation(self.errorMesssage(title: "Vehiclo", message: "El No. de placa \(vm.plate) se encuentra registrado"))
                 }
             }
+            
             isValidation(false)
         }
     }

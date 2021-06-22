@@ -7,12 +7,14 @@
 
 import UIKit
 
-class VehicleCollectionViewCell: UICollectionViewCell,BindOutletsProtocol {
+class VehicleTableViewCell: UITableViewCell,BindOutletsProtocol {
     
     @IBOutlet weak var vehicleDescriptionLabel: UILabel!
+    @IBOutlet weak var vehicleStateLabel: UILabel!
     
     func bindDataToOulets(vm: Vehicle) {
         self.vehicleDescriptionLabel.text = vm.description
+        self.vehicleStateLabel.text = vm.state.ToString()
     }
     
     typealias aType = Vehicle

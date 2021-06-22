@@ -10,6 +10,7 @@ import UIKit
 class VehicleView: UIView {
     
     override func layoutSubviews() {
+        
         self.backgroundColor = .white
 
         self.layer.cornerRadius = 10.0

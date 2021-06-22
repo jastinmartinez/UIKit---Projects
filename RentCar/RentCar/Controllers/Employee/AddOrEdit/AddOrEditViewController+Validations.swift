@@ -28,33 +28,33 @@ extension AddOrEditEmployeeViewController: UITextFieldDelegate {
     @objc private func employeeID(_ textField: UITextField) {
         
         if textField.text!.isEmpty {
-            EnableValidationLabels().enable(label: employeeIDErrorLabel, message: "Digitar Cedula")
+            EnableOutlets().label(label: employeeIDErrorLabel, message: "Digitar Cedula")
         }
         else if (!UserDocumentId().verify(textField.text!)) {
-            EnableValidationLabels().enable(label: employeeIDErrorLabel, message: "Cedula Invalida" )
+            EnableOutlets().label(label: employeeIDErrorLabel, message: "Cedula Invalida" )
         }
         else {
-            EnableValidationLabels().enable(label: employeeIDErrorLabel,setHidden: true)
+            EnableOutlets().label(label: employeeIDErrorLabel,setHidden: true)
         }
     }
     
     @objc private func employeeName(_ textField: UITextField) {
         
         if textField.text!.isEmpty {
-            EnableValidationLabels().enable(label: employeeNameErrorLabel, message: "Digitar Nombre")
+            EnableOutlets().label(label: employeeNameErrorLabel, message: "Digitar Nombre")
         }
         else {
-            EnableValidationLabels().enable(label: employeeNameErrorLabel,setHidden: true)
+            EnableOutlets().label(label: employeeNameErrorLabel,setHidden: true)
         }
     }
     
     @objc private func employeeComissionPercent(_ textField: UITextField) {
         
         if textField.text!.isEmpty {
-            EnableValidationLabels().enable(label: employeeCommisionPercentErrorLabel, message: "Digitar Comision")
+            EnableOutlets().label(label: employeeCommisionPercentErrorLabel, message: "Digitar Comision")
         }
         else {
-            EnableValidationLabels().enable(label: employeeCommisionPercentErrorLabel,setHidden: true)
+            EnableOutlets().label(label: employeeCommisionPercentErrorLabel,setHidden: true)
         }
     }
     

@@ -22,11 +22,11 @@ extension AddOrEditCustomerViewController: UITextFieldDelegate {
         
         if !CreditCardValidator(value.text!).isValid || value.text!.count != 16{
             
-            EnableValidationLabels().enable(label: customerCreditCardErrorLabel,message: "Tarjeta Invalida")
+            EnableOutlets().label(label: customerCreditCardErrorLabel,message: "Tarjeta Invalida")
         }
         else {
             
-            EnableValidationLabels().enable(label: customerCreditCardErrorLabel,setHidden: true)
+            EnableOutlets().label(label: customerCreditCardErrorLabel,setHidden: true)
         }
     }
     
@@ -34,11 +34,11 @@ extension AddOrEditCustomerViewController: UITextFieldDelegate {
         
         if value.text!.isEmpty{
             
-            EnableValidationLabels().enable(label: customerNameErrorLabel,message: "Digitar Nombre")
+            EnableOutlets().label(label: customerNameErrorLabel,message: "Digitar Nombre")
         }
         else {
             
-            EnableValidationLabels().enable(label: customerNameErrorLabel,setHidden: true)
+            EnableOutlets().label(label: customerNameErrorLabel,setHidden: true)
         }
     }
     
@@ -46,11 +46,11 @@ extension AddOrEditCustomerViewController: UITextFieldDelegate {
         
         if value.text!.isEmpty{
             
-            EnableValidationLabels().enable(label: customerCreditLimitErrorLabel,message: "Digitar Limite de Credito")
+            EnableOutlets().label(label: customerCreditLimitErrorLabel,message: "Digitar Limite de Credito")
         }
         else {
             
-            EnableValidationLabels().enable(label: customerCreditLimitErrorLabel,setHidden: true)
+            EnableOutlets().label(label: customerCreditLimitErrorLabel,setHidden: true)
         }
     }
     
@@ -58,17 +58,17 @@ extension AddOrEditCustomerViewController: UITextFieldDelegate {
         
         if value.text!.isEmpty{
            
-            EnableValidationLabels().enable(label: customerIDErrorLabel,message: "Digitar Cedula")
+            EnableOutlets().label(label: customerIDErrorLabel,message: "Digitar Cedula")
     
         }
         else if (!UserDocumentId().verify(value.text!)) {
             
-            EnableValidationLabels().enable(label: customerIDErrorLabel,message: "Cedula Invalida")
+            EnableOutlets().label(label: customerIDErrorLabel,message: "Cedula Invalida")
          
         }
         else {
             
-            EnableValidationLabels().enable(label: customerIDErrorLabel,setHidden: true)
+            EnableOutlets().label(label: customerIDErrorLabel,setHidden: true)
         }
     }
     

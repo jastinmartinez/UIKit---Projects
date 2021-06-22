@@ -44,13 +44,13 @@ struct Constant {
     struct reusableView {
         static let homeCollectionReusableView = "homeCollectionReusableView"
         static let managementReusableView = "ManagementReusableView"
-        static let vehicleReusableView = "vehicleReusableView"
     }
     
     struct tableViewCell {
         static let maintenanceTypeTableViewCell = "maintenanceTableViewCell"
         static let customerTableViewCell = "customerTableViewCell"
         static let employeeTableViewCell = "employeeTableViewCell"
+        static let vehicleTableViewCell = "vehicleTableViewCell"
     }
 }
 

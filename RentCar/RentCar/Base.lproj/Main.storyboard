@@ -223,7 +223,7 @@
                         <segue destination="O0w-5s-AGr" kind="show" identifier="maintenanceSegue" id="aw1-PQ-1DJ"/>
                         <segue destination="ICq-GQ-VRp" kind="show" identifier="customerSegue" id="zDi-Yz-874"/>
                         <segue destination="b8p-M3-qdy" kind="show" identifier="employeeSegue" id="Sen-zs-a38"/>
-                        <segue destination="L3H-Md-QO2" kind="show" identifier="vehicleSegue" id="8q7-ir-rW6"/>
+                        <segue destination="0Qy-m4-C16" kind="show" identifier="vehicleSegue" id="WHH-OD-bYh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kgg-b6-FAB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -505,6 +505,8 @@
                         <outlet property="vehicleEngineNumberTextField" destination="Cx0-UO-vn4" id="x6R-Pv-T9f"/>
                         <outlet property="vehiclePlateErroLabel" destination="nRa-7b-7sz" id="Qar-yP-8y8"/>
                         <outlet property="vehiclePlateTextField" destination="KSR-8K-hbr" id="WQ7-wT-HEy"/>
+                        <outlet property="vehicleSaveButton" destination="ANG-lm-7HB" id="f8u-kx-Uel"/>
+                        <outlet property="vehicleStateSwitch" destination="dUH-Uq-4o9" id="fdJ-90-nlC"/>
                         <outlet property="vehicleVehicleMarkPickerView" destination="S7B-5O-IRc" id="327-hQ-s3y"/>
                         <outlet property="vehicleVehicleModelPickerView" destination="hxV-6e-3Bh" id="ZyE-6F-Z8X"/>
                         <outlet property="vehicleVehicleTypePickerView" destination="4h6-H4-nhh" id="7wZ-QJ-aHV"/>
@@ -512,75 +514,73 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VnG-JH-YBh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3035" y="1052"/>
+            <point key="canvasLocation" x="3147" y="1031"/>
         </scene>
-        <!--Vehiclo-->
-        <scene sceneID="wpI-s9-80j">
+        <!--Vehicle-->
+        <scene sceneID="qVj-5z-Oud">
             <objects>
-                <collectionViewController id="L3H-Md-QO2" customClass="VehicleCollectionView" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dmd-PD-RYR">
+                <tableViewController id="0Qy-m4-C16" userLabel="Vehicle" customClass="VehicleTableViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="U2g-zc-4dd">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="j17-IO-jvO">
-                            <size key="itemSize" width="250" height="187"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="vehicleReusableView" id="tEN-Lc-6Ct" customClass="VehicleCollectionViewCell" customModule="RentCar" customModuleProvider="target">
-                                <rect key="frame" x="89" y="0.0" width="250" height="187"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DXk-Z6-jdQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="250" height="187"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="vehicleTableViewCell" textLabel="9FP-aZ-rx0" detailTextLabel="1oy-Kn-ndP" style="IBUITableViewCellStyleValue1" id="MOb-82-dGd" customClass="VehicleTableViewCell" customModule="RentCar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MOb-82-dGd" id="g4R-aM-8sj">
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tU-uo-JyX" customClass="VehicleView" customModule="RentCar" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="250" height="187"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPI-ZN-d9G">
-                                                    <rect key="frame" x="20" y="33" width="41" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="OPI-ZN-d9G" secondAttribute="bottom" constant="133" id="Fwt-K8-Wqk"/>
-                                                <constraint firstItem="OPI-ZN-d9G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7tU-uo-JyX" secondAttribute="leading" constant="20" symbolic="YES" id="aG6-aO-FBv"/>
-                                                <constraint firstAttribute="trailing" secondItem="OPI-ZN-d9G" secondAttribute="trailing" constant="189" id="hyB-0b-veD"/>
-                                                <constraint firstItem="OPI-ZN-d9G" firstAttribute="top" secondItem="7tU-uo-JyX" secondAttribute="top" constant="33" id="k99-B3-iVj"/>
-                                            </constraints>
-                                        </view>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9FP-aZ-rx0">
+                                            <rect key="frame" x="20" y="15" width="25" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1oy-Kn-ndP">
+                                            <rect key="frame" x="375.33333333333331" y="15" width="32.666666666666664" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="7tU-uo-JyX" secondAttribute="bottom" id="NP5-7c-E61"/>
-                                        <constraint firstItem="7tU-uo-JyX" firstAttribute="top" secondItem="DXk-Z6-jdQ" secondAttribute="top" id="Z3I-uH-dkV"/>
-                                        <constraint firstAttribute="trailing" secondItem="7tU-uo-JyX" secondAttribute="trailing" id="eet-Ri-0wU"/>
-                                        <constraint firstItem="7tU-uo-JyX" firstAttribute="leading" secondItem="DXk-Z6-jdQ" secondAttribute="leading" id="tO6-0c-prl"/>
-                                    </constraints>
-                                </collectionViewCellContentView>
-                                <size key="customSize" width="250" height="187"/>
+                                </tableViewCellContentView>
+                                <color key="tintColor" red="0.015686274510000001" green="0.39607843139999999" blue="0.50980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <outlet property="vehicleDescriptionLabel" destination="OPI-ZN-d9G" id="vJ0-ev-U5U"/>
+                                    <outlet property="vehicleDescriptionLabel" destination="9FP-aZ-rx0" id="r97-3G-1dc"/>
+                                    <outlet property="vehicleStateLabel" destination="1oy-Kn-ndP" id="IJB-Sl-3VF"/>
                                 </connections>
-                            </collectionViewCell>
-                        </cells>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="L3H-Md-QO2" id="g0D-3E-y9h"/>
-                            <outlet property="delegate" destination="L3H-Md-QO2" id="OBK-Az-bIM"/>
+                            <outlet property="dataSource" destination="0Qy-m4-C16" id="Fd9-cH-wkg"/>
+                            <outlet property="delegate" destination="0Qy-m4-C16" id="STs-6N-WbS"/>
                         </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Vehiclo" id="ghI-8S-LE9"/>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Vehiculo" id="9t5-w7-QjH">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nnh-9r-zf1">
+                            <connections>
+                                <action selector="addOrEditVehicleButtonPressed:" destination="0Qy-m4-C16" id="qwy-i2-Ix0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="Mpu-fh-WzW" kind="show" identifier="addOrEditVehicleSegue" id="gal-oD-rkt"/>
+                        <segue destination="Mpu-fh-WzW" kind="show" identifier="addOrEditVehicleSegue" id="cjN-Ri-7d9"/>
                     </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g2s-qk-Uo7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GRY-Pg-RM4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g6t-Hf-KJd">
+                    <rect key="frame" x="0.0" y="0.0" width="25" height="14.333333333333334"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </objects>
-            <point key="canvasLocation" x="3758.4112149532707" y="1051.6198704103672"/>
+            <point key="canvasLocation" x="3843" y="1031"/>
         </scene>
         <!--Add Or Edit Employee-->
         <scene sceneID="xqw-og-Gu3">
@@ -689,7 +689,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ukg-7J-qM0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4596.7289719626169" y="1030.8855291576674"/>
+            <point key="canvasLocation" x="4552" y="1031"/>
         </scene>
         <!--Employee-->
         <scene sceneID="MTT-C4-mPV">

@@ -8,9 +8,7 @@
 import Foundation
 
 class VehicleService: ServiceProtocol {
-    
-    
-    
+
     typealias aType = Vehicle
     
     func create(_ vm: Vehicle, completion: @escaping (Vehicle) -> ()) {
