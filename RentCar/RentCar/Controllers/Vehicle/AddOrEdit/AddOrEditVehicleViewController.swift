@@ -97,12 +97,13 @@ class AddOrEditVehicleViewController: UIViewController {
         
     }
     
-    func vehicleModelToTextField(_ vehicle: Vehicle) {
+    func vehicleModelToOutlets(_ vehicle: Vehicle) {
         
         vehicleDescriptionTextField.text = vehicle.description
         vehicleEngineNumberTextField.text = vehicle.engineNumber
         vehiclePlateTextField.text = vehicle.plate
         vehicleChasisNumberTextField.text = vehicle.chasisNumber
+        vehicleStateSwitch.isOn = vehicle.state
         
     }
 }

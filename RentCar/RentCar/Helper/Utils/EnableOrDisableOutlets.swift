@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class EnableOutlets {
+final class EnableOrDisableOutlets {
     
     func label(label: UILabel,message: String = "",setHidden: Bool = false) {
         label.isHidden = setHidden
@@ -30,7 +30,8 @@ final class EnableOutlets {
         }
     }
     
-    func switchs(switchs: UISwitch) {
-        switchs.isEnabled = false
+    func switchs(switchs: UISwitch, isEnabled: Bool = true, isHidden:Bool = false) {
+        switchs.isHidden = isHidden
+        switchs.isEnabled = isEnabled
     }
 }

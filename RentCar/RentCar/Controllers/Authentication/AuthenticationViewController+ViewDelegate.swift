@@ -17,7 +17,7 @@ extension AuthenticationViewController: AuthenticationViewDelegate {
     func didUserAuthenticated(isUserAuthenticated: Bool) {
         
         if (isUserAuthenticated) {
-            present(HomeViewController(), animated: true, completion: nil)
+            performSegue(withIdentifier: Constant.segue.managementSegue, sender: nil)
         }
     }
 }

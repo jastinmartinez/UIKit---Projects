@@ -17,7 +17,10 @@ extension AddOrEditVehicleViewController {
             if isViewOnly == false  {
                 
                 self.title = "Editar"
-                vehicleModelToTextField(vehicle)
+                
+                vehicleModelToOutlets(vehicle)
+                
+                EnableOrDisableOutlets().switchs(switchs: vehicleStateSwitch)
             }
         }
     }

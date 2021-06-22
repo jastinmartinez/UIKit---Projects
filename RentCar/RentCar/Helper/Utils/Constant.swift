@@ -28,9 +28,11 @@ struct Constant {
     
     struct storyBoardId {
         static let appTabBarViewController = "AppTabBarViewController"
+        static let authenticationViewController = "authenticationViewController"
     }
     
     struct segue {
+        static let managementSegue = "managementSegue"
         static let maintenanceSegue = "maintenanceSegue"
         static let maintenanceModifySegue = "maintenanceModifySegue"
         static let customerSegue = "customerSegue"

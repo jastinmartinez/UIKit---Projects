@@ -10,5 +10,4 @@ import UIKit
 class VehicleModelPickerView: UIPickerView {
 
     /* Empty class used as decoretor to identify an outlet */
-
 }

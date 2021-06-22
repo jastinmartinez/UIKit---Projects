@@ -18,20 +18,21 @@ extension AddOrEditVehicleViewController {
                 
                 self.title = "Visualizar"
                 
-                vehicleModelToTextField(vehicle)
+                vehicleModelToOutlets(vehicle)
                 
-                EnableOutlets().textField(textfield: vehicleDescriptionTextField)
-                EnableOutlets().textField(textfield: vehicleEngineNumberTextField)
-                EnableOutlets().textField(textfield: vehiclePlateTextField)
-                EnableOutlets().textField(textfield: vehicleChasisNumberTextField)
+                EnableOrDisableOutlets().textField(textfield: vehicleDescriptionTextField)
+                EnableOrDisableOutlets().textField(textfield: vehicleEngineNumberTextField)
+                EnableOrDisableOutlets().textField(textfield: vehiclePlateTextField)
+                EnableOrDisableOutlets().textField(textfield: vehicleChasisNumberTextField)
                 
-                EnableOutlets().pickerView(pickerView: vehicleVehicleTypePickerView)
-                EnableOutlets().pickerView(pickerView: vehicleVehicleMarkPickerView)
-                EnableOutlets().pickerView(pickerView: vehicleVehicleModelPickerView)
-                EnableOutlets().pickerView(pickerView: vehicleCombustibleTypePickerView)
+                EnableOrDisableOutlets().pickerView(pickerView: vehicleVehicleTypePickerView)
+                EnableOrDisableOutlets().pickerView(pickerView: vehicleVehicleMarkPickerView)
+                EnableOrDisableOutlets().pickerView(pickerView: vehicleVehicleModelPickerView)
+                EnableOrDisableOutlets().pickerView(pickerView: vehicleCombustibleTypePickerView)
                 
-                EnableOutlets().button(button: vehicleSaveButton)
-                EnableOutlets().switchs(switchs: vehicleStateSwitch)
+                EnableOrDisableOutlets().button(button: vehicleSaveButton)
+                EnableOrDisableOutlets().switchs(switchs: vehicleStateSwitch,isEnabled: false)
+                
             }
         }
     }

@@ -20,9 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if(UserDefaultsDbHelper().isUserLoggedIn())
         {
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            if let homeViewController = storyBoard.instantiateViewController(withIdentifier: Constant.storyBoardId.appTabBarViewController) as? UITabBarController
+            if let manegementViewController = storyBoard.instantiateViewController(withIdentifier: Constant.storyBoardId.appTabBarViewController) as? UITabBarController
             {
-                self.window?.rootViewController = homeViewController
+                self.window?.rootViewController = manegementViewController
                 self.window?.makeKeyAndVisible()
             }
         }

@@ -13,7 +13,7 @@
         <!--Authentication View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="Authentication View Controller" customClass="AuthenticationViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="authenticationViewController" id="BYZ-38-t0r" userLabel="Authentication View Controller" customClass="AuthenticationViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,7 +102,6 @@
                                         </state>
                                         <connections>
                                             <action selector="authPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CJt-TR-RgQ"/>
-                                            <segue destination="oSe-fc-EXx" kind="presentation" modalPresentationStyle="fullScreen" id="8Fb-lK-ALv"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -143,11 +142,12 @@
                         <outlet property="passwordTextField" destination="99s-Qa-cgR" id="5EM-wJ-rH1"/>
                         <outlet property="userErrorLabel" destination="WUC-c6-b8C" id="klr-32-BQq"/>
                         <outlet property="userNameTextField" destination="PYL-NM-2lH" id="7gJ-YZ-vYj"/>
+                        <segue destination="oSe-fc-EXx" kind="presentation" identifier="managementSegue" modalPresentationStyle="fullScreen" id="cYk-uw-Xdx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5410" y="-1300"/>
+            <point key="canvasLocation" x="6659" y="-2005"/>
         </scene>
         <!--Management-->
         <scene sceneID="YTx-xV-ijd">
@@ -217,7 +217,13 @@
                             <constraint firstItem="fSb-og-Ucd" firstAttribute="leading" secondItem="ifV-g7-Uzr" secondAttribute="leading" id="vMB-yl-Uyo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="JMB Rental Car" largeTitleDisplayMode="always" id="JBs-t4-SUa"/>
+                    <navigationItem key="navigationItem" title="JMB Rental Car" largeTitleDisplayMode="always" id="JBs-t4-SUa">
+                        <barButtonItem key="rightBarButtonItem" title="Cerrar Sesion" id="42s-KI-R3t">
+                            <connections>
+                                <action selector="CloseSessionButtonPressed:" destination="Cyk-J0-irY" id="xOw-5y-G5u"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="managementCollectionVIew" destination="fSb-og-Ucd" id="MNe-hb-1t8"/>
                         <segue destination="O0w-5s-AGr" kind="show" identifier="maintenanceSegue" id="aw1-PQ-1DJ"/>
@@ -228,9 +234,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kgg-b6-FAB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6523" y="281"/>
+            <point key="canvasLocation" x="6254" y="275"/>
         </scene>
-        <!--Configuracion-->
+        <!--Reporte-->
         <scene sceneID="SQC-RG-hoc">
             <objects>
                 <viewController id="yKc-n4-PNd" customClass="ConfigurationViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
@@ -240,13 +246,11 @@
                         <viewLayoutGuide key="safeArea" id="5ee-Zg-vTi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Configuracion" id="aXc-4m-lV6">
-                        <barButtonItem key="rightBarButtonItem" title="Cerra Sesion" id="rqP-r3-H2W"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Reporte" id="aXc-4m-lV6"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WAe-ux-ZkK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7863" y="281"/>
+            <point key="canvasLocation" x="7001" y="270"/>
         </scene>
         <!--Maintenance View Controller-->
         <scene sceneID="q5f-jy-5Xs">
@@ -514,7 +518,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VnG-JH-YBh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3147" y="1031"/>
+            <point key="canvasLocation" x="4569" y="1826"/>
         </scene>
         <!--Vehicle-->
         <scene sceneID="qVj-5z-Oud">
@@ -580,7 +584,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </objects>
-            <point key="canvasLocation" x="3843" y="1031"/>
+            <point key="canvasLocation" x="4569" y="1031"/>
         </scene>
         <!--Add Or Edit Employee-->
         <scene sceneID="xqw-og-Gu3">
@@ -689,7 +693,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ukg-7J-qM0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4552" y="1031"/>
+            <point key="canvasLocation" x="5278" y="1826"/>
         </scene>
         <!--Employee-->
         <scene sceneID="MTT-C4-mPV">
@@ -920,7 +924,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fB-Hq-IAa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7399" y="1031"/>
+            <point key="canvasLocation" x="6711" y="1826"/>
         </scene>
         <!--Edit Maintenance-->
         <scene sceneID="keE-Oh-rjj">
@@ -970,7 +974,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jHT-By-p9U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6523" y="1739"/>
+            <point key="canvasLocation" x="5979" y="1826"/>
         </scene>
         <!--Home Tab Bar-->
         <scene sceneID="W4R-Od-E1p">
@@ -990,7 +994,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGs-gE-DRa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5428" y="-472"/>
+            <point key="canvasLocation" x="6659" y="-1294"/>
         </scene>
         <!--Home-->
         <scene sceneID="ebM-JR-Era">
@@ -1010,13 +1014,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7L-ZJ-88w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5776" y="281"/>
+            <point key="canvasLocation" x="6255" y="-439"/>
         </scene>
-        <!--Configuracion-->
+        <!--Reporte-->
         <scene sceneID="XBO-08-eBJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="drq-pn-EXG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Configuracion" image="gearshape" catalog="system" id="OoP-MI-qyC"/>
+                    <tabBarItem key="tabBarItem" title="Reporte" image="newspaper" catalog="system" id="OoP-MI-qyC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="P0K-Pe-NL8">
                         <rect key="frame" x="0.0" y="44" width="428" height="96"/>
@@ -1029,15 +1033,15 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hg9-a2-dc5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7192" y="281"/>
+            <point key="canvasLocation" x="7093" y="-439"/>
         </scene>
     </scenes>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="employee" width="512.0009765625" height="512.0009765625"/>
-        <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="homekit" catalog="system" width="128" height="106"/>
         <image name="honda" width="512" height="340"/>
+        <image name="newspaper" catalog="system" width="128" height="108"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -31,11 +31,11 @@ extension AddOrEditVehicleViewController: UITextFieldDelegate {
     
         if textField.text!.isEmpty {
            
-            EnableOutlets().label(label: vehicleDescriptionErrorLabel,message: "Digitar Descripcion")
+            EnableOrDisableOutlets().label(label: vehicleDescriptionErrorLabel,message: "Digitar Descripcion")
         }
         else {
             
-            EnableOutlets().label(label: vehicleDescriptionErrorLabel,setHidden: true)
+            EnableOrDisableOutlets().label(label: vehicleDescriptionErrorLabel,setHidden: true)
         }
     }
     
@@ -43,11 +43,11 @@ extension AddOrEditVehicleViewController: UITextFieldDelegate {
        
         if textField.text!.isEmpty {
             
-            EnableOutlets().label(label: vehicleEngineNumberErrorLabel,message: "Digitar Numero Motor")
+            EnableOrDisableOutlets().label(label: vehicleEngineNumberErrorLabel,message: "Digitar Numero Motor")
         }
         else {
             
-            EnableOutlets().label(label: vehicleEngineNumberErrorLabel,setHidden: true)
+            EnableOrDisableOutlets().label(label: vehicleEngineNumberErrorLabel,setHidden: true)
         }
     }
     
@@ -55,11 +55,11 @@ extension AddOrEditVehicleViewController: UITextFieldDelegate {
         
         if textField.text!.isEmpty {
             
-            EnableOutlets().label(label: vehicleChasisNumberErrorLabel,message: "Digitar Numero Chasis")
+            EnableOrDisableOutlets().label(label: vehicleChasisNumberErrorLabel,message: "Digitar Numero Chasis")
         }
         else {
             
-            EnableOutlets().label(label: vehicleChasisNumberErrorLabel,setHidden: true)
+            EnableOrDisableOutlets().label(label: vehicleChasisNumberErrorLabel,setHidden: true)
         }
     }
     
@@ -67,11 +67,11 @@ extension AddOrEditVehicleViewController: UITextFieldDelegate {
         
         if textField.text!.isEmpty {
             
-            EnableOutlets().label(label: vehiclePlateErroLabel,message: "Digitar Placa")
+            EnableOrDisableOutlets().label(label: vehiclePlateErroLabel,message: "Digitar Placa")
         }
         else {
             
-            EnableOutlets().label(label: vehiclePlateErroLabel,setHidden: true)
+            EnableOrDisableOutlets().label(label: vehiclePlateErroLabel,setHidden: true)
         }
     }
     

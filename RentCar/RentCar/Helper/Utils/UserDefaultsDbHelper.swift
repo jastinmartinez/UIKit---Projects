@@ -16,7 +16,7 @@ final class UserDefaultsDbHelper {
     func saveUser(_ user: User)  {
         let userEncoded = try! JSONEncoder().encode(user)
         userDefault.set(userEncoded ,forKey: userKey)
-        setUserLoggedIn(true)
+        setUserLoggedIn()
         userDefault.synchronize()
     }
     
@@ -26,7 +26,7 @@ final class UserDefaultsDbHelper {
         return User(id: tryUserData.id, name: tryUserData.name, email: tryUserData.email, token: tryUserData.token)
     }
     
-    func setUserLoggedIn(_ bool: Bool) {
+    func setUserLoggedIn(_ bool: Bool = true) {
         userDefault.set(bool, forKey: userIsLoggedInKey)
         userDefault.synchronize()
     }
@@ -37,6 +37,7 @@ final class UserDefaultsDbHelper {
     
     func removeUser() {
         userDefault.removeObject(forKey: userKey)
+        setUserLoggedIn(false)
         userDefault.synchronize()
     }
 }

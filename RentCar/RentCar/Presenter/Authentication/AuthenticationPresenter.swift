@@ -19,7 +19,8 @@ class AuthenticationPresenter {
     }
     
     func signUp(user: SignUp) {
-         authenticationService.signUp(user: user){ userError in
+        
+        self.authenticationService.signUp(user: user){ userError in
             if let error = userError {
                 self.delegate?.didErrorOcurred(error: error)
             }
@@ -28,6 +29,7 @@ class AuthenticationPresenter {
             }
         }
     }
+    
     
     func signIn(user: SignIn)   {
         authenticationService.signIn(user: user) { userError in
@@ -40,3 +42,4 @@ class AuthenticationPresenter {
         }
     }
 }
+

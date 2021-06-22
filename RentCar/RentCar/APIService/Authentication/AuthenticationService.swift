@@ -13,12 +13,13 @@ class AuthenticationService {
     func signUp(user: SignUp,completion:@escaping (Error?) -> ()) {
         APIService().request(url: URLRequestBuilder().prepare(url: Constant.uRL.signUp,model: user, method: .post)) { data, response, _  in
             if let data = data {
-                let userDecoded = try? JSONDecoder().decode(User.self, from: data)
-                if let user = userDecoded {
+                if let user = DataToObject<User>.decode(single: data) {
                     UserDefaultsDbHelper().saveUser(user)
                 }
             }
-            completion(GetErrorResponseStatusCode.StatusCode(response!.statusCode).status)
+            if let statusCode = response?.statusCode {
+                completion(GetErrorResponseStatusCode.StatusCode(statusCode).status)
+            }
         }
     }
     
@@ -28,12 +29,13 @@ class AuthenticationService {
         
         APIService().request(url: URLRequestBuilder().prepare(url: Constant.uRL.signIn, addtionalHeaders: addtionalHeader ,model: user, method: .post)) { data, response, _  in
             if let data = data {
-                let userDecoded = try? JSONDecoder().decode(User.self, from: data)
-                if let user = userDecoded {
+                if let user = DataToObject<User>.decode(single: data) {
                     UserDefaultsDbHelper().saveUser(user)
                 }
             }
-            completion(GetErrorResponseStatusCode.StatusCode(response!.statusCode).status)
+            if let statusCode = response?.statusCode {
+                completion(GetErrorResponseStatusCode.StatusCode(statusCode).status)
+            }
         }
     }
 }
