@@ -121,6 +121,9 @@
 		04BE93A226836DF5000FD55B /* SecondAddOrEditRentViewController+Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE93A126836DF5000FD55B /* SecondAddOrEditRentViewController+Validations.swift */; };
 		04BE93A426836E3A000FD55B /* RentAmoufOfDayTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE93A326836E3A000FD55B /* RentAmoufOfDayTextField.swift */; };
 		04BE93A626836E4D000FD55B /* RentAmountPerDayTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE93A526836E4D000FD55B /* RentAmountPerDayTextField.swift */; };
+		04BE93A826839B21000FD55B /* DevolutionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE93A726839B21000FD55B /* DevolutionPresenter.swift */; };
+		04BE93AA26839BF1000FD55B /* DevolutionViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE93A926839BF1000FD55B /* DevolutionViewDelegateProtocol.swift */; };
+		04BE93AD2683B537000FD55B /* DevolutionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE93AC2683B537000FD55B /* DevolutionTableViewCell.swift */; };
 		04C03847267E3B4300C34C1A /* EnableOrDisableOutlets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C03846267E3B4300C34C1A /* EnableOrDisableOutlets.swift */; };
 		04C0384B267E885F00C34C1A /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0384A267E885F00C34C1A /* Date+ToString.swift */; };
 		04C0384D267E97FE00C34C1A /* StringInSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0384C267E97FE00C34C1A /* StringInSegmentedControl.swift */; };
@@ -279,6 +282,9 @@
 		04BE93A126836DF5000FD55B /* SecondAddOrEditRentViewController+Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SecondAddOrEditRentViewController+Validations.swift"; sourceTree = "<group>"; };
 		04BE93A326836E3A000FD55B /* RentAmoufOfDayTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentAmoufOfDayTextField.swift; sourceTree = "<group>"; };
 		04BE93A526836E4D000FD55B /* RentAmountPerDayTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentAmountPerDayTextField.swift; sourceTree = "<group>"; };
+		04BE93A726839B21000FD55B /* DevolutionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevolutionPresenter.swift; sourceTree = "<group>"; };
+		04BE93A926839BF1000FD55B /* DevolutionViewDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevolutionViewDelegateProtocol.swift; sourceTree = "<group>"; };
+		04BE93AC2683B537000FD55B /* DevolutionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevolutionTableViewCell.swift; sourceTree = "<group>"; };
 		04C03846267E3B4300C34C1A /* EnableOrDisableOutlets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableOrDisableOutlets.swift; sourceTree = "<group>"; };
 		04C0384A267E885F00C34C1A /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
 		04C0384C267E97FE00C34C1A /* StringInSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringInSegmentedControl.swift; sourceTree = "<group>"; };
@@ -587,6 +593,8 @@
 		045FF0EC2682E4D600AB4548 /* Devolution */ = {
 			isa = PBXGroup;
 			children = (
+				04BE93A726839B21000FD55B /* DevolutionPresenter.swift */,
+				04BE93A926839BF1000FD55B /* DevolutionViewDelegateProtocol.swift */,
 			);
 			path = Devolution;
 			sourceTree = "<group>";
@@ -692,6 +700,7 @@
 		04681C3E26607AC400953E38 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04BE93AB2683B520000FD55B /* Devolution */,
 				04AAE6B3268334F100C927D9 /* Rent */,
 				045FF0F12682EA9600AB4548 /* Inspection */,
 				04C03855267FAF7E00C34C1A /* Vehicle */,
@@ -905,6 +914,14 @@
 			path = RentCar;
 			sourceTree = "<group>";
 		};
+		04BE93AB2683B520000FD55B /* Devolution */ = {
+			isa = PBXGroup;
+			children = (
+				04BE93AC2683B537000FD55B /* DevolutionTableViewCell.swift */,
+			);
+			path = Devolution;
+			sourceTree = "<group>";
+		};
 		04C03855267FAF7E00C34C1A /* Vehicle */ = {
 			isa = PBXGroup;
 			children = (
@@ -1069,6 +1086,7 @@
 				04C0384D267E97FE00C34C1A /* StringInSegmentedControl.swift in Sources */,
 				04831372266D7BEF009F3389 /* Employee.swift in Sources */,
 				04C03853267F8C3100C34C1A /* SetDateFormat.swift in Sources */,
+				04BE93AA26839BF1000FD55B /* DevolutionViewDelegateProtocol.swift in Sources */,
 				04C98314268049260056709C /* VehicleTableViewCell.swift in Sources */,
 				04F109EE267025B300AD224D /* CustomerTableViewController+ViewDelegate.swift in Sources */,
 				04F109E5266FF17600AD224D /* AddOrEditCustomerViewController+Validation.swift in Sources */,
@@ -1122,6 +1140,7 @@
 				045C94642679691C0032E35C /* EmployeePresenter.swift in Sources */,
 				049EC03E2663D01300FAAB0E /* AuthenticationService.swift in Sources */,
 				045FF0F82682ED7E00AB4548 /* AddOrEditInspectionViewController+AddOnly.swift in Sources */,
+				04BE93A826839B21000FD55B /* DevolutionPresenter.swift in Sources */,
 				04C0384B267E885F00C34C1A /* Date+ToString.swift in Sources */,
 				04C03861267FBF9900C34C1A /* Vehicle.swift in Sources */,
 				049EC0492663E79500FAAB0E /* URLRequestBuilder.swift in Sources */,
@@ -1205,6 +1224,7 @@
 				04ADA12D265D609E009DF878 /* CumbustibleTypePresenter.swift in Sources */,
 				04C0384F267F8AA200C34C1A /* Int+ToString.swift in Sources */,
 				049EC0592664511500FAAB0E /* ManagementViewController+CollectionView.swift in Sources */,
+				04BE93AD2683B537000FD55B /* DevolutionTableViewCell.swift in Sources */,
 				04AAE6AA268324EC00C927D9 /* AddOrEditInspectionViewController+EditOnly.swift in Sources */,
 				049EC0392663CCFA00FAAB0E /* MaintenanceViewDelegateProtocol.swift in Sources */,
 				04C0387A26800EED00C34C1A /* AddOrEditVehicleViewController+Validation.swift in Sources */,

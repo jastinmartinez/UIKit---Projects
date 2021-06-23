@@ -73,9 +73,10 @@ class VehiclePresenter {
         }
     }
     
-    func getAll() {
+    func getAll(completion: @escaping () -> ()) {
         vehicleService.getAll { vehicles in
             self.vehicles = vehicles
+            completion()
         }
     }
     

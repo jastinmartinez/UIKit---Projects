@@ -14,7 +14,7 @@ class CustomerTableViewCell: UITableViewCell,BindOutletsProtocol {
     
     func bindDataToOulets(vm: Customer) {
         self.customerNameTextField.text = vm.name
-        self.customerStateTextField.text = vm.state.ToString()
+        self.customerStateTextField.text = vm.state.ToStringState()
     }
     
     typealias aType = Customer

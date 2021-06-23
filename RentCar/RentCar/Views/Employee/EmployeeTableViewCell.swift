@@ -14,7 +14,7 @@ class EmployeeTableViewCell: UITableViewCell,BindOutletsProtocol {
     
     func bindDataToOulets(vm: Employee) {
         self.employeeNameLabel.text = vm.name
-        self.employeeStateLabel.text = vm.state.ToString()
+        self.employeeStateLabel.text = vm.state.ToStringState()
     }
     
     typealias aType = Employee

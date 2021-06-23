@@ -11,18 +11,20 @@ class SecondAddOrEditRentViewController: UIViewController {
     
     @IBOutlet weak var rentAmountPerDayTextField: UITextField!
     @IBOutlet weak var rentAmountPerDayErrorLabel: UILabel!
+    @IBOutlet weak var rentTotalTextField: RentAmoufOfDayTextField!
     @IBOutlet weak var rentCommentTextField: UITextField!
     @IBOutlet weak var rentAmountOfDaysTextField: UITextField!
     @IBOutlet weak var rentAmountOfDayErrorLabel: UILabel!
     @IBOutlet weak var rentDatePickerDate: UIDatePicker!
-    @IBOutlet weak var rentStateSwitch: UISwitch!
     
     var rentPresenter: RentPresenter?
     var employeeID: UUID?
     var vehicleID: UUID?
     var customerID: UUID?
+    var devolutionPresenter = DevolutionPresenter()
     
     var rent: Rent?
+    
     var isViewOnly: Bool?
     private var rentDate: Date!
     
@@ -52,6 +54,7 @@ class SecondAddOrEditRentViewController: UIViewController {
         }
     }
     
+    
     func initAddOnly() {
         
         self.title = "Nuevo (2)"
@@ -62,11 +65,8 @@ class SecondAddOrEditRentViewController: UIViewController {
         
         self.title = "Editar (2)"
         rentModelToOutlet(rent: rent)
-        EnableOrDisableOutlets().switchs(switchs: rentStateSwitch,isHidden: false)
     }
-    @IBAction func rentDateDatePickerValueChanged(_ sender: Any) {
-        self.rentDate = rentDatePickerDate.date
-    }
+    
     
     func initViewOnly(rent: Rent) {
         
@@ -76,7 +76,6 @@ class SecondAddOrEditRentViewController: UIViewController {
         EnableOrDisableOutlets().textField(textfield: rentAmountPerDayTextField)
         EnableOrDisableOutlets().textField(textfield: rentCommentTextField)
         EnableOrDisableOutlets().textField(textfield: rentAmountOfDaysTextField)
-        EnableOrDisableOutlets().switchs(switchs: rentStateSwitch,isEnabled: false, isHidden: false)
         rentModelToOutlet(rent: rent)
     }
     
@@ -86,17 +85,17 @@ class SecondAddOrEditRentViewController: UIViewController {
         self.rentAmountOfDaysTextField.text = rent.amountOfDay.toString()
         self.rentCommentTextField.text = rent.comment
         self.rentDatePickerDate.date = rent.date.toDate()
-        self.rentStateSwitch.isOn = rent.state
         rentDate = rent.date.toDate()
+        calculate()
         
     }
     
     @IBAction func rentSavedButtonPressed(_ sender: Any) {
-     
+        
         guard vehicleID != nil, customerID != nil, employeeID != nil, !rentAmountPerDayTextField.text!.isEmpty,!rentAmountPerDayTextField.text!.isEmpty else { return }
         
         guard isViewOnly == false || isViewOnly == nil else { return }
-       
+        
         if let rent = rent {
             rentPresenter?.update(Rent( id: rent.id,employee: ParentModel(id: employeeID), customer: ParentModel(id:customerID), vehicle: ParentModel(id:vehicleID), date: rentDate.toString(), amountPerDay: Double.init(rentAmountPerDayTextField.text!)!, amountOfDay: Int.init(rentAmountOfDaysTextField.text!)!, comment: rentCommentTextField.text!, state: true))
         }
@@ -106,4 +105,49 @@ class SecondAddOrEditRentViewController: UIViewController {
         
         self.navigationController?.popToViewController(navigationController!.viewControllers[navigationController!.viewControllers.count - 3], animated: true)
     }
+    
+    @IBAction func devolutionButtonPressed(_ sender: Any) {
+        
+        guard vehicleID != nil, customerID != nil, employeeID != nil, !rentAmountPerDayTextField.text!.isEmpty,!rentAmountPerDayTextField.text!.isEmpty else { return }
+        
+        guard isViewOnly == true else { return }
+        
+        if let rent = rent {
+            
+            guard rent.state else { return }
+            
+            var devolutionAmountOfDays = 0
+            var rentDays = DateComponents()
+            
+            if rent.date.toDate() >= Date() {
+                
+                rentDays = Calendar.current.dateComponents([.day], from: Date(),to: rent.date.toDate())
+            } else {
+                
+                rentDays = Calendar.current.dateComponents([.day], from: rent.date.toDate(),to: Date())
+            }
+        
+            if var rentDay = rentDays.day {
+                rentDay += 1
+                if rentDay > Int.init(rentAmountOfDaysTextField.text!)! {
+                    devolutionAmountOfDays = rentDay
+                }
+                else {
+                    devolutionAmountOfDays = Int.init(rentAmountOfDaysTextField.text!)! - rentDay
+                }
+            }
+            
+            devolutionPresenter.create(Devolution(rent: ParentModel(id: rent.id), employee: ParentModel(id: employeeID), customer: ParentModel(id:customerID), vehicle: ParentModel(id:vehicleID), date: Date().toString(), amountPerDay: Double.init(rentAmountPerDayTextField.text!)!, amountOfDay: devolutionAmountOfDays, comment: rentCommentTextField.text!, state: false))
+            
+            rentPresenter?.update(Rent( id: rent.id,employee: ParentModel(id: employeeID), customer: ParentModel(id:customerID), vehicle: ParentModel(id:vehicleID), date: rentDate.toString(), amountPerDay: Double.init(rentAmountPerDayTextField.text!)!, amountOfDay: Int.init(rentAmountOfDaysTextField.text!)!, comment: rentCommentTextField.text!, state: false))
+            
+            self.navigationController?.popToViewController(navigationController!.viewControllers[navigationController!.viewControllers.count - 3], animated: true)
+        }
+    }
+    
+    @IBAction func rentDateDatePickerValueChanged(_ sender: Any) {
+        
+        self.rentDate = rentDatePickerDate.date
+    }
+    
 }

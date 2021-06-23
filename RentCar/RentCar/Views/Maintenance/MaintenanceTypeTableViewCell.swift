@@ -22,14 +22,14 @@ class MaintenanceTypeTableViewCell: UITableViewCell, BindOutletsProtocol {
             
             let combustibleType = vm as! CombustibleType
             descriptionLabel.text = combustibleType.description
-            stateLabel.text = combustibleType.state.ToString()
+            stateLabel.text = combustibleType.state.ToStringState()
             
         }
         else if vm is VehicleMark {
             
             let vehicleMark = vm as! VehicleMark
             descriptionLabel.text = vehicleMark.description
-            stateLabel.text = vehicleMark.state.ToString()
+            stateLabel.text = vehicleMark.state.ToStringState()
             
         }
         
@@ -37,7 +37,7 @@ class MaintenanceTypeTableViewCell: UITableViewCell, BindOutletsProtocol {
             
             let vehicleType = vm as! VehicleType
             descriptionLabel.text = vehicleType.description
-            stateLabel.text = vehicleType.state.ToString()
+            stateLabel.text = vehicleType.state.ToStringState()
             
         }
         
@@ -45,7 +45,7 @@ class MaintenanceTypeTableViewCell: UITableViewCell, BindOutletsProtocol {
             
             let vehicleModel = vm as! VehicleModel
             descriptionLabel.text = vehicleModel.description
-            stateLabel.text = vehicleModel.state.ToString()
+            stateLabel.text = vehicleModel.state.ToStringState()
         }
     }
 }

@@ -11,6 +11,7 @@ struct Devolution: Codable {
     var rent: ParentModel
     var employee: ParentModel
     var customer: ParentModel
+    var vehicle: ParentModel
     var date: String
     var amountPerDay: Double
     var amountOfDay: Int

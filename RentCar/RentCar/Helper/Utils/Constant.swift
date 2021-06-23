@@ -68,6 +68,7 @@ struct Constant {
         static let vehicleTableViewCell = "vehicleTableViewCell"
         static let inspectionTableViewCell = "inspectionTableViewCell"
         static let rentTableViewCell = "rentTableViewCell"
+        static let devolutionTableViewCell = "devolutionTableViewCell"
     }
 }
 

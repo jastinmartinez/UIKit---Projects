@@ -21,6 +21,7 @@ struct DevolutionController: RouteCollection,IController {
         return Devolution.find(devolution.id, on: req.db)
             .unwrap(or: Abort(.notFound))
             .flatMap({
+                $0.$vehicle.id = devolution.$vehicle.id
                 $0.$employee.id = devolution.$employee.id
                 $0.$customer.id = devolution.$customer.id
                 $0.amountOfDay = devolution.amountOfDay

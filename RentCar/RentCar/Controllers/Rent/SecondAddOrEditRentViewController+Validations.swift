@@ -32,6 +32,7 @@ extension SecondAddOrEditRentViewController: UITextFieldDelegate {
         }
         else {
             EnableOrDisableOutlets().label(label: rentAmountPerDayErrorLabel,setHidden: true)
+            calculate()
         }
     }
     
@@ -41,6 +42,15 @@ extension SecondAddOrEditRentViewController: UITextFieldDelegate {
         }
         else {
             EnableOrDisableOutlets().label(label: rentAmountOfDayErrorLabel,setHidden: true)
+            calculate()
+        }
+    }
+    func calculate() {
+        
+        if let text1 = rentAmountPerDayTextField.text, let text2 = rentAmountOfDaysTextField.text {
+            if !text1.isEmpty && !text2.isEmpty {
+                rentTotalTextField.text = "$\((Double.init(text1)!  * Double.init(text2)!).ToString())"
+            }
         }
     }
     

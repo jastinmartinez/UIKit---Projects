@@ -270,7 +270,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="49" translatesAutoresizingMaskIntoConstraints="NO" id="BCp-0s-bjZ">
-                                <rect key="frame" x="20" y="384" width="388" height="200"/>
+                                <rect key="frame" x="20" y="384" width="388" height="283"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Monto X Dia" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="skd-yu-BBE" customClass="RentAmountPerDayTextField" customModule="RentCar" customModuleProvider="target">
                                         <rect key="frame" x="20" y="0.0" width="348" height="34"/>
@@ -294,20 +294,25 @@
                                             <outlet property="delegate" destination="Uev-kk-iIe" id="sLw-90-Q6d"/>
                                         </connections>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Total $0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EWa-qM-l8u" customClass="RentAmoufOfDayTextField" customModule="RentCar" customModuleProvider="target">
+                                        <rect key="frame" x="153.66666666666666" y="166" width="80.666666666666657" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Uev-kk-iIe" id="a7P-1z-asu"/>
+                                        </connections>
+                                    </textField>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFW-YS-5gO">
-                                        <rect key="frame" x="169" y="141.66666666666663" width="50" height="0.0"/>
+                                        <rect key="frame" x="169" y="224.66666666666663" width="50" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                         <color key="textColor" red="1" green="0.18039215689999999" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comentario" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yzf-jJ-DTk">
-                                        <rect key="frame" x="20" y="166" width="348" height="34"/>
+                                        <rect key="frame" x="20" y="249" width="348" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nxN-US-Ffo">
-                                        <rect key="frame" x="169.66666666666666" y="200" width="51" height="0.0"/>
-                                    </switch>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="FgK-dk-P4Z" firstAttribute="leading" secondItem="BCp-0s-bjZ" secondAttribute="leading" constant="20" id="cei-3l-F61"/>
@@ -331,11 +336,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Continuacion" id="zO4-xp-zX5">
-                        <barButtonItem key="rightBarButtonItem" title="Guardar" id="1xO-oR-mA6">
-                            <connections>
-                                <action selector="rentSavedButtonPressed:" destination="Uev-kk-iIe" id="rvp-f6-kZx"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Guardar" id="1xO-oR-mA6">
+                                <connections>
+                                    <action selector="rentSavedButtonPressed:" destination="Uev-kk-iIe" id="rvp-f6-kZx"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Devolucion" id="bk3-kf-b28">
+                                <connections>
+                                    <action selector="devolutionButtonPressed:" destination="Uev-kk-iIe" id="mFm-jY-a90"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="rentAmountOfDayErrorLabel" destination="FFW-YS-5gO" id="8dv-sm-rJ9"/>
@@ -344,12 +356,12 @@
                         <outlet property="rentAmountPerDayTextField" destination="skd-yu-BBE" id="gCx-O8-ix5"/>
                         <outlet property="rentCommentTextField" destination="Yzf-jJ-DTk" id="maS-PT-BTp"/>
                         <outlet property="rentDatePickerDate" destination="IhR-9f-Ywo" id="b7Y-yf-EU3"/>
-                        <outlet property="rentStateSwitch" destination="nxN-US-Ffo" id="NEM-q4-iuJ"/>
+                        <outlet property="rentTotalTextField" destination="EWa-qM-l8u" id="nfV-Zm-2l9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pfP-wv-Phr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1356" y="1833"/>
+            <point key="canvasLocation" x="1618" y="1826"/>
         </scene>
         <!--Nuevo-->
         <scene sceneID="gVx-iP-dmV">
@@ -445,7 +457,139 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v6w-YN-XST" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2317" y="1826"/>
+            <point key="canvasLocation" x="2314" y="1826"/>
+        </scene>
+        <!--Devoluciones-->
+        <scene sceneID="ESu-ID-XRF">
+            <objects>
+                <tableViewController id="QSb-DU-Fr4" customClass="DevolutionTableViewController" customModule="RentCar" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6X9-XN-cMu">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="devolutionTableViewCell" rowHeight="147" id="ZrP-Rm-Ka3" customClass="DevolutionTableViewCell" customModule="RentCar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="147"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZrP-Rm-Ka3" id="2kz-cp-OD2">
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="147"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Kfp-rJ-45f">
+                                            <rect key="frame" x="40" y="11" width="59.333333333333343" height="125"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cliente" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgv-NL-8EF">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="14.333333333333334"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cliente" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJr-XQ-Ayj">
+                                                    <rect key="frame" x="0.0" y="22.333333333333336" width="48" height="14.333333333333336"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vehiculo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fxo-Ac-L3u">
+                                                    <rect key="frame" x="0.0" y="44.666666666666664" width="59.333333333333336" height="14.333333333333336"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vehiculo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Vp-sD-7wf">
+                                                    <rect key="frame" x="0.0" y="67" width="57" height="14.333333333333329"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P8f-cH-Ka1">
+                                                    <rect key="frame" x="0.0" y="88.666666666666671" width="41.333333333333336" height="14.333333333333329"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Yb-OA-r0k">
+                                                    <rect key="frame" x="0.0" y="111" width="40.333333333333336" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="rD8-Qi-e1q">
+                                            <rect key="frame" x="344.33333333333331" y="11" width="43.666666666666686" height="122"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dias" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ric-aQ-Mzd">
+                                                    <rect key="frame" x="13.666666666666686" y="0.0" width="30" height="20.333333333333332"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dias" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmR-fT-Ujt">
+                                                    <rect key="frame" x="14.666666666666686" y="20.333333333333336" width="29" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Precio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nJ-SD-5f3">
+                                                    <rect key="frame" x="0.0" y="40.666666666666664" width="43.666666666666664" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Precio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reK-f0-35Q">
+                                                    <rect key="frame" x="2" y="61.000000000000007" width="41.666666666666664" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlS-Ua-Dsz">
+                                                    <rect key="frame" x="9.6666666666666856" y="81.333333333333329" width="34" height="20.333333333333329"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xy-OV-fI4">
+                                                    <rect key="frame" x="11.333333333333371" y="101.66666666666667" width="32.333333333333336" height="20.333333333333329"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="rD8-Qi-e1q" firstAttribute="top" secondItem="2kz-cp-OD2" secondAttribute="topMargin" id="Kqd-qU-FaK"/>
+                                        <constraint firstItem="Kfp-rJ-45f" firstAttribute="leading" secondItem="2kz-cp-OD2" secondAttribute="leadingMargin" constant="20" id="ZrZ-fu-pYS"/>
+                                        <constraint firstItem="Kfp-rJ-45f" firstAttribute="top" secondItem="2kz-cp-OD2" secondAttribute="topMargin" id="dGc-42-1OP"/>
+                                        <constraint firstItem="Kfp-rJ-45f" firstAttribute="bottom" secondItem="2kz-cp-OD2" secondAttribute="bottomMargin" id="l2c-Ch-VVB"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="rD8-Qi-e1q" secondAttribute="trailing" constant="20" id="nS2-eM-9bO"/>
+                                        <constraint firstItem="Kfp-rJ-45f" firstAttribute="leading" secondItem="2kz-cp-OD2" secondAttribute="leadingMargin" constant="20" id="sPs-hx-CnW"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="rD8-Qi-e1q" secondAttribute="bottom" constant="3" id="v0d-he-Msk"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="DevolutionCustomerLabel" destination="OJr-XQ-Ayj" id="gyb-3J-o5p"/>
+                                    <outlet property="DevolutionDaysLabel" destination="GmR-fT-Ujt" id="g0X-CH-Hc1"/>
+                                    <outlet property="DevolutionPriceLabel" destination="reK-f0-35Q" id="ivD-hd-eyF"/>
+                                    <outlet property="DevolutionTotalLabel" destination="5xy-OV-fI4" id="4Vg-Gn-gD7"/>
+                                    <outlet property="DevolutionVehicleLabel" destination="6Vp-sD-7wf" id="uQh-B7-tYh"/>
+                                    <outlet property="devolutionDateLabel" destination="2Yb-OA-r0k" id="DjF-Qq-6SA"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QSb-DU-Fr4" id="AwT-71-aXe"/>
+                            <outlet property="delegate" destination="QSb-DU-Fr4" id="Li1-93-Jhz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Devoluciones" id="jn3-pY-S6R"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="koG-Qv-U8q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5230.3738317757006" y="269.54643628509723"/>
         </scene>
         <!--Renta-->
         <scene sceneID="lSZ-Q6-GUV">
@@ -504,7 +648,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0V-d0-KOi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3227" y="1031"/>
+            <point key="canvasLocation" x="3236" y="1031"/>
         </scene>
         <!--Inspeccion-->
         <scene sceneID="Pf2-Bv-l2h">
@@ -648,6 +792,7 @@
                         <segue destination="0Qy-m4-C16" kind="show" identifier="vehicleSegue" id="WHH-OD-bYh"/>
                         <segue destination="34t-EE-HsQ" kind="show" identifier="inspectionSegue" id="y2k-cV-2Ko"/>
                         <segue destination="oa8-eZ-Dgx" kind="show" identifier="rentSegue" id="Lkp-Az-V42"/>
+                        <segue destination="QSb-DU-Fr4" kind="show" identifier="devolutionSegue" id="iVm-nE-oPK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kgg-b6-FAB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

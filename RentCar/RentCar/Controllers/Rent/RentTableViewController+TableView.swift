@@ -35,7 +35,11 @@ extension RentTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: Constant.segue.addOrEditRentSegue, sender: (rentPresenter.rents[indexPath.row],false))
+        if rentPresenter.rents[indexPath.row].state {
+            
+            performSegue(withIdentifier: Constant.segue.addOrEditRentSegue, sender: (rentPresenter.rents[indexPath.row],false))
+            
+        }
     }
     
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

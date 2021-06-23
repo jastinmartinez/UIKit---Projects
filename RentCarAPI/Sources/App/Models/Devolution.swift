@@ -24,6 +24,9 @@ final class Devolution: ContenModel {
     @Parent(key: "customer_id")
     var customer: Customer
     
+    @Parent(key: "vehicle_id")
+    var vehicle: Vehicle
+    
     @Field(key: "devolution_date")
     var date: String
     
@@ -41,8 +44,9 @@ final class Devolution: ContenModel {
     
     init () {}
     
-    init(id: UUID?, employee: UUID, customer: UUID, date: String, amountPerDay: Double, amountOfDay: Int,comment: String,state: Bool) {
+    init(id: UUID?, employee: UUID, customer: UUID,vehicle:UUID, date: String, amountPerDay: Double, amountOfDay: Int,comment: String,state: Bool) {
         self.id = id
+        self.$vehicle.id = vehicle
         self.$employee.id = employee
         self.$customer.id = customer
         self.date = date

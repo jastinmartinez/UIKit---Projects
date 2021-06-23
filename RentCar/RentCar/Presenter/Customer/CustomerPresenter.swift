@@ -82,9 +82,10 @@ class CustomerPresenter: PresenterTypeProtocol {
         }
     }
     
-    func getAll() {
+    func getAll(completion: @escaping () -> ()) {
         customerService.getAll { _customers in
             self.customers = _customers
+            completion()
         }
     }
 }

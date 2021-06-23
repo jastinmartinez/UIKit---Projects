@@ -13,7 +13,7 @@ class CustomerTableViewController: UITableViewController  {
     private(set) var customerPresenter = CustomerPresenter()
     
     override func viewDidLoad() {
-        customerPresenter.getAll()
+        customerPresenter.getAll{}
         tableView.dataSource = self
         tableView.delegate = self
         customerPresenter.customerViewDelegateProtocol = self

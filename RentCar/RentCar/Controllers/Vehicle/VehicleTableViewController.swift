@@ -18,7 +18,7 @@ class VehicleTableViewController: UITableViewController {
     
     func initViewDidLoad() {
         
-        vehiclePresenter.getAll()
+        vehiclePresenter.getAll{}
         vehiclePresenter.vehicleViewDelegatePrtocol = self
     }
     

@@ -14,7 +14,7 @@ class RentTableTableViewCell: UITableViewCell {
     
     func bindDataToOulets(vm: (String,Bool)) {
         self.rentVehicleLabel.text = vm.0
-        self.rentStateLabel.text = vm.1.ToString()
+        self.rentStateLabel.text = vm.1.ToStringStatus()
     }
 
 }

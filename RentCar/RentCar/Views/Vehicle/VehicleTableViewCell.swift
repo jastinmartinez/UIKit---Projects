@@ -14,7 +14,7 @@ class VehicleTableViewCell: UITableViewCell,BindOutletsProtocol {
     
     func bindDataToOulets(vm: Vehicle) {
         self.vehicleDescriptionLabel.text = vm.description
-        self.vehicleStateLabel.text = vm.state.ToString()
+        self.vehicleStateLabel.text = vm.state.ToStringState()
     }
     
     typealias aType = Vehicle

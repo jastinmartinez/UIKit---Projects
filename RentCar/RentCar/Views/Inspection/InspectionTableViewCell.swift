@@ -14,6 +14,6 @@ class InspectionTableViewCell: UITableViewCell {
     
     func bindDataToOulets(vm: (String,Bool)) {
         self.inspectionVehicleLabel.text  = vm.0
-        self.inspectionStateLabel.text = vm.1.ToString()
+        self.inspectionStateLabel.text = vm.1.ToStringState()
     }
 }

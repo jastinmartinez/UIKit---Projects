@@ -25,6 +25,6 @@ let managementMenuData =
     Management(name: "Empleado", image: "employee",segue: Constant.segue.employeeSegue, presenterType: EmployeePresenter()),
     Management(name: "Inspeccion", image: "inspection",segue: Constant.segue.inspectionSegue, presenterType: InspectionPresenter()),
     Management(name: "Renta", image: "rent",segue: Constant.segue.rentSegue, presenterType: RentPresenter()),
-    Management(name: "Devolucion", image: "devolution",segue: Constant.segue.devolutionSegue, presenterType: CustomerPresenter()),
+    Management(name: "Devolucion", image: "devolution",segue: Constant.segue.devolutionSegue, presenterType: DevolutionPresenter()),
 ]
 
