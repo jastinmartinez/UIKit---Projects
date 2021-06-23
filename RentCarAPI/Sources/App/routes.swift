@@ -11,4 +11,7 @@ func routes(_ app: Application) throws {
     try app.register(collection: UserController())
     try app.register(collection: EmployeeController())
     try app.register(collection: VehicleController())
+    try app.register(collection: InspectionController())
+    try app.register(collection: RentController())
+    try app.register(collection: DevolutionController())
 }
