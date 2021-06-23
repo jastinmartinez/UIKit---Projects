@@ -11,14 +11,19 @@ extension RentTableViewController: rentViewDelegateProtocol {
     func didArrayChange() {
         
         vehicleJoinRent = []
-        
         vehicleJoinInspection = []
+        customersJoinRent = []
         
         for rent in rentPresenter.rents {
             
             if let vehicle = vehiclePresenter._vehicles.first(where: {$0.id == rent.vehicle.id}) {
                 
                 vehicleJoinRent.append(vehicle)
+            }
+            
+            if let customer = customerPresenter._customers.first(where: {$0.id == rent.customer.id}) {
+                
+                customersJoinRent.append(customer)
             }
         }
         

@@ -18,7 +18,7 @@ extension InspectionTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constant.tableViewCell.inspectionTableViewCell) as! InspectionTableViewCell
        
-        cell.bindDataToOulets(vm:( (  vehiclesJoinInspection.count > 0 ? vehiclesJoinInspection[indexPath.row].description : "\(vehiclesJoinInspection[indexPath.row].description) - INACTIVO" ,inspectionPresenter.inspections[indexPath.row].state)))
+        cell.bindDataToOulets(vm:( (  vehiclesJoinInspection.count > 0 ? vehiclesJoinInspection[indexPath.row].description : "\(vehiclesJoinInspection[indexPath.row].description) - INACTIVO" ,inspectionPresenter.inspections[indexPath.row].date >= Date().toString() ? inspectionPresenter.inspections[indexPath.row].state : false)))
         
         return cell
     }
@@ -33,8 +33,12 @@ extension InspectionTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: Constant.segue.addOrEditInspectionSegue, sender: (inspectionPresenter.inspections[indexPath.row],false))
+        if inspectionPresenter.inspections[indexPath.row].date >= Date().toString() {
+            performSegue(withIdentifier: Constant.segue.addOrEditInspectionSegue, sender: (inspectionPresenter.inspections[indexPath.row],false))
+        }
+        
     }
+    
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         
         performSegue(withIdentifier: Constant.segue.addOrEditInspectionSegue, sender: (inspectionPresenter.inspections[indexPath.row],true))

@@ -108,7 +108,7 @@ class AddOrEditRentViewController: UIViewController {
             
             if vehiclePresenter!.vehicles.count > 0 {
                 
-                self.rentVehiclerPickerVIew.selectRow(vehiclePresenter!.vehicles.firstIndex(where: {$0.id == rent.vehicle.id})!, inComponent: 0, animated: true)
+                self.rentVehiclerPickerVIew.selectRow(vehiclePresenter!._vehicles.firstIndex(where: {$0.id == rent.vehicle.id})!, inComponent: 0, animated: true)
                 
                 self.vehicleID = rent.vehicle.id
             }

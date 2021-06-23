@@ -16,6 +16,7 @@ class RentTableViewController: UITableViewController {
     var inspectionPresenter = InspectionPresenter()
     var vehicleJoinRent = [Vehicle]()
     var vehicleJoinInspection = [Vehicle]()
+    var customersJoinRent = [Customer]()
     
 
     override func viewDidLoad() {
@@ -29,15 +30,17 @@ class RentTableViewController: UITableViewController {
             
             employeePresenter.getAllWithActiveStatus()
             
-            self.vehiclePresenter.getAllWithActiveStatus{
-                
-                self.inspectionPresenter.getAllInpectionOfDate{
-                
-                    self.rentPresenter.getAll()
-                    self.rentPresenter.rentViewDelegateProtocol = self
+            self.customerPresenter.getAllWithActiveStatus {
+                self.vehiclePresenter.getAllWithActiveStatus{
+                    
+                    self.inspectionPresenter.getAllInpectionOfDate{
+                    
+                        self.rentPresenter.getAll()
+                        
+                        self.rentPresenter.rentViewDelegateProtocol = self
+                    }
                 }
             }
-            customerPresenter.getAllWithActiveStatus()
         }
     }
     

@@ -45,6 +45,8 @@ class SecondAddOrEditInspetionViewController: UIViewController {
     
     @IBAction func inspectionSavedButtonPressed(_ sender: Any) {
         
+        guard isViewOnly == false || isViewOnly == nil else { return }
+        
         if vehicleID != nil, customerID != nil, combustibleAmount != nil,employeeID != nil   {
             
             if let inspection = inspection {

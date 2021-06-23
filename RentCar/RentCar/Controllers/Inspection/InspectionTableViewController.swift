@@ -31,7 +31,7 @@ class InspectionTableViewController: UITableViewController {
         }
         
         employeePresenter.getAllWithActiveStatus()
-        customerPresenter.getAllWithActiveStatus()
+        customerPresenter.getAllWithActiveStatus{}
         
     }
     

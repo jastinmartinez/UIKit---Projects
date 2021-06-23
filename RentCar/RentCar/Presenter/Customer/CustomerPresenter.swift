@@ -12,6 +12,8 @@ class CustomerPresenter: PresenterTypeProtocol {
     
     private var customerService = CustomerService()
     
+    private(set) var _customers = [Customer]()
+    
     private(set) var customers = [Customer]() {
         didSet {
             
@@ -76,9 +78,11 @@ class CustomerPresenter: PresenterTypeProtocol {
         customers.remove(at: index)
     }
     
-    func getAllWithActiveStatus() {
+    func getAllWithActiveStatus(completion: @escaping () ->()) {
         customerService.getAll { customers in
+            self._customers = customers
             self.customers = customers.filter({$0.state})
+            completion()
         }
     }
     
