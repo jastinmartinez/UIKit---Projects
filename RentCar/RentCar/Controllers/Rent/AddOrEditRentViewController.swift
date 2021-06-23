@@ -99,6 +99,7 @@ class AddOrEditRentViewController: UIViewController {
             destinationSecondAddOrEditRentViewController.customerID = customerID
             destinationSecondAddOrEditRentViewController.employeeID = employeeID
             destinationSecondAddOrEditRentViewController.vehicleID = vehicleID
+            destinationSecondAddOrEditRentViewController.customerPresenter = customerPresenter
         }
     }
     
@@ -122,7 +123,7 @@ class AddOrEditRentViewController: UIViewController {
             
             if customerPresenter!.customers.count > 0 {
                 
-                self.rentCustomerPickerView.selectRow(customerPresenter!.customers.firstIndex(where: {$0.id == rent.customer.id})!, inComponent: 0, animated: true)
+                self.rentCustomerPickerView.selectRow(customerPresenter!._customers.firstIndex(where: {$0.id == rent.customer.id})!, inComponent: 0, animated: true)
                 
                 self.customerID = rent.customer.id
             }

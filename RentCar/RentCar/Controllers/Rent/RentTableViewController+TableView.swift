@@ -19,7 +19,13 @@ extension RentTableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Constant.tableViewCell.rentTableViewCell) as! RentTableTableViewCell
         
-        cell.bindDataToOulets(vm: (vehicleJoinRent.count > 0 ? vehicleJoinRent[indexPath.row].description : "\(vehicleJoinRent[indexPath.row].description) - INACTIVO",customersJoinRent[indexPath.row].name,rentPresenter.rents[indexPath.row].date,rentPresenter.rents[indexPath.row].amountOfDay.toString(),Int(rentPresenter.rents[indexPath.row].amountOfDay  * Int.init(rentPresenter.rents[indexPath.row].amountPerDay)).toString(),rentPresenter.rents[indexPath.row].state.ToStringStatus()))
+        cell.bindDataToOulets(vm: (vehicleJoinRent.count > 0 ? vehicleJoinRent[indexPath.row].description : "\(vehicleJoinRent[indexPath.row].description) - INACTIVO",
+                                   customersJoinRent[indexPath.row].name,
+                                   rentPresenter.rents[indexPath.row].date,
+                                   rentPresenter.rents[indexPath.row].amountOfDay.toString(),
+                                   Int(rentPresenter.rents[indexPath.row].amountOfDay * Int.init(rentPresenter.rents[indexPath.row].amountPerDay)).toString(),
+                                   rentPresenter.rents[indexPath.row].state.ToStringStatus(),
+                                   rentPresenter.rents[indexPath.row].amountPerDay.ToString()))
         return cell
     }
     

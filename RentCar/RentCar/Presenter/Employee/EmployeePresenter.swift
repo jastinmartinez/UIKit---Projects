@@ -13,6 +13,8 @@ class EmployeePresenter : PresenterTypeProtocol {
 
     var employeeViewDelegate: EmployeeViewDelegateProtocol?
     
+    private(set) var _employees = [Employee]()
+    
     private(set) var employees = [Employee]() {
         didSet {
             self.employeeViewDelegate?.didEmployeesChange()
@@ -66,6 +68,7 @@ class EmployeePresenter : PresenterTypeProtocol {
     
     func getAllWithActiveStatus() {
         employeeService.getAll { employees in
+            self._employees = employees
             self.employees = employees.filter({$0.state})
         }
     }

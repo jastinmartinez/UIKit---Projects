@@ -42,7 +42,7 @@ extension AddOrEditVehicleViewController: UIPickerViewDataSource,UIPickerViewDel
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         if pickerView is VehicleMarkPickerView {
-        
+            
             vehicleModelPresenter.getModelsOfMarks(vehicleMarkPresenter.vehicleMarks[row])
             
             self.vehicleVehicleModelPickerView.reloadAllComponents()
@@ -54,39 +54,58 @@ extension AddOrEditVehicleViewController: UIPickerViewDataSource,UIPickerViewDel
         }
         else if pickerView is CombustibleTypePickerView {
             
-            self.combustibleTypeID = combustibleTypePresenter.combustibleTypes[row].id
+            if combustibleTypePresenter.combustibleTypes.count > 0 {
+                
+                self.combustibleTypeID = combustibleTypePresenter.combustibleTypes[row].id
+            }
         }
         else if pickerView is VehicleTypePickerView {
-            
-            self.vehicleTypeID = vehicleTypePresenter.vehicleTypes[row].id
+            if vehicleTypePresenter.vehicleTypes.count > 0 {
+                
+                self.vehicleTypeID = vehicleTypePresenter.vehicleTypes[row].id
+            }
         }
         else if pickerView is VehicleModelPickerView {
             
+            if vehicleModelPresenter.vehicleModels.count > 0 {
+                
             self.vehicleModelID = vehicleModelPresenter.vehicleModels[row].id
+            }
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       
+        
         if pickerView is CombustibleTypePickerView {
-            
-            return combustibleTypePresenter.combustibleTypes[row].description
+        
+            if combustibleTypePresenter.combustibleTypes.count > 0 {
+                
+                return combustibleTypePresenter.combustibleTypes[row].description
+            }
         }
         else if pickerView is VehicleMarkPickerView {
-        
-            return vehicleMarkPresenter.vehicleMarks[row].description
+            
+            if vehicleMarkPresenter.vehicleMarks.count > 0 {
+                
+                return vehicleMarkPresenter.vehicleMarks[row].description
+            }
         }
         else if pickerView is VehicleTypePickerView {
             
-            return vehicleTypePresenter.vehicleTypes[row].description
+            if vehicleTypePresenter.vehicleTypes.count > 0 {
+                
+                return vehicleTypePresenter.vehicleTypes[row].description
+            }
         }
         else if pickerView is VehicleModelPickerView {
             
-            return vehicleModelPresenter.vehicleModels[row].description
+            if vehicleModelPresenter.vehicleModels.count > 0 {
+                
+                return vehicleModelPresenter.vehicleModels[row].description
+            }
         }
-        else {
-            
-            return nil
-        }
+        
+        return nil
+        
     }
 }

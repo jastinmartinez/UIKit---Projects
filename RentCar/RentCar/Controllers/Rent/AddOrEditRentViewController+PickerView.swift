@@ -11,7 +11,7 @@ import UIKit
 extension AddOrEditRentViewController: UIPickerViewDelegate,UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-       
+        
         return 1
     }
     
@@ -19,17 +19,45 @@ extension AddOrEditRentViewController: UIPickerViewDelegate,UIPickerViewDataSour
         
         if pickerView is RentVehiclePickerView {
             if vehiclePresenter!.vehicles.count > 0 {
-                return vehiclePresenter!.vehicles.count
+                if let isViewOnly = isViewOnly{
+                    if isViewOnly {
+                        return vehiclePresenter!._vehicles.count
+                    }
+                    else {
+                        return vehiclePresenter!.vehicles.count
+                    }
+                    
+                }else {
+                    return vehiclePresenter!.vehicles.count
+                }
             }
         }
         if pickerView is RentEmployeePickerVIew {
             if employeePresenter!.employees.count > 0 {
-                return employeePresenter!.employees.count
+                if let isViewOnly = isViewOnly{
+                    if isViewOnly {
+                        return employeePresenter!._employees.count
+                    }
+                    else {
+                        return employeePresenter!.employees.count
+                    }
+                }else {
+                    return employeePresenter!.employees.count
+                }
             }
         }
         if pickerView is RentCustomerPickerView {
             if customerPresenter!.customers.count > 0 {
-                return customerPresenter!.customers.count
+                if let isViewOnly = isViewOnly{
+                    if isViewOnly {
+                        return customerPresenter!._customers.count
+                    }
+                    else {
+                        return customerPresenter!.customers.count
+                    }
+                }else {
+                    return customerPresenter!.customers.count
+                }
             }
         }
         return 0
@@ -38,6 +66,7 @@ extension AddOrEditRentViewController: UIPickerViewDelegate,UIPickerViewDataSour
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView is RentVehiclePickerView {
             if vehiclePresenter!.vehicles.count > 0 {
+                
                 self.vehicleID =  vehiclePresenter!.vehicles[row].id
             }
         }
@@ -54,20 +83,46 @@ extension AddOrEditRentViewController: UIPickerViewDelegate,UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
         if pickerView is RentVehiclePickerView {
             
-            return vehiclePresenter?.vehicles[row].description
+            if let isViewOnly = isViewOnly{
+                if isViewOnly {
+                    return vehiclePresenter?._vehicles[row].description
+                }
+                else {
+                    return vehiclePresenter?.vehicles[row].description
+                }
+            }else {
+                return vehiclePresenter?.vehicles[row].description
+            }
+            
             
         }
         if pickerView is RentEmployeePickerVIew {
-          
-            return employeePresenter?.employees[row].name
+            if let isViewOnly = isViewOnly{
+                if isViewOnly {
+                    return employeePresenter?._employees[row].name
+                }
+                else {
+                    return employeePresenter?.employees[row].name
+                }
+            }else {
+                return employeePresenter?.employees[row].name
+            }
             
         }
         if pickerView is RentCustomerPickerView {
-        
-            return customerPresenter?.customers[row].name
-            
+            if let isViewOnly = isViewOnly{
+                if isViewOnly {
+                    return customerPresenter?._customers[row].name
+                }
+                else {
+                    return customerPresenter?.customers[row].name
+                }
+            }else {
+                return customerPresenter?.customers[row].name
+            }
         }
         return nil
     }

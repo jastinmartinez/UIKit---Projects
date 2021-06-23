@@ -72,11 +72,11 @@ class AddOrEditInspectionViewController: UIViewController {
     func inspectionModelToOutlets(_ inspection: Inspection) {
         DispatchQueue.main.async {
            
-           self.inspectionCustomerPickerView.selectRow(self.customerPresenter!.customers.firstIndex(where: {$0.id == inspection.customer.id})!, inComponent: 0, animated: true)
+           self.inspectionCustomerPickerView.selectRow(self.customerPresenter!._customers.firstIndex(where: {$0.id == inspection.customer.id})!, inComponent: 0, animated: true)
             
             self.customerID = inspection.customer.id
            
-           self.inspectionVehiclePickerView.selectRow(self.vehiclePresenter!.vehicles.firstIndex(where: {$0.id == inspection.vehicle.id})!, inComponent: 0, animated: true)
+           self.inspectionVehiclePickerView.selectRow(self.vehiclePresenter!._vehicles.firstIndex(where: {$0.id == inspection.vehicle.id})!, inComponent: 0, animated: true)
            
             self.vehicleID = inspection.vehicle.id
             

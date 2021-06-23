@@ -41,7 +41,10 @@ extension AddOrEditVehicleViewController: MaintenanceViewDelegateProtocol {
                                     
                                     DispatchQueue.main.async {
                                         
-                                        vehicleVehicleModelPickerView.selectRow(vehicleModelPresenter.vehicleModels.firstIndex(where: {$0.id == vehicle.vehicleModel.id})!, inComponent: 0, animated: true)
+                                        if let index = vehicleModelPresenter.vehicleModels.firstIndex(where: {$0.id == vehicle.vehicleModel.id}) {
+                                            vehicleVehicleModelPickerView.selectRow(index, inComponent: 0, animated: true)
+                                        }
+
                                     }
                                     
                                     self.vehicleModelID = vehicle.vehicleModel.id

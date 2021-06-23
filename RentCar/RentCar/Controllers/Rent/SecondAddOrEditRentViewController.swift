@@ -18,6 +18,8 @@ class SecondAddOrEditRentViewController: UIViewController {
     @IBOutlet weak var rentDatePickerDate: UIDatePicker!
     
     var rentPresenter: RentPresenter?
+    var customerPresenter: CustomerPresenter?
+    
     var employeeID: UUID?
     var vehicleID: UUID?
     var customerID: UUID?
@@ -92,10 +94,23 @@ class SecondAddOrEditRentViewController: UIViewController {
     
     @IBAction func rentSavedButtonPressed(_ sender: Any) {
         
-        guard vehicleID != nil, customerID != nil, employeeID != nil, !rentAmountPerDayTextField.text!.isEmpty,!rentAmountPerDayTextField.text!.isEmpty else { return }
+        guard vehicleID != nil, customerID != nil, employeeID != nil, !rentAmountPerDayTextField.text!.isEmpty,!rentAmountOfDaysTextField.text!.isEmpty else { return }
         
         guard isViewOnly == false || isViewOnly == nil else { return }
         
+       var customerWithNotEnoughCredit = false
+        
+        if let customer = customerPresenter!._customers.first(where: {$0.id == customerID}) {
+          
+            if customer.creditLimit < (Double(rentAmountPerDayTextField.text!)! * Double(rentAmountOfDaysTextField.text!)!)  {
+                
+                present(AlertView().show(title: "Cliente", message: "Cliente con credito Insuficiente"),animated: true,completion: nil)
+                customerWithNotEnoughCredit = true
+            }
+        }
+        
+        guard customerWithNotEnoughCredit == false else {return}
+    
         if let rent = rent {
             rentPresenter?.update(Rent( id: rent.id,employee: ParentModel(id: employeeID), customer: ParentModel(id:customerID), vehicle: ParentModel(id:vehicleID), date: rentDate.toString(), amountPerDay: Double.init(rentAmountPerDayTextField.text!)!, amountOfDay: Int.init(rentAmountOfDaysTextField.text!)!, comment: rentCommentTextField.text!, state: true))
         }
@@ -117,6 +132,7 @@ class SecondAddOrEditRentViewController: UIViewController {
             guard rent.state else { return }
             
             var devolutionAmountOfDays = 0
+            
             var rentDays = DateComponents()
             
             if rent.date.toDate() >= Date() {
@@ -129,10 +145,13 @@ class SecondAddOrEditRentViewController: UIViewController {
         
             if var rentDay = rentDays.day {
                 rentDay += 1
-                if rentDay > Int.init(rentAmountOfDaysTextField.text!)! {
+              
+                if rentDay >= Int.init(rentAmountOfDaysTextField.text!)! {
+                    
                     devolutionAmountOfDays = rentDay
                 }
                 else {
+                
                     devolutionAmountOfDays = Int.init(rentAmountOfDaysTextField.text!)! - rentDay
                 }
             }
