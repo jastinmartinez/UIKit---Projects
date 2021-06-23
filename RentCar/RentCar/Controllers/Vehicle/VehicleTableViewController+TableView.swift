@@ -25,6 +25,12 @@ extension VehicleTableViewController {
         performSegue(withIdentifier: Constant.segue.addOrEditVehicleSegue, sender: (vehicle: vehiclePresenter.vehicles[indexPath.row],isViewOnly:false))
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            vehiclePresenter.remove(for: indexPath.row)
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         cell.accessoryType = .detailButton

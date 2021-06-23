@@ -19,6 +19,14 @@ final class EnableOrDisableOutlets {
         textfield.isEnabled = false
     }
     
+    func datePicker(datePicker: UIDatePicker) {
+        datePicker.isEnabled = false
+    }
+    
+    func segmentedControl(segmentControl: UISegmentedControl) {
+        segmentControl.isEnabled = false
+    }
+    
     func pickerView(pickerView: UIPickerView) {
         pickerView.isUserInteractionEnabled = false
     }

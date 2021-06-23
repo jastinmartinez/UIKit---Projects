@@ -10,3 +10,8 @@ protocol VehicleViewDelegateProtocol {
     func didVehicleArrayChange()
     func didErrorOcurred(title: String , message: String)
 }
+
+extension VehicleViewDelegateProtocol {
+    func didErrorOcurred(title: String , message: String) {}
+    
+}

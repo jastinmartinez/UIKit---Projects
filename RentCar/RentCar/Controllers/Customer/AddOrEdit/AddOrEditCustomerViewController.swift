@@ -74,7 +74,7 @@ extension AddOrEditCustomerViewController {
             self.customerNameTextField.text = customer.name
             self.customerCreditCardTextField.text = customer.creditCard
             self.customerCreditLimitTextField.text = customer.creditLimit.ToString()
-            let personTypeIndex = stringInSegmentedControl().search(customer.personType, segmentedControl: customerPersonTypeSegmentedControl)
+            let personTypeIndex = StringInSegmentedControl().search(customer.personType, segmentedControl: customerPersonTypeSegmentedControl)
             if personTypeIndex > -1 {
                  self.customerPersonTypeSegmentedControl.selectedSegmentIndex = personTypeIndex
                  self.personType = self.customerPersonTypeSegmentedControl.titleForSegment(at: personTypeIndex)

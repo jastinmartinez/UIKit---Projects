@@ -60,6 +60,8 @@ struct VehicleController: RouteCollection {
         return Vehicle.query(on: req.db).all()
     }
     
+    
+    
     func vehicleMultipleValidations(_ req: Request) throws -> EventLoopFuture<[Vehicle]> {
         let vehicle = try req.content.decode(Vehicle.self)
         return Vehicle.query(on: req.db)

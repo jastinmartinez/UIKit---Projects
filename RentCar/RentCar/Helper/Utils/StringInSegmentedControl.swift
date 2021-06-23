@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class stringInSegmentedControl {
+final class StringInSegmentedControl {
     
     func search(_ text: String,segmentedControl: UISegmentedControl) -> Int {
 

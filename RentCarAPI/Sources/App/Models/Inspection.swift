@@ -55,11 +55,11 @@ static var schema: String = "inspection"
     var employee: Employee
     
     @Field(key: "inspection_state")
-    var state: String
+    var state: Bool
     
     init() {}
     
-    init(id: UUID?, vehicle: UUID,customer: UUID,scratch: Bool,combustibleAmount: String,rubberBack: Bool,hydraulicJack: Bool,glassBreakage: Bool,rubberState1: Bool, rubberState2: Bool,rubberState3: Bool, rubberState4: Bool,date: String,employee: UUID,state: String) {
+    init(id: UUID?, vehicle: UUID,customer: UUID,scratch: Bool,combustibleAmount: String,rubberBack: Bool,hydraulicJack: Bool,glassBreakage: Bool,rubberState1: Bool, rubberState2: Bool,rubberState3: Bool, rubberState4: Bool,date: String,employee: UUID,state: Bool) {
         
         self.id = id
         self.$vehicle.id = vehicle

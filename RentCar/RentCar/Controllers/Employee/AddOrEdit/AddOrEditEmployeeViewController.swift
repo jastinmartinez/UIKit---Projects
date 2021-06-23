@@ -76,7 +76,7 @@ extension AddOrEditEmployeeViewController {
             self.title = "Editar"
             self.employeeIDTextField.text = employee.employeeID
             self.employeeNameTextField.text = employee.name
-            let jobShiftIndex = stringInSegmentedControl().search(employee.jobShift, segmentedControl: employeeJobShiftSegementedControl)
+            let jobShiftIndex = StringInSegmentedControl().search(employee.jobShift, segmentedControl: employeeJobShiftSegementedControl)
             if jobShiftIndex != -1 {
                 self.employeeJobShiftSegementedControl.selectedSegmentIndex = jobShiftIndex
                 self.employeeJobShift = self.employeeJobShiftSegementedControl.titleForSegment(at: jobShiftIndex)

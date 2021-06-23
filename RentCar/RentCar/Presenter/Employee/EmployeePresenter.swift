@@ -64,6 +64,12 @@ class EmployeePresenter : PresenterTypeProtocol {
         }
     }
     
+    func getAllWithActiveStatus() {
+        employeeService.getAll { employees in
+            self.employees = employees.filter({$0.state})
+        }
+    }
+    
     func remove(_ index: Int) {
         employeeService.remove(employees[index])
         employees.remove(at: index)

@@ -15,6 +15,8 @@ class VehiclePresenter {
     
     var vehicleViewDelegatePrtocol: VehicleViewDelegateProtocol?
     
+    private(set) var _vehicles = [Vehicle]()
+    
     private(set) var vehicles = [Vehicle]() {
         didSet {
             vehicleViewDelegatePrtocol?.didVehicleArrayChange()
@@ -59,6 +61,15 @@ class VehiclePresenter {
         }
     }
     
+    
+    func getAllWithActiveStatus(completion: @escaping()->()) {
+        vehicleService.getAll { vehicles in
+            self._vehicles = vehicles
+            self.vehicles = vehicles.filter({$0.state})
+            completion()
+        }
+    }
+    
     func getAll() {
         vehicleService.getAll { vehicles in
             self.vehicles = vehicles
@@ -76,8 +87,7 @@ class VehiclePresenter {
     }
     
     func remove(for index: Int) {
-        
+        vehicleService.remove(vehicles[index])
+        vehicles.remove(at: index)
     }
-    
-   
 }

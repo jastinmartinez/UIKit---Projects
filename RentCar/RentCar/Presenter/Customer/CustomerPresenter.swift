@@ -76,6 +76,12 @@ class CustomerPresenter: PresenterTypeProtocol {
         customers.remove(at: index)
     }
     
+    func getAllWithActiveStatus() {
+        customerService.getAll { customers in
+            self.customers = customers.filter({$0.state})
+        }
+    }
+    
     func getAll() {
         customerService.getAll { _customers in
             self.customers = _customers

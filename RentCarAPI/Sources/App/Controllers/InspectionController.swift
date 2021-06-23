@@ -24,7 +24,7 @@ struct InspectionController: RouteCollection,IController {
             .unwrap(or: Abort(.notFound))
             
             .flatMap({
-                
+                $0.$vehicle.id = inspection.$vehicle.id
                 $0.$customer.id = inspection.$customer.id
                 $0.$employee.id = inspection.$employee.id
                 $0.combustibleAmount = inspection.combustibleAmount
@@ -50,6 +50,12 @@ struct InspectionController: RouteCollection,IController {
         
         return Inspection.find(inspetion.id, on: req.db).unwrap(or: Abort(.notFound)).flatMap({$0.delete(on: req.db).transform(to: .ok)})
     }
+
+    func inspectionJoinVehicle(req: Request) throws -> EventLoopFuture<[Inspection]> {
+        
+        return Inspection.query(on: req.db).all()
+    }
+
     
     func getAll(req: Request) throws -> EventLoopFuture<[Inspection]> {
         

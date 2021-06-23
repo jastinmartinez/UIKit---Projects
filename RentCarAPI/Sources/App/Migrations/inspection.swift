@@ -27,7 +27,7 @@ extension Inspection {
                 .field("inspection_rubber_state_4",.bool,.required)
                 .field("inspection_date",.string,.required)
                 .field("employee_id",.uuid,.required,.references("employee", .id))
-                .field("inspection_state",.string,.required)
+                .field("inspection_state",.bool,.required)
                 .create()
         }
         func revert(on database: Database) -> EventLoopFuture<Void> {

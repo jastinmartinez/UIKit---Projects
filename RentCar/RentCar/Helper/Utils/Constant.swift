@@ -24,6 +24,9 @@ struct Constant {
         static let employeeValidation =  "\(employee)/validation"
         static let vehicle =  "\(baseUrl)/vehicle"
         static let vehicleValidation =  "\(vehicle)/validation"
+        static let rent =  "\(baseUrl)/rent"
+        static let devolution =  "\(baseUrl)/devolution"
+        static let inspection =  "\(baseUrl)/inspection"
     }
     
     struct storyBoardId {
@@ -38,6 +41,9 @@ struct Constant {
         static let customerSegue = "customerSegue"
         static let employeeSegue = "employeeSegue"
         static let vehicleSegue = "vehicleSegue"
+        static let inspectionSegue = "inspectionSegue"
+        static let addOrEditInspectionSegue = "addOrEditInspectionSegue"
+        static let secondAddOrEditVehicleSegue = "secondAddOrEditVehicleSegue"
         static let addOrEditVehicleSegue = "addOrEditVehicleSegue"
         static let addOrEditCustomerSegue = "addOrEditCustomerSegue"
         static let addOrEditEmployeeSegue = "addOrEditEmployeeSegue"
@@ -53,6 +59,7 @@ struct Constant {
         static let customerTableViewCell = "customerTableViewCell"
         static let employeeTableViewCell = "employeeTableViewCell"
         static let vehicleTableViewCell = "vehicleTableViewCell"
+        static let inspectionTableViewCell = "inspectionTableViewCell"
     }
 }
 
