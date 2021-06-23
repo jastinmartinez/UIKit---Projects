@@ -13,9 +13,9 @@ extension Devolution {
         func prepare(on database: Database) -> EventLoopFuture<Void> {
             database.schema("devolution")
                 .id()
-                .field("rent_id",.uuid,.required,.references("rent_id", .id))
-                .field("employee_id",.uuid,.required,.references("employee_id", .id))
-                .field("customer_id",.uuid,.required,.references("customer_id", .id))
+                .field("rent_id",.uuid,.required,.references("rent", .id))
+                .field("employee_id",.uuid,.required,.references("employee", .id))
+                .field("customer_id",.uuid,.required,.references("customer", .id))
                 .field("devolution_date",.string,.required)
                 .field("devolution_amount_per_day",.double,.required)
                 .field("devolution_amount_of_day",.int,.required)
