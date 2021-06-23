@@ -21,5 +21,9 @@ public func configure(_ app: Application) throws {
     app.migrations.add(Employee.Migration())
     app.migrations.add(Customer.Migration())
     app.migrations.add(Vehicle.Migration())
+    app.migrations.add(Inspection.Migration())
+    app.migrations.add(Rent.Migration())
+    app.migrations.add(Devolution.Migration())
+    
     try routes(app)
 }
