@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
 protocol InspectionViewdelegateProtocol {
     func didInspectionsChange()
+    func didErrorOcurred(title: String , message: String)
 }

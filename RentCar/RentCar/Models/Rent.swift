@@ -8,9 +8,10 @@
 import Foundation
 
 struct Rent: Codable {
-    var id: UUID?
-    var employe: ParentModel
+    var id: UUID? = nil
+    var employee: ParentModel
     var customer: ParentModel
+    var vehicle: ParentModel
     var date: String
     var amountPerDay: Double
     var amountOfDay: Int

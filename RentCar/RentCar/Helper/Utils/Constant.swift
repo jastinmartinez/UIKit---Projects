@@ -35,6 +35,13 @@ struct Constant {
     }
     
     struct segue {
+        
+        static let rentSegue = "rentSegue"
+        static let addOrEditRentSegue = "addOrEditRentSegue"
+        static let secondeAddOrEditRentSegue = "secondAddOrEditRentSegue"
+        static let devolutionSegue = "devolutionSegue"
+        static let addOrEditDevolutionSegue = "addOrEditDevolutionSegue"
+        static let secondeAddOrEditDevolutionSegue = "secondeAddOrEditDevolutionSegue"
         static let managementSegue = "managementSegue"
         static let maintenanceSegue = "maintenanceSegue"
         static let maintenanceModifySegue = "maintenanceModifySegue"
@@ -60,6 +67,7 @@ struct Constant {
         static let employeeTableViewCell = "employeeTableViewCell"
         static let vehicleTableViewCell = "vehicleTableViewCell"
         static let inspectionTableViewCell = "inspectionTableViewCell"
+        static let rentTableViewCell = "rentTableViewCell"
     }
 }
 

@@ -21,6 +21,7 @@ struct RentController: RouteCollection,IController {
         return Rent.find(rent.id, on: req.db)
             .unwrap(or: Abort(.notFound))
             .flatMap({
+                $0.$vehicle.id = rent.$vehicle.id
                 $0.amountPerDay = rent.amountPerDay
                 $0.amountOfDay = rent.amountOfDay
                 $0.$customer.id = rent.$customer.id

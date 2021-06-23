@@ -61,6 +61,9 @@ class VehiclePresenter {
         }
     }
     
+    func getVehicleThatMatchInspectionDate(_ vm: [Vehicle]) {
+        self.vehicles = vm
+    }
     
     func getAllWithActiveStatus(completion: @escaping()->()) {
         vehicleService.getAll { vehicles in

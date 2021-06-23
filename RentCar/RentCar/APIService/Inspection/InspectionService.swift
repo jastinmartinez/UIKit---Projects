@@ -19,6 +19,16 @@ final class InspectionService: ServiceProtocol
         }
     }
     
+    func rentExist(_ vm: Inspection, completion: @escaping ([Inspection]) -> ()) {
+        APIService().request(url: URLRequestBuilder<Inspection>().prepare(url: "\(Constant.uRL.inspection)/\(vm.id!)")) { data, res, error in
+            if let data = data {
+                if let inspection = DataToObject<Inspection>.decode(array: data) {
+                    completion(inspection)
+                }
+            }
+        }
+    }
+    
     func update(_ vm: Inspection) {
         APIService().request(url: URLRequestBuilder<Inspection>().prepare(url: Constant.uRL.inspection,model: vm,method: .put)) { _, _, _ in}
     }

@@ -7,7 +7,13 @@
 
 import Foundation
 
-extension InspectionTableViewController: InspectionViewdelegateProtocol ,VehicleViewDelegateProtocol{
+extension InspectionTableViewController: InspectionViewdelegateProtocol ,VehicleViewDelegateProtocol {
+    
+    
+    func didErrorOcurred(title: String, message: String) {
+        
+        present(AlertView().show(title: title, message: message), animated: true, completion: nil)
+    }
     
     func didVehicleArrayChange() {
         

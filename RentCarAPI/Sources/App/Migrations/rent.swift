@@ -15,6 +15,7 @@ extension Rent {
                 .id()
                 .field("employee_id",.uuid,.required,.references("employee", .id))
                 .field("customer_id",.uuid,.required,.references("customer", .id))
+                .field("vehicle_id",.uuid,.required,.references("vehicle", .id))
                 .field("rent_date",.string,.required)
                 .field("rent_amount_per_day",.double,.required)
                 .field("rent_amount_of_day",.int,.required)

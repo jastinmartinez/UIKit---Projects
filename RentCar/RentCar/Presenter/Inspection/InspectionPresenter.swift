@@ -17,6 +17,14 @@ class InspectionPresenter: PresenterProtocol, PresenterTypeProtocol{
         }
     }
     
+    func getAllInpectionOfDate(completion: @escaping () -> () ) {
+        
+        inspectionService.getAll { inspections in
+            self.inspections = inspections.filter({$0.state})
+            completion()
+        }
+    }
+    
     func getAll() {
         inspectionService.getAll { inspections in
             self.inspections = inspections
@@ -29,8 +37,16 @@ class InspectionPresenter: PresenterProtocol, PresenterTypeProtocol{
     }
     
     func remove(for index: Int) {
-        inspectionService.remove(inspections[index])
-        inspections.remove(at: index)
+        
+        inspectionService.rentExist(inspections[index]) { inspections in
+            if inspections.count > 0 {
+                self.inspectionViewDelagateProtocol?.didErrorOcurred(title: "Inspeccion", message: "Esta No puede ser eliminada ya que esta en uso por un proceso de renta")
+            }
+            else {
+                self.inspectionService.remove(self.inspections[index])
+                self.inspections.remove(at: index)
+            }
+        }
     }
     
     typealias aType = Inspection

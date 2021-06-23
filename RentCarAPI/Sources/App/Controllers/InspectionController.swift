@@ -12,6 +12,14 @@ import Vapor
 struct InspectionController: RouteCollection,IController {
     
     
+    
+    func rentExist(req: Request) throws -> EventLoopFuture<[Inspection]>  {
+        return Inspection.query(on: req.db)
+            .join(Rent.self, on: \Rent.$vehicle.$id == \Inspection.$vehicle.$id)
+             .filter(Inspection.self, \.$id ==  UUID.init(uuidString: req.parameters.get("inspection_id")!)!)
+             .all()
+    }
+    
     func create(req: Request) throws -> EventLoopFuture<Inspection> {
         let inspection = try req.content.decode(Inspection.self)
         
@@ -69,6 +77,7 @@ struct InspectionController: RouteCollection,IController {
         
         let inspectionRoute  = routes.grouped("inspection")
         inspectionRoute.post( use: create)
+        inspectionRoute.get(":inspection_id", use: rentExist)
         inspectionRoute.put( use: update)
         inspectionRoute.get( use: getAll)
         inspectionRoute.delete( use: remove)
