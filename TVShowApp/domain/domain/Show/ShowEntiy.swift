@@ -7,20 +7,37 @@
 
 import Foundation
 
-struct ShowEntity  {
-    var name: String
-    var image: ShowImageEntity
-    var schedule: ShowScheduleEntity
-    var genres: [String]
-    var summary: String
+public struct ShowEntity  {
+    let name: String
+    let image: ShowImageEntity
+    let schedule: ShowScheduleEntity
+    let genres: [String]
+    let summary: String
+    
+    public init(name: String,image: ShowImageEntity, schedule: ShowScheduleEntity,genres: [String],summary: String) {
+        self.name = name
+        self.image = image
+        self.schedule = schedule
+        self.genres = genres
+        self.summary = summary
+    }
 }
 
-struct ShowImageEntity {
-    var original: String
+public struct ShowImageEntity {
+    let original: String
+    
+    public init(original: String) {
+        self.original = original
+    }
 }
 
-struct ShowScheduleEntity {
-    var time: String
-    var days: [String]
+public struct ShowScheduleEntity {
+    let time: String
+    let days: [String]
+    
+    public init(time: String,days: [String]) {
+        self.time = time
+        self.days = days
+    }
 }
 

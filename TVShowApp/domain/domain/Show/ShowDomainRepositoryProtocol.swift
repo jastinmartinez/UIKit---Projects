@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol ShowDomainRepositoryProtocol {
-    func fetchShowList(handler: @escaping (([ShowEntity]) -> Void))
+public protocol ShowDomainRepositoryProtocol {
+    func fetchShowList(handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void))
 }
