@@ -7,7 +7,7 @@
 
 import Foundation
 import Alamofire
-import domain
+import DomainLayer
 
 final class AFErrorToDomainErrorHelper {
     class func errorTypeOf(_ afError: AFError) -> DomainError {
@@ -15,7 +15,7 @@ final class AFErrorToDomainErrorHelper {
         case 404:
             return .PageNotFound
         default:
-            return .none
+            return .NotValid
         }
     }
 }

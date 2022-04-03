@@ -8,20 +8,20 @@
 import Foundation
 import Alamofire
 
-protocol ShowRemoteDataSourceProtocol {
+public protocol ShowRemoteDataSourceProtocol {
     init(baseUrl: String)
     func fetchShowList(handler: @escaping ((DataResponse<[ShowModel],AFError>) -> Void))
 }
 
-class ShowRemoteDataSource: ShowRemoteDataSourceProtocol {
+public class ShowRemoteDataSource: ShowRemoteDataSourceProtocol {
     
     private let baseUrl: String
     
-    required init(baseUrl: String) {
+    public required init(baseUrl: String) {
         self.baseUrl = baseUrl
     }
     
-    func fetchShowList(handler: @escaping ((DataResponse<[ShowModel],AFError>) -> Void)) {
+    public func fetchShowList(handler: @escaping ((DataResponse<[ShowModel],AFError>) -> Void)) {
         AF.request(baseUrl,method: .get).responseDecodable(of: [ShowModel].self, completionHandler: handler)
     }
 }

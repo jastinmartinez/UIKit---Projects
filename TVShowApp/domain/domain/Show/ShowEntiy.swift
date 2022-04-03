@@ -8,11 +8,11 @@
 import Foundation
 
 public struct ShowEntity  {
-    let name: String
-    let image: ShowImageEntity
-    let schedule: ShowScheduleEntity
-    let genres: [String]
-    let summary: String
+    public let name: String
+    public let image: ShowImageEntity
+    public let schedule: ShowScheduleEntity
+    public let genres: [String]
+    public let summary: String
     
     public init(name: String,image: ShowImageEntity, schedule: ShowScheduleEntity,genres: [String],summary: String) {
         self.name = name
@@ -24,7 +24,7 @@ public struct ShowEntity  {
 }
 
 public struct ShowImageEntity {
-    let original: String
+    public let original: String
     
     public init(original: String) {
         self.original = original
@@ -32,8 +32,8 @@ public struct ShowImageEntity {
 }
 
 public struct ShowScheduleEntity {
-    let time: String
-    let days: [String]
+    public let time: String
+    public let days: [String]
     
     public init(time: String,days: [String]) {
         self.time = time

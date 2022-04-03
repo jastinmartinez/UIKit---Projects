@@ -6,18 +6,18 @@
 //
 
 import Foundation
-import domain
+import DomainLayer
 import Alamofire
 
-class ShowDataRepository : ShowDomainRepositoryProtocol {
+public class ShowDataRepository : ShowDomainRepositoryProtocol {
     
     private let showRemoteDataSource: ShowRemoteDataSourceProtocol
     
-    init(showRemoteDataSource: ShowRemoteDataSourceProtocol) {
+    public init(showRemoteDataSource: ShowRemoteDataSourceProtocol) {
         self.showRemoteDataSource = showRemoteDataSource
     }
     
-    func fetchShowList(handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void)) {
+    public func fetchShowList(handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void)) {
         self.showRemoteDataSource.fetchShowList { dataResponse in
             switch dataResponse.result {
             case.success(let showModeList):
@@ -28,5 +28,4 @@ class ShowDataRepository : ShowDomainRepositoryProtocol {
             }
         }
     }
-    
 }

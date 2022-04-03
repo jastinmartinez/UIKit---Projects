@@ -9,7 +9,7 @@ import Foundation
 
 public enum DomainError: Error {
     case PageNotFound
-    case none
+    case NotValid
 }
 
 extension DomainError : LocalizedError {
@@ -17,8 +17,8 @@ extension DomainError : LocalizedError {
         switch self {
         case .PageNotFound:
             return NSLocalizedString("Page not Found", comment: "Page not found")
-        case .none:
-            return ""
+        case .NotValid:
+            return NSLocalizedString("Invalid", comment: "Invalid")
         }
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import domain
+import DomainLayer
 
 public struct ShowModel : Decodable {
     let name: String

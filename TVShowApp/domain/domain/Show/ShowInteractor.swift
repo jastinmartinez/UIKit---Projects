@@ -7,19 +7,19 @@
 
 import Foundation
 
-protocol ShowInteractorProtocol {
+public protocol ShowInteractorProtocol {
     func fetchShowList(handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void))
 }
 
-class ShowInteractor : ShowInteractorProtocol {
+public class ShowInteractor : ShowInteractorProtocol {
     
     private let showDomainRepositoryProtocol: ShowDomainRepositoryProtocol
     
-    init(showDomainRepositoryProtocol: ShowDomainRepositoryProtocol) {
+    public init(showDomainRepositoryProtocol: ShowDomainRepositoryProtocol) {
         self.showDomainRepositoryProtocol = showDomainRepositoryProtocol
     }
     
-    func fetchShowList(handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void)) {
+    public func fetchShowList(handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void)) {
         self.showDomainRepositoryProtocol.fetchShowList(handler: handler)
     }
 }
