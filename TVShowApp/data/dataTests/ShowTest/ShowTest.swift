@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import data
+@testable import DataLayer
 
 // MARK: For DATA test is required internet access
 class ShowTest: XCTestCase {

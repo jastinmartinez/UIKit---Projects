@@ -21,9 +21,19 @@ public class ShowDataRepository : ShowDomainRepositoryProtocol {
         self.showRemoteDataSource.fetchShowList { dataResponse in
             switch dataResponse.result {
             case.success(let showModeList):
-                let castToShowEntityList = showModeList.map({showModel in return showModel.toShowEntity()})
-                handler(.success(castToShowEntityList))
+                handler(.success(showModeList.map({ showModel in return showModel.toShowEntity()})))
             case.failure(let error):
+                handler(.failure(AFErrorToDomainErrorHelper.errorTypeOf(error)))
+            }
+        }
+    }
+    
+    public func fetchShowImage(imageUrl: String, handler: @escaping ((Result<Data?, DomainError>) -> Void)) {
+        self.showRemoteDataSource.fetchShowImage(urlImage: imageUrl) { dataResponse in
+            switch dataResponse.result {
+            case .success(let dataImage):
+                handler(.success(dataImage))
+            case .failure(let error):
                 handler(.failure(AFErrorToDomainErrorHelper.errorTypeOf(error)))
             }
         }

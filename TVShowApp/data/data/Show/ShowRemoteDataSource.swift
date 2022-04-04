@@ -11,10 +11,10 @@ import Alamofire
 public protocol ShowRemoteDataSourceProtocol {
     init(baseUrl: String)
     func fetchShowList(handler: @escaping ((DataResponse<[ShowModel],AFError>) -> Void))
+    func fetchShowImage(urlImage: String,handler: @escaping ((DataResponse<Data?,AFError>) -> Void))
 }
 
 public class ShowRemoteDataSource: ShowRemoteDataSourceProtocol {
-    
     private let baseUrl: String
     
     public required init(baseUrl: String) {
@@ -23,5 +23,9 @@ public class ShowRemoteDataSource: ShowRemoteDataSourceProtocol {
     
     public func fetchShowList(handler: @escaping ((DataResponse<[ShowModel],AFError>) -> Void)) {
         AF.request(baseUrl,method: .get).responseDecodable(of: [ShowModel].self, completionHandler: handler)
+    }
+    
+    public func fetchShowImage(urlImage: String, handler: @escaping ((DataResponse<Data?,AFError>) -> Void)) {
+        AF.request(urlImage,method: .get).response(completionHandler: handler)
     }
 }
