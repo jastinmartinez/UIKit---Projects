@@ -11,14 +11,14 @@ import DomainLayer
 public struct ShowModel : Decodable {
     let id: Int
     let name: String
-    let image: ShowImageModel
+    let image: ShowImageModel?
     let schedule: ShowScheduleModel
     let genres: [String]
-    let summary: String
+    let summary: String?
     let rating: ShowRatingModel
     
     func toShowEntity() -> ShowEntity {
-        return ShowEntity(id: self.id, name: self.name, image: self.image.toShowImageEntity(), schedule: self.schedule.toShowScheduleEntity(), genres: self.genres, summary: self.summary, rating: rating.toShowRatingEntity())
+        return ShowEntity(id: self.id, name: self.name, image: self.image?.toShowImageEntity(), schedule: self.schedule.toShowScheduleEntity(), genres: self.genres, summary: self.summary, rating: rating.toShowRatingEntity())
     }
 }
 

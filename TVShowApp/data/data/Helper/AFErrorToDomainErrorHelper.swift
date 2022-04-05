@@ -12,8 +12,6 @@ import DomainLayer
 final class AFErrorToDomainErrorHelper {
     class func errorTypeOf(_ afError: AFError) -> DomainError {
         switch afError.responseCode {
-        case 404:
-            return .PageNotFound
         default:
             return .NotValid
         }

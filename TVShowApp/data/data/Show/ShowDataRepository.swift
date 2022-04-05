@@ -17,8 +17,8 @@ public class ShowDataRepository : ShowDomainRepositoryProtocol {
         self.showRemoteDataSource = showRemoteDataSource
     }
     
-    public func fetchShowList(handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void)) {
-        self.showRemoteDataSource.fetchShowList { dataResponse in
+    public func fetchShowList(queryParemeter: Dictionary<String,Any>,handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void)) {
+        self.showRemoteDataSource.fetchShowList(queryParameter: queryParemeter) { dataResponse in
             switch dataResponse.result {
             case.success(let showModeList):
                 handler(.success(showModeList.map({ showModel in return showModel.toShowEntity()})))

@@ -8,13 +8,14 @@
 import Foundation
 import DomainLayer
 
-
 public protocol DidSetShowEntityList : AnyObject {
-    func notifyViewController()
+    func notifyViewController(_ message: String?)
 }
 
 public class ShowViewModel {
-    
+    public var preFetchOperationQuee:[Int:IndexPath?] = [:]
+    public var isFetchingNextShowEntityList = false
+    private var pageNumberList: [Int] = [1]
     private let showInteractorProtocol: ShowInteractorProtocol
     public var showEntityList = [ShowEntity]()
     private var showImageCached = NSCache<NSString,NSData>()
@@ -23,46 +24,54 @@ public class ShowViewModel {
     public init(showInteractorProtocol: ShowInteractorProtocol) {
         self.showInteractorProtocol = showInteractorProtocol
     }
+
+    public func fetchNextShowList(handler: (() -> ())?) {
+        if pageNumberList[pageNumberList.count - 1] > -1 {
+            self.isFetchingNextShowEntityList = true
+            self.fetchShowList()
+            self.pageNumberList.append(pageNumberList.count + 1)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            handler?()
+        }
+    }
     
     public func fetchShowList() {
-        self.showInteractorProtocol.fetchShowList { showInteractorResult in
+        self.showInteractorProtocol.fetchShowList(queryParemeter: ["page": pageNumberList[pageNumberList.count - 1]]) { showInteractorResult in
+            self.isFetchingNextShowEntityList = false
             switch showInteractorResult {
             case .success(let showEntityList):
-                self.showEntityList = showEntityList
-                self.didSetShowEntityList?.notifyViewController()
-            case .failure(_):
-                break
+                self.showEntityList.append(contentsOf: showEntityList)
+                self.didSetShowEntityList?.notifyViewController(nil)
+            case .failure(let error):
+                self.pageNumberList[self.pageNumberList.count - 1] = -1
+                self.didSetShowEntityList?.notifyViewController(error.errorDescription)
             }
         }
     }
     
-    fileprivate func setShowImageEntityToList(showEntity: ShowEntity) {
-        guard let indexOfEntity = showEntityList.firstIndex(where: {$0.id == showEntity.id}) else {
-            return
-        }
-        self.showEntityList[indexOfEntity] = showEntity
-    }
-    
-    public func fectShowImage(_ showEntity: ShowEntity,handler: ((ShowEntity) -> Void)?) {
-        DispatchQueue.main.async { [weak self] in
-            var mutableCopyShowEntity = showEntity
-            let imageKey = showEntity.image.original as NSString
-            if let cachedImageData = self?.showImageCached.object(forKey: imageKey) {
-                mutableCopyShowEntity.image.data = Data(referencing: cachedImageData)
-                self?.setShowImageEntityToList(showEntity: mutableCopyShowEntity)
-                handler?(mutableCopyShowEntity)
+   
+    public func fectShowImage(_ index: Int,handler: ((ShowEntity) -> Void)?) {
+        var showEntity = self.showEntityList[index]
+        if let showImageEntity = showEntity.image {
+            let imageKey = showImageEntity.original as NSString
+            if let cachedImageData = self.showImageCached.object(forKey: imageKey) {
+                showEntity.image?.data = Data(referencing: cachedImageData)
+                handler?(showEntity)
+                self.showEntityList[index] = showEntity
                 return
             }
-            self?.showInteractorProtocol.fetchShowImage(imageUrl: showEntity.image.original) { fetchShowImageResult in
+            self.showInteractorProtocol.fetchShowImage(imageUrl: showImageEntity.original) { fetchShowImageResult in
                 switch fetchShowImageResult {
                 case .success(let data):
-                    guard let imageData = data else {
-                        return
+                    if let imageData = data  {
+                        showEntity.image?.data = imageData
+                        self.showEntityList[index] = showEntity
+                        self.showImageCached.setObject(NSData(data: imageData), forKey: imageKey)
                     }
-                    mutableCopyShowEntity.image.data = imageData
-                    self?.setShowImageEntityToList(showEntity: showEntity)
-                    self?.showImageCached.setObject(NSData(data: imageData), forKey: imageKey)
-                    handler?(mutableCopyShowEntity)
+                    DispatchQueue.main.async {
+                        handler?(showEntity)
+                    }
                 case .failure(_):
                     break
                 }

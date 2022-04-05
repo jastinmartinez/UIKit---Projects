@@ -20,7 +20,7 @@ class ShowTableViewCell : UITableViewCell {
         titleLabel.textColor = .black
         titleLabel.font = UIFont(name: "avenir", size: 20)
         titleLabel.font = .boldSystemFont(ofSize: 20)
-        titleLabel.textColor = UIColor(named: "151D3B")!
+        titleLabel.textColor = UIColor(named: ColorHelper.blue.rawValue)!
         return titleLabel
     }()
     
@@ -38,6 +38,7 @@ class ShowTableViewCell : UITableViewCell {
         stackView.distribution = .fillEqually
         for index in 1...10 {
             let ratingButtonImage = UIButton()
+            ratingButtonImage.tintColor = UIColor(named: ColorHelper.red.rawValue)
             ratingButtonImage.setImage(UIImage(systemName: "star.fill"), for: .selected)
             ratingButtonImage.setImage(UIImage(systemName: "star"), for: .normal)
             self.showRatingButtonImageList.append(ratingButtonImage)
@@ -54,7 +55,7 @@ class ShowTableViewCell : UITableViewCell {
         for index in 1...3 {
             let genreLabel = UILabel()
             genreLabel.font = UIFont(name: "avenir", size: 15)
-            genreLabel.textColor = UIColor(named: "151D3B")!
+            genreLabel.textColor = UIColor(named: ColorHelper.blue.rawValue)!
             self.showGenreLabelList.append(genreLabel)
             stackView.addArrangedSubview(genreLabel)
         }
@@ -72,7 +73,7 @@ class ShowTableViewCell : UITableViewCell {
     }
     
     fileprivate func setTableViewCellConfiguration() {
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(named: ColorHelper.white.rawValue)!
     }
     
     fileprivate func setOutletToSubView() {
@@ -84,7 +85,8 @@ class ShowTableViewCell : UITableViewCell {
     
     fileprivate func setTitleLabelConstraint() {
         NSLayoutConstraint.on([self.titleLabel.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
-                               self.titleLabel.leftAnchor.constraint(equalTo: self.posterImageView.rightAnchor,constant: 10)])
+                               self.titleLabel.leftAnchor.constraint(equalTo: self.posterImageView.rightAnchor,constant: 10),
+                               self.titleLabel.rightAnchor.constraint(equalTo: self.layoutMarginsGuide.rightAnchor)])
     }
     
     fileprivate func setPosterImageViewConstraint() {
@@ -106,13 +108,15 @@ class ShowTableViewCell : UITableViewCell {
             self.genreStackView.topAnchor.constraint(equalTo: self.ratingStackView.bottomAnchor,constant: 10),
             self.genreStackView.leftAnchor.constraint(equalTo: self.posterImageView.rightAnchor,constant: 10)])
     }
-
+    
     func setShowEntity(_ showEntity: ShowEntity) {
         DispatchQueue.main.async {
             self.setGenreLabelListValue(showEntity)
             self.setRatingButtonImageListValue(showEntity)
             self.titleLabel.text = showEntity.name
-            self.posterImageView.image = UIImage(data: showEntity.image.data!)
+            if let imageData = showEntity.image?.data {
+                self.posterImageView.image = UIImage(data: imageData)
+            }
         }
     }
     

@@ -10,14 +10,13 @@ import Foundation
 public struct ShowEntity  {
     public let id: Int
     public let name: String
-    public var image: ShowImageEntity
+    public var image: ShowImageEntity?
     public let schedule: ShowScheduleEntity
     public let genres: [String]
-    public let summary: String
+    public let summary: String?
     public let rating: ShowRatingEntity
-    public var isFavorite: Bool
     
-    public init(id: Int,name: String,image: ShowImageEntity, schedule: ShowScheduleEntity,genres: [String],summary: String, rating: ShowRatingEntity, isFavorite: Bool = false) {
+    public init(id: Int,name: String,image: ShowImageEntity?, schedule: ShowScheduleEntity,genres: [String],summary: String?, rating: ShowRatingEntity) {
         self.id = id
         self.name = name
         self.image = image
@@ -25,7 +24,6 @@ public struct ShowEntity  {
         self.genres = genres
         self.summary = summary
         self.rating = rating
-        self.isFavorite = isFavorite
     }
 }
 

@@ -8,6 +8,6 @@
 import Foundation
 
 public protocol ShowDomainRepositoryProtocol {
-    func fetchShowList(handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void))
+    func fetchShowList(queryParemeter: Dictionary<String,Any>,handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void))
     func fetchShowImage(imageUrl: String, handler: @escaping ((Result<Data?,DomainError>) -> Void))
 }
