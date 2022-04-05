@@ -13,29 +13,9 @@ class ShowDetailViewController : UIViewController {
     
     private var showDetailScrollView = UIScrollView()
     private var showDetailContentScrollView = UIView()
-    
-    private lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = UIFont(name: "avenir", size: 30)
-        return label
-    }()
-    
-    private lazy var summaryLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "avenir", size: 15)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private lazy var timeLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "avenir", size: 17)
-        label.numberOfLines = 0
-        return label
-    }()
+    private lazy var nameLabel: UILabel = UILabel.buildLabelWith(size: 30,isMultiline: true,textAligment: .center)
+    private lazy var summaryLabel: UILabel = UILabel.buildLabelWith(size: 15,isMultiline: true,textAligment: .center)
+    private lazy var timeLabel: UILabel = UILabel.buildLabelWith(size: 17,isMultiline: true)
     
     private lazy var posterImageView: UIImageView = {
         let posterImageView = UIImageView()
@@ -71,16 +51,18 @@ class ShowDetailViewController : UIViewController {
         stackView.axis = .horizontal
         stackView.spacing = 10
         stackView.distribution = .fill
+        if showEntity.genres.isEmpty {
+            let genreLabel = UILabel.buildLabelWith(size: 20,color: UIColor(named: ColorHelper.red.rawValue)!)
+            genreLabel.text = "N/A"
+            stackView.addArrangedSubview(genreLabel)
+        }
         for index in 0...showEntity.genres.count - 1 {
-            let genreLabel = UILabel()
-            genreLabel.font = UIFont(name: "avenir", size: 20)
+            let genreLabel = UILabel.buildLabelWith(size: 20,color: index % 2 != 0 ? UIColor(named: ColorHelper.red.rawValue)! : .white)
             genreLabel.text = showEntity.genres[index]
-            genreLabel.textColor = index % 2 != 0 ? UIColor(named: ColorHelper.red.rawValue) : .white
             stackView.addArrangedSubview(genreLabel)
         }
         return stackView
     }()
-    
     
     private lazy var daysStackView: UIStackView = {
         let stackView = UIStackView()
@@ -88,15 +70,17 @@ class ShowDetailViewController : UIViewController {
         stackView.alignment = .center
         stackView.spacing = 10
         stackView.distribution = .fill
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat  = "EEEE"
-        let dayInWeek = dateFormatter.string(from: Date.now)
-        for index in 0...showEntity.schedule.days.count - 1 {
-            let daysLabel = UILabel()
-            daysLabel.font = UIFont(name: "avenir", size: 17)
-            daysLabel.text = showEntity.schedule.days[index]
-            daysLabel.textColor = index % 2 != 0 ? UIColor(named: ColorHelper.red.rawValue) : .white
+        if showEntity.schedule.days.isEmpty {
+            let daysLabel = UILabel.buildLabelWith(size: 17,color: UIColor(named: ColorHelper.red.rawValue)!)
+            daysLabel.text = "N/A"
             stackView.addArrangedSubview(daysLabel)
+        }
+        else {
+            for index in 0...showEntity.schedule.days.count - 1 {
+                let daysLabel = UILabel.buildLabelWith(size: 17,color: index % 2 != 0 ? UIColor(named: ColorHelper.red.rawValue)! : .white)
+                daysLabel.text = showEntity.schedule.days[index]
+                stackView.addArrangedSubview(daysLabel)
+            }
         }
         return stackView
     }()
@@ -111,61 +95,98 @@ class ShowDetailViewController : UIViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setViewConfiguration()
+        self.setOutletToSubView()
+        self.setShowDetailScrollViewContentSize()
+        self.setPosterImageView()
+        self.setNameLabel()
+        self.setSummaryLabel()
+        self.setTimeLabel()
+        self.setShowDetailScrollViewConstraint()
+        self.setShowDetailContentScrollViewConstraint()
+        self.setRatingStackViewConstraint()
+        self.setGenreStackViewConstraint()
+        self.setDayStackViewConstraint()
+    }
+    
+    fileprivate func setViewConfiguration() {
         self.view.backgroundColor = UIColor(named: ColorHelper.blue.rawValue)
-        showDetailContentScrollView.addSubview(self.posterImageView)
-        showDetailContentScrollView.addSubview(self.nameLabel)
-        showDetailContentScrollView.addSubview(self.ratingStackView)
-        showDetailContentScrollView.addSubview(self.genreStackView)
-        showDetailContentScrollView.addSubview(self.summaryLabel)
-        showDetailContentScrollView.addSubview(self.timeLabel)
-        showDetailContentScrollView.addSubview(self.daysStackView)
-        showDetailScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 1500)
-        showDetailScrollView.addSubview(showDetailContentScrollView)
-        self.view.addSubview(showDetailScrollView)
+    }
+    
+    fileprivate func setOutletToSubView() {
+        self.showDetailScrollView.addSubview(self.showDetailContentScrollView)
+        self.showDetailContentScrollView.addSubview(self.nameLabel)
+        self.showDetailContentScrollView.addSubview(self.ratingStackView)
+        self.showDetailContentScrollView.addSubview(self.genreStackView)
+        self.showDetailContentScrollView.addSubview(self.summaryLabel)
+        self.showDetailContentScrollView.addSubview(self.timeLabel)
+        self.showDetailContentScrollView.addSubview(self.daysStackView)
+        self.showDetailContentScrollView.addSubview(self.posterImageView)
+        self.view.addSubview(self.showDetailScrollView)
+    }
+    
+    fileprivate func setShowDetailScrollViewContentSize() {
+        self.showDetailScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 1500)
+    }
+    
+    fileprivate func setPosterImageView() {
         if let imagedata = showEntity.image?.data {
             self.posterImageView.image = UIImage(data: imagedata)
         }
+        NSLayoutConstraint.on([self.posterImageView.topAnchor.constraint(equalTo: self.showDetailContentScrollView.layoutMarginsGuide.topAnchor,constant: 10),
+                               self.posterImageView.leftAnchor.constraint(equalTo: self.showDetailContentScrollView.layoutMarginsGuide.leftAnchor),
+                               self.posterImageView.rightAnchor.constraint(equalTo: self.showDetailContentScrollView.layoutMarginsGuide.rightAnchor),
+                               self.posterImageView.heightAnchor.constraint(equalTo: self.showDetailContentScrollView.heightAnchor,multiplier: 1/2)])
+    }
+    
+    fileprivate func setNameLabel() {
         self.nameLabel.text = showEntity.name
-        self.summaryLabel.text = showEntity.summary
-        self.timeLabel.text = showEntity.schedule.time
-        
-        NSLayoutConstraint.on([self.showDetailScrollView.heightAnchor.constraint(equalTo: self.view.heightAnchor),
-                              self.showDetailScrollView.widthAnchor.constraint(equalTo: self.view.widthAnchor)])
-        
-        NSLayoutConstraint.on([showDetailContentScrollView.heightAnchor.constraint(equalTo: showDetailScrollView.heightAnchor),
-                               showDetailContentScrollView.widthAnchor.constraint(equalTo: showDetailScrollView.widthAnchor)])
-        
-        
-        NSLayoutConstraint.on([self.posterImageView.topAnchor.constraint(equalTo: showDetailContentScrollView.layoutMarginsGuide.topAnchor,constant: 10),
-                               self.posterImageView.leftAnchor.constraint(equalTo: showDetailContentScrollView.layoutMarginsGuide.leftAnchor),
-                               self.posterImageView.rightAnchor.constraint(equalTo: showDetailContentScrollView.layoutMarginsGuide.rightAnchor),
-                               self.posterImageView.heightAnchor.constraint(equalTo: showDetailContentScrollView.heightAnchor,multiplier: 1/2)])
-        
         NSLayoutConstraint.on([self.nameLabel.topAnchor.constraint(equalTo: self.posterImageView.bottomAnchor,constant: 10),
-                               self.nameLabel.centerXAnchor.constraint(equalTo: showDetailContentScrollView.centerXAnchor),
+                               self.nameLabel.centerXAnchor.constraint(equalTo: self.showDetailContentScrollView.centerXAnchor),
                                self.nameLabel.leftAnchor.constraint(equalTo: self.showDetailContentScrollView.layoutMarginsGuide.leftAnchor),
                                self.nameLabel.rightAnchor.constraint(equalTo: self.showDetailContentScrollView.layoutMarginsGuide.rightAnchor)])
-        
-        NSLayoutConstraint.on([self.ratingStackView.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor,constant: 10),
-                               self.ratingStackView.leftAnchor.constraint(equalTo: showDetailContentScrollView.layoutMarginsGuide.leftAnchor),
-                               self.ratingStackView.rightAnchor.constraint(equalTo: showDetailContentScrollView.layoutMarginsGuide.rightAnchor)])
-        
-        NSLayoutConstraint.on([self.genreStackView.topAnchor.constraint(equalTo: self.ratingStackView.bottomAnchor,constant: 10),
-                               self.genreStackView.centerXAnchor.constraint(equalTo: showDetailContentScrollView.centerXAnchor)])
-        
+    }
+    
+    fileprivate func setSummaryLabel() {
+        self.summaryLabel.text = showEntity.summary
         NSLayoutConstraint.on([self.summaryLabel.topAnchor.constraint(equalTo: self.genreStackView.bottomAnchor,constant: 10),
-                               self.summaryLabel.leftAnchor.constraint(equalTo: showDetailContentScrollView.layoutMarginsGuide.leftAnchor),
-                               self.summaryLabel.rightAnchor.constraint(equalTo: showDetailContentScrollView.layoutMarginsGuide.rightAnchor)])
-        
-        NSLayoutConstraint.on([self.daysStackView.topAnchor.constraint(equalTo: self.summaryLabel.bottomAnchor,constant: 10),
-                               self.daysStackView.centerXAnchor.constraint(equalTo: showDetailContentScrollView.centerXAnchor)])
-        
+                               self.summaryLabel.leftAnchor.constraint(equalTo: self.showDetailContentScrollView.layoutMarginsGuide.leftAnchor),
+                               self.summaryLabel.rightAnchor.constraint(equalTo: self.showDetailContentScrollView.layoutMarginsGuide.rightAnchor)])
+    }
+    
+    fileprivate func setTimeLabel() {
+        self.timeLabel.text = showEntity.schedule.time
         NSLayoutConstraint.on([self.timeLabel.topAnchor.constraint(equalTo: self.daysStackView.bottomAnchor,constant: 10),
-                               self.timeLabel.centerXAnchor.constraint(equalTo: showDetailContentScrollView.centerXAnchor)])
-        
+                               self.timeLabel.centerXAnchor.constraint(equalTo: self.showDetailContentScrollView.centerXAnchor)])
+    }
+    
+    fileprivate func setShowDetailScrollViewConstraint() {
+        NSLayoutConstraint.on([self.showDetailScrollView.heightAnchor.constraint(equalTo: self.view.heightAnchor),
+                               self.showDetailScrollView.widthAnchor.constraint(equalTo: self.view.widthAnchor)])
+    }
+    
+    fileprivate func setShowDetailContentScrollViewConstraint() {
+        NSLayoutConstraint.on([self.showDetailContentScrollView.heightAnchor.constraint(equalTo: self.showDetailScrollView.heightAnchor),
+                               self.showDetailContentScrollView.widthAnchor.constraint(equalTo: self.showDetailScrollView.widthAnchor)])
+    }
+    
+    fileprivate func setRatingStackViewConstraint() {
+        NSLayoutConstraint.on([self.ratingStackView.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor,constant: 10),
+                               self.ratingStackView.leftAnchor.constraint(equalTo: self.showDetailContentScrollView.layoutMarginsGuide.leftAnchor),
+                               self.ratingStackView.rightAnchor.constraint(equalTo: self.showDetailContentScrollView.layoutMarginsGuide.rightAnchor)])
+    }
+    
+    fileprivate func setGenreStackViewConstraint() {
+        NSLayoutConstraint.on([self.genreStackView.topAnchor.constraint(equalTo: self.ratingStackView.bottomAnchor,constant: 10),
+                               self.genreStackView.centerXAnchor.constraint(equalTo: self.showDetailContentScrollView.centerXAnchor)])
+    }
+    
+    fileprivate func setDayStackViewConstraint() {
+        NSLayoutConstraint.on([self.daysStackView.topAnchor.constraint(equalTo: self.summaryLabel.bottomAnchor,constant: 10),
+                               self.daysStackView.centerXAnchor.constraint(equalTo: self.showDetailContentScrollView.centerXAnchor)])
     }
 }
 
