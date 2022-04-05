@@ -85,7 +85,7 @@ extension ShowTableViewController : UITableViewDataSource {
         let showTableViewCell = tableView.dequeueReusableCell(withIdentifier: NameHelper.cell.rawValue) as? ShowTableViewCell
         showTableViewCell?.accessoryType = .detailDisclosureButton
         showTableViewCell?.selectionStyle = .none
-        self.showViewModel.fectShowImage(indexPath.row) { showEntity in
+        self.showViewModel.setShowEntityByIndex(index: indexPath.row) { showEntity in
             showTableViewCell?.setShowEntity(showEntity)
         }
         return showTableViewCell!
@@ -99,7 +99,7 @@ extension ShowTableViewController : UITableViewDataSource {
 extension ShowTableViewController : UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            self.showViewModel.fectShowImage(indexPath.row,handler: nil)
+            self.showViewModel.setShowEntityByIndex(index: indexPath.row,handler: nil)
         }
     }
 }

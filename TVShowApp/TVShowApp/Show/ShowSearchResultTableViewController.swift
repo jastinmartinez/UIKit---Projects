@@ -16,7 +16,7 @@ class ShowSearchResultTableViewController : UIViewController {
     
     private lazy var showSearchResultTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor(named: ColorHelper.white.rawValue)!
         tableView.register(ShowTableViewCell.self, forCellReuseIdentifier: NameHelper.cell.rawValue)
         return tableView
     }()
@@ -41,7 +41,7 @@ class ShowSearchResultTableViewController : UIViewController {
     
     func searchFor(text: String) {
         DispatchQueue.main.async {
-            self.showEntityList = self.showViewModel.showEntityList.filter({ showEntity in showEntity.name.contains(text)})
+            self.showEntityList = self.showViewModel.showEntityList.filter({ showEntity in showEntity.name.lowercased().contains(text.lowercased())})
             self.showSearchResultTableView.reloadData()
         }
     }
@@ -50,8 +50,10 @@ class ShowSearchResultTableViewController : UIViewController {
         self.view.addSubview(self.showSearchResultTableView)
         self.showSearchResultTableView.dataSource = self
         self.showSearchResultTableView.delegate = self
-        NSLayoutConstraint.on([self.showSearchResultTableView.heightAnchor.constraint(equalTo: self.view.heightAnchor),
-                               self.showSearchResultTableView.widthAnchor.constraint(equalTo: self.view.widthAnchor)])
+        NSLayoutConstraint.on([self.showSearchResultTableView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
+                               self.showSearchResultTableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+                               self.showSearchResultTableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+                               self.showSearchResultTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)])
     }
 }
 
@@ -64,7 +66,7 @@ extension ShowSearchResultTableViewController : UITableViewDataSource {
         let showTableViewCell = tableView.dequeueReusableCell(withIdentifier:  NameHelper.cell.rawValue) as? ShowTableViewCell
         showTableViewCell?.accessoryType = .detailDisclosureButton
         showTableViewCell?.selectionStyle = .none
-        self.showViewModel.fectShowImage(indexPath.row) { showEntity in
+        self.showViewModel.setShowEntityById(showEntityID: self.showEntityList[indexPath.row].id) { showEntity in
             showTableViewCell?.setShowEntity(showEntity)
         }
         return showTableViewCell!

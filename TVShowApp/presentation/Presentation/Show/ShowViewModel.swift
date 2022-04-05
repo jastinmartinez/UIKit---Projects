@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import CloudKit
 
 public protocol DidSetShowEntityList : AnyObject {
     func notifyViewController(_ message: String?)
@@ -50,8 +51,15 @@ public class ShowViewModel {
         }
     }
     
+    
+    public func setShowEntityById(showEntityID: Int, handler: ((ShowEntity) -> Void)?) {
+        guard let showEntityIndex = self.showEntityList.firstIndex(where: { showEntity in showEntity.id == showEntityID }) else {
+            return
+        }
+        self.setShowEntityByIndex(index: showEntityIndex, handler: handler)
+    }
    
-    public func fectShowImage(_ index: Int,handler: ((ShowEntity) -> Void)?) {
+    public func setShowEntityByIndex(index: Int,handler: ((ShowEntity) -> Void)?) {
         var showEntity = self.showEntityList[index]
         if let showImageEntity = showEntity.image {
             let imageKey = showImageEntity.original as NSString
