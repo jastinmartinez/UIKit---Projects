@@ -20,7 +20,7 @@ public class ShowEpisodeInteractor : ShowEpidoseInteractorProtocol {
     }
     
     public func fecthShowEpisodeList(showId: Int, handler: @escaping ((Result<[ShowEpisodeEntity], DomainError>) -> Void)) {
-        self.showEpisodeDomainRepositoryProtocol.fetchShowEpisodeList(showID: showId, handler: handler)
+        self.showEpisodeDomainRepositoryProtocol.fetchShowEpisodeList(showId: showId, handler: handler)
     }
 }
 

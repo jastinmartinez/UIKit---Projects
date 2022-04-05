@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol ShowEpisodeDomainRepositoryProtocol {
-    func fetchShowEpisodeList(showID: Int, handler: @escaping ((Result<[ShowEpisodeEntity],DomainError>) -> Void))
+    func fetchShowEpisodeList(showId: Int, handler: @escaping ((Result<[ShowEpisodeEntity],DomainError>) -> Void))
 }

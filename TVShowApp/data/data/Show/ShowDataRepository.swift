@@ -7,7 +7,6 @@
 
 import Foundation
 import DomainLayer
-import Alamofire
 
 public class ShowDataRepository : ShowDomainRepositoryProtocol {
     

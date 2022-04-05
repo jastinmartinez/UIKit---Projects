@@ -8,12 +8,23 @@
 import Foundation
 
 public struct ShowEpisodeEntity : Decodable {
+    public let id: Int
     public let name: String
     public let number: Int
     public let season: Int
     public let summary: String?
-    public let average: ShowEpisodeRatingEntity
+    public let rating: ShowEpisodeRatingEntity
     public var image: ShowEpisodeImageEntity
+    
+    public init(id: Int, name: String, number: Int, season: Int, summary: String? ,rating: ShowEpisodeRatingEntity, image: ShowEpisodeImageEntity) {
+        self.id = id
+        self.name = name
+        self.number = number
+        self.season = season
+        self.summary = summary
+        self.rating = rating
+        self.image = image
+    }
 }
 
 public struct ShowEpisodeRatingEntity : Decodable {
