@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  MainTabBarViewController.swift
 //  TVShowApp
 //
 //  Created by Jastin on 1/4/22.
@@ -8,7 +8,7 @@
 import UIKit
 import PresentationLayer
 
-class MainViewController: UITabBarController {
+class MainTabBarViewController: UITabBarController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
