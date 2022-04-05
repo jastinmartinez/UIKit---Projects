@@ -51,7 +51,6 @@ public class ShowViewModel {
         }
     }
     
-    
     public func setShowEntityById(showEntityID: Int, handler: ((ShowEntity) -> Void)?) {
         guard let showEntityIndex = self.showEntityList.firstIndex(where: { showEntity in showEntity.id == showEntityID }) else {
             return

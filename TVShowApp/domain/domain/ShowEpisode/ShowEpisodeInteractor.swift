@@ -7,11 +7,11 @@
 
 import Foundation
 
-public protocol ShowEpidoseInteractorProtocol {
+public protocol ShowEpisodeInteractorProtocol {
     func fecthShowEpisodeList(showId: Int, handler: @escaping ((Result<[ShowEpisodeEntity],DomainError>) -> Void))
 }
 
-public class ShowEpisodeInteractor : ShowEpidoseInteractorProtocol {
+public class ShowEpisodeInteractor : ShowEpisodeInteractorProtocol {
     
     private let showEpisodeDomainRepositoryProtocol: ShowEpisodeDomainRepositoryProtocol
     
