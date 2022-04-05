@@ -71,10 +71,10 @@ class ShowDetailViewController : UIViewController {
         stackView.axis = .horizontal
         stackView.spacing = 10
         stackView.distribution = .fill
-        for index in 1...showEntity.genres.count {
+        for index in 0...showEntity.genres.count - 1 {
             let genreLabel = UILabel()
             genreLabel.font = UIFont(name: "avenir", size: 20)
-            genreLabel.text = showEntity.genres[index - 1]
+            genreLabel.text = showEntity.genres[index]
             genreLabel.textColor = index % 2 != 0 ? UIColor(named: ColorHelper.red.rawValue) : .white
             stackView.addArrangedSubview(genreLabel)
         }
@@ -91,10 +91,10 @@ class ShowDetailViewController : UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat  = "EEEE"
         let dayInWeek = dateFormatter.string(from: Date.now)
-        for index in 1...showEntity.schedule.days.count {
+        for index in 0...showEntity.schedule.days.count - 1 {
             let daysLabel = UILabel()
             daysLabel.font = UIFont(name: "avenir", size: 17)
-            daysLabel.text = showEntity.schedule.days[index - 1]
+            daysLabel.text = showEntity.schedule.days[index]
             daysLabel.textColor = index % 2 != 0 ? UIColor(named: ColorHelper.red.rawValue) : .white
             stackView.addArrangedSubview(daysLabel)
         }
