@@ -72,7 +72,7 @@ class ShowDetailViewController : UIViewController {
         stackView.distribution = .fill
         if showEntity.schedule.days.isEmpty {
             let daysLabel = UILabel.buildLabelWith(size: 17,color: UIColor(named: ColorHelper.red.rawValue)!)
-            daysLabel.text = "N/A"
+            daysLabel.text = NameHelper.NotAvailable.rawValue
             stackView.addArrangedSubview(daysLabel)
         }
         else {
@@ -85,9 +85,15 @@ class ShowDetailViewController : UIViewController {
         return stackView
     }()
     
+    private lazy var showDetailTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(UITableView.self, forCellReuseIdentifier: NameHelper.cell.rawValue)
+        return tableView
+    }()
+    
     private var showEntity: ShowEntity!
     
-    init(showEntity: ShowEntity) {
+    required init(showEntity: ShowEntity) {
         self.showEntity = showEntity
         super.init(nibName: nil, bundle: nil)
     }
@@ -110,6 +116,7 @@ class ShowDetailViewController : UIViewController {
         self.setRatingStackViewConstraint()
         self.setGenreStackViewConstraint()
         self.setDayStackViewConstraint()
+        self.showDetailTableView.dataSource = self
     }
     
     fileprivate func setViewConfiguration() {
@@ -158,7 +165,7 @@ class ShowDetailViewController : UIViewController {
     }
     
     fileprivate func setTimeLabel() {
-        self.timeLabel.text = showEntity.schedule.time
+        self.timeLabel.text = showEntity.schedule.time.isEmpty ? NameHelper.NotAvailable.rawValue : showEntity.schedule.time
         NSLayoutConstraint.on([self.timeLabel.topAnchor.constraint(equalTo: self.daysStackView.bottomAnchor,constant: 10),
                                self.timeLabel.centerXAnchor.constraint(equalTo: self.showDetailContentScrollView.centerXAnchor)])
     }
@@ -187,6 +194,16 @@ class ShowDetailViewController : UIViewController {
     fileprivate func setDayStackViewConstraint() {
         NSLayoutConstraint.on([self.daysStackView.topAnchor.constraint(equalTo: self.summaryLabel.bottomAnchor,constant: 10),
                                self.daysStackView.centerXAnchor.constraint(equalTo: self.showDetailContentScrollView.centerXAnchor)])
+    }
+}
+
+extension ShowDetailViewController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
 }
 
