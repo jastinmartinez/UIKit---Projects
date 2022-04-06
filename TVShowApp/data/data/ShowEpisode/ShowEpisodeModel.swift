@@ -14,11 +14,11 @@ public struct ShowEpisodeModel : Decodable {
      let number: Int
      let season: Int
      let summary: String?
-     let average: ShowEpisodeRatingModel
-     let image: ShowEpisodeImageModel
+     let rating: ShowEpisodeRatingModel
+     let image: ShowEpisodeImageModel?
      
      func toShowEpisodeEntity() -> ShowEpisodeEntity {
-         return ShowEpisodeEntity(id: self.id, name: self.name, number: self.number, season: self.season, summary: self.summary, rating: self.average.toShowEpisodeRatingEntity(), image: self.image.toShowEpisodeImageEntity())
+         return ShowEpisodeEntity(id: self.id, name: self.name, number: self.number, season: self.season, summary: self.summary, rating: self.rating.toShowEpisodeRatingEntity(), image: self.image?.toShowEpisodeImageEntity())
      }
 }
 
@@ -31,7 +31,7 @@ struct ShowEpisodeRatingModel : Decodable {
 }
 
 struct ShowEpisodeImageModel : Decodable {
-    let original: String?
+    let original: String
     
     func toShowEpisodeImageEntity() -> ShowEpisodeImageEntity {
         return ShowEpisodeImageEntity(original: self.original)

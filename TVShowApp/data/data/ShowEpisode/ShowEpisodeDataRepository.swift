@@ -8,15 +8,15 @@
 import Foundation
 import DomainLayer
 
-class ShowEpisodeDataRepository : ShowEpisodeDomainRepositoryProtocol {
+public class ShowEpisodeDataRepository : ShowEpisodeDomainRepositoryProtocol {
     
     private let showEpisodeRemoteDataSourceProtocol: ShowEpisodeRemoteDataSourceProtocol
     
-    init(showEpisodeRemoteDataSourceProtocol: ShowEpisodeRemoteDataSourceProtocol) {
+    public required init(showEpisodeRemoteDataSourceProtocol: ShowEpisodeRemoteDataSourceProtocol) {
         self.showEpisodeRemoteDataSourceProtocol = showEpisodeRemoteDataSourceProtocol
     }
     
-    func fetchShowEpisodeList(showId: Int, handler: @escaping ((Result<[ShowEpisodeEntity], DomainError>) -> Void)) {
+    public func fetchShowEpisodeList(showId: Int, handler: @escaping ((Result<[ShowEpisodeEntity], DomainError>) -> Void)) {
         self.showEpisodeRemoteDataSourceProtocol.fecthShowEpisodeList(showId: showId) { dataResponse in
             switch dataResponse.result {
             case .success(let showEpisodeModelList):
@@ -24,6 +24,7 @@ class ShowEpisodeDataRepository : ShowEpisodeDomainRepositoryProtocol {
                     showEpisodeModel.toShowEpisodeEntity()
                 })))
             case .failure(let afError):
+                print(afError)
                 handler(.failure(AFErrorToDomainErrorHelper.errorTypeOf(afError)))
             }
         }

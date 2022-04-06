@@ -14,9 +14,9 @@ public struct ShowEpisodeEntity : Decodable {
     public let season: Int
     public let summary: String?
     public let rating: ShowEpisodeRatingEntity
-    public var image: ShowEpisodeImageEntity
+    public var image: ShowEpisodeImageEntity?
     
-    public init(id: Int, name: String, number: Int, season: Int, summary: String? ,rating: ShowEpisodeRatingEntity, image: ShowEpisodeImageEntity) {
+    public init(id: Int, name: String, number: Int, season: Int, summary: String? ,rating: ShowEpisodeRatingEntity, image: ShowEpisodeImageEntity?) {
         self.id = id
         self.name = name
         self.number = number

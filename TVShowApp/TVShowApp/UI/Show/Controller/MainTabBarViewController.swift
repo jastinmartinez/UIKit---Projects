@@ -23,9 +23,10 @@ class MainTabBarViewController: UITabBarController {
     }
     
     fileprivate func setViewControlellers() {
-        let showViewModel = ShowDependencyInjection().setShowViewModelDependecy()
+        let showViewModel = ShowDependencyInjection.setShowViewModelDependecy()
+        let showEpisodeViewModel = ShowEpisodeDependeyInjection.setShowEpisodeViewModelDependecy()
         
-        let showViewController = UINavigationController(rootViewController: ShowTableViewController(showViewModel: showViewModel))
+        let showViewController = UINavigationController(rootViewController: ShowTableViewController(showViewModel: showViewModel, showEpisodeViewModel: showEpisodeViewModel))
         showViewController.navigationBar.backgroundColor = UIColor(named: ColorHelper.blue.rawValue)!
         showViewController.tabBarItem = UITabBarItem(title: "TV Shows", image: UIImage(systemName: "ticket"), selectedImage: UIImage(systemName: "ticket"))
         

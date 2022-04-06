@@ -10,19 +10,23 @@ import PresentationLayer
 import DomainLayer
 
 class ShowTableViewController : UIViewController {
-    private var fetchingActivityIndicator = UIActivityIndicatorView(style: .medium)
+    private var fetchingActivityIndicator = UIActivityIndicatorView(style: .large)
     private var showViewModel: ShowViewModel!
+    private var showEpisodeViewModel: ShowEpisodeViewModel!
     private var showSearchController: UISearchController!
     
     private lazy var showTableView: UITableView = {
         let tableView = UITableView()
+        tableView.allowsMultipleSelection = false
+        tableView.isMultipleTouchEnabled = false
         tableView.backgroundColor = UIColor(named: ColorHelper.white.rawValue)!
         tableView.register(ShowTableViewCell.self, forCellReuseIdentifier: NameHelper.cell.rawValue)
         return tableView
     }()
     
-    init(showViewModel: ShowViewModel) {
+    init(showViewModel: ShowViewModel,showEpisodeViewModel: ShowEpisodeViewModel) {
         self.showViewModel = showViewModel
+        self.showEpisodeViewModel = showEpisodeViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -36,6 +40,10 @@ class ShowTableViewController : UIViewController {
         self.setOutletToSubView()
         self.setShowTableView()
         self.setShowSearchController()
+        fetchingActivityIndicator.color = UIColor(named: ColorHelper.red.rawValue)!
+        self.view.addSubview(self.fetchingActivityIndicator)
+        NSLayoutConstraint.on([self.fetchingActivityIndicator.centerXAnchor.constraint(equalTo: self.showTableView.centerXAnchor),
+                               self.fetchingActivityIndicator.centerYAnchor.constraint(equalTo: self.showTableView.centerYAnchor)])
     }
     
     fileprivate func setOutletToSubView() {
@@ -92,7 +100,10 @@ extension ShowTableViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.present(ShowDetailViewController(showEntity: self.showViewModel.showEntityList[indexPath.row]), animated: true)
+        self.fetchingActivityIndicator.startAnimating()
+        self.showViewModel.showEntity = self.showViewModel.showEntityList[indexPath.row]
+        self.showEpisodeViewModel.fetchShowEpisodeListById(showId: self.showViewModel.showEntityList[indexPath.row].id)
+        self.showEpisodeViewModel.didSetShowEpisodeEntityList = self
     }
 }
 
@@ -111,13 +122,9 @@ extension ShowTableViewController : UITableViewDelegate {
 }
 
 extension ShowTableViewController : DidSetShowEntityList {
-    func notifyViewController(_ message: String?) {
-        if let message = message {
-            print(message)
-        } else {
-            DispatchQueue.main.async {
-                self.showTableView.reloadData()
-            }
+    func DidSetShowEntityListNotification() {
+        DispatchQueue.main.async {
+            self.showTableView.reloadData()
         }
     }
 }
@@ -143,5 +150,16 @@ extension ShowTableViewController : UIScrollViewDelegate {
                 self.showTableView.tableFooterView = nil
             }
         }
+    }
+}
+
+extension ShowTableViewController : DidSetShowEpisodeEntityList {
+    func DidSetShowEpisodeEntityListNotification() {
+        self.fetchingActivityIndicator.stopAnimating()
+        guard let showEntity = self.showViewModel.showEntity else {
+            return
+        }
+        let showDetaiViewController = ShowDetailViewController(showEntity: showEntity, showEpisodeEntityListGropBySeason: self.showEpisodeViewModel.showEpisodeEntityListGropBySeason)
+        self.present(showDetaiViewController, animated: true)
     }
 }

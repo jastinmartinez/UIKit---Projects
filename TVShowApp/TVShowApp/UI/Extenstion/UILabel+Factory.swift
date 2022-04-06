@@ -7,7 +7,7 @@
 
 import UIKit
 extension UILabel {
-    class func buildLabelWith(size: CGFloat, color: UIColor = .black, isMultiline: Bool = false,textAligment: NSTextAlignment = .natural) -> UILabel {
+    class func buildLabelWith(size: CGFloat, color: UIColor = UIColor(named: ColorHelper.blue.rawValue)!, isMultiline: Bool = false,textAligment: NSTextAlignment = .natural) -> UILabel {
         let label = UILabel()
         label.font = UIFont(name: "Avenir", size: size)
         label.textColor = color

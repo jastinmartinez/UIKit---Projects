@@ -10,10 +10,11 @@ import DomainLayer
 import CloudKit
 
 public protocol DidSetShowEntityList : AnyObject {
-    func notifyViewController(_ message: String?)
+    func DidSetShowEntityListNotification()
 }
 
 public class ShowViewModel {
+    public var showEntity: ShowEntity?
     public var preFetchOperationQuee:[Int:IndexPath?] = [:]
     public var isFetchingNextShowEntityList = false
     private var pageNumberList: [Int] = [1]
@@ -43,10 +44,9 @@ public class ShowViewModel {
             switch showInteractorResult {
             case .success(let showEntityList):
                 self.showEntityList.append(contentsOf: showEntityList)
-                self.didSetShowEntityList?.notifyViewController(nil)
-            case .failure(let error):
+                self.didSetShowEntityList?.DidSetShowEntityListNotification()
+            case .failure(_):
                 self.pageNumberList[self.pageNumberList.count - 1] = -1
-                self.didSetShowEntityList?.notifyViewController(error.errorDescription)
             }
         }
     }

@@ -8,14 +8,15 @@
 import Foundation
 import UIKit
 import DomainLayer
+import PresentationLayer
 
 class ShowDetailViewController : UIViewController {
     
     private var showDetailScrollView = UIScrollView()
     private var showDetailContentScrollView = UIView()
-    private lazy var nameLabel: UILabel = UILabel.buildLabelWith(size: 30,isMultiline: true,textAligment: .center)
-    private lazy var summaryLabel: UILabel = UILabel.buildLabelWith(size: 15,isMultiline: true,textAligment: .center)
-    private lazy var timeLabel: UILabel = UILabel.buildLabelWith(size: 17,isMultiline: true)
+    private lazy var nameLabel: UILabel = UILabel.buildLabelWith(size: 30,color: .white, isMultiline: true,textAligment: .center)
+    private lazy var summaryLabel: UILabel = UILabel.buildLabelWith(size: 15,color: .white, isMultiline: true,textAligment: .center)
+    private lazy var timeLabel: UILabel = UILabel.buildLabelWith(size: 17,color: .white, isMultiline: true)
     
     private lazy var posterImageView: UIImageView = {
         let posterImageView = UIImageView()
@@ -53,7 +54,7 @@ class ShowDetailViewController : UIViewController {
         stackView.distribution = .fill
         if showEntity.genres.isEmpty {
             let genreLabel = UILabel.buildLabelWith(size: 20,color: UIColor(named: ColorHelper.red.rawValue)!)
-            genreLabel.text = "N/A"
+            genreLabel.text = NameHelper.NotAvailable.rawValue
             stackView.addArrangedSubview(genreLabel)
         }
         for index in 0...showEntity.genres.count - 1 {
@@ -85,23 +86,31 @@ class ShowDetailViewController : UIViewController {
         return stackView
     }()
     
-    private lazy var showDetailTableView: UITableView = {
+    private lazy var showEpisodeTableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(UITableView.self, forCellReuseIdentifier: NameHelper.cell.rawValue)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: NameHelper.cell.rawValue)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.layer.cornerRadius = 30
+        tableView.clipsToBounds = true
+        tableView.backgroundColor = UIColor(named: ColorHelper.red.rawValue)
         return tableView
     }()
     
     private var showEntity: ShowEntity!
+    private var showEpisodeEntityListGropBySeason: [Int:[ShowEpisodeEntity]] = [:]
+    private let scrollViewContentHeight = 1500 as CGFloat
     
-    required init(showEntity: ShowEntity) {
+    required init(showEntity: ShowEntity,showEpisodeEntityListGropBySeason: [Int:[ShowEpisodeEntity]]) {
         self.showEntity = showEntity
+        self.showEpisodeEntityListGropBySeason = showEpisodeEntityListGropBySeason
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setViewConfiguration()
@@ -116,9 +125,10 @@ class ShowDetailViewController : UIViewController {
         self.setRatingStackViewConstraint()
         self.setGenreStackViewConstraint()
         self.setDayStackViewConstraint()
-        self.showDetailTableView.dataSource = self
+        self.setShowEpisodeTableViewConstraint()
+        self.updateTableView()
     }
-    
+  
     fileprivate func setViewConfiguration() {
         self.view.backgroundColor = UIColor(named: ColorHelper.blue.rawValue)
     }
@@ -132,11 +142,19 @@ class ShowDetailViewController : UIViewController {
         self.showDetailContentScrollView.addSubview(self.timeLabel)
         self.showDetailContentScrollView.addSubview(self.daysStackView)
         self.showDetailContentScrollView.addSubview(self.posterImageView)
+        self.showDetailContentScrollView.addSubview(self.showEpisodeTableView)
         self.view.addSubview(self.showDetailScrollView)
     }
     
     fileprivate func setShowDetailScrollViewContentSize() {
-        self.showDetailScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 1500)
+        self.showDetailScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: scrollViewContentHeight)
+    }
+    
+    fileprivate func setShowEpisodeTableViewConstraint() {
+        NSLayoutConstraint.on([self.showEpisodeTableView.topAnchor.constraint(equalTo: self.genreStackView.bottomAnchor,constant: 10),
+                               self.showEpisodeTableView.leftAnchor.constraint(equalTo: self.showDetailContentScrollView.layoutMarginsGuide.leftAnchor),
+                               self.showEpisodeTableView.rightAnchor.constraint(equalTo: self.showDetailContentScrollView.layoutMarginsGuide.rightAnchor),
+                               self.showEpisodeTableView.heightAnchor.constraint(equalToConstant: 350)])
     }
     
     fileprivate func setPosterImageView() {
@@ -159,7 +177,7 @@ class ShowDetailViewController : UIViewController {
     
     fileprivate func setSummaryLabel() {
         self.summaryLabel.text = showEntity.summary
-        NSLayoutConstraint.on([self.summaryLabel.topAnchor.constraint(equalTo: self.genreStackView.bottomAnchor,constant: 10),
+        NSLayoutConstraint.on([self.summaryLabel.topAnchor.constraint(equalTo: self.showEpisodeTableView.bottomAnchor,constant: 10),
                                self.summaryLabel.leftAnchor.constraint(equalTo: self.showDetailContentScrollView.layoutMarginsGuide.leftAnchor),
                                self.summaryLabel.rightAnchor.constraint(equalTo: self.showDetailContentScrollView.layoutMarginsGuide.rightAnchor)])
     }
@@ -195,15 +213,48 @@ class ShowDetailViewController : UIViewController {
         NSLayoutConstraint.on([self.daysStackView.topAnchor.constraint(equalTo: self.summaryLabel.bottomAnchor,constant: 10),
                                self.daysStackView.centerXAnchor.constraint(equalTo: self.showDetailContentScrollView.centerXAnchor)])
     }
+    
+    fileprivate func updateTableView() {
+        DispatchQueue.main.async {
+            self.showEpisodeTableView.reloadData()
+        }
+    }
 }
 
 extension ShowDetailViewController : UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.showEpisodeEntityListGropBySeason.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.showEpisodeEntityListGropBySeason[section]?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let showEpisodeTableViewCell = tableView.dequeueReusableCell(withIdentifier: NameHelper.cell.rawValue, for: indexPath) as UITableViewCell
+        var cellConfiguration = UIListContentConfiguration.cell()
+        if let showEntityList = self.showEpisodeEntityListGropBySeason[indexPath.section] {
+            cellConfiguration.text = "\(showEntityList[indexPath.row].number)"
+            showEpisodeTableViewCell.accessoryType = .disclosureIndicator
+        }
+        else {
+            cellConfiguration.text = NameHelper.NotAvailable.rawValue
+        }
+        showEpisodeTableViewCell.contentConfiguration = cellConfiguration
+        showEpisodeTableViewCell.backgroundColor = UIColor(named: ColorHelper.blue.rawValue)
+        showEpisodeTableViewCell.selectionStyle = .none
+        return showEpisodeTableViewCell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == 0 ? "Season" : "Season \(section)"
+    }
+}
+
+extension ShowDetailViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath)
     }
 }
 

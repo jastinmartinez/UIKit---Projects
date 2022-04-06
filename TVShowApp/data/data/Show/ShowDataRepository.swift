@@ -12,7 +12,7 @@ public class ShowDataRepository : ShowDomainRepositoryProtocol {
     
     private let showRemoteDataSource: ShowRemoteDataSourceProtocol
     
-    public init(showRemoteDataSource: ShowRemoteDataSourceProtocol) {
+    public required init(showRemoteDataSource: ShowRemoteDataSourceProtocol) {
         self.showRemoteDataSource = showRemoteDataSource
     }
     

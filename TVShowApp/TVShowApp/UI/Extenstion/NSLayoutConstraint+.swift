@@ -10,7 +10,10 @@ import UIKit
 extension NSLayoutConstraint {
     class func on(_ constraints:[NSLayoutConstraint]) {
         for constraint in constraints {
-            (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
+            guard let view = constraint.firstItem as? UIView else {
+                return
+            }
+            view.translatesAutoresizingMaskIntoConstraints = false
             constraint.isActive = true
         }
     }

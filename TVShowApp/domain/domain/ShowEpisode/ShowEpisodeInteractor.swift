@@ -15,7 +15,7 @@ public class ShowEpisodeInteractor : ShowEpisodeInteractorProtocol {
     
     private let showEpisodeDomainRepositoryProtocol: ShowEpisodeDomainRepositoryProtocol
     
-    init(showEpisodeDomainRepositoryProtocol: ShowEpisodeDomainRepositoryProtocol) {
+    public required init(showEpisodeDomainRepositoryProtocol: ShowEpisodeDomainRepositoryProtocol) {
         self.showEpisodeDomainRepositoryProtocol = showEpisodeDomainRepositoryProtocol
     }
     
