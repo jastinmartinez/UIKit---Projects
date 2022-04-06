@@ -208,7 +208,7 @@ extension ShowDetailViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.showEpisodeViewModel.showEpisodeEntityListGropBySeason[section]?.count ?? 1
+        return self.showEpisodeViewModel.showEpisodeEntityListGropBySeason[section]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
