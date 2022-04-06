@@ -9,17 +9,28 @@ import UIKit
 import PresentationLayer
 import DomainLayer
 
+
+enum ShowEntitySort : String , CaseIterable {
+    case name = "Name"
+    case favorite = "Favorite"
+}
 class ShowTableViewController : UIViewController {
     
     private var showViewModel: ShowViewModel!
     private var showEpisodeViewModel: ShowEpisodeViewModel!
     private var showSearchController: UISearchController!
     private lazy var fetchingActivityIndicator = UIActivityIndicatorView.buildActivityIndicator()
+    private var showEntitySortOrderSegmentedControl = UISegmentedControl(items: ShowEntitySort.allCases.map({ $0.rawValue }))
     private lazy var showTableView: UITableView = {
         let tableView = UITableView()
         tableView.allowsMultipleSelection = false
         tableView.isMultipleTouchEnabled = false
         tableView.backgroundColor = UIColor(named: ColorHelper.white.rawValue)!
+        tableView.dataSource = self
+        tableView.prefetchDataSource = self
+        tableView.delegate = self
+        tableView.layer.cornerRadius = 30
+        tableView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         tableView.register(ShowTableViewCell.self, forCellReuseIdentifier: NameHelper.cell.rawValue)
         return tableView
     }()
@@ -48,16 +59,29 @@ class ShowTableViewController : UIViewController {
         self.view.addSubview(self.fetchingActivityIndicator)
     }
     
+    
+    fileprivate func setShowTableViewHeader() -> UIView {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 50))
+        self.showEntitySortOrderSegmentedControl.selectedSegmentIndex = 0
+        self.showEntitySortOrderSegmentedControl.addTarget(self, action: #selector(self.showEntitySortOrderSegmentedControlValueChange), for: .valueChanged)
+        self.showEntitySortOrderSegmentedControl.selectedSegmentTintColor = UIColor(named: ColorHelper.red.rawValue)
+        self.showEntitySortOrderSegmentedControl.backgroundColor = UIColor(named: ColorHelper.blue.rawValue)
+        headerView.addSubview(self.showEntitySortOrderSegmentedControl)
+        NSLayoutConstraint.on([self.showEntitySortOrderSegmentedControl.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+                               self.showEntitySortOrderSegmentedControl.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)])
+        return headerView
+    }
+    
+    @objc fileprivate func showEntitySortOrderSegmentedControlValueChange(sender: UISegmentedControl) {
+        self.showViewModel.setShowEntitySort(index: sender.selectedSegmentIndex)
+    }
+    
     fileprivate func setViewConfiguration() {
         self.view.backgroundColor = UIColor(named: ColorHelper.blue.rawValue)!
     }
     
     fileprivate func setShowTableView() {
-        self.showTableView.dataSource = self
-        self.showTableView.prefetchDataSource = self
-        self.showTableView.delegate = self
-        self.showTableView.layer.cornerRadius = 30
-        self.showTableView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        self.showTableView.tableHeaderView = self.setShowTableViewHeader()
         NSLayoutConstraint.on([self.showTableView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
                                self.showTableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
                                self.showTableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
@@ -126,7 +150,7 @@ extension ShowTableViewController : UITableViewDelegate {
 
 extension ShowTableViewController : DidSetShowEntityList {
     func DidSetShowEntityListNotification() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.showTableView.reloadData()
         }
     }

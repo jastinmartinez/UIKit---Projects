@@ -45,7 +45,7 @@ public class ShowViewModel {
             self.isFetchingNextShowEntityList = false
             switch showInteractorResult {
             case .success(let showEntityList):
-                self.showEntityList.append(contentsOf: showEntityList)
+                self.showEntityList.append(contentsOf: showEntityList.sorted(by: {$0.name < $1.name}))
                 self.didSetShowEntityList?.DidSetShowEntityListNotification()
             case .failure(_):
                 self.pageNumberList[self.pageNumberList.count - 1] = -1
@@ -92,6 +92,21 @@ public class ShowViewModel {
                     break
                 }
             }
+        }
+    }
+    
+    public func setShowEntitySort(index: Int) {
+        switch index {
+        case 0:
+            self.showEntityList =  showEntityList.sorted(by: { $0.name < $1.name})
+            self.didSetShowEntityList?.DidSetShowEntityListNotification()
+            break
+        case 1:
+            self.showEntityList = showEntityList.sorted(by: { $0.isFavorite && !$1.isFavorite})
+            self.didSetShowEntityList?.DidSetShowEntityListNotification()
+            break
+        default:
+            break
         }
     }
 }
