@@ -19,5 +19,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>TVShow Uses Face ID To Log You In.</string>
 </dict>
 </plist>

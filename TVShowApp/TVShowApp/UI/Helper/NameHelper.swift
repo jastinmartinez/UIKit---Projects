@@ -10,4 +10,5 @@ import Foundation
 public enum NameHelper : String{
     case cell = "cell"
     case NotAvailable = "N/A"
+    case auth = "auth"
 }

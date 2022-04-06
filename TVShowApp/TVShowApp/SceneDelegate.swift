@@ -11,15 +11,45 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
-        self.window?.rootViewController = MainTabBarViewController()
+        self.window?.rootViewController = DeniedAccessViewController()
         self.window?.makeKeyAndVisible()
+        self.authenticationVerification()
+    }
+    
+    fileprivate func authenticationVerification() {
+        if let isAuthRequired = UserDefaults.standard.object(forKey: NameHelper.auth.rawValue) as? Bool {
+            if isAuthRequired {
+                BiometricalAuthentication.isAuthenticationSuccessful { isValid in
+                    if isValid {
+                        DispatchQueue.main.async {
+                            self.setRootViewController()
+                        }
+                      
+                    } else {
+                        DispatchQueue.main.async {
+                            self.setRootViewController(viewController: DeniedAccessViewController())
+                        }
+                    }
+                }
+            }
+            else {
+                self.setRootViewController()
+            }
+        }
+        else {
+            self.setRootViewController()
+        }
+    }
+    
+    fileprivate func setRootViewController(viewController: UIViewController = MainTabBarViewController()) {
+            self.window?.rootViewController = viewController
+            self.window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
