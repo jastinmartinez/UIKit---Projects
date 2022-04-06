@@ -64,8 +64,9 @@ extension ShowSearchResultTableViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let showTableViewCell = tableView.dequeueReusableCell(withIdentifier:  NameHelper.cell.rawValue) as? ShowTableViewCell
-        showTableViewCell?.accessoryType = .detailDisclosureButton
+        showTableViewCell?.tintColor = UIColor(named: ColorHelper.red.rawValue)
         showTableViewCell?.selectionStyle = .none
+        showTableViewCell?.didChangeShowEntity = self
         self.showViewModel.setShowEntityById(showEntityID: self.showEntityList[indexPath.row].id) { showEntity in
             showTableViewCell?.setShowEntity(showEntity)
         }
@@ -76,6 +77,12 @@ extension ShowSearchResultTableViewController : UITableViewDataSource {
 extension ShowSearchResultTableViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
+    }
+}
+
+extension ShowSearchResultTableViewController : DidChangeShowEntity {
+    func didChangeShowEntity(_ showEntity: ShowEntity) {
+        self.showViewModel.updateShowEntit(showEntity)
     }
 }
 
