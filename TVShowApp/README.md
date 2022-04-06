@@ -1,8 +1,5 @@
 # TVShow App
-
 A demo app that list TVShow with episode details.
-<br/>
-<br/>
 <br/>
 ## How to Set Up
 Download Project
