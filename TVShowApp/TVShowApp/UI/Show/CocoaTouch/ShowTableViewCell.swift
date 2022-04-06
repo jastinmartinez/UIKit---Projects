@@ -8,11 +8,22 @@
 import UIKit
 import DomainLayer
 
+protocol DidChangeShowEntity : AnyObject {
+    func didChangeShowEntity(_ showEntity: ShowEntity)
+}
+
 class ShowTableViewCell : UITableViewCell {
-    
+    private var showEntity: ShowEntity?
+    weak var didChangeShowEntity: DidChangeShowEntity?
     private var showRatingButtonImageList = [UIButton]()
     private var showGenreLabelList = [UILabel]()
-    
+    private lazy var favoriteButton: UIButton = {
+        let button = UIButton(type: .custom)
+        var configuration = UIButton.Configuration.plain()
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+        return button
+    }()
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.numberOfLines = 0
@@ -70,6 +81,7 @@ class ShowTableViewCell : UITableViewCell {
         self.setPosterImageViewConstraint()
         self.setRatingStackViewConstraint()
         self.setGenreStackViewConstraint()
+        self.setFavoriteButtonConstraint()
     }
     
     fileprivate func setTableViewCellConfiguration() {
@@ -81,6 +93,7 @@ class ShowTableViewCell : UITableViewCell {
         self.addSubview(self.posterImageView)
         self.addSubview(self.ratingStackView)
         self.addSubview(self.genreStackView)
+        self.addSubview(self.favoriteButton)
     }
     
     fileprivate func setTitleLabelConstraint() {
@@ -110,6 +123,7 @@ class ShowTableViewCell : UITableViewCell {
     }
     
     func setShowEntity(_ showEntity: ShowEntity) {
+        self.showEntity = showEntity
         DispatchQueue.main.async {
             self.setGenreLabelListValue(showEntity)
             self.setRatingButtonImageListValue(showEntity)
@@ -117,6 +131,7 @@ class ShowTableViewCell : UITableViewCell {
             if let imageData = showEntity.image?.data {
                 self.posterImageView.image = UIImage(data: imageData)
             }
+            self.favoriteButton.isSelected = showEntity.isFavorite
         }
     }
     
@@ -135,5 +150,24 @@ class ShowTableViewCell : UITableViewCell {
                 self.showRatingButtonImageList[index].isSelected = true
             }
         }
+    }
+    
+    @objc fileprivate func favoriteButtonTouch(sender: UIButton) {
+        DispatchQueue.main.async {
+            self.favoriteButton.isSelected.toggle()
+            self.showEntity?.isFavorite.toggle()
+            guard let showEntity = self.showEntity else {
+                return
+            }
+            self.didChangeShowEntity?.didChangeShowEntity(showEntity)
+        }
+    }
+    
+    fileprivate func setFavoriteButtonConstraint() {
+        self.favoriteButton.addTarget(self, action: #selector(favoriteButtonTouch), for: .touchUpInside)
+        NSLayoutConstraint.on([self.favoriteButton.rightAnchor.constraint(equalTo: self.layoutMarginsGuide.rightAnchor),
+                               self.favoriteButton.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
+                               self.favoriteButton.heightAnchor.constraint(equalToConstant: 50),
+                               self.favoriteButton.widthAnchor.constraint(equalToConstant: 50)])
     }
 }

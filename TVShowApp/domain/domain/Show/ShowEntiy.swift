@@ -15,6 +15,7 @@ public struct ShowEntity  {
     public let genres: [String]
     public let summary: String?
     public let rating: ShowRatingEntity
+    public var isFavorite: Bool = false
     
     public init(id: Int,name: String,image: ShowImageEntity?, schedule: ShowScheduleEntity,genres: [String],summary: String?, rating: ShowRatingEntity) {
         self.id = id

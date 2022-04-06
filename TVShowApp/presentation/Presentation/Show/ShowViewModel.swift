@@ -28,7 +28,7 @@ public class ShowViewModel {
         self.showInteractorProtocol = showInteractorProtocol
         self.externalImageInteractorProtocol = externalImageInteractorProtocol
     }
-
+    
     public func fetchNextShowList(handler: (() -> ())?) {
         if pageNumberList[pageNumberList.count - 1] > -1 {
             self.isFetchingNextShowEntityList = true
@@ -53,21 +53,28 @@ public class ShowViewModel {
         }
     }
     
+    public func updateShowEntit(_ externalShowEntity: ShowEntity) {
+        guard let showEntityIndex = self.showEntityList.firstIndex(where: { showEntity in showEntity.id == externalShowEntity.id }) else {
+            return
+        }
+        self.showEntityList[showEntityIndex] = externalShowEntity
+    }
+    
     public func setShowEntityById(showEntityID: Int, handler: ((ShowEntity) -> Void)?) {
         guard let showEntityIndex = self.showEntityList.firstIndex(where: { showEntity in showEntity.id == showEntityID }) else {
             return
         }
         self.setShowEntityByIndex(index: showEntityIndex, handler: handler)
     }
-   
+    
     public func setShowEntityByIndex(index: Int,handler: ((ShowEntity) -> Void)?) {
         var showEntity = self.showEntityList[index]
         if let showImageEntity = showEntity.image {
             let imageKey = showImageEntity.original as NSString
             if let cachedImageData = self.showImageCached.object(forKey: imageKey) {
                 showEntity.image?.data = Data(referencing: cachedImageData)
-                handler?(showEntity)
                 self.showEntityList[index] = showEntity
+                handler?(self.showEntityList[index])
                 return
             }
             self.externalImageInteractorProtocol.fetchExternalImage(imageUrl: showImageEntity.original) { fetchShowImageResult in
@@ -79,7 +86,7 @@ public class ShowViewModel {
                         self.showImageCached.setObject(NSData(data: imageData), forKey: imageKey)
                     }
                     DispatchQueue.main.async {
-                        handler?(showEntity)
+                        handler?(self.showEntityList[index])
                     }
                 case .failure(_):
                     break

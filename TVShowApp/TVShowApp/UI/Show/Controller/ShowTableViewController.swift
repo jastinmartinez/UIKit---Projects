@@ -11,7 +11,6 @@ import DomainLayer
 
 class ShowTableViewController : UIViewController {
     
-   
     private var showViewModel: ShowViewModel!
     private var showEpisodeViewModel: ShowEpisodeViewModel!
     private var showSearchController: UISearchController!
@@ -94,7 +93,8 @@ extension ShowTableViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let showTableViewCell = tableView.dequeueReusableCell(withIdentifier: NameHelper.cell.rawValue) as? ShowTableViewCell
-        showTableViewCell?.accessoryType = .detailDisclosureButton
+        showTableViewCell?.tintColor = UIColor(named: ColorHelper.red.rawValue)
+        showTableViewCell?.didChangeShowEntity = self
         showTableViewCell?.selectionStyle = .none
         self.showViewModel.setShowEntityByIndex(index: indexPath.row) { showEntity in
             showTableViewCell?.setShowEntity(showEntity)
@@ -164,5 +164,11 @@ extension ShowTableViewController : DidSetShowEpisodeEntityList {
         }
         let showDetaiViewController = ShowDetailViewController(showEntity: showEntity, showEpisodeViewModel: self.showEpisodeViewModel)
         self.present(showDetaiViewController, animated: true)
+    }
+}
+
+extension ShowTableViewController : DidChangeShowEntity {
+    func didChangeShowEntity(_ showEntity: ShowEntity) {
+        self.showViewModel.updateShowEntit(showEntity)
     }
 }
