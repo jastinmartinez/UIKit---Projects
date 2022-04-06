@@ -13,16 +13,21 @@ class ShowSearchResultTableViewController : UIViewController {
     
     private var showEntityList = [ShowEntity]()
     private var showViewModel: ShowViewModel!
+    private var showEpisodeViewModel: ShowEpisodeViewModel!
+    private lazy var fetchingActivityIndicator = UIActivityIndicatorView.buildActivityIndicator()
     
     private lazy var showSearchResultTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor(named: ColorHelper.white.rawValue)!
         tableView.register(ShowTableViewCell.self, forCellReuseIdentifier: NameHelper.cell.rawValue)
+        tableView.dataSource = self
+        tableView.delegate = self
         return tableView
     }()
     
-    init(showViewModel: ShowViewModel) {
+    init(showViewModel: ShowViewModel, showEpisodeViewModel: ShowEpisodeViewModel) {
         self.showViewModel = showViewModel
+        self.showEpisodeViewModel = showEpisodeViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,6 +38,7 @@ class ShowSearchResultTableViewController : UIViewController {
         super.viewDidLoad()
         self.setViewConfiguration()
         self.setShowSearchResultTableView()
+        self.setActivityIndicator()
     }
     
     fileprivate func setViewConfiguration() {
@@ -48,12 +54,16 @@ class ShowSearchResultTableViewController : UIViewController {
 
     fileprivate func setShowSearchResultTableView() {
         self.view.addSubview(self.showSearchResultTableView)
-        self.showSearchResultTableView.dataSource = self
-        self.showSearchResultTableView.delegate = self
         NSLayoutConstraint.on([self.showSearchResultTableView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
                                self.showSearchResultTableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
                                self.showSearchResultTableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
                                self.showSearchResultTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)])
+    }
+    
+    fileprivate func setActivityIndicator() {
+        self.view.addSubview(self.fetchingActivityIndicator)
+        NSLayoutConstraint.on([self.fetchingActivityIndicator.centerXAnchor.constraint(equalTo: self.showSearchResultTableView.centerXAnchor),
+                               self.fetchingActivityIndicator.centerYAnchor.constraint(equalTo: self.showSearchResultTableView.centerYAnchor)])
     }
 }
 
@@ -78,6 +88,13 @@ extension ShowSearchResultTableViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.fetchingActivityIndicator.startAnimating()
+        self.showViewModel.showEntity = self.showEntityList[indexPath.row]
+        self.showEpisodeViewModel.fetchShowEpisodeListById(showId: self.showEntityList[indexPath.row].id)
+        self.showEpisodeViewModel.didSetShowEpisodeEntityList = self
+    }
 }
 
 extension ShowSearchResultTableViewController : DidChangeShowEntity {
@@ -86,3 +103,13 @@ extension ShowSearchResultTableViewController : DidChangeShowEntity {
     }
 }
 
+extension ShowSearchResultTableViewController : DidSetShowEpisodeEntityList {
+    func DidSetShowEpisodeEntityListNotification() {
+        self.fetchingActivityIndicator.stopAnimating()
+        guard let showEntity = self.showViewModel.showEntity else {
+            return
+        }
+        let showDetaiViewController = ShowDetailViewController(showEntity: showEntity, showEpisodeViewModel: self.showEpisodeViewModel)
+        self.present(showDetaiViewController, animated: true)
+    }
+}

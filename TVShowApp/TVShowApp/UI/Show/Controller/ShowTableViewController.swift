@@ -75,7 +75,7 @@ class ShowTableViewController : UIViewController {
     
     fileprivate func setShowSearchController() {
         self.showViewModel.didSetShowEntityList = self
-        self.showSearchController = UISearchController(searchResultsController: ShowSearchResultTableViewController(showViewModel: showViewModel))
+        self.showSearchController = UISearchController(searchResultsController: ShowSearchResultTableViewController(showViewModel: showViewModel, showEpisodeViewModel: showEpisodeViewModel))
         self.showSearchController.searchResultsUpdater = self
         self.navigationItem.searchController = showSearchController
     }
