@@ -10,11 +10,12 @@ import PresentationLayer
 import DomainLayer
 
 class ShowTableViewController : UIViewController {
-    private var fetchingActivityIndicator = UIActivityIndicatorView(style: .large)
+    
+   
     private var showViewModel: ShowViewModel!
     private var showEpisodeViewModel: ShowEpisodeViewModel!
     private var showSearchController: UISearchController!
-    
+    private lazy var fetchingActivityIndicator = UIActivityIndicatorView.buildActivityIndicator()
     private lazy var showTableView: UITableView = {
         let tableView = UITableView()
         tableView.allowsMultipleSelection = false
@@ -40,14 +41,12 @@ class ShowTableViewController : UIViewController {
         self.setOutletToSubView()
         self.setShowTableView()
         self.setShowSearchController()
-        fetchingActivityIndicator.color = UIColor(named: ColorHelper.red.rawValue)!
-        self.view.addSubview(self.fetchingActivityIndicator)
-        NSLayoutConstraint.on([self.fetchingActivityIndicator.centerXAnchor.constraint(equalTo: self.showTableView.centerXAnchor),
-                               self.fetchingActivityIndicator.centerYAnchor.constraint(equalTo: self.showTableView.centerYAnchor)])
+        self.setActivityIndicatorConstraint()
     }
     
     fileprivate func setOutletToSubView() {
         self.view.addSubview(self.showTableView)
+        self.view.addSubview(self.fetchingActivityIndicator)
     }
     
     fileprivate func setViewConfiguration() {
@@ -68,8 +67,7 @@ class ShowTableViewController : UIViewController {
     
     fileprivate func showTableViewFooterActivityIndicatorView() -> UIView {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
-        let activityIndicatorView = UIActivityIndicatorView(style: .medium)
-        activityIndicatorView.color = UIColor(named: ColorHelper.red.rawValue)!
+        lazy var activityIndicatorView = UIActivityIndicatorView.buildActivityIndicator()
         activityIndicatorView.startAnimating()
         activityIndicatorView.center = footerView.center
         footerView.addSubview(activityIndicatorView)
@@ -81,6 +79,11 @@ class ShowTableViewController : UIViewController {
         self.showSearchController = UISearchController(searchResultsController: ShowSearchResultTableViewController(showViewModel: showViewModel))
         self.showSearchController.searchResultsUpdater = self
         self.navigationItem.searchController = showSearchController
+    }
+    
+    fileprivate func setActivityIndicatorConstraint() {
+        NSLayoutConstraint.on([self.fetchingActivityIndicator.centerXAnchor.constraint(equalTo: self.showTableView.centerXAnchor),
+                               self.fetchingActivityIndicator.centerYAnchor.constraint(equalTo: self.showTableView.centerYAnchor)])
     }
 }
 
@@ -159,7 +162,7 @@ extension ShowTableViewController : DidSetShowEpisodeEntityList {
         guard let showEntity = self.showViewModel.showEntity else {
             return
         }
-        let showDetaiViewController = ShowDetailViewController(showEntity: showEntity, showEpisodeEntityListGropBySeason: self.showEpisodeViewModel.showEpisodeEntityListGropBySeason)
+        let showDetaiViewController = ShowDetailViewController(showEntity: showEntity, showEpisodeViewModel: self.showEpisodeViewModel)
         self.present(showDetaiViewController, animated: true)
     }
 }

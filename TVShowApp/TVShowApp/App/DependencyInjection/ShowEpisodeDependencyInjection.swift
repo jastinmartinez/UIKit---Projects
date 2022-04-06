@@ -15,7 +15,8 @@ final class ShowEpisodeDependeyInjection {
         let showEpisodeRemoteDataSource = ShowEpisodeRemoteDataSource(baseUrl: AppEnviroment.shared.baseUrl, resource: "episodes")
         let showEpisodeDataRepository = ShowEpisodeDataRepository(showEpisodeRemoteDataSourceProtocol: showEpisodeRemoteDataSource)
         let showEpisodeInteractor = ShowEpisodeInteractor(showEpisodeDomainRepositoryProtocol: showEpisodeDataRepository)
-        let showEpisodeViewModel = ShowEpisodeViewModel(showEpisodeInteractorProtocol: showEpisodeInteractor)
+        let externalImageDependency = ExternalImageDependecyInjection.setExternalInteractor()
+        let showEpisodeViewModel = ShowEpisodeViewModel(showEpisodeInteractorProtocol: showEpisodeInteractor, externalImageInteractorProtocol: externalImageDependency)
         return showEpisodeViewModel
     }
 }

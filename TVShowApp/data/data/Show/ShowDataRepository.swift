@@ -26,15 +26,4 @@ public class ShowDataRepository : ShowDomainRepositoryProtocol {
             }
         }
     }
-    
-    public func fetchShowImage(imageUrl: String, handler: @escaping ((Result<Data?, DomainError>) -> Void)) {
-        self.showRemoteDataSource.fetchShowImage(urlImage: imageUrl) { dataResponse in
-            switch dataResponse.result {
-            case .success(let dataImage):
-                handler(.success(dataImage))
-            case .failure(let error):
-                handler(.failure(AFErrorToDomainErrorHelper.errorTypeOf(error)))
-            }
-        }
-    }
 }

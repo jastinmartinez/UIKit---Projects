@@ -11,41 +11,18 @@ import DomainLayer
 import PresentationLayer
 
 class ShowDetailViewController : UIViewController {
+    private var showEntity: ShowEntity!
+    private var showEpisodeViewModel: ShowEpisodeViewModel!
+    private let scrollViewContentHeight = 1500 as CGFloat
     
     private var showDetailScrollView = UIScrollView()
     private var showDetailContentScrollView = UIView()
+    private lazy var fetchingActivityIndicator = UIActivityIndicatorView.buildActivityIndicator()
     private lazy var nameLabel: UILabel = UILabel.buildLabelWith(size: 30,color: .white, isMultiline: true,textAligment: .center)
     private lazy var summaryLabel: UILabel = UILabel.buildLabelWith(size: 15,color: .white, isMultiline: true,textAligment: .center)
     private lazy var timeLabel: UILabel = UILabel.buildLabelWith(size: 17,color: .white, isMultiline: true)
-    
-    private lazy var posterImageView: UIImageView = {
-        let posterImageView = UIImageView()
-        posterImageView.image = .init(systemName: "circle.dashed")
-        posterImageView.contentMode = .scaleToFill
-        posterImageView.layer.cornerRadius = 30
-        posterImageView.clipsToBounds = true
-        return posterImageView
-    }()
-    
-    private lazy var ratingStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.alignment = .center
-        stackView.distribution = .fillEqually
-        for index in 1...10 {
-            let ratingButtonImage = UIButton()
-            ratingButtonImage.tintColor = UIColor(named: ColorHelper.red.rawValue)
-            ratingButtonImage.setImage(UIImage(systemName: "star.fill"), for: .selected)
-            ratingButtonImage.setImage(UIImage(systemName: "star"), for: .normal)
-            if let rating = showEntity.rating.average {
-                if index <= Int(rating) {
-                    ratingButtonImage.isSelected = true
-                }
-            }
-            stackView.addArrangedSubview(ratingButtonImage)
-        }
-        return stackView
-    }()
+    private lazy var posterImageView = UIImageView.buidlPosterImage()
+    private lazy var ratingStackView = UIStackView.buildRating(rating: Int(showEntity.rating.average ?? 0))
     
     private lazy var genreStackView: UIStackView = {
         let stackView = UIStackView()
@@ -97,13 +74,9 @@ class ShowDetailViewController : UIViewController {
         return tableView
     }()
     
-    private var showEntity: ShowEntity!
-    private var showEpisodeEntityListGropBySeason: [Int:[ShowEpisodeEntity]] = [:]
-    private let scrollViewContentHeight = 1500 as CGFloat
-    
-    required init(showEntity: ShowEntity,showEpisodeEntityListGropBySeason: [Int:[ShowEpisodeEntity]]) {
+    required init(showEntity: ShowEntity,showEpisodeViewModel: ShowEpisodeViewModel) {
         self.showEntity = showEntity
-        self.showEpisodeEntityListGropBySeason = showEpisodeEntityListGropBySeason
+        self.showEpisodeViewModel = showEpisodeViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -127,6 +100,7 @@ class ShowDetailViewController : UIViewController {
         self.setDayStackViewConstraint()
         self.setShowEpisodeTableViewConstraint()
         self.updateTableView()
+        self.setActivityIndicatorConstraint()
     }
   
     fileprivate func setViewConfiguration() {
@@ -143,7 +117,9 @@ class ShowDetailViewController : UIViewController {
         self.showDetailContentScrollView.addSubview(self.daysStackView)
         self.showDetailContentScrollView.addSubview(self.posterImageView)
         self.showDetailContentScrollView.addSubview(self.showEpisodeTableView)
+        self.showDetailContentScrollView.addSubview(self.fetchingActivityIndicator)
         self.view.addSubview(self.showDetailScrollView)
+        
     }
     
     fileprivate func setShowDetailScrollViewContentSize() {
@@ -219,22 +195,26 @@ class ShowDetailViewController : UIViewController {
             self.showEpisodeTableView.reloadData()
         }
     }
+    fileprivate func setActivityIndicatorConstraint() {
+        NSLayoutConstraint.on([self.fetchingActivityIndicator.centerXAnchor.constraint(equalTo: self.showDetailContentScrollView.centerXAnchor),
+                               self.fetchingActivityIndicator.centerYAnchor.constraint(equalTo: self.showDetailContentScrollView.centerYAnchor)])
+    }
 }
 
 extension ShowDetailViewController : UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.showEpisodeEntityListGropBySeason.count
+        return self.showEpisodeViewModel.showEpisodeEntityListGropBySeason.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.showEpisodeEntityListGropBySeason[section]?.count ?? 1
+        return self.showEpisodeViewModel.showEpisodeEntityListGropBySeason[section]?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let showEpisodeTableViewCell = tableView.dequeueReusableCell(withIdentifier: NameHelper.cell.rawValue, for: indexPath) as UITableViewCell
         var cellConfiguration = UIListContentConfiguration.cell()
-        if let showEntityList = self.showEpisodeEntityListGropBySeason[indexPath.section] {
+        if let showEntityList = self.showEpisodeViewModel.showEpisodeEntityListGropBySeason[indexPath.section] {
             cellConfiguration.text = "\(showEntityList[indexPath.row].number)"
             showEpisodeTableViewCell.accessoryType = .disclosureIndicator
         }
@@ -254,7 +234,13 @@ extension ShowDetailViewController : UITableViewDataSource {
 
 extension ShowDetailViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+        self.fetchingActivityIndicator.startAnimating()
+        self.showEpisodeViewModel.fetchShowEpisodeImage(season: indexPath.section, number: indexPath.row) { showEpisodeEntity in
+            self.fetchingActivityIndicator.stopAnimating()
+            let showEpisodeDetailViewController = ShowEpisodeDetailViewController(showEpisodeEntity: showEpisodeEntity)
+            self.present(showEpisodeDetailViewController, animated: true)
+        }
     }
 }
+
 

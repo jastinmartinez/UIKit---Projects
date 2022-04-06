@@ -36,10 +36,10 @@ public struct ShowEpisodeRatingEntity : Decodable {
 }
 
 public struct ShowEpisodeImageEntity : Decodable {
-    public let original: String?
+    public let original: String
     public var imageData: Data? = nil
     
-    public init(original: String?) {
+    public init(original: String) {
         self.original = original
     }
 }

@@ -9,7 +9,6 @@ import Foundation
 
 public protocol ShowInteractorProtocol {
     func fetchShowList(queryParemeter: Dictionary<String,Any>, handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void))
-    func fetchShowImage(imageUrl: String,handler: @escaping ((Result<Data?,DomainError>) -> Void))
 }
 
 public class ShowInteractor : ShowInteractorProtocol {
@@ -22,9 +21,5 @@ public class ShowInteractor : ShowInteractorProtocol {
     
     public func fetchShowList(queryParemeter: Dictionary<String,Any>,handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void)) {
         self.showDomainRepositoryProtocol.fetchShowList(queryParemeter: queryParemeter, handler: handler)
-    }
-    
-    public func fetchShowImage(imageUrl: String, handler: @escaping ((Result<Data?, DomainError>) -> Void)) {
-        self.showDomainRepositoryProtocol.fetchShowImage(imageUrl: imageUrl, handler: handler)
     }
 }

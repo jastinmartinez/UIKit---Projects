@@ -19,12 +19,14 @@ public class ShowViewModel {
     public var isFetchingNextShowEntityList = false
     private var pageNumberList: [Int] = [1]
     private let showInteractorProtocol: ShowInteractorProtocol
+    private let externalImageInteractorProtocol: ExternalImageInteractorProtocol
     public var showEntityList = [ShowEntity]()
     private var showImageCached = NSCache<NSString,NSData>()
     public weak var didSetShowEntityList: DidSetShowEntityList?
     
-    public init(showInteractorProtocol: ShowInteractorProtocol) {
+    public init(showInteractorProtocol: ShowInteractorProtocol, externalImageInteractorProtocol: ExternalImageInteractorProtocol) {
         self.showInteractorProtocol = showInteractorProtocol
+        self.externalImageInteractorProtocol = externalImageInteractorProtocol
     }
 
     public func fetchNextShowList(handler: (() -> ())?) {
@@ -68,7 +70,7 @@ public class ShowViewModel {
                 self.showEntityList[index] = showEntity
                 return
             }
-            self.showInteractorProtocol.fetchShowImage(imageUrl: showImageEntity.original) { fetchShowImageResult in
+            self.externalImageInteractorProtocol.fetchExternalImage(imageUrl: showImageEntity.original) { fetchShowImageResult in
                 switch fetchShowImageResult {
                 case .success(let data):
                     if let imageData = data  {
