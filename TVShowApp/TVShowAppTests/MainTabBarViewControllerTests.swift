@@ -14,18 +14,23 @@ final class MainTabBarViewControllerTests: XCTestCase {
         let requiredViewControllers = [UIViewController(), UIViewController()]
         let sut = MainTabBarViewController(viewControllers: requiredViewControllers)
 
-        sut.loadViewIfNeeded()
-
         XCTAssertEqual(sut.viewControllers?.count, 2)
     }
 
     func test_whenMainLoad_VisualPropertiesAreSetCorrectly() {
         let sut = MainTabBarViewController(viewControllers: [])
 
-        sut.loadViewIfNeeded()
-
         XCTAssertFalse(sut.tabBar.isTranslucent)
         XCTAssertTrue(UIColor(named: ColorHelper.red.rawValue)!.isEqual(sut.tabBar.tintColor))
         XCTAssertTrue(UIColor(named: ColorHelper.blue.rawValue)!.isEqual(sut.view.backgroundColor))
+    }
+
+    func test_whenMainLoad_HasRequiredViewControllers() {
+        let sut = MainTabBarViewController(viewControllers: [])
+
+        sut.viewDidLoad()
+
+        XCTAssertTrue(sut.viewControllers?.first is UINavigationController)
+        XCTAssertTrue(sut.viewControllers?.last is ConfigurationViewController)
     }
 }
