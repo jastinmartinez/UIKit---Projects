@@ -9,7 +9,11 @@ import UIKit
 import PresentationLayer
 
 class MainTabBarViewController: UITabBarController {
-   
+
+    convenience init(viewControllers: [UIViewController]) {
+        self.init()
+        self.setViewControllers(viewControllers, animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setViewConfiguration()

@@ -38,6 +38,7 @@
 		049CD52B27FDEE0100BBA55E /* ConfigurationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CD52A27FDEE0100BBA55E /* ConfigurationTableViewCell.swift */; };
 		049CD53427FDF04600BBA55E /* BiometricalAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CD53327FDF04600BBA55E /* BiometricalAuthentication.swift */; };
 		049CD53727FDF5B900BBA55E /* DeniedAccesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CD53627FDF5B900BBA55E /* DeniedAccesViewController.swift */; };
+		3C2A25DD2B0BDE610011F50B /* MainTabBarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2A25DC2B0BDE610011F50B /* MainTabBarViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 0489575C27F7E78D00F50ED9;
 			remoteInfo = PresentationTests;
+		};
+		3C2A25DE2B0BDE610011F50B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0489567F27F7E53800F50ED9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0489568627F7E53800F50ED9;
+			remoteInfo = TVShowApp;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -132,6 +140,8 @@
 		049CD52A27FDEE0100BBA55E /* ConfigurationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTableViewCell.swift; sourceTree = "<group>"; };
 		049CD53327FDF04600BBA55E /* BiometricalAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricalAuthentication.swift; sourceTree = "<group>"; };
 		049CD53627FDF5B900BBA55E /* DeniedAccesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeniedAccesViewController.swift; sourceTree = "<group>"; };
+		3C2A25DA2B0BDE600011F50B /* TVShowAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVShowAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C2A25DC2B0BDE610011F50B /* MainTabBarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +152,13 @@
 				046AD28627F902480000C0FA /* DomainLayer.framework in Frameworks */,
 				046AD28427F902480000C0FA /* DataLayer.framework in Frameworks */,
 				046AD28827F902480000C0FA /* PresentationLayer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C2A25D72B0BDE600011F50B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +259,7 @@
 				0489574127F7E76800F50ED9 /* DataLayer.xcodeproj */,
 				0489571627F7E73400F50ED9 /* DomainLayer.xcodeproj */,
 				0489568927F7E53800F50ED9 /* TVShowApp */,
+				3C2A25DB2B0BDE610011F50B /* TVShowAppTests */,
 				0489568827F7E53800F50ED9 /* Products */,
 				0489578327F7E91C00F50ED9 /* Frameworks */,
 			);
@@ -251,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				0489568727F7E53800F50ED9 /* TVShowApp.app */,
+				3C2A25DA2B0BDE600011F50B /* TVShowAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -363,6 +382,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3C2A25DB2B0BDE610011F50B /* TVShowAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				3C2A25DC2B0BDE610011F50B /* MainTabBarViewControllerTests.swift */,
+			);
+			path = TVShowAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -386,6 +413,24 @@
 			productReference = 0489568727F7E53800F50ED9 /* TVShowApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3C2A25D92B0BDE600011F50B /* TVShowAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C2A25E82B0BDE610011F50B /* Build configuration list for PBXNativeTarget "TVShowAppTests" */;
+			buildPhases = (
+				3C2A25D62B0BDE600011F50B /* Sources */,
+				3C2A25D72B0BDE600011F50B /* Frameworks */,
+				3C2A25D82B0BDE600011F50B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3C2A25DF2B0BDE610011F50B /* PBXTargetDependency */,
+			);
+			name = TVShowAppTests;
+			productName = TVShowAppTests;
+			productReference = 3C2A25DA2B0BDE600011F50B /* TVShowAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -393,11 +438,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					0489568627F7E53800F50ED9 = {
 						CreatedOnToolsVersion = 13.3;
+					};
+					3C2A25D92B0BDE600011F50B = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 0489568627F7E53800F50ED9;
 					};
 				};
 			};
@@ -431,6 +480,7 @@
 			projectRoot = "";
 			targets = (
 				0489568627F7E53800F50ED9 /* TVShowApp */,
+				3C2A25D92B0BDE600011F50B /* TVShowAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -490,6 +540,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3C2A25D82B0BDE600011F50B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -523,7 +580,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3C2A25D62B0BDE600011F50B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C2A25DD2B0BDE610011F50B /* MainTabBarViewControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3C2A25DF2B0BDE610011F50B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0489568627F7E53800F50ED9 /* TVShowApp */;
+			targetProxy = 3C2A25DE2B0BDE610011F50B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0489569527F7E53A00F50ED9 /* LaunchScreen.storyboard */ = {
@@ -715,6 +788,67 @@
 			};
 			name = Release;
 		};
+		3C2A25E02B0BDE610011F50B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasitinmartinez.TVShowAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TVShowApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TVShowApp";
+			};
+			name = Debug;
+		};
+		3C2A25E12B0BDE610011F50B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jasitinmartinez.TVShowAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TVShowApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TVShowApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -732,6 +866,15 @@
 			buildConfigurations = (
 				048956B227F7E53B00F50ED9 /* Debug */,
 				048956B327F7E53B00F50ED9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3C2A25E82B0BDE610011F50B /* Build configuration list for PBXNativeTarget "TVShowAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C2A25E02B0BDE610011F50B /* Debug */,
+				3C2A25E12B0BDE610011F50B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
