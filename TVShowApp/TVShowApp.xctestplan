@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "6F9C80D5-D583-4A33-AF1B-A2526FBEAB69",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:TVShowApp.xcodeproj",
+      "identifier" : "0489568627F7E53800F50ED9",
+      "name" : "TVShowApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:TVShowApp.xcodeproj",
+        "identifier" : "3C2A25D92B0BDE600011F50B",
+        "name" : "TVShowAppTests"
+      }
+    }
+  ],
+  "version" : 1
+}
