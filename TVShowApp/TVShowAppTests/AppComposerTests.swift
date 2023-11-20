@@ -8,10 +8,13 @@
 import XCTest
 import TVShowApp
 
+
 final class AppComposerTests: XCTestCase {
 
     func test_appComposer_canSetRootViewController() {
         let sut = makeSUT()
+        
+        sut.setUpApp()
 
         XCTAssertNotNil(sut.window.rootViewController)
         XCTAssertTrue(sut.window.rootViewController?.isViewLoaded ?? false)
@@ -19,6 +22,8 @@ final class AppComposerTests: XCTestCase {
 
     func test_whenMainLoad_HasRequiredViewControllers() {
         let sut = makeSUT()
+        
+        sut.setUpApp()
 
         guard let mainTabBarViewController = sut.window.rootViewController as? MainTabBarViewController else {
             XCTFail("expected root to be \(String(describing: MainTabBarViewController.self))")

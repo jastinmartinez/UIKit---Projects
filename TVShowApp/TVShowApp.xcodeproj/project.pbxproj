@@ -20,12 +20,12 @@
 		040086C627FD30B200B28737 /* UIActivityIndicatorView+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040086C527FD30B200B28737 /* UIActivityIndicatorView+Factory.swift */; };
 		046AD28127F9013E0000C0FA /* ShowDependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AD28027F9013E0000C0FA /* ShowDependencyInjection.swift */; };
 		046AD28327F9014B0000C0FA /* AppEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AD28227F9014B0000C0FA /* AppEnviroment.swift */; };
-		046AD28427F902480000C0FA /* DataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046AD27127F900110000C0FA /* DataLayer.framework */; };
-		046AD28527F902480000C0FA /* DataLayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 046AD27127F900110000C0FA /* DataLayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		046AD28627F902480000C0FA /* DomainLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046AD27727F900110000C0FA /* DomainLayer.framework */; };
-		046AD28727F902480000C0FA /* DomainLayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 046AD27727F900110000C0FA /* DomainLayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		046AD28827F902480000C0FA /* PresentationLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04ED43F427F8FD90002AB3AA /* PresentationLayer.framework */; };
-		046AD28927F902480000C0FA /* PresentationLayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04ED43F427F8FD90002AB3AA /* PresentationLayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		046AD28427F902480000C0FA /* DataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046AD27127F900110000C0FA /* DataLayer.framework */; platformFilter = ios; };
+		046AD28527F902480000C0FA /* DataLayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 046AD27127F900110000C0FA /* DataLayer.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		046AD28627F902480000C0FA /* DomainLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046AD27727F900110000C0FA /* DomainLayer.framework */; platformFilter = ios; };
+		046AD28727F902480000C0FA /* DomainLayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 046AD27727F900110000C0FA /* DomainLayer.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		046AD28827F902480000C0FA /* PresentationLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04ED43F427F8FD90002AB3AA /* PresentationLayer.framework */; platformFilter = ios; };
+		046AD28927F902480000C0FA /* PresentationLayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04ED43F427F8FD90002AB3AA /* PresentationLayer.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04810D3B27FA3CFB00768FA6 /* ShowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04810D3A27FA3CFB00768FA6 /* ShowTableViewController.swift */; };
 		04810D4327FA3D1100768FA6 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04810D4227FA3D1100768FA6 /* ConfigurationViewController.swift */; };
 		04810D4527FA3D6700768FA6 /* ShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04810D4427FA3D6700768FA6 /* ShowTableViewCell.swift */; };
@@ -38,7 +38,11 @@
 		049CD52B27FDEE0100BBA55E /* ConfigurationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CD52A27FDEE0100BBA55E /* ConfigurationTableViewCell.swift */; };
 		049CD53427FDF04600BBA55E /* BiometricalAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CD53327FDF04600BBA55E /* BiometricalAuthentication.swift */; };
 		049CD53727FDF5B900BBA55E /* DeniedAccesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CD53627FDF5B900BBA55E /* DeniedAccesViewController.swift */; };
-		3C2A25DD2B0BDE610011F50B /* MainTabBarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2A25DC2B0BDE610011F50B /* MainTabBarViewControllerTests.swift */; };
+		04F2D5322B0C253A0045D978 /* OtherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D5312B0C253A0045D978 /* OtherTests.swift */; };
+		04F2D5372B0C261C0045D978 /* AppComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D5342B0C261C0045D978 /* AppComposerTests.swift */; };
+		04F2D5382B0C261C0045D978 /* MainTabBarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D5352B0C261C0045D978 /* MainTabBarViewControllerTests.swift */; };
+		04F2D5392B0C261C0045D978 /* LocalStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D5362B0C261C0045D978 /* LocalStoreTests.swift */; };
+		04F2D53B2B0C26FA0045D978 /* AppComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D53A2B0C26FA0045D978 /* AppComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,8 +144,14 @@
 		049CD52A27FDEE0100BBA55E /* ConfigurationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTableViewCell.swift; sourceTree = "<group>"; };
 		049CD53327FDF04600BBA55E /* BiometricalAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricalAuthentication.swift; sourceTree = "<group>"; };
 		049CD53627FDF5B900BBA55E /* DeniedAccesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeniedAccesViewController.swift; sourceTree = "<group>"; };
+		04F2D5302B0C24F30045D978 /* TVShowApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TVShowApp.entitlements; sourceTree = "<group>"; };
+		04F2D5312B0C253A0045D978 /* OtherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTests.swift; sourceTree = "<group>"; };
+		04F2D5332B0C25CF0045D978 /* TVShowApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TVShowApp.xctestplan; sourceTree = "<group>"; };
+		04F2D5342B0C261C0045D978 /* AppComposerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppComposerTests.swift; sourceTree = "<group>"; };
+		04F2D5352B0C261C0045D978 /* MainTabBarViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarViewControllerTests.swift; path = ../../../../Downloads/MainTabBarViewControllerTests.swift; sourceTree = "<group>"; };
+		04F2D5362B0C261C0045D978 /* LocalStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStoreTests.swift; sourceTree = "<group>"; };
+		04F2D53A2B0C26FA0045D978 /* AppComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComposer.swift; sourceTree = "<group>"; };
 		3C2A25DA2B0BDE600011F50B /* TVShowAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVShowAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C2A25DC2B0BDE610011F50B /* MainTabBarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				046AD28227F9014B0000C0FA /* AppEnviroment.swift */,
+				04F2D53A2B0C26FA0045D978 /* AppComposer.swift */,
 			);
 			path = Enviroment;
 			sourceTree = "<group>";
@@ -255,6 +266,7 @@
 		0489567E27F7E53800F50ED9 = {
 			isa = PBXGroup;
 			children = (
+				04F2D5332B0C25CF0045D978 /* TVShowApp.xctestplan */,
 				0489576C27F7E78D00F50ED9 /* PresentationLayer.xcodeproj */,
 				0489574127F7E76800F50ED9 /* DataLayer.xcodeproj */,
 				0489571627F7E73400F50ED9 /* DomainLayer.xcodeproj */,
@@ -277,6 +289,7 @@
 		0489568927F7E53800F50ED9 /* TVShowApp */ = {
 			isa = PBXGroup;
 			children = (
+				04F2D5302B0C24F30045D978 /* TVShowApp.entitlements */,
 				049CD53227FDF02B00BBA55E /* Support */,
 				040086AD27FCAD5600B28737 /* UI */,
 				046AD27C27F9010F0000C0FA /* App */,
@@ -385,7 +398,10 @@
 		3C2A25DB2B0BDE610011F50B /* TVShowAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				3C2A25DC2B0BDE610011F50B /* MainTabBarViewControllerTests.swift */,
+				04F2D5362B0C261C0045D978 /* LocalStoreTests.swift */,
+				04F2D5342B0C261C0045D978 /* AppComposerTests.swift */,
+				04F2D5352B0C261C0045D978 /* MainTabBarViewControllerTests.swift */,
+				04F2D5312B0C253A0045D978 /* OtherTests.swift */,
 			);
 			path = TVShowAppTests;
 			sourceTree = "<group>";
@@ -567,6 +583,7 @@
 				040086B527FD1F6F00B28737 /* UIImageView+Factory.swift in Sources */,
 				04810D4527FA3D6700768FA6 /* ShowTableViewCell.swift in Sources */,
 				04810D3B27FA3CFB00768FA6 /* ShowTableViewController.swift in Sources */,
+				04F2D53B2B0C26FA0045D978 /* AppComposer.swift in Sources */,
 				04810D4327FA3D1100768FA6 /* ConfigurationViewController.swift in Sources */,
 				046AD28127F9013E0000C0FA /* ShowDependencyInjection.swift in Sources */,
 				040086C427FD2AEB00B28737 /* ExternalImageDependecyInjection.swift in Sources */,
@@ -584,7 +601,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C2A25DD2B0BDE610011F50B /* MainTabBarViewControllerTests.swift in Sources */,
+				04F2D5322B0C253A0045D978 /* OtherTests.swift in Sources */,
+				04F2D5382B0C261C0045D978 /* MainTabBarViewControllerTests.swift in Sources */,
+				04F2D5372B0C261C0045D978 /* AppComposerTests.swift in Sources */,
+				04F2D5392B0C261C0045D978 /* LocalStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,6 +749,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TVShowApp/TVShowApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -750,6 +771,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jastinmartinez.TVShowApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -761,6 +785,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TVShowApp/TVShowApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -782,6 +807,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jastinmartinez.TVShowApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -798,7 +826,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = WQNY636DWS;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -809,12 +837,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TVShowApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TVShowApp";
 			};
 			name = Debug;
@@ -829,7 +857,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = WQNY636DWS;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -840,11 +868,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TVShowApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TVShowApp";
 			};
 			name = Release;
