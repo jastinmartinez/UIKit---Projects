@@ -13,9 +13,9 @@ final class LocalStoreTests: XCTestCase {
     func test_localStore_saveAValue() {
         let (sut, key) = makeSUT()
         
-        sut.save(for: "key", with: true)
+        sut.save(for: key, with: true)
         
-        expect(when: sut.get(for: key), expect: .success(true))
+        expect(when: sut.get(for: key), expect: true)
     }
     
     func test_localStore_DoNotDuplicateWhenSaving() {
@@ -33,7 +33,7 @@ final class LocalStoreTests: XCTestCase {
         sut.save(for: key, with: true)
         sut.save(for: key, with: false)
         
-        expect(when: sut.get(for: key), expect: .success(false))
+        expect(when: sut.get(for: key), expect: false)
     }
     
     
@@ -42,46 +42,36 @@ final class LocalStoreTests: XCTestCase {
         
         let result = sut.get(for: key)
         
-        expect(when: result, expect: .failure(NSError(domain: "Key not Found", code: 0)))
+        expect(when: result, expect: false)
     }
     
-    private func makeSUT() -> (sut: LocalStorer, key: String) {
+    private func makeSUT() -> (sut: LocalStorer, key: LocalStorer.Keys) {
         let mock = MockStore()
-        let key = "key"
         let sut = LocalStorer(localStore: mock)
-        return (sut, key)
+        return (sut, .biometric)
     }
     
-    private func expect(when complete: Result<Bool, Error>,
-                        expect value: Result<Bool, Error> ,
+    private func expect(when complete: Bool,
+                        expect value: Bool ,
                         file: StaticString = #filePath,
                         line: UInt = #line) {
-        switch(value, complete) {
-        case let (.success(expectedSuccess), .success(actualSuccess)):
-            XCTAssertEqual(expectedSuccess,
-                           actualSuccess,
-                           file: file,
-                           line: line)
-        case let (.failure(expectedFailure), .failure(actualFailure)):
-            XCTAssertEqual(expectedFailure.localizedDescription,
-                           actualFailure.localizedDescription,
-                           file: file,
-                           line: line)
-        default:
-            XCTFail("not match expected")
-        }
+        XCTAssertEqual(value,
+                       complete,
+                       file: file,
+                       line: line)
     }
 }
 
 final private class MockStore: LocalStore {
     
     private var dic = [String: Bool]()
+
     
-    func get(for key: String) -> Result<Bool, Error> {
+    func get(for key: String) -> Bool {
         if let value = dic[key] {
-            return .success(value)
+            return value
         } else {
-            return .failure(NSError(domain: "Key not Found", code: 0))
+            return false
         }
     }
     

@@ -8,8 +8,8 @@
 import Foundation
 
 extension UserDefaults: LocalStore {
-    public func get(for key: String) -> Result<Bool, Error> {
-        return .success(bool(forKey: key))
+    public func get(for key: String) -> Bool {
+        return bool(forKey: key)
     }
     
     public func save(for key: String, with value: Bool) {

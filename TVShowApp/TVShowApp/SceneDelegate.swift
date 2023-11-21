@@ -18,38 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         guard let window = self.window else { return }
-        AppComposer(window: window).setUpApp()
-        self.authenticationVerification()
-    }
-    
-    fileprivate func authenticationVerification() {
-        if let isAuthRequired = UserDefaults.standard.object(forKey: NameHelper.auth.rawValue) as? Bool {
-            if isAuthRequired {
-                BiometricalAuthentication.isAuthenticationSuccessful { isValid in
-                    if isValid {
-                        DispatchQueue.main.async {
-                            self.setRootViewController()
-                        }
-                      
-                    } else {
-                        DispatchQueue.main.async {
-                            self.setRootViewController(viewController: DeniedAccessViewController())
-                        }
-                    }
-                }
-            }
-            else {
-                self.setRootViewController()
-            }
-        }
-        else {
-            self.setRootViewController()
-        }
-    }
-    
-    fileprivate func setRootViewController(viewController: UIViewController = MainTabBarViewController()) {
-            self.window?.rootViewController = viewController
-            self.window?.makeKeyAndVisible()
+        let userDefault = UserDefaults.standard
+        let localStorer = LocalStorer(localStore: userDefault)
+        let biometricManager = BiometricManager(localStorer: localStorer)
+        AppComposer(window: window, biometricManager: biometricManager).setUpApp()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

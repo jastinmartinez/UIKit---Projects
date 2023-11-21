@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-class DeniedAccessViewController : UIViewController {
+public class DeniedAccessViewController : UIViewController {
     
     private lazy var deniedImage: UIImageView = {
         let imageView = UIImageView()
@@ -16,7 +16,7 @@ class DeniedAccessViewController : UIViewController {
         imageView.tintColor = UIColor(named: ColorHelper.red.rawValue)
         return imageView
     }()
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.setDeniedImageView()

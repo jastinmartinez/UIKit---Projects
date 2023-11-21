@@ -9,7 +9,7 @@ import Foundation
 
 
 public protocol LocalStore {
-    func get(for key: String) -> Result<Bool, Error>
+    func get(for key: String) -> Bool
     func save(for key: String, with value: Bool)
     func count() -> Int
 }
