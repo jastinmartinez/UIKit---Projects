@@ -22,7 +22,7 @@ final class BiometricalAuthentication {
 }
 
 
-public enum Biometrical {
+public enum Biometric {
     case context(LAContext)
     
     public func verify(completion: @escaping (Result<Bool, Error>) -> Void) {

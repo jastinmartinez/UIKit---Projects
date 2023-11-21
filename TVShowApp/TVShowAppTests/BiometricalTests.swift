@@ -14,7 +14,7 @@ final class BiometricalTests: XCTestCase {
     func test_biometric_policy_isDeviceOwnerAuthentication() {
         let contextStub = LAContextStub(result: .success(true))
         
-        Biometrical.context(contextStub).verify(completion: {_ in})
+        Biometric.context(contextStub).verify(completion: {_ in})
         
         XCTAssertEqual(LAPolicy.deviceOwnerAuthentication, contextStub.policy)
     }
@@ -22,17 +22,16 @@ final class BiometricalTests: XCTestCase {
     func test_biometric_receivedReasonWhyIsRequired() {
         let contextStub = LAContextStub(result: .success(true))
         
-        Biometrical.context(contextStub).verify(completion: {_ in})
+        Biometric.context(contextStub).verify(completion: {_ in})
         
         XCTAssertEqual("Log in with" + contextStub.localizedReason, contextStub.reason)
     }
     
     func test_biometric_deliversSuccessWithTrue() {
-        var captured = false
         let contextStub = LAContextStub(result: .success(true))
         
         let exp = expectation(description: "wait for auth")
-        Biometrical.context(contextStub).verify(completion: { reply in
+        Biometric.context(contextStub).verify(completion: { reply in
             exp.fulfill()
             switch reply {
             case .success(let success):
@@ -48,7 +47,7 @@ final class BiometricalTests: XCTestCase {
         let contextStub = LAContextStub(result: .success(false))
         
         let exp = expectation(description: "wait for auth")
-        Biometrical.context(contextStub).verify(completion: { reply in
+        Biometric.context(contextStub).verify(completion: { reply in
             exp.fulfill()
             switch reply {
             case .success(let success):
@@ -65,7 +64,7 @@ final class BiometricalTests: XCTestCase {
         let contextStub = LAContextStub(result: .failure(anyError))
         
         let exp = expectation(description: "wait for auth")
-        Biometrical.context(contextStub).verify(completion: { reply in
+        Biometric.context(contextStub).verify(completion: { reply in
             exp.fulfill()
             switch reply {
             case .success:
@@ -82,7 +81,7 @@ final class BiometricalTests: XCTestCase {
                                         result: .success(false))
         
         let exp = expectation(description: "wait for auth")
-        Biometrical.context(contextStub).verify(completion: { reply in
+        Biometric.context(contextStub).verify(completion: { reply in
             exp.fulfill()
             switch reply {
             case .success(let success):

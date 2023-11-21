@@ -65,6 +65,7 @@ final class LocalStoreTests: XCTestCase {
 final private class MockStore: LocalStore {
     
     private var dic = [String: Bool]()
+
     
     func get(for key: String) -> Bool {
         if let value = dic[key] {
