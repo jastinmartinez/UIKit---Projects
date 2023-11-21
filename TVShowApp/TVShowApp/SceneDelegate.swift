@@ -18,14 +18,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         guard let window = self.window else { return }
-        AppComposer(window: window).setUpApp()
+        let userDefault = UserDefaults.standard
+        let localStorer = LocalStorer(localStore: userDefault)
+        AppComposer(window: window,
+                    localStorer: localStorer).setUpApp()
         self.authenticationVerification()
     }
     
     fileprivate func authenticationVerification() {
         if let isAuthRequired = UserDefaults.standard.object(forKey: NameHelper.auth.rawValue) as? Bool {
             if isAuthRequired {
-                BiometricalAuthentication.isAuthenticationSuccessful { isValid in
+                BiometricalAuthentication.verify { isValid in
                     if isValid {
                         DispatchQueue.main.async {
                             self.setRootViewController()

@@ -19,11 +19,17 @@ public final class LocalStorer {
         self.localStore = localStore
     }
     
-    public func save(for key: String, with value: Bool) {
-        localStore.save(for: key, with: value)
+    public func save(for key: Keys, with value: Bool) {
+        localStore.save(for: key.rawValue, with: value)
     }
     
-    public func get(for key: String) -> Bool {
-        return localStore.get(for: key)
+    public func get(for key: Keys) -> Bool {
+        return localStore.get(for: key.rawValue)
+    }
+}
+
+extension LocalStorer {
+    public enum Keys: String {
+        case biometric
     }
 }

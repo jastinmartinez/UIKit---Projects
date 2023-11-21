@@ -7,6 +7,8 @@
 
 import XCTest
 import TVShowApp
+import Foundation
+import LocalAuthentication
 
 
 final class AppComposerTests: XCTestCase {
@@ -20,7 +22,7 @@ final class AppComposerTests: XCTestCase {
         XCTAssertTrue(sut.window.rootViewController?.isViewLoaded ?? false)
     }
 
-    func test_whenMainLoad_HasRequiredViewControllers() {
+    func test_whenMainLoad_hasRequiredViewControllers() {
         let sut = makeSUT()
         
         sut.setUpApp()
@@ -32,10 +34,19 @@ final class AppComposerTests: XCTestCase {
         XCTAssertTrue(mainTabBarViewController.viewControllers?.first is UINavigationController)
         XCTAssertTrue(mainTabBarViewController.viewControllers?.last is ConfigurationViewController)
     }
+    
+    func test_whenMainWithAuthLoad_VerifyBiometrics() {
+        let sut = makeSUT()
+        sut.setUpApp()
+        
+        
+    }
 
     private func makeSUT() -> AppComposer {
         let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        let appComposer = AppComposer(window: window)
+        let userDefault = UserDefaults.standard
+        let localStorer = LocalStorer(localStore: userDefault)
+        let appComposer = AppComposer(window: window, localStorer: localStorer)
         return appComposer
     }
 }

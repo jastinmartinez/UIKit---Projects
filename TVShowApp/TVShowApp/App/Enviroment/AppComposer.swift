@@ -7,20 +7,29 @@
 
 import UIKit
 
-
 final public class AppComposer {
     
     public let window: UIWindow
+    public let localStorer: LocalStorer
     
-    public required init(window: UIWindow) {
+    public required init(window: UIWindow, localStorer: LocalStorer) {
         self.window = window
+        self.localStorer = localStorer
     }
     
     public func setUpApp() {
         let showTableViewController = getShowTableViewController()
         let configurationViewController = getConfigurationViewController()
         let mainTabBarViewController = MainTabBarViewController(viewControllers: [showTableViewController, configurationViewController])
-        setRootViewControllerFor(mainTabBarViewController)
+        if isAuthRequired {
+            
+        } else {
+            setRootViewControllerFor(mainTabBarViewController)
+        }
+    }
+    
+    private var isAuthRequired: Bool {
+        return localStorer.get(for: .biometric)
     }
     
     private func setRootViewControllerFor(_ vc: UIViewController) {

@@ -64,7 +64,7 @@ class ConfigurationTableViewCell : UITableViewCell {
     
     @objc fileprivate func togleValueChanged(sender: UISwitch) {
         if sender.isOn {
-            BiometricalAuthentication.isAuthenticationSuccessful { isValid in
+            BiometricalAuthentication.verify { isValid in
                 if !isValid {
                     DispatchQueue.main.async {
                         self.configurationSwitch.setOn(false, animated: true)

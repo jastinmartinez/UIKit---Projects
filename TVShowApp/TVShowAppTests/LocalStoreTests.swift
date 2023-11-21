@@ -13,7 +13,7 @@ final class LocalStoreTests: XCTestCase {
     func test_localStore_saveAValue() {
         let (sut, key) = makeSUT()
         
-        sut.save(for: "key", with: true)
+        sut.save(for: key, with: true)
         
         expect(when: sut.get(for: key), expect: true)
     }
@@ -45,11 +45,10 @@ final class LocalStoreTests: XCTestCase {
         expect(when: result, expect: false)
     }
     
-    private func makeSUT() -> (sut: LocalStorer, key: String) {
+    private func makeSUT() -> (sut: LocalStorer, key: LocalStorer.Keys) {
         let mock = MockStore()
-        let key = "key"
         let sut = LocalStorer(localStore: mock)
-        return (sut, key)
+        return (sut, .biometric)
     }
     
     private func expect(when complete: Bool,
