@@ -45,10 +45,10 @@ final class LocalStoreTests: XCTestCase {
         expect(when: result, expect: .failure(NSError(domain: "Key not Found", code: 0)))
     }
     
-    private func makeSUT() -> (sut: LocalStoreAdapter, key: String) {
+    private func makeSUT() -> (sut: LocalStorer, key: String) {
         let mock = MockStore()
         let key = "key"
-        let sut = LocalStoreAdapter(localStore: mock)
+        let sut = LocalStorer(localStore: mock)
         return (sut, key)
     }
     
@@ -73,14 +73,7 @@ final class LocalStoreTests: XCTestCase {
     }
 }
 
-
-protocol LocalStore {
-    func get(for key: String) -> Result<Bool, Error>
-    func save(for key: String, with value: Bool)
-    func count() -> Int
-}
-
-final class MockStore: LocalStore {
+final private class MockStore: LocalStore {
     
     private var dic = [String: Bool]()
     
@@ -100,27 +93,4 @@ final class MockStore: LocalStore {
         return dic.count
     }
 }
-
-
-final class LocalStoreAdapter {
-    
-    private let localStore: LocalStore
-    
-    var count: Int  {
-        return localStore.count()
-    }
-    
-    init(localStore: LocalStore) {
-        self.localStore = localStore
-    }
-    
-    func save(for key: String, with value: Bool) {
-        localStore.save(for: key, with: value)
-    }
-    
-    func get(for key: String) -> Result<Bool, Error> {
-        return localStore.get(for: key)
-    }
-}
-
 
