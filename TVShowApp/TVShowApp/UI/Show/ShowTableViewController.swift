@@ -14,7 +14,7 @@ enum ShowEntitySort : String , CaseIterable {
     case name = "Name"
     case favorite = "Favorite"
 }
-class ShowTableViewController : UIViewController {
+public class ShowTableViewController : UIViewController {
     
     private var showViewModel: ShowViewModel!
     private var showEpisodeViewModel: ShowEpisodeViewModel!
@@ -35,7 +35,7 @@ class ShowTableViewController : UIViewController {
         return tableView
     }()
     
-    init(showViewModel: ShowViewModel,showEpisodeViewModel: ShowEpisodeViewModel) {
+    public init(showViewModel: ShowViewModel,showEpisodeViewModel: ShowEpisodeViewModel) {
         self.showViewModel = showViewModel
         self.showEpisodeViewModel = showEpisodeViewModel
         super.init(nibName: nil, bundle: nil)
@@ -45,7 +45,7 @@ class ShowTableViewController : UIViewController {
         super.init(coder: coder)
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.setViewConfiguration()
         self.setOutletToSubView()
@@ -111,11 +111,11 @@ class ShowTableViewController : UIViewController {
 }
 
 extension ShowTableViewController : UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.showViewModel.showEntityList.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let showTableViewCell = tableView.dequeueReusableCell(withIdentifier: NameHelper.cell.rawValue) as? ShowTableViewCell
         showTableViewCell?.tintColor = UIColor(named: ColorHelper.red.rawValue)
         showTableViewCell?.didChangeShowEntity = self
@@ -126,7 +126,7 @@ extension ShowTableViewController : UITableViewDataSource {
         return showTableViewCell!
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.fetchingActivityIndicator.startAnimating()
         self.showViewModel.showEntity = self.showViewModel.showEntityList[indexPath.row]
         self.showEpisodeViewModel.fetchShowEpisodeListById(showId: self.showViewModel.showEntityList[indexPath.row].id)
@@ -135,7 +135,7 @@ extension ShowTableViewController : UITableViewDataSource {
 }
 
 extension ShowTableViewController : UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             self.showViewModel.setShowEntityByIndex(index: indexPath.row,handler: nil)
         }
@@ -143,13 +143,13 @@ extension ShowTableViewController : UITableViewDataSourcePrefetching {
 }
 
 extension ShowTableViewController : UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
 }
 
 extension ShowTableViewController : DidSetShowEntityList {
-    func DidSetShowEntityListNotification() {
+    public func DidSetShowEntityListNotification() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.showTableView.reloadData()
         }
@@ -157,7 +157,7 @@ extension ShowTableViewController : DidSetShowEntityList {
 }
 
 extension ShowTableViewController : UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
+    public func updateSearchResults(for searchController: UISearchController) {
         guard let tvShowName = searchController.searchBar.text else {
             return
         }
@@ -166,7 +166,7 @@ extension ShowTableViewController : UISearchResultsUpdating {
 }
 
 extension ShowTableViewController : UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let showScrollPosition = scrollView.contentOffset.y
         if showScrollPosition > (self.showTableView.contentSize.height-100-scrollView.frame.size.height) {
             guard !self.showViewModel.isFetchingNextShowEntityList else {
@@ -181,7 +181,7 @@ extension ShowTableViewController : UIScrollViewDelegate {
 }
 
 extension ShowTableViewController : DidSetShowEpisodeEntityList {
-    func DidSetShowEpisodeEntityListNotification() {
+    public func DidSetShowEpisodeEntityListNotification() {
         self.fetchingActivityIndicator.stopAnimating()
         guard let showEntity = self.showViewModel.showEntity else {
             return
