@@ -23,7 +23,7 @@ public final class LocalStorer {
         localStore.save(for: key, with: value)
     }
     
-    public func get(for key: String) -> Result<Bool, Error> {
+    public func get(for key: String) -> Bool {
         return localStore.get(for: key)
     }
 }
