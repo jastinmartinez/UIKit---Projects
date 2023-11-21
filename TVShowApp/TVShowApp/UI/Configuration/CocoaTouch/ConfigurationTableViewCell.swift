@@ -51,7 +51,7 @@ class ConfigurationTableViewCell : UITableViewCell {
     fileprivate func setConfigurationSwitchConstraint() {
         let isOn = UserDefaults.standard.object(forKey: NameHelper.auth.rawValue) as? Bool
         self.configurationSwitch.setOn(isOn ?? false, animated: true)
-        self.configurationSwitch.addTarget(self, action: #selector(togleValueChanged), for: .valueChanged)
+        self.configurationSwitch.addTarget(self, action: #selector(toggleValueChanged), for: .valueChanged)
         NSLayoutConstraint.on([self.configurationSwitch.rightAnchor.constraint(equalTo: self.layoutMarginsGuide.rightAnchor),
                                self.configurationSwitch.centerYAnchor.constraint(equalTo: self.centerYAnchor)])
     }
@@ -62,19 +62,19 @@ class ConfigurationTableViewCell : UITableViewCell {
         userDefaults.synchronize()
     }
     
-    @objc fileprivate func togleValueChanged(sender: UISwitch) {
+    @objc fileprivate func toggleValueChanged(sender: UISwitch) {
         if sender.isOn {
-            BiometricalAuthentication.verify { isValid in
-                if !isValid {
+            Biometric.context(.init()).verify { result in
+                switch result {
+                case .success(let success):
                     DispatchQueue.main.async {
-                        self.configurationSwitch.setOn(false, animated: true)
+                        self.configurationSwitch.setOn(success, animated: true)
                     }
-                } else {
-                    self.saveSwitchState(state: true)
+                    self.saveSwitchState(state: success)
+                case .failure:
+                    self.saveSwitchState(state: false)
                 }
             }
-        } else {
-            self.saveSwitchState(state: false)
         }
     }
     

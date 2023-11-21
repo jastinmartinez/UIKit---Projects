@@ -21,8 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let userDefault = UserDefaults.standard
         let localStorer = LocalStorer(localStore: userDefault)
         let biometricManager = BiometricManager(localStorer: localStorer)
-        AppComposer(window: window,
-                    biometricManager: biometricManager).setUpApp()
+        AppComposer(window: window, biometricManager: biometricManager).setUpApp()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

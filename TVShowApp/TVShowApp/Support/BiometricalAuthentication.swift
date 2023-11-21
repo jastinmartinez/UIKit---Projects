@@ -8,20 +8,6 @@
 import Foundation
 import LocalAuthentication
 
-final class BiometricalAuthentication {
-    class func verify(handler: ((Bool) -> Void)?) {
-        let context = LAContext()
-        let reason = "Log in with" + context.localizedReason
-        context.evaluatePolicy(
-            .deviceOwnerAuthentication,
-            localizedReason: reason
-        ) { success, _ in
-            handler?(success)
-        }
-    }
-}
-
-
 public enum Biometric {
     case context(LAContext)
     
