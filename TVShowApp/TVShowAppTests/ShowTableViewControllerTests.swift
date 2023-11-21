@@ -13,6 +13,15 @@ import TVShowApp
 final class ShowTableViewControllerTests: XCTestCase {
     
     func test_init_ViewController() {
+       let sut = makeSUT()
+        
+        sut.viewDidLoad()
+        
+        XCTAssertTrue(sut.isViewLoaded)
+    }
+    
+    
+    private func makeSUT() -> ShowTableViewController {
         let showEpisodeInteractionStub = ShowEpisodeInteractionStub()
         let showInteractionStub = ShowInteractionStub()
         let externalImageInteractionStub = ExternalImageInteractionStub()
@@ -21,15 +30,11 @@ final class ShowTableViewControllerTests: XCTestCase {
                                           externalImageInteractorProtocol: externalImageInteractionStub)
         
         let showEpisodeViewModel = ShowEpisodeViewModel(showEpisodeInteractorProtocol: showEpisodeInteractionStub,
-                                        externalImageInteractorProtocol: externalImageInteractionStub)
+                                                        externalImageInteractorProtocol: externalImageInteractionStub)
         
         let sut = ShowTableViewController(showViewModel: showViewModel,
                                           showEpisodeViewModel: showEpisodeViewModel)
-        
-        sut.viewDidLoad()
-        
-        XCTAssertTrue(sut.isViewLoaded)
-     
+        return sut
     }
 }
 
