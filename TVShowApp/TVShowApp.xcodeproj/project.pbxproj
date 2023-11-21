@@ -44,6 +44,7 @@
 		04F2D53B2B0C26FA0045D978 /* AppComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D53A2B0C26FA0045D978 /* AppComposer.swift */; };
 		04F2D53F2B0C3C520045D978 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D53E2B0C3C520045D978 /* LocalStore.swift */; };
 		04F2D5412B0C3C6C0045D978 /* LocalStorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D5402B0C3C6C0045D978 /* LocalStorer.swift */; };
+		04F2D5432B0C3CF00045D978 /* UserDefault+LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D5422B0C3CF00045D978 /* UserDefault+LocalStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,7 @@
 		04F2D53A2B0C26FA0045D978 /* AppComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComposer.swift; sourceTree = "<group>"; };
 		04F2D53E2B0C3C520045D978 /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
 		04F2D5402B0C3C6C0045D978 /* LocalStorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorer.swift; sourceTree = "<group>"; };
+		04F2D5422B0C3CF00045D978 /* UserDefault+LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+LocalStore.swift"; sourceTree = "<group>"; };
 		3C2A25DA2B0BDE600011F50B /* TVShowAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVShowAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -403,6 +405,7 @@
 			children = (
 				04F2D53E2B0C3C520045D978 /* LocalStore.swift */,
 				04F2D5402B0C3C6C0045D978 /* LocalStorer.swift */,
+				04F2D5422B0C3CF00045D978 /* UserDefault+LocalStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				0489568F27F7E53800F50ED9 /* MainTabBarViewController.swift in Sources */,
 				0489568B27F7E53800F50ED9 /* AppDelegate.swift in Sources */,
 				0489568D27F7E53800F50ED9 /* SceneDelegate.swift in Sources */,
+				04F2D5432B0C3CF00045D978 /* UserDefault+LocalStore.swift in Sources */,
 				0400865727FBB29100B28737 /* ShowDetailViewController.swift in Sources */,
 				040086B727FD1F9000B28737 /* UIStackView+Factory.swift in Sources */,
 				040086C627FD30B200B28737 /* UIActivityIndicatorView+Factory.swift in Sources */,
