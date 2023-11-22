@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol ShowInteractorProtocol {
-    func fetchShowList(queryParemeter: Dictionary<String,Any>, handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void))
+    func fetchShowList(queryParameter: Dictionary<String,Any>, handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void))
 }
 
 public class ShowInteractor : ShowInteractorProtocol {
@@ -19,7 +19,7 @@ public class ShowInteractor : ShowInteractorProtocol {
         self.showDomainRepositoryProtocol = showDomainRepositoryProtocol
     }
     
-    public func fetchShowList(queryParemeter: Dictionary<String,Any>,handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void)) {
-        self.showDomainRepositoryProtocol.fetchShowList(queryParemeter: queryParemeter, handler: handler)
+    public func fetchShowList(queryParameter: Dictionary<String,Any>,handler: @escaping ((Result<[ShowEntity],DomainError>) -> Void)) {
+        self.showDomainRepositoryProtocol.fetchShowList(queryParemeter: queryParameter, handler: handler)
     }
 }
