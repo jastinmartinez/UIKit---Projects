@@ -10,31 +10,20 @@ import PresentationLayer
 import DomainLayer
 
 
-enum ShowEntitySort : String , CaseIterable {
-    case name = "Name"
-    case favorite = "Favorite"
-}
 public class ShowTableViewController : UIViewController {
     
-    public private(set) var showViewModel: ShowViewModel!
+    private var showViewModelInteraction: ShowViewModelInteraction!
     private var showEpisodeViewModel: ShowEpisodeViewModel!
-    private var showSearchController: UISearchController!
     public lazy var fetchingActivityIndicator = UIActivityIndicatorView.buildActivityIndicator()
-    private var showEntitySortOrderSegmentedControl = UISegmentedControl(items: ShowEntitySort.allCases.map({ $0.rawValue }))
-     public lazy var showTableView: UITableView = {
+    
+    public let showTableView: UITableView = {
         let tableView = UITableView()
-        tableView.allowsMultipleSelection = false
-        tableView.isMultipleTouchEnabled = false
-        tableView.backgroundColor = UIColor(named: ColorHelper.white.rawValue)!
-        tableView.dataSource = self
-        tableView.layer.cornerRadius = 30
-        tableView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         tableView.register(ShowTableViewCell.self, forCellReuseIdentifier: NameHelper.cell.rawValue)
         return tableView
     }()
     
-    public init(showViewModel: ShowViewModel,showEpisodeViewModel: ShowEpisodeViewModel) {
-        self.showViewModel = showViewModel
+    public init(showViewModelInteraction: ShowViewModelInteraction,showEpisodeViewModel: ShowEpisodeViewModel) {
+        self.showViewModelInteraction = showViewModelInteraction
         self.showEpisodeViewModel = showEpisodeViewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -45,19 +34,32 @@ public class ShowTableViewController : UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        didSetShowEntities()
+        onCreate()
+    }
+   
+    fileprivate func onCreate() {
         setViewConfiguration()
         setOutletToSubView()
-        setActivityIndicatorConstraint()
         setShowTableView()
-        showViewModel.fetchShowList()
+        setActivityIndicatorConstraint()
+        setDelegates()
+        setShowDataState()
+        fetchShows()
+    }
+    
+    fileprivate func fetchShows() {
+        showViewModelInteraction.fetchShows()
+    }
+    
+    private func setDelegates() {
+        showTableView.dataSource = self
     }
     
     fileprivate func setOutletToSubView() {
         view.addSubview(showTableView)
         view.addSubview(fetchingActivityIndicator)
     }
-
+    
     fileprivate func setViewConfiguration() {
         view.backgroundColor = UIColor(named: ColorHelper.blue.rawValue)!
     }
@@ -74,18 +76,16 @@ public class ShowTableViewController : UIViewController {
                                fetchingActivityIndicator.centerYAnchor.constraint(equalTo: showTableView.centerYAnchor)])
     }
     
-    private func didSetShowEntities() {
-        showViewModel.showsState = { [weak self] state in
+    public func setShowDataState() {
+        showViewModelInteraction.showsState = {  [weak self] state in
             switch state {
             case .loading:
                 self?.fetchingActivityIndicator.startAnimating()
             case .done:
-                DispatchQueue.main.async { [weak self] in
-                    self?.showTableView.reloadData()
-                    self?.fetchingActivityIndicator.stopAnimating()
-                }
+                self?.showTableView.reloadData()
+                self?.fetchingActivityIndicator.stopAnimating()
             case .fail(_):
-                break
+                self?.fetchingActivityIndicator.stopAnimating()
             }
         }
     }
@@ -93,9 +93,9 @@ public class ShowTableViewController : UIViewController {
 
 extension ShowTableViewController : UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return showViewModel.showEntityList.count
+        return showViewModelInteraction.showEntities.count
     }
-    
+
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let showTableViewCell = tableView.dequeueReusableCell(withIdentifier: NameHelper.cell.rawValue) as? ShowTableViewCell
         showTableViewCell?.tintColor = UIColor(named: ColorHelper.red.rawValue)

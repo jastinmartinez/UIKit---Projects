@@ -79,7 +79,8 @@ final public class AppComposer {
         let showViewModel = ShowDependencyInjection.setShowViewModelDependecy()
         let showEpisodeViewModel = ShowEpisodeDependeyInjection.setShowEpisodeViewModelDependecy()
         
-        let showViewController = UINavigationController(rootViewController: ShowTableViewController(showViewModel: showViewModel, showEpisodeViewModel: showEpisodeViewModel))
+        let showViewController = UINavigationController(rootViewController: ShowTableViewController(showViewModelInteraction: showViewModel,
+                                                                                                    showEpisodeViewModel: showEpisodeViewModel))
         showViewController.navigationBar.backgroundColor = UIColor(named: ColorHelper.blue.rawValue)!
         showViewController.tabBarItem = setTabBarWith(title: "TV Shows",
                                                       image: "ticket",

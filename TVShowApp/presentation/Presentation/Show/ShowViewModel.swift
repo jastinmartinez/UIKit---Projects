@@ -9,25 +9,34 @@ import Foundation
 import DomainLayer
 import CloudKit
 
+public protocol ShowViewModelInteraction {
+    var showEntities: [ShowEntity] { get }
+    var showsState: ((ShowViewModel.ShowState) -> Void)? { get set }
+    func fetchShows()
+}
 
-public class ShowViewModel {
+public final class ShowViewModel: ShowViewModelInteraction {
 
     private let showInteractorProtocol: ShowInteractorProtocol
     private let externalImageInteractorProtocol: ExternalImageInteractorProtocol
-    public var showEntityList = [ShowEntity]()
     public var showsState: ((ShowState) -> Void)? = nil
+    private var _showEntities = [ShowEntity]()
+    public var showEntities: [ShowEntity] {
+        return _showEntities
+    }
     
-    public init(showInteractorProtocol: ShowInteractorProtocol, externalImageInteractorProtocol: ExternalImageInteractorProtocol) {
+    public init(showInteractorProtocol: ShowInteractorProtocol,
+                externalImageInteractorProtocol: ExternalImageInteractorProtocol) {
         self.showInteractorProtocol = showInteractorProtocol
         self.externalImageInteractorProtocol = externalImageInteractorProtocol
     }
     
-    public func fetchShowList() {
+    public func fetchShows() {
         showsState?(.loading)
         showInteractorProtocol.fetchShowList(queryParameter: ["page":  1]) { [weak self] showInteractorResult  in
             switch showInteractorResult {
             case .success(let showEntityList):
-                self?.showEntityList = showEntityList
+                self?._showEntities = showEntityList
                 self?.showsState?(.done)
             case .failure(let error):
                 self?.showsState?(.fail(error))

@@ -12,7 +12,7 @@ import TVShowApp
 
 final class ShowTableViewControllerTests: XCTestCase {
     
-    func test_whenInit_thenVcDontCrash() {
+    func test_whenInit_thenVcDoNotCrash() {
         let sut = makeSUT()
         
         sut.viewDidLoad()
@@ -30,64 +30,78 @@ final class ShowTableViewControllerTests: XCTestCase {
     }
     
     func test_whenInit_thenIsInLoadingState() {
-        let sut = makeSUT()
+        let sut = makeSUT(.loading)
         
         sut.viewDidLoad()
         
         XCTAssertTrue(sut.fetchingActivityIndicator.isAnimating)
-        XCTAssertEqual(1, sut.numberOfSections)
+        XCTAssertEqual(sut.numberOfRows, 0)
     }
     
-    func test_whenDeliversData_thenComponentIsRendered() {
-        let sut = makeSUT()
+    func test_whenDeliversData_thenRenderComponent() {
+        let sut = makeSUT(.done)
         
         sut.viewDidLoad()
-        sut.showViewModel.showsState =  { [sut] state  in
-            if case .loading = state {
-                XCTAssertTrue(sut.fetchingActivityIndicator.isAnimating)
-                XCTAssertEqual(3, sut.numberOfRows)
-            }
-        }
+        
+        XCTAssertFalse(sut.fetchingActivityIndicator.isAnimating)
+        XCTAssertEqual(sut.numberOfRows, 3)
     }
     
     
     func test_whenDeliversError_thenShowError() {
-        let sut = makeSUT()
+        let anyError = NSError(domain: "any error", code: 0)
+        let sut = makeSUT(.fail(anyError))
         
         sut.viewDidLoad()
-        sut.showViewModel.showsState =  { [sut] state in
-            if case .done = state {
-                XCTAssertFalse(sut.fetchingActivityIndicator.isAnimating)
-                XCTAssertEqual(3, sut.numberOfRows)
-            }
-        }
+        
+        XCTAssertFalse(sut.fetchingActivityIndicator.isAnimating)
+        XCTAssertEqual(sut.numberOfRows, 0)
     }
     
+    private func makeSUT() -> (ShowTableViewController) {
+        return makeSUT(.loading)
+    }
     
-    private func makeSUT() -> ShowTableViewController {
+    private func makeSUT(_ state: PresentationLayer.ShowViewModel.ShowState) -> (ShowTableViewController) {
         let showEpisodeInteractionStub = ShowEpisodeInteractionStub()
-        let showInteractionStub = ShowInteractionStub()
         let externalImageInteractionStub = ExternalImageInteractionStub()
-        
-        let showViewModel = ShowViewModel(showInteractorProtocol: showInteractionStub,
-                                          externalImageInteractorProtocol: externalImageInteractionStub)
         
         let showEpisodeViewModel = ShowEpisodeViewModel(showEpisodeInteractorProtocol: showEpisodeInteractionStub,
                                                         externalImageInteractorProtocol: externalImageInteractionStub)
+        let showViewModelStub = ShowViewModelStub(state: state)
         
-        let sut = ShowTableViewController(showViewModel: showViewModel,
+        let sut = ShowTableViewController(showViewModelInteraction: showViewModelStub,
                                           showEpisodeViewModel: showEpisodeViewModel)
         return sut
     }
 }
 
 
-final class ShowInteractionStub: ShowInteractorProtocol {
-    func fetchShowList(queryParameter: Dictionary<String, Any>, handler: @escaping ((Result<[DomainLayer.ShowEntity], DomainLayer.DomainError>) -> Void)) {
-        return handler(.success(showEntities()))
+final class ShowViewModelStub: ShowViewModelInteraction {
+    
+    private let state: PresentationLayer.ShowViewModel.ShowState
+    
+    init(state: PresentationLayer.ShowViewModel.ShowState) {
+        self.state = state
     }
     
-    private func showEntities() -> [ShowEntity] {
+    private var _showEntities = [DomainLayer.ShowEntity]()
+    
+    var showEntities: [DomainLayer.ShowEntity] {
+        return _showEntities
+    }
+
+    var showsState: ((PresentationLayer.ShowViewModel.ShowState) -> Void)?
+    
+    func fetchShows() {
+        _showEntities = []
+        if case .done = state {
+            _showEntities = buildShowEntities()
+        }
+        showsState?(state)
+    }
+    
+    private func buildShowEntities() -> [ShowEntity] {
         return [showEntity(), showEntity(), showEntity()]
     }
     
@@ -103,6 +117,7 @@ final class ShowInteractionStub: ShowInteractorProtocol {
                           rating: ShowRatingEntity(average: nil))
     }
 }
+
 
 final class ExternalImageInteractionStub: ExternalImageInteractorProtocol {
     func fetchExternalImage(imageUrl: String, handler: @escaping ((Result<Data?, DomainLayer.DomainError>) -> Void)) {
