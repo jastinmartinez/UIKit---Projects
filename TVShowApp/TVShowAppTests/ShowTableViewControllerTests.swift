@@ -25,8 +25,8 @@ final class ShowTableViewControllerTests: XCTestCase {
         
         sut.viewDidLoad()
         
-        XCTAssertNotNil(sut.isDataSourceSet())
-        XCTAssertNotNil(sut.isDelegateSet())
+        XCTAssertTrue(sut.isDataSourceSet())
+        XCTAssertTrue(sut.isDelegateSet())
     }
     
     func test_whenInit_thenIsInLoadingState() {
@@ -56,6 +56,15 @@ final class ShowTableViewControllerTests: XCTestCase {
         
         XCTAssertFalse(sut.isLoaderPresenting())
         XCTAssertEqual(sut.numberOfRows, 0)
+    }
+    
+    func test_whenThereIsDataAndTap_GoToDetailScreen() {
+        let sut = makeSUT(.done)
+        
+        sut.viewDidLoad()
+        
+        XCTAssertFalse(sut.isLoaderPresenting())
+        XCTAssertEqual(sut.numberOfRows, 3)
     }
     
     private func makeSUT() -> (ShowTableViewController) {
@@ -131,8 +140,6 @@ final class ShowEpisodeInteractionStub: ShowEpisodeInteractorProtocol {
     }
 }
 
-
-
 private extension ShowTableViewController {
     
     func isDataSourceSet() -> Bool {
@@ -140,7 +147,7 @@ private extension ShowTableViewController {
     }
     
     func isDelegateSet() -> Bool {
-        return showTableView.dataSource != nil
+        return showTableView.delegate != nil
     }
     
     var numberOfSections: Int {
@@ -153,5 +160,9 @@ private extension ShowTableViewController {
     
     func isLoaderPresenting() -> Bool {
         return self.fetchingActivityIndicator.isAnimating
+    }
+    
+    func tap() {
+       
     }
 }
