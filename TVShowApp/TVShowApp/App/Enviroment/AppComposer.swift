@@ -20,7 +20,7 @@ final public class AppComposer {
     
     public func setUpApp() {
         let showViewModel = ShowDependencyInjection.setShowViewModelDependecy()
-        let showTableViewController = getShowTableViewController(showViewModelInteraction: showViewModel)
+        let showTableViewController = getShowTableViewController(showViewModelActions: showViewModel)
         let configurationViewController = getConfigurationViewController()
         let mainTabBarViewController = MainTabBarViewController(viewControllers: [showTableViewController, configurationViewController])
         let deniedViewController = DeniedAccessViewController()
@@ -49,11 +49,11 @@ final public class AppComposer {
         self.window.makeKeyAndVisible()
     }
     
-    public func getShowTableViewController(showViewModelInteraction: ShowViewModelInteraction) -> UINavigationController {
+    public func getShowTableViewController(showViewModelActions: ShowViewModelActions) -> UINavigationController {
         let navController = UINavigationController()
-        let showTableViewController =  ShowTableViewController(showViewModelInteraction: showViewModelInteraction,
-                                                               didSelectRow: { index in
-            let showEntity = showViewModelInteraction.showEntities[index]
+        let showTableViewController =  ShowTableViewController(showViewModelAction: showViewModelActions,
+                                                               didSelectShow: { index in
+            let showEntity = showViewModelActions.showEntities[index]
             let showEpisodeViewModel = ShowEpisodeDependeyInjection.setShowEpisodeViewModelDependecy()
             let showDetailViewController = ShowDetailViewController(showEntity: showEntity,
                                                                     showEpisodeViewModel: showEpisodeViewModel)

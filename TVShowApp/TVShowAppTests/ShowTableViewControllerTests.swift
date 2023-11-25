@@ -58,7 +58,7 @@ final class ShowTableViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.numberOfRows, 0)
     }
     
-    func test_whenThereIsDataAndTap_GoToDetailScreen() {
+    func test_whenThereIsShowsAndSelectTap_GoToDetailScreen() {
         let sut = makeSUT(.done)
         
         sut.viewDidLoad()
@@ -68,6 +68,15 @@ final class ShowTableViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.navigationController?.topViewController is ShowDetailViewController)
     }
     
+    func test_whenScrollAllToTheBottom_thenPerformFetchNextPageOfShows() {
+        let sut = makeSUT(.done)
+        
+        sut.viewDidLoad()
+        sut.scrollToBottom()
+        
+        XCTAssertEqual(sut.numberOfRows, 6)
+    }
+    
     private func makeSUT() -> (ShowTableViewController) {
         return makeSUT( .done)
     }
@@ -75,13 +84,13 @@ final class ShowTableViewControllerTests: XCTestCase {
     private func makeSUT(_ state: PresentationLayer.ShowViewModel.ShowState) -> (ShowTableViewController) {
         let appComposer = buildAppComposer()
         let showViewModelStub = ShowViewModelStub(state: state)
-        let sut = appComposer.getShowTableViewController(showViewModelInteraction: showViewModelStub)
+        let sut = appComposer.getShowTableViewController(showViewModelActions: showViewModelStub)
         return sut.topViewController as! ShowTableViewController
     }
 }
 
 
-final class ShowViewModelStub: ShowViewModelInteraction {
+final class ShowViewModelStub: ShowViewModelActions {
     
     private let state: PresentationLayer.ShowViewModel.ShowState
     
@@ -98,14 +107,20 @@ final class ShowViewModelStub: ShowViewModelInteraction {
     var showsState: ((PresentationLayer.ShowViewModel.ShowState) -> Void)?
     
     func fetchShows() {
-        _showEntities = []
         if case .done = state {
-            _showEntities = buildShowEntities()
+            _showEntities = showEntitiesBuilder()
         }
         showsState?(state)
     }
     
-    private func buildShowEntities() -> [ShowEntity] {
+    func fetchNextShows() {
+        if case .done = state {
+            _showEntities.append(contentsOf: showEntitiesBuilder())
+        }
+        showsState?(state)
+    }
+    
+    private func showEntitiesBuilder() -> [ShowEntity] {
         return [showEntity(), showEntity(), showEntity()]
     }
     
@@ -145,5 +160,11 @@ private extension ShowTableViewController {
     
     func tap(at index: Int = 0) {
         tableView(showTableView, didSelectRowAt: IndexPath(row: index, section: 0))
+    }
+    
+    func scrollToBottom() {
+        showTableView.contentOffset.y = 1000
+        let anyScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        scrollViewDidEndDragging(anyScrollView, willDecelerate: true)
     }
 }

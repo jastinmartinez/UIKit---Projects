@@ -9,13 +9,14 @@ import Foundation
 import DomainLayer
 import CloudKit
 
-public protocol ShowViewModelInteraction {
+public protocol ShowViewModelActions {
     var showEntities: [ShowEntity] { get }
     var showsState: ((ShowViewModel.ShowState) -> Void)? { get set }
     func fetchShows()
+    func fetchNextShows()
 }
 
-public final class ShowViewModel: ShowViewModelInteraction {
+public final class ShowViewModel: ShowViewModelActions {
 
     private let showInteractorProtocol: ShowInteractorProtocol
     private let externalImageInteractorProtocol: ExternalImageInteractorProtocol
@@ -43,6 +44,8 @@ public final class ShowViewModel: ShowViewModelInteraction {
             }
         }
     }
+    
+    public func fetchNextShows() { }
 }
 
 extension ShowViewModel {

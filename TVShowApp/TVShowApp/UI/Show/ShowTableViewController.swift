@@ -12,8 +12,8 @@ import DomainLayer
 
 public class ShowTableViewController : UIViewController {
     
-    private var showViewModelInteraction: ShowViewModelInteraction!
-    private var didSelectRow: ((Int) -> Void)!
+    private var showViewModelAction: ShowViewModelActions!
+    private var didSelectShow: ((Int) -> Void)!
     
     public let fetchingActivityIndicator: UIActivityIndicatorView = {
         return  UIActivityIndicatorView.buildActivityIndicator()
@@ -25,11 +25,12 @@ public class ShowTableViewController : UIViewController {
         return tableView
     }()
     
-    public init(showViewModelInteraction: ShowViewModelInteraction,
-                didSelectRow: @escaping ((Int) -> Void)) {
-        self.showViewModelInteraction = showViewModelInteraction
-        self.didSelectRow = didSelectRow
+    public init(showViewModelAction: ShowViewModelActions,
+                didSelectShow: @escaping ((Int) -> Void)) {
+        self.showViewModelAction = showViewModelAction
+        self.didSelectShow = didSelectShow
         super.init(nibName: nil, bundle: nil)
+        self.setShowDataState()
     }
     
     required init?(coder: NSCoder) {
@@ -41,18 +42,21 @@ public class ShowTableViewController : UIViewController {
         onCreate()
     }
    
-    fileprivate func onCreate() {
+    private func onCreate() {
         setViewConfiguration()
         setOutletToSubView()
         setShowTableView()
         setActivityIndicatorConstraint()
         setDelegates()
-        setShowDataState()
         fetchShows()
     }
     
-    fileprivate func fetchShows() {
-        showViewModelInteraction.fetchShows()
+    private func fetchShows() {
+        showViewModelAction.fetchShows()
+    }
+    
+    private func fetchNextShows() {
+        showViewModelAction.fetchNextShows()
     }
     
     private func setDelegates() {
@@ -60,29 +64,29 @@ public class ShowTableViewController : UIViewController {
         showTableView.delegate = self
     }
     
-    fileprivate func setOutletToSubView() {
+    private func setOutletToSubView() {
         view.addSubview(showTableView)
         view.addSubview(fetchingActivityIndicator)
     }
     
-    fileprivate func setViewConfiguration() {
+    private func setViewConfiguration() {
         view.backgroundColor = UIColor(named: ColorHelper.blue.rawValue)!
     }
     
-    fileprivate func setShowTableView() {
+    private func setShowTableView() {
         NSLayoutConstraint.on([showTableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
                                showTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
                                showTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
                                showTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
     
-    fileprivate func setActivityIndicatorConstraint() {
+    private func setActivityIndicatorConstraint() {
         NSLayoutConstraint.on([fetchingActivityIndicator.centerXAnchor.constraint(equalTo: showTableView.centerXAnchor),
                                fetchingActivityIndicator.centerYAnchor.constraint(equalTo: showTableView.centerYAnchor)])
     }
     
-    public func setShowDataState() {
-        showViewModelInteraction.showsState = {  [weak self] state in
+    private func setShowDataState() {
+        showViewModelAction.showsState = {  [weak self] state in
             switch state {
             case .loading:
                 self?.fetchingActivityIndicator.startAnimating()
@@ -98,7 +102,7 @@ public class ShowTableViewController : UIViewController {
 
 extension ShowTableViewController : UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return showViewModelInteraction.showEntities.count
+        return showViewModelAction.showEntities.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -111,6 +115,14 @@ extension ShowTableViewController : UITableViewDataSource {
 
 extension ShowTableViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didSelectRow(indexPath.row)
+        didSelectShow(indexPath.row)
+    }
+}
+
+extension ShowTableViewController {
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if showTableView.contentOffset.y >= (showTableView.contentSize.height - showTableView.frame.size.height) {
+            fetchNextShows()
+        }
     }
 }
