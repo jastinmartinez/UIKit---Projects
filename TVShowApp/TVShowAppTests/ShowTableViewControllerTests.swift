@@ -34,7 +34,7 @@ final class ShowTableViewControllerTests: XCTestCase {
         
         sut.viewDidLoad()
         
-        XCTAssertTrue(sut.fetchingActivityIndicator.isAnimating)
+        XCTAssertTrue(sut.isLoaderPresenting())
         XCTAssertEqual(sut.numberOfRows, 0)
     }
     
@@ -43,7 +43,7 @@ final class ShowTableViewControllerTests: XCTestCase {
         
         sut.viewDidLoad()
         
-        XCTAssertFalse(sut.fetchingActivityIndicator.isAnimating)
+        XCTAssertFalse(sut.isLoaderPresenting())
         XCTAssertEqual(sut.numberOfRows, 3)
     }
     
@@ -54,7 +54,7 @@ final class ShowTableViewControllerTests: XCTestCase {
         
         sut.viewDidLoad()
         
-        XCTAssertFalse(sut.fetchingActivityIndicator.isAnimating)
+        XCTAssertFalse(sut.isLoaderPresenting())
         XCTAssertEqual(sut.numberOfRows, 0)
     }
     
@@ -149,5 +149,9 @@ private extension ShowTableViewController {
     
     var numberOfRows: Int {
         return showTableView.numberOfRows(inSection: 0)
+    }
+    
+    func isLoaderPresenting() -> Bool {
+        return self.fetchingActivityIndicator.isAnimating
     }
 }
