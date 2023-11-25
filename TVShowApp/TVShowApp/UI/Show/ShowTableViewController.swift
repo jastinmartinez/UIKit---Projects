@@ -53,6 +53,7 @@ public class ShowTableViewController : UIViewController {
     
     private func setDelegates() {
         showTableView.dataSource = self
+        showTableView.delegate = self
     }
     
     fileprivate func setOutletToSubView() {
@@ -104,3 +105,6 @@ extension ShowTableViewController : UITableViewDataSource {
     }
 }
 
+extension ShowTableViewController: UITableViewDelegate {
+    
+}
