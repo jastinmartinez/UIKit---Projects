@@ -10,7 +10,7 @@ import UIKit
 import DomainLayer
 import PresentationLayer
 
-class ShowDetailViewController : UIViewController {
+public class ShowDetailViewController : UIViewController {
     private var showEntity: ShowEntity!
     private var showEpisodeViewModel: ShowEpisodeViewModel!
     private let scrollViewContentHeight = 1500 as CGFloat
@@ -84,7 +84,7 @@ class ShowDetailViewController : UIViewController {
         super.init(coder: coder)
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.setViewConfiguration()
         self.setOutletToSubView()
@@ -203,15 +203,15 @@ class ShowDetailViewController : UIViewController {
 
 extension ShowDetailViewController : UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return self.showEpisodeViewModel.showEpisodeEntityListGropBySeason.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.showEpisodeViewModel.showEpisodeEntityListGropBySeason[section]?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let showEpisodeTableViewCell = tableView.dequeueReusableCell(withIdentifier: NameHelper.cell.rawValue, for: indexPath) as UITableViewCell
         var cellConfiguration = UIListContentConfiguration.cell()
         if let showEntityList = self.showEpisodeViewModel.showEpisodeEntityListGropBySeason[indexPath.section] {
@@ -227,13 +227,13 @@ extension ShowDetailViewController : UITableViewDataSource {
         return showEpisodeTableViewCell
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return section == 0 ? "Season" : "Season \(section)"
     }
 }
 
 extension ShowDetailViewController : UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.fetchingActivityIndicator.startAnimating()
         self.showEpisodeViewModel.fetchShowEpisodeImage(season: indexPath.section, number: indexPath.row) { showEpisodeEntity in
             self.fetchingActivityIndicator.stopAnimating()

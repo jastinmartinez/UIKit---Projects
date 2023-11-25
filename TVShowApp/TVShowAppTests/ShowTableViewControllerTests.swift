@@ -62,26 +62,21 @@ final class ShowTableViewControllerTests: XCTestCase {
         let sut = makeSUT(.done)
         
         sut.viewDidLoad()
+        sut.tap()
+        setRunLoop()
         
-        XCTAssertFalse(sut.isLoaderPresenting())
-        XCTAssertEqual(sut.numberOfRows, 3)
+        XCTAssertTrue(sut.navigationController?.topViewController is ShowDetailViewController)
     }
     
     private func makeSUT() -> (ShowTableViewController) {
-        return makeSUT(.loading)
+        return makeSUT( .done)
     }
     
     private func makeSUT(_ state: PresentationLayer.ShowViewModel.ShowState) -> (ShowTableViewController) {
-        let showEpisodeInteractionStub = ShowEpisodeInteractionStub()
-        let externalImageInteractionStub = ExternalImageInteractionStub()
-        
-        let showEpisodeViewModel = ShowEpisodeViewModel(showEpisodeInteractorProtocol: showEpisodeInteractionStub,
-                                                        externalImageInteractorProtocol: externalImageInteractionStub)
+        let appComposer = buildAppComposer()
         let showViewModelStub = ShowViewModelStub(state: state)
-        
-        let sut = ShowTableViewController(showViewModelInteraction: showViewModelStub,
-                                          showEpisodeViewModel: showEpisodeViewModel)
-        return sut
+        let sut = appComposer.getShowTableViewController(showViewModelInteraction: showViewModelStub)
+        return sut.topViewController as! ShowTableViewController
     }
 }
 
@@ -99,7 +94,7 @@ final class ShowViewModelStub: ShowViewModelInteraction {
     var showEntities: [DomainLayer.ShowEntity] {
         return _showEntities
     }
-
+    
     var showsState: ((PresentationLayer.ShowViewModel.ShowState) -> Void)?
     
     func fetchShows() {
@@ -127,21 +122,7 @@ final class ShowViewModelStub: ShowViewModelInteraction {
     }
 }
 
-
-final class ExternalImageInteractionStub: ExternalImageInteractorProtocol {
-    func fetchExternalImage(imageUrl: String, handler: @escaping ((Result<Data?, DomainLayer.DomainError>) -> Void)) {
-        
-    }
-}
-
-final class ShowEpisodeInteractionStub: ShowEpisodeInteractorProtocol {
-    func fecthShowEpisodeList(showId: Int, handler: @escaping ((Result<[DomainLayer.ShowEpisodeEntity], DomainLayer.DomainError>) -> Void)) {
-        
-    }
-}
-
 private extension ShowTableViewController {
-    
     func isDataSourceSet() -> Bool {
         return showTableView.dataSource != nil
     }
@@ -162,7 +143,7 @@ private extension ShowTableViewController {
         return self.fetchingActivityIndicator.isAnimating
     }
     
-    func tap() {
-       
+    func tap(at index: Int = 0) {
+        tableView(showTableView, didSelectRowAt: IndexPath(row: index, section: 0))
     }
 }

@@ -35,6 +35,8 @@
 		0489568F27F7E53800F50ED9 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0489568E27F7E53800F50ED9 /* MainTabBarViewController.swift */; };
 		0489569427F7E53A00F50ED9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0489569327F7E53A00F50ED9 /* Assets.xcassets */; };
 		0489569727F7E53A00F50ED9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0489569527F7E53A00F50ED9 /* LaunchScreen.storyboard */; };
+		048EA3B22B11B3AA007D78DC /* BiometricManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048EA3B12B11B3AA007D78DC /* BiometricManager.swift */; };
+		048EA3B42B11B502007D78DC /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048EA3B32B11B502007D78DC /* Helpers.swift */; };
 		049CD52B27FDEE0100BBA55E /* ConfigurationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CD52A27FDEE0100BBA55E /* ConfigurationTableViewCell.swift */; };
 		049CD53427FDF04600BBA55E /* BiometricalAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CD53327FDF04600BBA55E /* BiometricalAuthentication.swift */; };
 		049CD53727FDF5B900BBA55E /* DeniedAccesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CD53627FDF5B900BBA55E /* DeniedAccesViewController.swift */; };
@@ -145,6 +147,8 @@
 		0489571627F7E73400F50ED9 /* DomainLayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DomainLayer.xcodeproj; path = domain/DomainLayer.xcodeproj; sourceTree = "<group>"; };
 		0489574127F7E76800F50ED9 /* DataLayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DataLayer.xcodeproj; path = data/DataLayer.xcodeproj; sourceTree = "<group>"; };
 		0489576C27F7E78D00F50ED9 /* PresentationLayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PresentationLayer.xcodeproj; path = presentation/PresentationLayer.xcodeproj; sourceTree = "<group>"; };
+		048EA3B12B11B3AA007D78DC /* BiometricManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricManager.swift; sourceTree = "<group>"; };
+		048EA3B32B11B502007D78DC /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		049CD52A27FDEE0100BBA55E /* ConfigurationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTableViewCell.swift; sourceTree = "<group>"; };
 		049CD53327FDF04600BBA55E /* BiometricalAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricalAuthentication.swift; sourceTree = "<group>"; };
 		049CD53627FDF5B900BBA55E /* DeniedAccesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeniedAccesViewController.swift; sourceTree = "<group>"; };
@@ -410,6 +414,7 @@
 				04F2D53E2B0C3C520045D978 /* LocalStore.swift */,
 				04F2D5402B0C3C6C0045D978 /* LocalStorer.swift */,
 				04F2D5422B0C3CF00045D978 /* UserDefault+LocalStore.swift */,
+				048EA3B12B11B3AA007D78DC /* BiometricManager.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -422,6 +427,7 @@
 				04F2D5352B0C261C0045D978 /* MainTabBarViewControllerTests.swift */,
 				04E8A1602B0CDF0D00AA620B /* BiometricalTests.swift */,
 				04E8A1742B0D69EF00AA620B /* ShowTableViewControllerTests.swift */,
+				048EA3B32B11B502007D78DC /* Helpers.swift */,
 			);
 			path = TVShowAppTests;
 			sourceTree = "<group>";
@@ -608,6 +614,7 @@
 				04F2D53B2B0C26FA0045D978 /* AppComposer.swift in Sources */,
 				04810D4327FA3D1100768FA6 /* ConfigurationViewController.swift in Sources */,
 				046AD28127F9013E0000C0FA /* ShowDependencyInjection.swift in Sources */,
+				048EA3B22B11B3AA007D78DC /* BiometricManager.swift in Sources */,
 				040086C427FD2AEB00B28737 /* ExternalImageDependecyInjection.swift in Sources */,
 				049CD53427FDF04600BBA55E /* BiometricalAuthentication.swift in Sources */,
 				04F2D53F2B0C3C520045D978 /* LocalStore.swift in Sources */,
@@ -625,6 +632,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F2D5382B0C261C0045D978 /* MainTabBarViewControllerTests.swift in Sources */,
+				048EA3B42B11B502007D78DC /* Helpers.swift in Sources */,
 				04E8A1752B0D69EF00AA620B /* ShowTableViewControllerTests.swift in Sources */,
 				04F2D5372B0C261C0045D978 /* AppComposerTests.swift in Sources */,
 				04F2D5392B0C261C0045D978 /* LocalStoreTests.swift in Sources */,

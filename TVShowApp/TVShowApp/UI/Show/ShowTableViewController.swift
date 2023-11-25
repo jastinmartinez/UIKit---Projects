@@ -13,8 +13,11 @@ import DomainLayer
 public class ShowTableViewController : UIViewController {
     
     private var showViewModelInteraction: ShowViewModelInteraction!
-    private var showEpisodeViewModel: ShowEpisodeViewModel!
-    public lazy var fetchingActivityIndicator = UIActivityIndicatorView.buildActivityIndicator()
+    private var didSelectRow: ((Int) -> Void)!
+    
+    public let fetchingActivityIndicator: UIActivityIndicatorView = {
+        return  UIActivityIndicatorView.buildActivityIndicator()
+    }()
     
     public let showTableView: UITableView = {
         let tableView = UITableView()
@@ -22,9 +25,10 @@ public class ShowTableViewController : UIViewController {
         return tableView
     }()
     
-    public init(showViewModelInteraction: ShowViewModelInteraction,showEpisodeViewModel: ShowEpisodeViewModel) {
+    public init(showViewModelInteraction: ShowViewModelInteraction,
+                didSelectRow: @escaping ((Int) -> Void)) {
         self.showViewModelInteraction = showViewModelInteraction
-        self.showEpisodeViewModel = showEpisodeViewModel
+        self.didSelectRow = didSelectRow
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -106,5 +110,7 @@ extension ShowTableViewController : UITableViewDataSource {
 }
 
 extension ShowTableViewController: UITableViewDelegate {
-    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didSelectRow(indexPath.row)
+    }
 }

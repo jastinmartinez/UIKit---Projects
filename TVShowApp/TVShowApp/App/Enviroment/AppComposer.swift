@@ -6,34 +6,7 @@
 //
 
 import UIKit
-import LocalAuthentication
-
-final public class BiometricManager {
-    private let context: LAContext
-    private let localStorer: LocalStorer
-    
-    public init(context: LAContext = .init(),
-                localStorer: LocalStorer) {
-        self.context = context
-        self.localStorer = localStorer
-    }
-    
-    public var isAuthRequired: Bool {
-        return localStorer.get(for: .biometric)
-    }
-    
-    public func verify(whenSuccess: ((Bool) -> Void)?,
-                       whenFailure: (() -> Void)?) {
-        Biometric.context(context).verify { verification in
-            switch verification {
-            case .success(let state):
-                whenSuccess?(state)
-            case .failure:
-                whenFailure?()
-            }
-        }
-    }
-}
+import PresentationLayer
 
 final public class AppComposer {
     
@@ -46,7 +19,8 @@ final public class AppComposer {
     }
     
     public func setUpApp() {
-        let showTableViewController = getShowTableViewController()
+        let showViewModel = ShowDependencyInjection.setShowViewModelDependecy()
+        let showTableViewController = getShowTableViewController(showViewModelInteraction: showViewModel)
         let configurationViewController = getConfigurationViewController()
         let mainTabBarViewController = MainTabBarViewController(viewControllers: [showTableViewController, configurationViewController])
         let deniedViewController = DeniedAccessViewController()
@@ -75,19 +49,24 @@ final public class AppComposer {
         self.window.makeKeyAndVisible()
     }
     
-    private func getShowTableViewController() -> UINavigationController {
-        let showViewModel = ShowDependencyInjection.setShowViewModelDependecy()
-        let showEpisodeViewModel = ShowEpisodeDependeyInjection.setShowEpisodeViewModelDependecy()
-        
-        let showViewController = UINavigationController(rootViewController: ShowTableViewController(showViewModelInteraction: showViewModel,
-                                                                                                    showEpisodeViewModel: showEpisodeViewModel))
-        showViewController.navigationBar.backgroundColor = UIColor(named: ColorHelper.blue.rawValue)!
-        showViewController.tabBarItem = setTabBarWith(title: "TV Shows",
-                                                      image: "ticket",
-                                                      selectedImage:  "ticket")
-        return showViewController
-        
+    public func getShowTableViewController(showViewModelInteraction: ShowViewModelInteraction) -> UINavigationController {
+        let navController = UINavigationController()
+        let showTableViewController =  ShowTableViewController(showViewModelInteraction: showViewModelInteraction,
+                                                               didSelectRow: { index in
+            let showEntity = showViewModelInteraction.showEntities[index]
+            let showEpisodeViewModel = ShowEpisodeDependeyInjection.setShowEpisodeViewModelDependecy()
+            let showDetailViewController = ShowDetailViewController(showEntity: showEntity,
+                                                                    showEpisodeViewModel: showEpisodeViewModel)
+            navController.pushViewController(showDetailViewController, animated: true)
+        })
+        navController.setViewControllers([showTableViewController], animated: true)
+        navController.navigationBar.backgroundColor = UIColor(named: ColorHelper.blue.rawValue)!
+        navController.tabBarItem = setTabBarWith(title: "TV Shows",
+                                                 image: "ticket",
+                                                 selectedImage:  "ticket")
+        return navController
     }
+    
     
     private func getConfigurationViewController() -> ConfigurationViewController {
         let configurationViewController =  ConfigurationViewController()
