@@ -49,7 +49,7 @@ final class ShowTableViewControllerTests: XCTestCase {
     
     
     func test_whenDeliversError_thenShowError() {
-        let anyError = NSError(domain: "any error", code: 0)
+        let anyError = anyError()
         let sut = makeSUT(.fail(anyError))
         
         sut.viewDidLoad()
@@ -68,7 +68,7 @@ final class ShowTableViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.navigationController?.topViewController is ShowDetailViewController)
     }
     
-    func test_whenScrollAllToTheBottom_thenPerformFetchNextPageOfShows() {
+    func test_whenScrollAllToTheBottom_thenPerformFetchNextPageOfShowsDeliversData() {
         let sut = makeSUT(.done)
         
         sut.viewDidLoad()
@@ -77,34 +77,72 @@ final class ShowTableViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.numberOfRows, 6)
     }
     
+    func test_whenScrollAllToTheBottom_thenPerformFetchNextPageOfShowsWaitForData() {
+        let (sut, showViewModel) = makeSUT(tuple: .done)
+        
+        sut.viewDidLoad()
+        
+        showViewModel.setState(for: .loading)
+        sut.scrollToBottom()
+        
+        XCTAssertTrue(sut.isLoaderPresenting())
+        XCTAssertEqual(sut.numberOfRows, 3)
+    }
+    
+    func test_whenScrollAllToTheBottom_thenPerformFetchNextPageOfShowsDeliversError() {
+        let (sut, showViewModel) = makeSUT(tuple: .done)
+        let anyError = anyError()
+        
+        sut.viewDidLoad()
+        
+        showViewModel.setState(for: .fail(anyError))
+        sut.scrollToBottom()
+        
+        XCTAssertFalse(sut.isLoaderPresenting())
+        XCTAssertEqual(sut.numberOfRows, 3)
+    }
+    
     private func makeSUT() -> (ShowTableViewController) {
         return makeSUT( .done)
     }
     
     private func makeSUT(_ state: PresentationLayer.ShowViewModel.ShowState) -> (ShowTableViewController) {
         let appComposer = buildAppComposer()
-        let showViewModelStub = ShowViewModelStub(state: state)
+        let showViewModelStub =  ShowViewModelStub(state: state)
         let sut = appComposer.getShowTableViewController(showViewModelActions: showViewModelStub)
         return sut.topViewController as! ShowTableViewController
+    }
+    
+    private func makeSUT(tuple state: PresentationLayer.ShowViewModel.ShowState) -> (ShowTableViewController, ShowViewModelStub) {
+        let appComposer = buildAppComposer()
+        let showViewModelStub =  ShowViewModelStub(state: state)
+        let sut = appComposer.getShowTableViewController(showViewModelActions: showViewModelStub)
+        return (sut.topViewController as! ShowTableViewController, showViewModelStub)
+    }
+    
+    private func anyError() -> Error {
+        return NSError(domain: "any error", code: 0)
     }
 }
 
 
 final class ShowViewModelStub: ShowViewModelActions {
     
-    private let state: PresentationLayer.ShowViewModel.ShowState
-    
-    init(state: PresentationLayer.ShowViewModel.ShowState) {
-        self.state = state
-    }
-    
+    private var state: PresentationLayer.ShowViewModel.ShowState
     private var _showEntities = [DomainLayer.ShowEntity]()
+    var showsState: ((PresentationLayer.ShowViewModel.ShowState) -> Void)?
     
     var showEntities: [DomainLayer.ShowEntity] {
         return _showEntities
     }
     
-    var showsState: ((PresentationLayer.ShowViewModel.ShowState) -> Void)?
+    init(state: PresentationLayer.ShowViewModel.ShowState) {
+        self.state = state
+    }
+    
+    func setState(for state: PresentationLayer.ShowViewModel.ShowState) {
+        self.state = state
+    }
     
     func fetchShows() {
         if case .done = state {
