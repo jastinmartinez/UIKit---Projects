@@ -102,6 +102,17 @@ final class ShowTableViewControllerTests: XCTestCase {
         XCTAssertEqual(root.sut.numberOfRows, 3)
     }
     
+    func test_whenScrollAllToTheBottomTwice_thenPerformFetchNextPageOfShowsTwice() {
+        let root = makeSUT(.done)
+        
+        root.sut.viewDidLoad()
+        
+        root.sut.scrollToBottom()
+        root.sut.scrollToBottom()
+        
+        XCTAssertEqual(root.sut.numberOfRows, 9)
+    }
+    
     
     private func makeSUT(_ state: PresentationLayer.ShowViewModel.ShowState,
                          file: StaticString = #file,
