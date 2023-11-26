@@ -13,7 +13,7 @@ import DomainLayer
 public class ShowTableViewController : UIViewController {
     
     private var showViewModelAction: ShowViewModelActions!
-    private var didSelectShow: ((Int) -> Void)!
+    public var didSelectShow: ((Int) -> Void)?
     
     public let fetchingActivityIndicator: UIActivityIndicatorView = {
         return  UIActivityIndicatorView.buildActivityIndicator()
@@ -25,16 +25,15 @@ public class ShowTableViewController : UIViewController {
         return tableView
     }()
     
-    public init(showViewModelAction: ShowViewModelActions,
-                didSelectShow: @escaping ((Int) -> Void)) {
+    public init(showViewModelAction: ShowViewModelActions) {
         self.showViewModelAction = showViewModelAction
-        self.didSelectShow = didSelectShow
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +114,7 @@ extension ShowTableViewController : UITableViewDataSource {
 
 extension ShowTableViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didSelectShow(indexPath.row)
+        didSelectShow?(indexPath.row)
     }
 }
 

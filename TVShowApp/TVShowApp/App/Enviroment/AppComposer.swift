@@ -77,14 +77,14 @@ final public class AppComposer {
     }
     
     public func getShowTableViewController(showViewModelActions: ShowViewModelActions) -> ShowTableViewController  {
-        return ShowTableViewController(showViewModelAction: showViewModelActions,
-                                didSelectShow: { [showNavigationController] index in
+        let showTableViewController = ShowTableViewController(showViewModelAction: showViewModelActions)
+        showTableViewController.didSelectShow = { [showNavigationController] index in
             let showEntity = showViewModelActions.showEntities[index]
             let showEpisodeViewModel = ShowEpisodeDependencyInjection.setShowEpisodeViewModelDependency()
             let showDetailViewController = ShowDetailViewController(showEntity: showEntity,
                                                                     showEpisodeViewModel: showEpisodeViewModel)
-            showNavigationController?.pushViewController(showDetailViewController, animated: true)
-        })
+            showNavigationController?.pushViewController(showDetailViewController, animated: true)}
+        return showTableViewController
     }
     
     private func getConfigurationViewController() -> ConfigurationViewController {

@@ -13,115 +13,106 @@ import TVShowApp
 final class ShowTableViewControllerTests: XCTestCase {
     
     func test_whenInit_thenVcDoNotCrash() {
-        let sut = makeSUT()
+        let root = makeSUT(.done)
         
-        sut.viewDidLoad()
+        root.sut.viewDidLoad()
         
-        XCTAssertTrue(sut.isViewLoaded)
+        XCTAssertTrue(root.sut.isViewLoaded)
     }
     
     func test_whenInit_thenDataSourceAndDelegatesAreSet() {
-        let sut = makeSUT()
+        let root = makeSUT(.done)
         
-        sut.viewDidLoad()
+        root.sut.viewDidLoad()
         
-        XCTAssertTrue(sut.isDataSourceSet())
-        XCTAssertTrue(sut.isDelegateSet())
+        XCTAssertTrue(root.sut.isDataSourceSet())
+        XCTAssertTrue(root.sut.isDelegateSet())
     }
     
     func test_whenInit_thenIsInLoadingState() {
-        let sut = makeSUT(.loading)
+        let root = makeSUT(.loading)
         
-        sut.viewDidLoad()
+        root.sut.viewDidLoad()
         
-        XCTAssertTrue(sut.isLoaderPresenting())
-        XCTAssertEqual(sut.numberOfRows, 0)
+        XCTAssertTrue(root.sut.isLoaderPresenting())
+        XCTAssertEqual(root.sut.numberOfRows, 0)
     }
     
     func test_whenDeliversData_thenRenderComponent() {
-        let sut = makeSUT(.done)
+        let root = makeSUT(.done)
         
-        sut.viewDidLoad()
+        root.sut.viewDidLoad()
         
-        XCTAssertFalse(sut.isLoaderPresenting())
-        XCTAssertEqual(sut.numberOfRows, 3)
+        XCTAssertFalse(root.sut.isLoaderPresenting())
+        XCTAssertEqual(root.sut.numberOfRows, 3)
     }
     
     
     func test_whenDeliversError_thenShowError() {
         let anyError = anyError()
-        let sut = makeSUT(.fail(anyError))
+        let root = makeSUT(.fail(anyError))
         
-        sut.viewDidLoad()
+        root.sut.viewDidLoad()
         
-        XCTAssertFalse(sut.isLoaderPresenting())
-        XCTAssertEqual(sut.numberOfRows, 0)
+        XCTAssertFalse(root.sut.isLoaderPresenting())
+        XCTAssertEqual(root.sut.numberOfRows, 0)
     }
     
     func test_whenThereIsShowsAndSelectTap_GoToDetailScreen() {
-        let sut = makeSUT(.done)
+        let root = makeSUT(.done)
         
-        sut.viewDidLoad()
-        sut.tap()
-        setRunLoop()
+        root.sut.viewDidLoad()
+        root.sut.tap()
+        
     }
     
     func test_whenScrollAllToTheBottom_thenPerformFetchNextPageOfShowsDeliversData() {
-        let sut = makeSUT(.done)
+        let root = makeSUT(.done)
         
-        sut.viewDidLoad()
-        sut.scrollToBottom()
+        root.sut.viewDidLoad()
+        root.sut.scrollToBottom()
         
-        XCTAssertEqual(sut.numberOfRows, 6)
+        XCTAssertEqual(root.sut.numberOfRows, 6)
     }
     
     func test_whenScrollAllToTheBottom_thenPerformFetchNextPageOfShowsWaitForData() {
-        let (sut, showViewModel) = makeSUT(tuple: .done)
+        let root = makeSUT(.done)
         
-        sut.viewDidLoad()
+        root.sut.viewDidLoad()
         
-        showViewModel.setState(for: .loading)
-        sut.scrollToBottom()
+        root.show.setState(for: .loading)
+        root.sut.scrollToBottom()
         
-        XCTAssertTrue(sut.isLoaderPresenting())
-        XCTAssertEqual(sut.numberOfRows, 3)
+        XCTAssertTrue(root.sut.isLoaderPresenting())
+        XCTAssertEqual(root.sut.numberOfRows, 3)
     }
     
     func test_whenScrollAllToTheBottom_thenPerformFetchNextPageOfShowsDeliversError() {
-        let (sut, showViewModel) = makeSUT(tuple: .done)
+        let root = makeSUT(.done)
         let anyError = anyError()
         
-        sut.viewDidLoad()
+        root.sut.viewDidLoad()
         
-        showViewModel.setState(for: .fail(anyError))
-        sut.scrollToBottom()
+        root.show.setState(for: .fail(anyError))
+        root.sut.scrollToBottom()
         
-        XCTAssertFalse(sut.isLoaderPresenting())
-        XCTAssertEqual(sut.numberOfRows, 3)
+        XCTAssertFalse(root.sut.isLoaderPresenting())
+        XCTAssertEqual(root.sut.numberOfRows, 3)
     }
     
-    private func makeSUT() -> (ShowTableViewController) {
-        return makeSUT( .done)
-    }
-    
+  
     private func makeSUT(_ state: PresentationLayer.ShowViewModel.ShowState,
                          file: StaticString = #file,
-                         line: UInt = #line) -> (ShowTableViewController) {
-        let appComposer = buildAppComposer()
+                         line: UInt = #line) -> MakeSUT {
         let showViewModelStub =  ShowViewModelStub(state: state)
-        let sut = appComposer.getShowTableViewController(showViewModelActions: showViewModelStub)
+        let sut = ShowTableViewController(showViewModelAction: showViewModelStub)
         trackForMemoryLeaks(instance: sut, file: file, line: line)
-        return sut
+        return MakeSUT(sut: sut, show: showViewModelStub)
     }
     
-    private func makeSUT(tuple state: PresentationLayer.ShowViewModel.ShowState,
-                         file: StaticString = #file,
-                         line: UInt = #line) -> (ShowTableViewController, ShowViewModelStub) {
-        let appComposer = buildAppComposer()
-        let showViewModelStub =  ShowViewModelStub(state: state)
-        let sut = appComposer.getShowTableViewController(showViewModelActions: showViewModelStub)
-        trackForMemoryLeaks(instance: sut, file: file, line: line)
-        return (sut, showViewModelStub)
+    private struct MakeSUT {
+        let sut: ShowTableViewController
+        let show: ShowViewModelStub
     }
     
     private func anyError() -> Error {

@@ -67,26 +67,3 @@ final class MockStore: LocalStore {
         return dic.count
     }
 }
-
-func buildAppComposer() -> AppComposer {
-    return buildAppComposer(localStore: MockStore(), biometricResult: .success(true))
-}
-
-private func buildAppComposer(localStore: LocalStore, biometricResult: Result<Bool, Error>) -> AppComposer {
-    let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-    let localStorer = LocalStorer(localStore: localStore)
-    let contextStub = LAContextStub(result: biometricResult)
-    let biometricManager = BiometricManager(context: contextStub,
-                                            localStorer: localStorer)
-    let appComposer = AppComposer(window: window,
-                                  biometricManager: biometricManager)
-    return appComposer
-}
-
-
-extension XCTestCase {
-    func setRunLoop() {
-        RunLoop.current.run(until: Date.now)
-    }
-}
-
