@@ -13,17 +13,27 @@ final public class AppComposer {
     public let window: UIWindow
     public let biometricManager: BiometricManager
     
+    private var showNavigationController: UINavigationController!
+    private var showTableViewController: ShowTableViewController!
+    private var configurationViewController: ConfigurationViewController!
+    private var deniedViewController: DeniedAccessViewController!
+    private var mainTabBarViewController: MainTabBarViewController!
+    
     public required init(window: UIWindow, biometricManager: BiometricManager) {
         self.window = window
         self.biometricManager = biometricManager
+        onCreate()
+    }
+    
+    private func onCreate() {
+        showTableViewController = getShowTableViewController(showViewModelActions:  ShowDependencyInjection.setShowViewModelDependency())
+        showNavigationController = getShowNavigationController(rootViewController: showTableViewController)
+        configurationViewController = getConfigurationViewController()
+        deniedViewController = getDeniedViewController()
+        mainTabBarViewController = getMainTabBar(viewControllers: [showNavigationController, configurationViewController])
     }
     
     public func setUpApp() {
-        let showViewModel = ShowDependencyInjection.setShowViewModelDependecy()
-        let showTableViewController = getShowTableViewController(showViewModelActions: showViewModel)
-        let configurationViewController = getConfigurationViewController()
-        let mainTabBarViewController = MainTabBarViewController(viewControllers: [showTableViewController, configurationViewController])
-        let deniedViewController = DeniedAccessViewController()
         setRootViewController(mainTabBarViewController, deniedViewController)
     }
     
@@ -49,17 +59,16 @@ final public class AppComposer {
         self.window.makeKeyAndVisible()
     }
     
-    public func getShowTableViewController(showViewModelActions: ShowViewModelActions) -> UINavigationController {
-        let navController = UINavigationController()
-        let showTableViewController =  ShowTableViewController(showViewModelAction: showViewModelActions,
-                                                               didSelectShow: { index in
-            let showEntity = showViewModelActions.showEntities[index]
-            let showEpisodeViewModel = ShowEpisodeDependeyInjection.setShowEpisodeViewModelDependecy()
-            let showDetailViewController = ShowDetailViewController(showEntity: showEntity,
-                                                                    showEpisodeViewModel: showEpisodeViewModel)
-            navController.pushViewController(showDetailViewController, animated: true)
-        })
-        navController.setViewControllers([showTableViewController], animated: true)
+    private func getDeniedViewController() -> DeniedAccessViewController {
+        return DeniedAccessViewController()
+    }
+    
+    private func getMainTabBar(viewControllers: [UIViewController]) -> MainTabBarViewController {
+        return MainTabBarViewController(viewControllers: viewControllers)
+    }
+    
+    public func getShowNavigationController(rootViewController: UIViewController) -> UINavigationController {
+        let navController = UINavigationController(rootViewController: rootViewController)
         navController.navigationBar.backgroundColor = UIColor(named: ColorHelper.blue.rawValue)!
         navController.tabBarItem = setTabBarWith(title: "TV Shows",
                                                  image: "ticket",
@@ -67,6 +76,16 @@ final public class AppComposer {
         return navController
     }
     
+    public func getShowTableViewController(showViewModelActions: ShowViewModelActions) -> ShowTableViewController  {
+        return ShowTableViewController(showViewModelAction: showViewModelActions,
+                                didSelectShow: { [showNavigationController] index in
+            let showEntity = showViewModelActions.showEntities[index]
+            let showEpisodeViewModel = ShowEpisodeDependencyInjection.setShowEpisodeViewModelDependency()
+            let showDetailViewController = ShowDetailViewController(showEntity: showEntity,
+                                                                    showEpisodeViewModel: showEpisodeViewModel)
+            showNavigationController?.pushViewController(showDetailViewController, animated: true)
+        })
+    }
     
     private func getConfigurationViewController() -> ConfigurationViewController {
         let configurationViewController =  ConfigurationViewController()

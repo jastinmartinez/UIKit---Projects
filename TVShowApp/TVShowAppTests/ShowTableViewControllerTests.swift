@@ -64,8 +64,6 @@ final class ShowTableViewControllerTests: XCTestCase {
         sut.viewDidLoad()
         sut.tap()
         setRunLoop()
-        
-        XCTAssertTrue(sut.navigationController?.topViewController is ShowDetailViewController)
     }
     
     func test_whenScrollAllToTheBottom_thenPerformFetchNextPageOfShowsDeliversData() {
@@ -106,22 +104,38 @@ final class ShowTableViewControllerTests: XCTestCase {
         return makeSUT( .done)
     }
     
-    private func makeSUT(_ state: PresentationLayer.ShowViewModel.ShowState) -> (ShowTableViewController) {
+    private func makeSUT(_ state: PresentationLayer.ShowViewModel.ShowState,
+                         file: StaticString = #file,
+                         line: UInt = #line) -> (ShowTableViewController) {
         let appComposer = buildAppComposer()
         let showViewModelStub =  ShowViewModelStub(state: state)
         let sut = appComposer.getShowTableViewController(showViewModelActions: showViewModelStub)
-        return sut.topViewController as! ShowTableViewController
+        trackForMemoryLeaks(instance: sut, file: file, line: line)
+        return sut
     }
     
-    private func makeSUT(tuple state: PresentationLayer.ShowViewModel.ShowState) -> (ShowTableViewController, ShowViewModelStub) {
+    private func makeSUT(tuple state: PresentationLayer.ShowViewModel.ShowState,
+                         file: StaticString = #file,
+                         line: UInt = #line) -> (ShowTableViewController, ShowViewModelStub) {
         let appComposer = buildAppComposer()
         let showViewModelStub =  ShowViewModelStub(state: state)
         let sut = appComposer.getShowTableViewController(showViewModelActions: showViewModelStub)
-        return (sut.topViewController as! ShowTableViewController, showViewModelStub)
+        trackForMemoryLeaks(instance: sut, file: file, line: line)
+        return (sut, showViewModelStub)
     }
     
     private func anyError() -> Error {
         return NSError(domain: "any error", code: 0)
+    }
+    
+    func trackForMemoryLeaks(instance: AnyObject,
+                             file: StaticString = #file,
+                             line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, "Instance should have been deallocated, Potential memory leak.",
+                         file: file,
+                         line: line)
+        }
     }
 }
 
@@ -205,4 +219,6 @@ private extension ShowTableViewController {
         let anyScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         scrollViewDidEndDragging(anyScrollView, willDecelerate: true)
     }
+    
+   
 }

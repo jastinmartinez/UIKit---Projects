@@ -30,7 +30,6 @@ public class ShowTableViewController : UIViewController {
         self.showViewModelAction = showViewModelAction
         self.didSelectShow = didSelectShow
         super.init(nibName: nil, bundle: nil)
-        self.setShowDataState()
     }
     
     required init?(coder: NSCoder) {
@@ -43,6 +42,7 @@ public class ShowTableViewController : UIViewController {
     }
    
     private func onCreate() {
+        setShowDataState()
         setViewConfiguration()
         setOutletToSubView()
         setShowTableView()

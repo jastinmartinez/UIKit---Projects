@@ -1,5 +1,5 @@
 //
-//  ExternalImageDependecyInjection.swift
+//  ExternalImageDependencyInjection.swift
 //  TVShowApp
 //
 //  Created by Jastin on 5/4/22.
@@ -10,7 +10,7 @@ import DataLayer
 import DomainLayer
 import PresentationLayer
 
-final class ExternalImageDependecyInjection {
+final class ExternalImageDependencyInjection {
     class func setExternalInteractor() -> ExternalImageInteractorProtocol {
         let externalImageRemoteDataSource = ExternalImageRemoteDataSource()
         let externalImageDataRepository = ExternalImageDataRepository(externalImageRemoteDataSourceProtocol: externalImageRemoteDataSource)
