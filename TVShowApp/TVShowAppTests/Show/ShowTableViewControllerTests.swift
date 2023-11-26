@@ -229,10 +229,3 @@ private extension ShowTableViewController {
         scrollViewDidEndDragging(anyScrollView, willDecelerate: true)
     }
 }
-
-private class MockNavigationController: UINavigationController {
-    var pushCounter = 0
-    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        pushCounter += 1
-    }
-}
