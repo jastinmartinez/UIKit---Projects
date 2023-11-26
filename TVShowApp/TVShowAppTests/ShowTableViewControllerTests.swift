@@ -149,7 +149,6 @@ final class ShowTableViewControllerTests: XCTestCase {
     }
 }
 
-
 final class ShowViewModelStub: ShowViewModelActions {
     
     private var state: PresentationLayer.ShowViewModel.ShowState
