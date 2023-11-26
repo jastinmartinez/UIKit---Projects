@@ -11,11 +11,11 @@ import DomainLayer
 import DataLayer
 
 final class ShowDependencyInjection {
-    class func setShowViewModelDependecy() -> ShowViewModel {
-        let showRemoteDataSource = ShowRemoteDataSource(baseUrl: AppEnviroment.shared.baseUrl)
+    class func setShowViewModelDependency() -> ShowViewModel {
+        let showRemoteDataSource = ShowRemoteDataSource(baseUrl: AppEnvironment.shared.baseUrl)
         let showDataRepository = ShowDataRepository(showRemoteDataSource: showRemoteDataSource)
         let showInteractor = ShowInteractor(showDomainRepositoryProtocol: showDataRepository)
-        let showViewModel = ShowViewModel(showInteractorProtocol: showInteractor, externalImageInteractorProtocol: ExternalImageDependecyInjection.setExternalInteractor())
+        let showViewModel = ShowViewModel(showInteractorProtocol: showInteractor, externalImageInteractorProtocol: ExternalImageDependencyInjection.setExternalInteractor())
         return showViewModel
     }
 }

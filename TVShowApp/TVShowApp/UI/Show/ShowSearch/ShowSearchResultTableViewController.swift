@@ -47,7 +47,7 @@ class ShowSearchResultTableViewController : UIViewController {
     
     func searchFor(text: String) {
         DispatchQueue.main.async {
-            self.showEntityList = self.showViewModel.showEntityList.filter({ showEntity in showEntity.name.lowercased().contains(text.lowercased())})
+            self.showEntityList = self.showViewModel.showEntities.filter({ showEntity in showEntity.name.lowercased().contains(text.lowercased())})
             self.showSearchResultTableView.reloadData()
         }
     }
@@ -77,9 +77,6 @@ extension ShowSearchResultTableViewController : UITableViewDataSource {
         showTableViewCell?.tintColor = UIColor(named: ColorHelper.red.rawValue)
         showTableViewCell?.selectionStyle = .none
         showTableViewCell?.didChangeShowEntity = self
-        self.showViewModel.setShowEntityById(showEntityID: self.showEntityList[indexPath.row].id) { showEntity in
-            showTableViewCell?.setShowEntity(showEntity)
-        }
         return showTableViewCell!
     }
 }
@@ -91,7 +88,6 @@ extension ShowSearchResultTableViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.fetchingActivityIndicator.startAnimating()
-        self.showViewModel.showEntity = self.showEntityList[indexPath.row]
         self.showEpisodeViewModel.fetchShowEpisodeListById(showId: self.showEntityList[indexPath.row].id)
         self.showEpisodeViewModel.didSetShowEpisodeEntityList = self
     }
@@ -99,17 +95,12 @@ extension ShowSearchResultTableViewController : UITableViewDelegate {
 
 extension ShowSearchResultTableViewController : DidChangeShowEntity {
     func didChangeShowEntity(_ showEntity: ShowEntity) {
-        self.showViewModel.updateShowEntit(showEntity)
+       
     }
 }
 
 extension ShowSearchResultTableViewController : DidSetShowEpisodeEntityList {
     func DidSetShowEpisodeEntityListNotification() {
         self.fetchingActivityIndicator.stopAnimating()
-        guard let showEntity = self.showViewModel.showEntity else {
-            return
-        }
-        let showDetaiViewController = ShowDetailViewController(showEntity: showEntity, showEpisodeViewModel: self.showEpisodeViewModel)
-        self.present(showDetaiViewController, animated: true)
     }
 }

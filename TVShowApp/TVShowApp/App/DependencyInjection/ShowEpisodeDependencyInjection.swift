@@ -10,12 +10,12 @@ import DataLayer
 import DomainLayer
 import PresentationLayer
 
-final class ShowEpisodeDependeyInjection {
-    class func setShowEpisodeViewModelDependecy() -> ShowEpisodeViewModel {
-        let showEpisodeRemoteDataSource = ShowEpisodeRemoteDataSource(baseUrl: AppEnviroment.shared.baseUrl, resource: "episodes")
+final class ShowEpisodeDependencyInjection {
+    class func setShowEpisodeViewModelDependency() -> ShowEpisodeViewModel {
+        let showEpisodeRemoteDataSource = ShowEpisodeRemoteDataSource(baseUrl: AppEnvironment.shared.baseUrl, resource: "episodes")
         let showEpisodeDataRepository = ShowEpisodeDataRepository(showEpisodeRemoteDataSourceProtocol: showEpisodeRemoteDataSource)
         let showEpisodeInteractor = ShowEpisodeInteractor(showEpisodeDomainRepositoryProtocol: showEpisodeDataRepository)
-        let externalImageDependency = ExternalImageDependecyInjection.setExternalInteractor()
+        let externalImageDependency = ExternalImageDependencyInjection.setExternalInteractor()
         let showEpisodeViewModel = ShowEpisodeViewModel(showEpisodeInteractorProtocol: showEpisodeInteractor, externalImageInteractorProtocol: externalImageDependency)
         return showEpisodeViewModel
     }

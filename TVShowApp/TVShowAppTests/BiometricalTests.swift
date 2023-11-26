@@ -94,34 +94,3 @@ final class BiometricalTests: XCTestCase {
     }
 }
 
-
-private class LAContextStub: LAContext {
-    private(set) var policy: LAPolicy
-    private(set) var reason: String
-    private(set) var result: Result<Bool, Error>
-    
-    init(policy: LAPolicy = .deviceOwnerAuthentication,
-         reason: String = "",
-         result:Result<Bool, Error>) {
-        self.policy = policy
-        self.reason = reason
-        self.result = result
-    }
-    
-    override func evaluatePolicy(_ policy: LAPolicy, localizedReason: String, reply: @escaping (Bool, Error?) -> Void) {
-        self.policy = policy
-        self.reason = localizedReason
-        
-        switch result {
-        case .success(let success):
-            reply(success, nil)
-        case .failure(let failure):
-            reply(false, failure)
-        }
-    }
-    
-    override func canEvaluatePolicy(_ policy: LAPolicy, error: NSErrorPointer) -> Bool {
-        return policy == .deviceOwnerAuthentication
-    }
-}
-
