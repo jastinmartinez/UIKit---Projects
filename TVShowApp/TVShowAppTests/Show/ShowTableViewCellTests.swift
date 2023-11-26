@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import XCTest
+
+final class ShowTableViewCellTests: XCTestCase {
+    
+    func test() {
+        
+    }
+}

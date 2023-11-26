@@ -40,6 +40,7 @@
 		049CD52B27FDEE0100BBA55E /* ConfigurationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CD52A27FDEE0100BBA55E /* ConfigurationTableViewCell.swift */; };
 		049CD53427FDF04600BBA55E /* BiometricalAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CD53327FDF04600BBA55E /* BiometricalAuthentication.swift */; };
 		049CD53727FDF5B900BBA55E /* DeniedAccesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049CD53627FDF5B900BBA55E /* DeniedAccesViewController.swift */; };
+		04A0FF742B13DF91005470C7 /* ShowTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0FF732B13DF91005470C7 /* ShowTableViewCellTests.swift */; };
 		04E8A1612B0CDF0D00AA620B /* BiometricalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8A1602B0CDF0D00AA620B /* BiometricalTests.swift */; };
 		04E8A1752B0D69EF00AA620B /* ShowTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8A1742B0D69EF00AA620B /* ShowTableViewControllerTests.swift */; };
 		04F2D5372B0C261C0045D978 /* AppComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D5342B0C261C0045D978 /* AppComposerTests.swift */; };
@@ -151,6 +152,7 @@
 		049CD52A27FDEE0100BBA55E /* ConfigurationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTableViewCell.swift; sourceTree = "<group>"; };
 		049CD53327FDF04600BBA55E /* BiometricalAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricalAuthentication.swift; sourceTree = "<group>"; };
 		049CD53627FDF5B900BBA55E /* DeniedAccesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeniedAccesViewController.swift; sourceTree = "<group>"; };
+		04A0FF732B13DF91005470C7 /* ShowTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTableViewCellTests.swift; sourceTree = "<group>"; };
 		04E8A1602B0CDF0D00AA620B /* BiometricalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricalTests.swift; sourceTree = "<group>"; };
 		04E8A1742B0D69EF00AA620B /* ShowTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTableViewControllerTests.swift; sourceTree = "<group>"; };
 		04F2D5302B0C24F30045D978 /* TVShowApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TVShowApp.entitlements; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				04E8A1742B0D69EF00AA620B /* ShowTableViewControllerTests.swift */,
+				04A0FF732B13DF91005470C7 /* ShowTableViewCellTests.swift */,
 			);
 			path = Show;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 			files = (
 				048EA3B42B11B502007D78DC /* Helpers.swift in Sources */,
 				04E8A1752B0D69EF00AA620B /* ShowTableViewControllerTests.swift in Sources */,
+				04A0FF742B13DF91005470C7 /* ShowTableViewCellTests.swift in Sources */,
 				04F2D5372B0C261C0045D978 /* AppComposerTests.swift in Sources */,
 				04F2D5392B0C261C0045D978 /* LocalStoreTests.swift in Sources */,
 				04E8A1612B0CDF0D00AA620B /* BiometricalTests.swift in Sources */,
