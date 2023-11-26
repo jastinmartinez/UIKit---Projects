@@ -153,6 +153,7 @@
 		049CD53327FDF04600BBA55E /* BiometricalAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricalAuthentication.swift; sourceTree = "<group>"; };
 		049CD53627FDF5B900BBA55E /* DeniedAccesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeniedAccesViewController.swift; sourceTree = "<group>"; };
 		04A0FF732B13DF91005470C7 /* ShowTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTableViewCellTests.swift; sourceTree = "<group>"; };
+		04A0FF872B13ED0F005470C7 /* TVShowAppTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TVShowAppTests.xctestplan; sourceTree = "<group>"; };
 		04E8A1602B0CDF0D00AA620B /* BiometricalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricalTests.swift; sourceTree = "<group>"; };
 		04E8A1742B0D69EF00AA620B /* ShowTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTableViewControllerTests.swift; sourceTree = "<group>"; };
 		04F2D5302B0C24F30045D978 /* TVShowApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TVShowApp.entitlements; sourceTree = "<group>"; };
@@ -279,6 +280,7 @@
 		0489567E27F7E53800F50ED9 = {
 			isa = PBXGroup;
 			children = (
+				04A0FF872B13ED0F005470C7 /* TVShowAppTests.xctestplan */,
 				04F2D5332B0C25CF0045D978 /* TVShowApp.xctestplan */,
 				0489576C27F7E78D00F50ED9 /* PresentationLayer.xcodeproj */,
 				0489574127F7E76800F50ED9 /* DataLayer.xcodeproj */,

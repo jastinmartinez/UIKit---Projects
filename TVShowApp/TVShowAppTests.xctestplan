@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "49AD0273-79FB-412C-97C3-8E99FECD11DB",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:TVShowApp.xcodeproj",
+        "identifier" : "3C2A25D92B0BDE600011F50B",
+        "name" : "TVShowAppTests"
+      }
+    }
+  ],
+  "version" : 1
+}
