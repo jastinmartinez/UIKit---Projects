@@ -15,7 +15,7 @@ public struct ShowEntity  {
     public let genres: [String]
     public let summary: String?
     public let rating: ShowRatingEntity
-    public var isFavorite: Bool = false
+    public private(set) var isFavorite: Bool
     
     public init(id: Int,name: String,image: ShowImageEntity?, schedule: ShowScheduleEntity,genres: [String],summary: String?, rating: ShowRatingEntity) {
         self.id = id
@@ -25,6 +25,19 @@ public struct ShowEntity  {
         self.genres = genres
         self.summary = summary
         self.rating = rating
+        self.isFavorite = false
+    }
+    
+    public mutating func setFavorite() {
+        setFavorite(true)
+    }
+    
+    public mutating func setNotFavorite() {
+        setFavorite(false)
+    }
+    
+    private mutating func setFavorite(_ state: Bool) {
+        isFavorite = state
     }
 }
 

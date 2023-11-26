@@ -76,7 +76,6 @@ extension ShowSearchResultTableViewController : UITableViewDataSource {
         let showTableViewCell = tableView.dequeueReusableCell(withIdentifier:  NameHelper.cell.rawValue) as? ShowTableViewCell
         showTableViewCell?.tintColor = UIColor(named: ColorHelper.red.rawValue)
         showTableViewCell?.selectionStyle = .none
-        showTableViewCell?.didChangeShowEntity = self
         return showTableViewCell!
     }
 }
@@ -93,11 +92,6 @@ extension ShowSearchResultTableViewController : UITableViewDelegate {
     }
 }
 
-extension ShowSearchResultTableViewController : DidChangeShowEntity {
-    func didChangeShowEntity(_ showEntity: ShowEntity) {
-       
-    }
-}
 
 extension ShowSearchResultTableViewController : DidSetShowEpisodeEntityList {
     func DidSetShowEpisodeEntityListNotification() {
