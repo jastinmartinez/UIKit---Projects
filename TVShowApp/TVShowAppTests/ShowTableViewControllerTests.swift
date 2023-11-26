@@ -63,7 +63,9 @@ final class ShowTableViewControllerTests: XCTestCase {
         
         root.sut.viewDidLoad()
         root.sut.tap()
+        RunLoop.current.run(until: .now)
         
+        XCTAssertTrue(root.sut.navigationController?.topViewController is ShowDetailViewController)
     }
     
     func test_whenScrollAllToTheBottom_thenPerformFetchNextPageOfShowsDeliversData() {
@@ -100,14 +102,20 @@ final class ShowTableViewControllerTests: XCTestCase {
         XCTAssertEqual(root.sut.numberOfRows, 3)
     }
     
-  
+    
     private func makeSUT(_ state: PresentationLayer.ShowViewModel.ShowState,
                          file: StaticString = #file,
                          line: UInt = #line) -> MakeSUT {
+        
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        let biometric = BiometricManager(localStorer: LocalStorer(localStore: MockStore()))
         let showViewModelStub =  ShowViewModelStub(state: state)
-        let sut = ShowTableViewController(showViewModelAction: showViewModelStub)
-        trackForMemoryLeaks(instance: sut, file: file, line: line)
-        return MakeSUT(sut: sut, show: showViewModelStub)
+        let app = AppComposer(window: window,
+                              biometricManager: biometric,
+                              showViewModelActions: showViewModelStub)
+        trackForMemoryLeaks(instance: app.showTableViewController, file: file, line: line)
+        return MakeSUT(sut: app.showTableViewController,
+                       show: showViewModelStub)
     }
     
     private struct MakeSUT {
@@ -210,6 +218,11 @@ private extension ShowTableViewController {
         let anyScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         scrollViewDidEndDragging(anyScrollView, willDecelerate: true)
     }
-    
-   
+}
+
+private class MockNavigationController: UINavigationController {
+    var pushCounter = 0
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        pushCounter += 1
+    }
 }

@@ -12,22 +12,30 @@ final public class AppComposer {
     
     public let window: UIWindow
     public let biometricManager: BiometricManager
-    
-    private var showNavigationController: UINavigationController!
-    private var showTableViewController: ShowTableViewController!
+    public private(set) var showNavigationController: UINavigationController!
+    public private(set) var showTableViewController: ShowTableViewController!
     private var configurationViewController: ConfigurationViewController!
     private var deniedViewController: DeniedAccessViewController!
     private var mainTabBarViewController: MainTabBarViewController!
     
-    public required init(window: UIWindow, biometricManager: BiometricManager) {
+    public required init(window: UIWindow,
+                         biometricManager: BiometricManager) {
         self.window = window
         self.biometricManager = biometricManager
-        onCreate()
+        self.onInit(showViewModelActions: ShowDependencyInjection.setShowViewModelDependency())
     }
     
-    private func onCreate() {
-        showTableViewController = getShowTableViewController(showViewModelActions:  ShowDependencyInjection.setShowViewModelDependency())
+    public convenience init(window: UIWindow,
+                            biometricManager: BiometricManager,
+                            showViewModelActions: ShowViewModelActions) {
+        self.init(window: window, biometricManager: biometricManager)
+        self.onInit(showViewModelActions: showViewModelActions)
+    }
+    
+    private func onInit(showViewModelActions: ShowViewModelActions) {
+        showTableViewController = getShowTableViewController(showViewModelActions:  showViewModelActions)
         showNavigationController = getShowNavigationController(rootViewController: showTableViewController)
+        setDidSelectShow(showViewModelActions: showViewModelActions)
         configurationViewController = getConfigurationViewController()
         deniedViewController = getDeniedViewController()
         mainTabBarViewController = getMainTabBar(viewControllers: [showNavigationController, configurationViewController])
@@ -67,7 +75,7 @@ final public class AppComposer {
         return MainTabBarViewController(viewControllers: viewControllers)
     }
     
-    public func getShowNavigationController(rootViewController: UIViewController) -> UINavigationController {
+    private func getShowNavigationController(rootViewController: UIViewController) -> UINavigationController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.navigationBar.backgroundColor = UIColor(named: ColorHelper.blue.rawValue)!
         navController.tabBarItem = setTabBarWith(title: "TV Shows",
@@ -76,15 +84,17 @@ final public class AppComposer {
         return navController
     }
     
-    public func getShowTableViewController(showViewModelActions: ShowViewModelActions) -> ShowTableViewController  {
-        let showTableViewController = ShowTableViewController(showViewModelAction: showViewModelActions)
-        showTableViewController.didSelectShow = { [showNavigationController] index in
+    private func getShowTableViewController(showViewModelActions: ShowViewModelActions) -> ShowTableViewController  {
+      return ShowTableViewController(showViewModelAction: showViewModelActions)
+    }
+    
+    private func setDidSelectShow(showViewModelActions: ShowViewModelActions) {
+        showTableViewController.didSelectShow = {  [weak showNavigationController] index in
             let showEntity = showViewModelActions.showEntities[index]
             let showEpisodeViewModel = ShowEpisodeDependencyInjection.setShowEpisodeViewModelDependency()
-            let showDetailViewController = ShowDetailViewController(showEntity: showEntity,
-                                                                    showEpisodeViewModel: showEpisodeViewModel)
-            showNavigationController?.pushViewController(showDetailViewController, animated: true)}
-        return showTableViewController
+            let showDetailViewController = ShowDetailViewController(showEntity: showEntity, showEpisodeViewModel: showEpisodeViewModel)
+            showNavigationController?.pushViewController(showDetailViewController, animated: true)
+        }
     }
     
     private func getConfigurationViewController() -> ConfigurationViewController {

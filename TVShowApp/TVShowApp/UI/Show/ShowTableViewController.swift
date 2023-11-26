@@ -34,7 +34,6 @@ public class ShowTableViewController : UIViewController {
         super.init(coder: coder)
     }
 
-    
     public override func viewDidLoad() {
         super.viewDidLoad()
         onCreate()
