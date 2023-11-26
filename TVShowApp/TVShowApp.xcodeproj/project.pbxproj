@@ -385,6 +385,32 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		04A0FF702B13DC0A005470C7 /* Show */ = {
+			isa = PBXGroup;
+			children = (
+				04E8A1742B0D69EF00AA620B /* ShowTableViewControllerTests.swift */,
+			);
+			path = Show;
+			sourceTree = "<group>";
+		};
+		04A0FF712B13DC17005470C7 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				04F2D5342B0C261C0045D978 /* AppComposerTests.swift */,
+				04F2D5362B0C261C0045D978 /* LocalStoreTests.swift */,
+				04E8A1602B0CDF0D00AA620B /* BiometricalTests.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		04A0FF722B13DC22005470C7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				048EA3B32B11B502007D78DC /* Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		04ED43ED27F8F0ED002AB3AA /* Show */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,11 +446,9 @@
 		3C2A25DB2B0BDE610011F50B /* TVShowAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				04F2D5362B0C261C0045D978 /* LocalStoreTests.swift */,
-				04F2D5342B0C261C0045D978 /* AppComposerTests.swift */,
-				04E8A1602B0CDF0D00AA620B /* BiometricalTests.swift */,
-				04E8A1742B0D69EF00AA620B /* ShowTableViewControllerTests.swift */,
-				048EA3B32B11B502007D78DC /* Helpers.swift */,
+				04A0FF722B13DC22005470C7 /* Helpers */,
+				04A0FF712B13DC17005470C7 /* Root */,
+				04A0FF702B13DC0A005470C7 /* Show */,
 			);
 			path = TVShowAppTests;
 			sourceTree = "<group>";
