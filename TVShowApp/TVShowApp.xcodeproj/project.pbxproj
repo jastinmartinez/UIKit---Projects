@@ -18,6 +18,7 @@
 		040086B727FD1F9000B28737 /* UIStackView+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040086B627FD1F9000B28737 /* UIStackView+Factory.swift */; };
 		040086C427FD2AEB00B28737 /* ExternalImageDependecyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040086C327FD2AEB00B28737 /* ExternalImageDependecyInjection.swift */; };
 		040086C627FD30B200B28737 /* UIActivityIndicatorView+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040086C527FD30B200B28737 /* UIActivityIndicatorView+Factory.swift */; };
+		040A81762B144ED3008CDA2B /* ShowViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A81752B144ED3008CDA2B /* ShowViewModelTests.swift */; };
 		046AD28127F9013E0000C0FA /* ShowDependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AD28027F9013E0000C0FA /* ShowDependencyInjection.swift */; };
 		046AD28327F9014B0000C0FA /* AppEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AD28227F9014B0000C0FA /* AppEnviroment.swift */; };
 		046AD28427F902480000C0FA /* DataLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046AD27127F900110000C0FA /* DataLayer.framework */; platformFilter = ios; };
@@ -131,6 +132,7 @@
 		040086B627FD1F9000B28737 /* UIStackView+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Factory.swift"; sourceTree = "<group>"; };
 		040086C327FD2AEB00B28737 /* ExternalImageDependecyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalImageDependecyInjection.swift; sourceTree = "<group>"; };
 		040086C527FD30B200B28737 /* UIActivityIndicatorView+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Factory.swift"; sourceTree = "<group>"; };
+		040A81752B144ED3008CDA2B /* ShowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewModelTests.swift; sourceTree = "<group>"; };
 		046AD28027F9013E0000C0FA /* ShowDependencyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDependencyInjection.swift; sourceTree = "<group>"; };
 		046AD28227F9014B0000C0FA /* AppEnviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnviroment.swift; sourceTree = "<group>"; };
 		04810D3A27FA3CFB00768FA6 /* ShowTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTableViewController.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 			children = (
 				04E8A1742B0D69EF00AA620B /* ShowTableViewControllerTests.swift */,
 				04A0FF732B13DF91005470C7 /* ShowTableViewCellTests.swift */,
+				040A81752B144ED3008CDA2B /* ShowViewModelTests.swift */,
 			);
 			path = Show;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				04E8A1752B0D69EF00AA620B /* ShowTableViewControllerTests.swift in Sources */,
 				04A0FF742B13DF91005470C7 /* ShowTableViewCellTests.swift in Sources */,
 				04F2D5372B0C261C0045D978 /* AppComposerTests.swift in Sources */,
+				040A81762B144ED3008CDA2B /* ShowViewModelTests.swift in Sources */,
 				04F2D5392B0C261C0045D978 /* LocalStoreTests.swift in Sources */,
 				04E8A1612B0CDF0D00AA620B /* BiometricalTests.swift in Sources */,
 			);
