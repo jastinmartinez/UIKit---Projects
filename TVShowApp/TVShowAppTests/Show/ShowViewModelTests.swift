@@ -18,10 +18,33 @@ public final class ShowViewModelTests: XCTestCase {
         let externalImageInteractorMock = ExternalImageInteractorMock()
         let sut = ShowViewModel(showInteractorProtocol: showInteractorMock, externalImageInteractorProtocol: externalImageInteractorMock)
     }
+    
+    func test_whenFetchShows_PassParameter() {
+        let root = makeSUT()
+        let expectParameter = ["page": 1]
+        
+        root.sut.fetchShows()
+        
+        XCTAssertEqual(root.show.parameter, expectParameter)
+    }
+    
+    private func makeSUT() -> SUT {
+        let showInteractorMock = ShowInteractorMock()
+        let externalImageInteractorMock = ExternalImageInteractorMock()
+        let sut = ShowViewModel(showInteractorProtocol: showInteractorMock, externalImageInteractorProtocol: externalImageInteractorMock)
+        return SUT(sut: sut, show: showInteractorMock)
+    }
+    
+    private struct SUT {
+        let sut: ShowViewModel
+        let show: ShowInteractorMock
+    }
 }
 
 private class ShowInteractorMock: ShowInteractorProtocol {
-    func fetchShowList(queryParameter: Dictionary<String, Any>, handler: @escaping ((Result<[DomainLayer.ShowEntity], DomainLayer.DomainError>) -> Void)) {
+    var parameter = [String: Int]()
+    func fetchShowList(queryParameter: Dictionary<String, Int>, handler: @escaping ((Result<[DomainLayer.ShowEntity], DomainLayer.DomainError>) -> Void)) {
+        parameter = queryParameter
     }
 }
 
