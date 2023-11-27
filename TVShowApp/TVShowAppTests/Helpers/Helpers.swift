@@ -67,3 +67,4 @@ final class MockStore: LocalStore {
         return dic.count
     }
 }
+

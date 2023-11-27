@@ -137,16 +137,6 @@ final class ShowTableViewControllerTests: XCTestCase {
     private func anyError() -> Error {
         return NSError(domain: "any error", code: 0)
     }
-    
-    func trackForMemoryLeaks(instance: AnyObject,
-                             file: StaticString = #file,
-                             line: UInt = #line) {
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(instance, "Instance should have been deallocated, Potential memory leak.",
-                         file: file,
-                         line: line)
-        }
-    }
 }
 
 final class ShowViewModelStub: ShowViewModelActions {

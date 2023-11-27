@@ -50,6 +50,7 @@
 		04F2D53F2B0C3C520045D978 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D53E2B0C3C520045D978 /* LocalStore.swift */; };
 		04F2D5412B0C3C6C0045D978 /* LocalStorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D5402B0C3C6C0045D978 /* LocalStorer.swift */; };
 		04F2D5432B0C3CF00045D978 /* UserDefault+LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D5422B0C3CF00045D978 /* UserDefault+LocalStore.swift */; };
+		04F8D98E2B153C5A00735217 /* XCTestCase+trackForMemoryLeaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F8D98D2B153C5A00735217 /* XCTestCase+trackForMemoryLeaks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +167,7 @@
 		04F2D53E2B0C3C520045D978 /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
 		04F2D5402B0C3C6C0045D978 /* LocalStorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorer.swift; sourceTree = "<group>"; };
 		04F2D5422B0C3CF00045D978 /* UserDefault+LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+LocalStore.swift"; sourceTree = "<group>"; };
+		04F8D98D2B153C5A00735217 /* XCTestCase+trackForMemoryLeaks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+trackForMemoryLeaks.swift"; sourceTree = "<group>"; };
 		3C2A25DA2B0BDE600011F50B /* TVShowAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVShowAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -415,6 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				048EA3B32B11B502007D78DC /* Helpers.swift */,
+				04F8D98D2B153C5A00735217 /* XCTestCase+trackForMemoryLeaks.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				04F2D5372B0C261C0045D978 /* AppComposerTests.swift in Sources */,
 				040A81762B144ED3008CDA2B /* ShowViewModelTests.swift in Sources */,
 				04F2D5392B0C261C0045D978 /* LocalStoreTests.swift in Sources */,
+				04F8D98E2B153C5A00735217 /* XCTestCase+trackForMemoryLeaks.swift in Sources */,
 				04E8A1612B0CDF0D00AA620B /* BiometricalTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
