@@ -13,13 +13,6 @@ import PresentationLayer
 
 public final class ShowViewModelTests: XCTestCase {
     
-    func test_canInit_requiredParameters() {
-        let anyParameter = anyParameter()
-        let showInteractorMock = ShowInteractorMock(parameter: anyParameter, result: .success([]))
-        let externalImageInteractorMock = ExternalImageInteractorMock()
-        let _ = ShowViewModel(showInteractorProtocol: showInteractorMock, externalImageInteractorProtocol: externalImageInteractorMock)
-    }
-    
     func test_whenFetchShows_passParameter() {
         let anyParameter = anyParameter()
         let showInteractorMock = ShowInteractorMock(parameter: anyParameter, result: .success([]))
@@ -48,66 +41,46 @@ public final class ShowViewModelTests: XCTestCase {
     
     func test_whenFetchShowsWithParameter_deliversError() {
         let anyParameter = anyParameter()
-        let showInteractorMock = ShowInteractorMock(parameter: anyParameter, result: .failure(.NotValid))
+        let showInteractorMock = ShowInteractorMock(parameter: anyParameter,
+                                                    result: .failure(.NotValid))
         let root = makeSUT(showInteractorMock)
         
-        root.sut.fetchShows()
-        
-        XCTAssertEqual(root.show.parameter, anyParameter)
-        if case let .failure(error) = root.show.result {
-            XCTAssertEqual(error, .NotValid)
-        } else {
-            XCTFail("expected failure but instead got \(root.show.result)")
+        expect(root, expect: .fail(DomainError.NotValid)) {
+            root.sut.fetchShows()
         }
     }
     
     func test_whenFetchShowsWithParameter_notifyStateIsLoading() {
         let anyParameter = anyParameter()
-        let showInteractorMock = ShowInteractorMock(parameter: anyParameter, result: .failure(.NotValid))
+        let showInteractorMock = ShowInteractorMock(parameter: anyParameter,
+                                                    result: .failure(.NotValid))
         let root = makeSUT(showInteractorMock)
-        let exp = expectation(description: "wait for completion")
-        
-        root.sut.showsState = { state in
-            if case .loading = state {
-                exp.fulfill()
-                XCTAssertEqual(String(describing: state), String(describing: ShowViewModel.ShowState.loading))
-            }
+    
+        expect(root, expect: .loading) {
+            root.sut.fetchShows()
         }
-        root.sut.fetchShows()
-        wait(for: [exp], timeout: 1.0)
     }
     
     func test_whenFetchShowsWithParameter_notifyStateIsDone() {
         let anyParameter = anyParameter()
         let showInteractorMock = ShowInteractorMock(parameter: anyParameter, result: .success([]))
         let root = makeSUT(showInteractorMock)
-        let exp = expectation(description: "wait for completion")
         
-        root.sut.showsState = { state in
-            if case .done = state {
-                exp.fulfill()
-                XCTAssertEqual(String(describing: state), String(describing: ShowViewModel.ShowState.done))
-            }
+        expect(root, expect: .done) {
+            root.sut.fetchShows()
         }
-        root.sut.fetchShows()
-        wait(for: [exp], timeout: 1.0)
     }
     
-    func test_whenFetchShowsWithParameter_notifyStateIsFailure() {
+    func test_whenFetchNextShow_notifyStateIsLoading() {
         let anyParameter = anyParameter()
-        let showInteractorMock = ShowInteractorMock(parameter: anyParameter, result: .failure(.NotValid))
+        let showInteractorMock = ShowInteractorMock(parameter: anyParameter, result: .success([]))
         let root = makeSUT(showInteractorMock)
-        let exp = expectation(description: "wait for completion")
         
-        root.sut.showsState = { state in
-            if case let .fail(error) = state {
-                exp.fulfill()
-                XCTAssertEqual(error.localizedDescription, DomainError.NotValid.localizedDescription)
-            }
+        expect(root, expect: .loading) {
+            root.sut.fetchNextShows()
         }
-        root.sut.fetchShows()
-        wait(for: [exp], timeout: 1.0)
     }
+
     
     private func makeSUT(_ showInteractorMock: ShowInteractorMock,
                          file: StaticString = #file,
@@ -116,6 +89,19 @@ public final class ShowViewModelTests: XCTestCase {
         let sut = ShowViewModel(showInteractorProtocol: showInteractorMock, externalImageInteractorProtocol: externalImageInteractorMock)
         trackForMemoryLeaks(instance: sut, file: file, line: line)
         return SUT(sut: sut, show: showInteractorMock)
+    }
+    
+    private func expect(_ root: ShowViewModelTests.SUT,
+                        expect: ShowViewModel.ShowState,
+                        when action: @escaping () -> Void) {
+        let exp = expectation(description: "wait for completion of \(expect)")
+        root.sut.showsState = { state in
+            if String(describing: state) == String(describing: expect) {
+                exp.fulfill()
+            }
+        }
+        action()
+        wait(for: [exp], timeout: 1.0)
     }
     
     private func anyParameter() -> [String: Int] {

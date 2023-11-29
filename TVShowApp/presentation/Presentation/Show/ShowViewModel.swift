@@ -17,7 +17,7 @@ public protocol ShowViewModelActions {
 }
 
 public final class ShowViewModel: ShowViewModelActions {
-
+    
     private let showInteractorProtocol: ShowInteractorProtocol
     private let externalImageInteractorProtocol: ExternalImageInteractorProtocol
     public var showsState: ((ShowState) -> Void)? = nil
@@ -45,7 +45,9 @@ public final class ShowViewModel: ShowViewModelActions {
         }
     }
     
-    public func fetchNextShows() { }
+    public func fetchNextShows() {
+        showsState?(.loading)
+    }
 }
 
 extension ShowViewModel {
