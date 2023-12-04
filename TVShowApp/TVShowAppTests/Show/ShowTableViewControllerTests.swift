@@ -145,7 +145,7 @@ final class ShowViewModelStub: ShowViewModelActions {
     private var _showEntities = [DomainLayer.ShowEntity]()
     var showsState: ((PresentationLayer.ShowViewModel.ShowState) -> Void)?
     
-    var showEntities: [DomainLayer.ShowEntity] {
+    var shows: [DomainLayer.ShowEntity] {
         return _showEntities
     }
     

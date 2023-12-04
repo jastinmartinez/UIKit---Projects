@@ -47,7 +47,7 @@ class ShowSearchResultTableViewController : UIViewController {
     
     func searchFor(text: String) {
         DispatchQueue.main.async {
-            self.showEntityList = self.showViewModel.showEntities.filter({ showEntity in showEntity.name.lowercased().contains(text.lowercased())})
+            self.showEntityList = self.showViewModel.shows.filter({ showEntity in showEntity.name.lowercased().contains(text.lowercased())})
             self.showSearchResultTableView.reloadData()
         }
     }

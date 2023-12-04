@@ -90,7 +90,7 @@ final public class AppComposer {
     
     private func setDidSelectShow(showViewModelActions: ShowViewModelActions) {
         showTableViewController.didSelectShow = {  [weak showNavigationController] index in
-            let showEntity = showViewModelActions.showEntities[index]
+            let showEntity = showViewModelActions.shows[index]
             let showEpisodeViewModel = ShowEpisodeDependencyInjection.setShowEpisodeViewModelDependency()
             let showDetailViewController = ShowDetailViewController(showEntity: showEntity, showEpisodeViewModel: showEpisodeViewModel)
             showNavigationController?.pushViewController(showDetailViewController, animated: true)

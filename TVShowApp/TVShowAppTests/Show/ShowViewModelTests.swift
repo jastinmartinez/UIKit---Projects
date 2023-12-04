@@ -128,7 +128,7 @@ public final class ShowViewModelTests: XCTestCase {
         root.sut.fetchShows()
         root.sut.fetchNextShows()
         
-        XCTAssertEqual(root.sut.showEntities.map({$0.id}), [show, show].map({$0.id}))
+        XCTAssertEqual(root.sut.shows.map({$0.id}), [show, show].map({$0.id}))
     }
 
     
@@ -136,8 +136,8 @@ public final class ShowViewModelTests: XCTestCase {
                          file: StaticString = #file,
                          line: UInt = #line) -> SUT {
         let pageQueryParameter = PageQueryParameter()
-        let externalImageInteractorMock = ExternalImageInteractorMock()
-        let sut = ShowViewModel(showInteractorProtocol: showInteractorMock, externalImageInteractorProtocol: externalImageInteractorMock, pageQueryParameter: pageQueryParameter)
+        let sut = ShowViewModel(showInteractorProtocol: showInteractorMock,
+                                pageQueryParameter: pageQueryParameter)
         trackForMemoryLeaks(instance: sut, file: file, line: line)
         return SUT(sut: sut,
                    show: showInteractorMock,
@@ -207,11 +207,5 @@ private class ShowInteractorMock: ShowInteractorProtocol {
                           genres: ["Comedy"],
                           summary: Optional("<p>The single-camera series that mixes live-action and animation stars Jacob Bertrand as the title character. <b>Kirby Buckets</b> introduces viewers to the vivid imagination of charismatic 13-year-old Kirby Buckets, who dreams of becoming a famous animator like his idol, Mac MacCallister. With his two best friends, Fish and Eli, by his side, Kirby navigates his eccentric town of Forest Hills where the trio usually find themselves trying to get out of a predicament before Kirby\'s sister, Dawn, and her best friend, Belinda, catch them. Along the way, Kirby is joined by his animated characters, each with their own vibrant personality that only he and viewers can see.</p>"),
                           rating: ShowRatingEntity(average: nil))
-    }
-}
-
-private class ExternalImageInteractorMock: ExternalImageInteractorProtocol {
-    func fetchExternalImage(imageUrl: String, handler: @escaping ((Result<Data?, DomainLayer.DomainError>) -> Void)) {
-        
     }
 }

@@ -100,7 +100,7 @@ public class ShowTableViewController : UIViewController {
 
 extension ShowTableViewController : UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return showViewModelAction.showEntities.count
+        return showViewModelAction.shows.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
