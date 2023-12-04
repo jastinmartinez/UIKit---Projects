@@ -7,7 +7,31 @@
 
 import Foundation
 import DomainLayer
-import CloudKit
+
+public final class PageQueryParameter {
+    
+    private var number: Int
+    
+    public init(number: Int = 1) {
+        self.number = number
+    }
+    
+    public var current: [String: Int] {
+        return ["page": number]
+    }
+    
+    func goNext() {
+        number += 1
+    }
+    
+    func goBack() {
+        number -= 1
+    }
+    
+    func reset() {
+        number = 1
+    }
+}
 
 public protocol ShowViewModelActions {
     var showEntities: [ShowEntity] { get }
@@ -20,33 +44,55 @@ public final class ShowViewModel: ShowViewModelActions {
     
     private let showInteractorProtocol: ShowInteractorProtocol
     private let externalImageInteractorProtocol: ExternalImageInteractorProtocol
+    private let pageQueryParameter: PageQueryParameter
     public var showsState: ((ShowState) -> Void)? = nil
-    private var _showEntities = [ShowEntity]()
-    public var showEntities: [ShowEntity] {
-        return _showEntities
+    public private(set) var showEntities: [ShowEntity] {
+        willSet {
+            showsState?(.done)
+        }
     }
-    
+
     public init(showInteractorProtocol: ShowInteractorProtocol,
-                externalImageInteractorProtocol: ExternalImageInteractorProtocol) {
+                externalImageInteractorProtocol: ExternalImageInteractorProtocol,
+                pageQueryParameter: PageQueryParameter) {
         self.showInteractorProtocol = showInteractorProtocol
         self.externalImageInteractorProtocol = externalImageInteractorProtocol
+        self.pageQueryParameter = pageQueryParameter
+        self.showEntities = []
     }
     
     public func fetchShows() {
-        showsState?(.loading)
-        showInteractorProtocol.fetchShowList(queryParameter: ["page":  1]) { [weak self] showInteractorResult  in
-            switch showInteractorResult {
-            case .success(let showEntityList):
-                self?._showEntities = showEntityList
-                self?.showsState?(.done)
-            case .failure(let error):
-                self?.showsState?(.fail(error))
-            }
+        fetch {
+            pageQueryParameter.reset()
+        } onSuccess: { [weak self] showEntities in
+            self?.showEntities = showEntities
         }
     }
     
     public func fetchNextShows() {
+        fetch(queryParameter: {
+            pageQueryParameter.goNext()
+        }, onSuccess: { [weak self] showEntities in
+            self?.showEntities.append(contentsOf: showEntities)
+        }, onFailure: { [weak self] in
+            self?.pageQueryParameter.goBack()
+        })
+    }
+    
+    private func fetch(queryParameter: () -> Void,
+                       onSuccess: @escaping ([ShowEntity]) -> Void,
+                       onFailure: (() -> Void)? = nil) {
         showsState?(.loading)
+        queryParameter()
+        showInteractorProtocol.fetchShowList(queryParameter: pageQueryParameter.current) { [weak self] showResult in
+            switch showResult {
+            case let .success(showEntities):
+                onSuccess(showEntities)
+            case let .failure(error):
+                self?.showsState?(.fail(error))
+                onFailure?()
+            }
+        }
     }
 }
 

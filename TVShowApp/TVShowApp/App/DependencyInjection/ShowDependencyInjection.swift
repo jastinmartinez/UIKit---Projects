@@ -15,7 +15,7 @@ final class ShowDependencyInjection {
         let showRemoteDataSource = ShowRemoteDataSource(baseUrl: AppEnvironment.shared.baseUrl)
         let showDataRepository = ShowDataRepository(showRemoteDataSource: showRemoteDataSource)
         let showInteractor = ShowInteractor(showDomainRepositoryProtocol: showDataRepository)
-        let showViewModel = ShowViewModel(showInteractorProtocol: showInteractor, externalImageInteractorProtocol: ExternalImageDependencyInjection.setExternalInteractor())
+        let showViewModel = ShowViewModel(showInteractorProtocol: showInteractor, externalImageInteractorProtocol: ExternalImageDependencyInjection.setExternalInteractor(), pageQueryParameter: PageQueryParameter())
         return showViewModel
     }
 }
