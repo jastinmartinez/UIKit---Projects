@@ -7,29 +7,58 @@
 
 import XCTest
 
+final class URLSessionHTTPClient {
+    
+    private let session: URLSession
+    
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
+    
+    func get(from url: URL) {
+        session.dataTask(with: url) { _, _, _ in
+            
+        }.resume()
+    }
+}
+
 final class CatAppTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func test_URLSessionHTTPClient_performRequestFromURL() {
+        URLProtocol.registerClass(MockSession.self)
+        let sut = URLSessionHTTPClient()
+        let anyURL = URL(string: "https://www.any-url.com")!
+        
+        sut.get(from: anyURL)
+    
+        let waitForRequest = expectation(description: "wait for async call")
+        MockSession.listenToRequest = { requestToReceived in
+            XCTAssertEqual(anyURL, requestToReceived.url)
+            waitForRequest.fulfill()
+        }
+        wait(for: [waitForRequest], timeout: 1.0)
+        URLProtocol.unregisterClass(MockSession.self)
     }
+}
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+private class MockSession: URLProtocol {
+    
+    static var listenToRequest: ((URLRequest) -> Void)? = nil
+    
+    override class func canInit(with request: URLRequest) -> Bool {
+        return true
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
+        return request
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+    
+    override func startLoading() {
+        if let stub = MockSession.listenToRequest {
+            stub(request)
+            client?.urlProtocolDidFinishLoading(self)
         }
     }
-
+    
+    override func stopLoading() { }
 }
