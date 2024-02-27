@@ -25,39 +25,62 @@ final class URLSessionHTTPClient {
 }
 
 final class CatAppTests: XCTestCase {
-
-    func test_getFromURL_performRequestFromURL() {
+    
+    override func setUp() {
+        super.setUp()
         URLProtocol.registerClass(MockSession.self)
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        URLProtocol.unregisterClass(MockSession.self)
+    }
+    
+    func test_getFromURL_performRequestFromURL() {
         let sut = URLSessionHTTPClient()
-        let anyURL = URL(string: "https://www.any-url.com")!
+        let anyURL = anyURL()
         
         sut.get(from: anyURL)
-    
+        
         let waitForRequest = expectation(description: "wait for async call")
         MockSession.listenToRequest = { requestToReceived in
             XCTAssertEqual(anyURL, requestToReceived.url)
             waitForRequest.fulfill()
         }
         wait(for: [waitForRequest], timeout: 1.0)
-        URLProtocol.unregisterClass(MockSession.self)
     }
     
     func test_getFromURL_deliversData() {
-        URLProtocol.registerClass(MockSession.self)
-       
-        let sut = URLSessionHTTPClient()
-        let anyURL = URL(string: "https://www.any-url.com")!
-        let waitForRequest = expectation(description: "wait for async call")
-        let anyData = Data()
-        MockSession.stub(data: anyData)
         
+        let sut = URLSessionHTTPClient()
+        let anyURL = anyURL()
+        let anyData = anyData()
+        
+        MockSession.stub(data: anyData)
+        let waitForRequest = expectation(description: "wait for async call")
         sut.get(from: anyURL, completion: { data in
             XCTAssertEqual(anyData, data)
             waitForRequest.fulfill()
         })
         
         wait(for: [waitForRequest], timeout: 1.0)
-        URLProtocol.unregisterClass(MockSession.self)
+    }
+    
+    private func makeSUT() -> URLSessionHTTPClient {
+        let sut = URLSessionHTTPClient()
+        return sut
+    }
+    
+    private func anyData() -> Data {
+        return Data()
+    }
+    
+    private func anyURL() -> URL {
+        return URL(string: "https://www.any-url.com")!
+    }
+    
+    private func anyError() -> Error {
+        return NSError(domain: "any error", code: 0)
     }
 }
 
