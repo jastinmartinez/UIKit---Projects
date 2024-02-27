@@ -12,7 +12,9 @@
 		04F5D20C2B8E750100E01D64 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D20B2B8E750100E01D64 /* ViewController.swift */; };
 		04F5D2112B8E750400E01D64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F5D2102B8E750400E01D64 /* Assets.xcassets */; };
 		04F5D2142B8E750400E01D64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F5D2122B8E750400E01D64 /* LaunchScreen.storyboard */; };
-		04F5D2232B8E7A1D00E01D64 /* CatAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2222B8E7A1D00E01D64 /* CatAppTests.swift */; };
+		04F5D2232B8E7A1D00E01D64 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2222B8E7A1D00E01D64 /* URLSessionHTTPClientTests.swift */; };
+		04F5D22D2B8E941300E01D64 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D22C2B8E941300E01D64 /* URLSessionHTTPClient.swift */; };
+		04F5D22F2B8E942C00E01D64 /* HTTPClientResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D22E2B8E942C00E01D64 /* HTTPClientResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,8 +36,10 @@
 		04F5D2132B8E750400E01D64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04F5D2152B8E750400E01D64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04F5D2202B8E7A1D00E01D64 /* CatAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		04F5D2222B8E7A1D00E01D64 /* CatAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatAppTests.swift; sourceTree = "<group>"; };
+		04F5D2222B8E7A1D00E01D64 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		04F5D2292B8E7A3300E01D64 /* CatApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CatApp.xctestplan; sourceTree = "<group>"; };
+		04F5D22C2B8E941300E01D64 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		04F5D22E2B8E942C00E01D64 /* HTTPClientResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,7 @@
 		04F5D2062B8E750100E01D64 /* CatApp */ = {
 			isa = PBXGroup;
 			children = (
+				04F5D22A2B8E93E500E01D64 /* data */,
 				04F5D2072B8E750100E01D64 /* AppDelegate.swift */,
 				04F5D2092B8E750100E01D64 /* SceneDelegate.swift */,
 				04F5D20B2B8E750100E01D64 /* ViewController.swift */,
@@ -91,9 +96,26 @@
 		04F5D2212B8E7A1D00E01D64 /* CatAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				04F5D2222B8E7A1D00E01D64 /* CatAppTests.swift */,
+				04F5D2222B8E7A1D00E01D64 /* URLSessionHTTPClientTests.swift */,
 			);
 			path = CatAppTests;
+			sourceTree = "<group>";
+		};
+		04F5D22A2B8E93E500E01D64 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				04F5D22B2B8E93FF00E01D64 /* session */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		04F5D22B2B8E93FF00E01D64 /* session */ = {
+			isa = PBXGroup;
+			children = (
+				04F5D22C2B8E941300E01D64 /* URLSessionHTTPClient.swift */,
+				04F5D22E2B8E942C00E01D64 /* HTTPClientResult.swift */,
+			);
+			path = session;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +219,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F5D20C2B8E750100E01D64 /* ViewController.swift in Sources */,
+				04F5D22F2B8E942C00E01D64 /* HTTPClientResult.swift in Sources */,
 				04F5D2082B8E750100E01D64 /* AppDelegate.swift in Sources */,
 				04F5D20A2B8E750100E01D64 /* SceneDelegate.swift in Sources */,
+				04F5D22D2B8E941300E01D64 /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,7 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04F5D2232B8E7A1D00E01D64 /* CatAppTests.swift in Sources */,
+				04F5D2232B8E7A1D00E01D64 /* URLSessionHTTPClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
