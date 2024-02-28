@@ -7,17 +7,6 @@
 
 import UIKit
 
-private class MockLoader: CatPresenter {
-    
-    
-    var state: CatPresenterState = .loading
-
-    var cats: [Cat] = []
-    
-    func load(completion: @escaping () -> Void) {
-        
-    }
-}
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -30,7 +19,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = CatsViewController(catPresenter: MockLoader(), didSelectCat: { index in })
+        let url = URL(string: "https://cataas.com/api/cats?tags=cute")!
+        let client = URLSessionHTTPClient()
+        let remoteCatLoader = RemoteCatLoader(url: url, client: client)
+        let catViewModel = CatViewModel(catLoader: remoteCatLoader)
+        window?.rootViewController = CatsViewController(catPresenter: catViewModel, didSelectCat: { index in })
         window?.makeKeyAndVisible()
     }
     

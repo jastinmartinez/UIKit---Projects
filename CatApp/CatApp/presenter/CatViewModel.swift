@@ -32,6 +32,7 @@ public final class CatViewModel: CatPresenter {
     
     public func load(completion: @escaping () -> Void) {
         state = .loading
+        completion()
         catLoader.load(completion: { [weak self] result in
             switch result {
             case .success(let cats):

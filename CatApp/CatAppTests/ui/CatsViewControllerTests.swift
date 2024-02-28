@@ -24,7 +24,8 @@ final class CatsViewControllerTests: XCTestCase {
         let (sut, _) = makeSUT()
         
         sut.viewDidLoad()
-       
+        
+        XCTAssertEqual(numbersOfRow(for: sut), 1)
         XCTAssertTrue(tableViewCell(for: sut, cell: CatLoadingTableViewCell.self), "Instance do not match")
     }
     
@@ -63,7 +64,7 @@ final class CatsViewControllerTests: XCTestCase {
         client.completeWith(error: error)
         
         XCTAssertTrue(sut.catPresenter.cats.isEmpty)
-        XCTAssertEqual(numbersOfRow(for: sut), 0)
+        XCTAssertEqual(numbersOfRow(for: sut), 1)
         XCTAssertTrue(tableViewCell(for: sut, cell: CatErrorTableViewCell.self), "Instance do not match")
     }
     
