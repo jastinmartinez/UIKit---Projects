@@ -55,12 +55,12 @@ final class RemoteCatLoaderTests: XCTestCase {
         let anyData = anyData()
         
         let invalidCodeSamples = [201, 500, 400]
+        let (sut, client) = makeSUT(url: anyURL)
         
-        for statusCode in invalidCodeSamples {
+        for (index, statusCode) in invalidCodeSamples.enumerated() {
             let anyResponse = anyResponse(from: anyURL, statusCode: statusCode)
-            let (sut, client) = makeSUT(url: anyURL)
             expect(from: sut, expect: .failure(.statusCode(statusCode)), when: {
-                client.completeWith(data: anyData, response: anyResponse)
+                client.completeWith(data: anyData, response: anyResponse, at: index)
             })
         }
     }
