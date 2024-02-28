@@ -10,7 +10,7 @@ import UIKit
 public class CatsViewController: UIViewController {
     
     public private(set) var catPresenter: CatPresenter
-    private var didSelectCat: (Int) -> Void
+    public var didSelectCat: ((Int) -> Void)?
     
     public let catTableView: UITableView = {
         let xTableView = UITableView()
@@ -21,11 +21,11 @@ public class CatsViewController: UIViewController {
         return xTableView
     }()
     
-    public init(catPresenter: CatPresenter,
-                didSelectCat: @escaping (Int) -> Void) {
+    public init(catPresenter: CatPresenter) {
         self.catPresenter = catPresenter
-        self.didSelectCat = didSelectCat
+        self.didSelectCat = nil
         super.init(nibName: nil, bundle: nil)
+        self.title = "Catify"
     }
     
     public required init?(coder: NSCoder) {
@@ -101,7 +101,7 @@ extension CatsViewController: UITableViewDataSource {
 
 extension CatsViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didSelectCat(indexPath.row)
+        didSelectCat?(indexPath.row)
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

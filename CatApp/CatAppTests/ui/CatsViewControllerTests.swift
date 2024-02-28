@@ -85,7 +85,8 @@ final class CatsViewControllerTests: XCTestCase {
                          file: StaticString = #filePath,
                          line: UInt = #line) -> (CatsViewController, MockLoader) {
         let client = MockLoader()
-        let sut = CatsViewController(catPresenter: client, didSelectCat: didSelect)
+        let sut = CatsViewController(catPresenter: client)
+        sut.didSelectCat = didSelect
         trackMemoryLeaks(instance: sut, file: file, line: line)
         return (sut, client)
     }

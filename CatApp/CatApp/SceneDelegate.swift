@@ -23,7 +23,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let client = URLSessionHTTPClient()
         let remoteCatLoader = RemoteCatLoader(url: url, client: client)
         let catViewModel = CatViewModel(catLoader: remoteCatLoader)
-        window?.rootViewController = CatsViewController(catPresenter: catViewModel, didSelectCat: { index in })
+        let catsViewController = CatsViewController(catPresenter: catViewModel)
+        let rootNavigationController = UINavigationController(rootViewController: catsViewController)
+        catsViewController.didSelectCat = { index in
+            
+        }
+        window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
     }
     
@@ -55,7 +60,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 
