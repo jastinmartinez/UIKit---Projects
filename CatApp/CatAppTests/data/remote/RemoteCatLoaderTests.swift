@@ -33,17 +33,21 @@ final class RemoteCatLoaderTests: XCTestCase {
     func test_load_executeClient_deliversError() {
         let (sut, client) = makeSUT()
         
-        expect(from: sut, expect: .failure(.api))
+        expect(from: sut, expect: .failure(.api), when: {
+            client.completeWith(error: anyError())
+        })
     }
     
     func test_load_executeClient_deliversDataOn200HTTPResponse() {
         let anyURL = anyURL()
         let anyResponse = anyResponse(from: anyURL, statusCode: 200)
-        let catData = Data(catString().utf8)
-        let (sut, client) = makeSUT(url: anyURL, result: .success(catData, anyResponse))
+        let catData = Data(catRawData().utf8)
+        let (sut, client) = makeSUT(url: anyURL)
         let cats = makeCats()
         
-        expect(from: sut, expect: .success(cats))
+        expect(from: sut, expect: .success(cats), when: {
+            client.completeWith(data: catData, response: anyResponse)
+        })
     }
     
     func test_load_executeClient_deliversErrorOnNot200HTTPResponse() {
@@ -54,8 +58,10 @@ final class RemoteCatLoaderTests: XCTestCase {
         
         for statusCode in invalidCodeSamples {
             let anyResponse = anyResponse(from: anyURL, statusCode: statusCode)
-            let (sut, client) = makeSUT(url: anyURL, result: .success(anyData, anyResponse))
-            expect(from: sut, expect: .failure(.statusCode(statusCode)))
+            let (sut, client) = makeSUT(url: anyURL)
+            expect(from: sut, expect: .failure(.statusCode(statusCode)), when: {
+                client.completeWith(data: anyData, response: anyResponse)
+            })
         }
     }
     
@@ -63,20 +69,22 @@ final class RemoteCatLoaderTests: XCTestCase {
         let anyURL = anyURL()
         let anyData = anyData()
         let anyResponse = anyResponse(from: anyURL, statusCode: 200)
-        let (sut, client) = makeSUT(url: anyURL, result: .success(anyData, anyResponse))
+        let (sut, client) = makeSUT(url: anyURL)
         
-        expect(from: sut, expect: .failure(.data("")))
+        expect(from: sut, expect: .failure(.data("")), when: {
+            client.completeWith(data: anyData, response: anyResponse)
+        })
     }
     
-    private func makeSUT(url: URL = anyURL(),
-                         result: HTTPClientResult = .failure(anyError())) -> (RemoteCatLoader, MockHTTPClient) {
-        let client = MockHTTPClient(result: result)
+    private func makeSUT(url: URL = anyURL()) -> (RemoteCatLoader, MockHTTPClient) {
+        let client = MockHTTPClient()
         let sut = RemoteCatLoader(url: url, client: client)
         return (sut, client)
     }
     
     private func expect(from sut: RemoteCatLoader,
                         expect: Result<[Cat],RemoteCatLoader.Error>,
+                        when: () -> Void,
                         file: StaticString = #filePath,
                         line: UInt = #line) {
         let exp = expectation(description: "wait for async call")
@@ -101,6 +109,7 @@ final class RemoteCatLoaderTests: XCTestCase {
             
             exp.fulfill()
         })
+        when()
         wait(for: [exp], timeout: 1.0)
     }
     
@@ -117,7 +126,7 @@ final class RemoteCatLoaderTests: XCTestCase {
                     tags: ["cute", "housemaid"])]
     }
     
-    private func catString() ->String {
+    private func catRawData() ->String {
         return """
         [{"_id":"7RxMRzAMC39q879v","mimetype":"image/png","size":11728},
         {"_id":"vMacnX3oi0XtcTNB","mimetype":"image/jpeg","size":19949,"tags":["cute"]},
@@ -126,23 +135,4 @@ final class RemoteCatLoaderTests: XCTestCase {
     }
 }
 
-private class MockHTTPClient: HTTPClient {
-    
-    private(set) var urls = [URL]()
-    
-    private let result: HTTPClientResult
-    
-    init(result: HTTPClientResult) {
-        self.result = result
-    }
-    
-    func get(from url: URL, completion: @escaping (CatApp.HTTPClientResult) -> Void) {
-        urls.append(url)
-        switch result {
-        case .success(let data, let hTTPURLResponse):
-            completion(.success(data, hTTPURLResponse))
-        case .failure(let error):
-            completion(.failure(error))
-        }
-    }
-}
+

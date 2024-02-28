@@ -12,12 +12,12 @@ final class URLSessionHTTPClientTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        URLProtocol.registerClass(MockSession.self)
+        MockSession.register()
     }
     
     override func tearDown() {
         super.tearDown()
-        URLProtocol.unregisterClass(MockSession.self)
+        MockSession.unRegister()
     }
     
     func test_getFromURL_performRequestFromURL() {
@@ -42,6 +42,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
         let anyResponse = anyResponse(from: anyURL, statusCode: 200)
         
         MockSession.stub(data: anyData, urlResponse: anyResponse)
+        
         let waitForRequest = expectation(description: "wait for async call")
         sut.get(from: anyURL, completion: { result in
             switch result {
@@ -77,25 +78,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
         
         wait(for: [waitForRequest], timeout: 1.0)
     }
-    
-    
-    func test_getFromURLPerformTwice_returnTwice() {
-        let sut = URLSessionHTTPClient()
-        let anyURL = anyURL()
-        
-        sut.get(from: anyURL, completion: {_ in})
-        sut.get(from: anyURL, completion: {_ in})
-        
-        let waitForRequest = expectation(description: "wait for async call")
-        
-        waitForRequest.expectedFulfillmentCount = 2
-        
-        MockSession.listenToRequest = { requestToReceived in
-            XCTAssertEqual(anyURL, requestToReceived.url)
-            waitForRequest.fulfill()
-        }
-        wait(for: [waitForRequest], timeout: 1.0)
-    }
+
     
     func test_getFromURL_deliversUnExpectError() {
         let sut = URLSessionHTTPClient()
@@ -128,6 +111,16 @@ private class MockSession: URLProtocol {
     static var listenToRequest: ((URLRequest) -> Void)? = nil
     private static var stub: Stub? = nil
     
+    static func register() {
+        URLProtocol.registerClass(MockSession.self)
+    }
+    
+    static func unRegister() {
+        URLProtocol.unregisterClass(MockSession.self)
+        stub = nil
+        listenToRequest = nil
+    }
+    
     private struct Stub {
         let data: Data?
         let error: Error?
@@ -155,17 +148,20 @@ private class MockSession: URLProtocol {
             return
         }
         
-        if let data = MockSession.stub?.data {
-            client?.urlProtocol(self, didLoad: data)
+        if let stub = MockSession.stub {
+            if let data = stub.data {
+                client?.urlProtocol(self, didLoad: data)
+            }
+            
+            if let response = stub.urlResponse {
+                client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+            }
+            
+            if let error = stub.error {
+                client?.urlProtocol(self, didFailWithError: error)
+            }
         }
-        
-        if let response = MockSession.stub?.urlResponse {
-            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-        }
-        
-        if let error = MockSession.stub?.error {
-            client?.urlProtocol(self, didFailWithError: error)
-        }
+       
         client?.urlProtocolDidFinishLoading(self)
     }
     

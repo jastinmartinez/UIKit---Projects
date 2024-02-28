@@ -9,11 +9,15 @@
     }
   ],
   "defaultOptions" : {
+    "addressSanitizer" : {
+      "enabled" : true
+    },
     "targetForVariableExpansion" : {
       "containerPath" : "container:CatApp.xcodeproj",
       "identifier" : "04F5D2032B8E750100E01D64",
       "name" : "CatApp"
-    }
+    },
+    "testExecutionOrdering" : "random"
   },
   "testTargets" : [
     {

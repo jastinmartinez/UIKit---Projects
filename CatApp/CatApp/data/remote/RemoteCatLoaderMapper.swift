@@ -11,7 +11,7 @@ import Foundation
 public enum RemoteCatLoaderMapper {
     
     private static var OK_200: Int {
-        return 200
+        return RemoteStatusCodes.OK.rawValue
     }
     
     static func map(_ data: Data, response: HTTPURLResponse) -> CatLoaderResult {

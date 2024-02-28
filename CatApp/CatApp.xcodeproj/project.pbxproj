@@ -22,6 +22,11 @@
 		04F5D23E2B8EC18300E01D64 /* RemoteCatLoaderMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D23D2B8EC18300E01D64 /* RemoteCatLoaderMapper.swift */; };
 		04F5D2402B8EC19B00E01D64 /* RemoteCatLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D23F2B8EC19B00E01D64 /* RemoteCatLoader.swift */; };
 		04F5D2422B8EC1CA00E01D64 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2412B8EC1CA00E01D64 /* Cat.swift */; };
+		04F5D24A2B8ECBC700E01D64 /* RemoteImageLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2492B8ECBC700E01D64 /* RemoteImageLoaderTests.swift */; };
+		04F5D24C2B8ECD7800E01D64 /* MockHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D24B2B8ECD7800E01D64 /* MockHTTPClient.swift */; };
+		04F5D24E2B8ED5EF00E01D64 /* RemoteStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D24D2B8ED5EF00E01D64 /* RemoteStatusCodes.swift */; };
+		04F5D2502B8ED60500E01D64 /* ImageLoaderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D24F2B8ED60500E01D64 /* ImageLoaderResult.swift */; };
+		04F5D2522B8ED61900E01D64 /* RemoteImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2512B8ED61900E01D64 /* RemoteImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,11 @@
 		04F5D23D2B8EC18300E01D64 /* RemoteCatLoaderMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCatLoaderMapper.swift; sourceTree = "<group>"; };
 		04F5D23F2B8EC19B00E01D64 /* RemoteCatLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCatLoader.swift; sourceTree = "<group>"; };
 		04F5D2412B8EC1CA00E01D64 /* Cat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
+		04F5D2492B8ECBC700E01D64 /* RemoteImageLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageLoaderTests.swift; sourceTree = "<group>"; };
+		04F5D24B2B8ECD7800E01D64 /* MockHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHTTPClient.swift; sourceTree = "<group>"; };
+		04F5D24D2B8ED5EF00E01D64 /* RemoteStatusCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteStatusCodes.swift; sourceTree = "<group>"; };
+		04F5D24F2B8ED60500E01D64 /* ImageLoaderResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderResult.swift; sourceTree = "<group>"; };
+		04F5D2512B8ED61900E01D64 /* RemoteImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +106,7 @@
 		04F5D2062B8E750100E01D64 /* CatApp */ = {
 			isa = PBXGroup;
 			children = (
+				04F5D2462B8ECA1C00E01D64 /* ui */,
 				04F5D23A2B8EC15300E01D64 /* domain */,
 				04F5D22A2B8E93E500E01D64 /* data */,
 				04F5D2072B8E750100E01D64 /* AppDelegate.swift */,
@@ -112,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				04F5D2432B8EC22500E01D64 /* data */,
-				04F5D2342B8E950900E01D64 /* helpers */,
+				04F5D2342B8E950900E01D64 /* helper */,
 			);
 			path = CatAppTests;
 			sourceTree = "<group>";
@@ -135,12 +146,13 @@
 			path = session;
 			sourceTree = "<group>";
 		};
-		04F5D2342B8E950900E01D64 /* helpers */ = {
+		04F5D2342B8E950900E01D64 /* helper */ = {
 			isa = PBXGroup;
 			children = (
 				04F5D2322B8E94F700E01D64 /* FactoryHelpers.swift */,
+				04F5D24B2B8ECD7800E01D64 /* MockHTTPClient.swift */,
 			);
-			path = helpers;
+			path = helper;
 			sourceTree = "<group>";
 		};
 		04F5D2372B8EC12D00E01D64 /* remote */ = {
@@ -149,6 +161,8 @@
 				04F5D2382B8EC13800E01D64 /* RemoteCat.swift */,
 				04F5D23D2B8EC18300E01D64 /* RemoteCatLoaderMapper.swift */,
 				04F5D23F2B8EC19B00E01D64 /* RemoteCatLoader.swift */,
+				04F5D24D2B8ED5EF00E01D64 /* RemoteStatusCodes.swift */,
+				04F5D2512B8ED61900E01D64 /* RemoteImageLoader.swift */,
 			);
 			path = remote;
 			sourceTree = "<group>";
@@ -158,6 +172,7 @@
 			children = (
 				04F5D23B2B8EC15B00E01D64 /* CatLoaderResult.swift */,
 				04F5D2412B8EC1CA00E01D64 /* Cat.swift */,
+				04F5D24F2B8ED60500E01D64 /* ImageLoaderResult.swift */,
 			);
 			path = domain;
 			sourceTree = "<group>";
@@ -183,8 +198,16 @@
 			isa = PBXGroup;
 			children = (
 				04F5D2302B8E949000E01D64 /* RemoteCatLoaderTests.swift */,
+				04F5D2492B8ECBC700E01D64 /* RemoteImageLoaderTests.swift */,
 			);
 			path = remote;
+			sourceTree = "<group>";
+		};
+		04F5D2462B8ECA1C00E01D64 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ui;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,10 +310,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04F5D24E2B8ED5EF00E01D64 /* RemoteStatusCodes.swift in Sources */,
 				04F5D20C2B8E750100E01D64 /* ViewController.swift in Sources */,
+				04F5D2522B8ED61900E01D64 /* RemoteImageLoader.swift in Sources */,
 				04F5D2362B8E963800E01D64 /* HTTPClient.swift in Sources */,
 				04F5D2422B8EC1CA00E01D64 /* Cat.swift in Sources */,
 				04F5D2392B8EC13800E01D64 /* RemoteCat.swift in Sources */,
+				04F5D2502B8ED60500E01D64 /* ImageLoaderResult.swift in Sources */,
 				04F5D2402B8EC19B00E01D64 /* RemoteCatLoader.swift in Sources */,
 				04F5D2082B8E750100E01D64 /* AppDelegate.swift in Sources */,
 				04F5D20A2B8E750100E01D64 /* SceneDelegate.swift in Sources */,
@@ -304,8 +330,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04F5D24A2B8ECBC700E01D64 /* RemoteImageLoaderTests.swift in Sources */,
 				04F5D2332B8E94F700E01D64 /* FactoryHelpers.swift in Sources */,
 				04F5D2232B8E7A1D00E01D64 /* URLSessionHTTPClientTests.swift in Sources */,
+				04F5D24C2B8ECD7800E01D64 /* MockHTTPClient.swift in Sources */,
 				04F5D2312B8E949000E01D64 /* RemoteCatLoaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
