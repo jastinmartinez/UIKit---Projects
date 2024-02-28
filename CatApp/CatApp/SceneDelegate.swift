@@ -7,6 +7,12 @@
 
 import UIKit
 
+private class MockLoader: CatLoader {
+    func load(completion: @escaping (CatLoaderResult) -> Void) {
+        
+    }
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -18,9 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = CatsViewController()
+        window?.rootViewController = CatsViewController(catLoader: MockLoader(), didSelectCat: { index in })
         window?.makeKeyAndVisible()
     }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04CC41082B8F930900752774 /* CatsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC41072B8F930900752774 /* CatsViewControllerTests.swift */; };
 		04F5D2082B8E750100E01D64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2072B8E750100E01D64 /* AppDelegate.swift */; };
 		04F5D20A2B8E750100E01D64 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2092B8E750100E01D64 /* SceneDelegate.swift */; };
 		04F5D20C2B8E750100E01D64 /* CatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D20B2B8E750100E01D64 /* CatsViewController.swift */; };
@@ -29,7 +30,6 @@
 		04F5D2522B8ED61900E01D64 /* RemoteImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2512B8ED61900E01D64 /* RemoteImageLoader.swift */; };
 		04F5D2542B8EDE1700E01D64 /* CatLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2532B8EDE1700E01D64 /* CatLoader.swift */; };
 		04F5D2562B8EDE2100E01D64 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2552B8EDE2100E01D64 /* ImageLoader.swift */; };
-		04F5D25B2B8EE0B300E01D64 /* CatWithImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D25A2B8EE0B300E01D64 /* CatWithImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04CC41072B8F930900752774 /* CatsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsViewControllerTests.swift; sourceTree = "<group>"; };
 		04F5D2042B8E750100E01D64 /* CatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F5D2072B8E750100E01D64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04F5D2092B8E750100E01D64 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +70,6 @@
 		04F5D2512B8ED61900E01D64 /* RemoteImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageLoader.swift; sourceTree = "<group>"; };
 		04F5D2532B8EDE1700E01D64 /* CatLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLoader.swift; sourceTree = "<group>"; };
 		04F5D2552B8EDE2100E01D64 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		04F5D25A2B8EE0B300E01D64 /* CatWithImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatWithImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04CC41062B8F92FB00752774 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				04CC41072B8F930900752774 /* CatsViewControllerTests.swift */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 		04F5D1FB2B8E750100E01D64 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +135,7 @@
 		04F5D2212B8E7A1D00E01D64 /* CatAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				04CC41062B8F92FB00752774 /* ui */,
 				04F5D2432B8EC22500E01D64 /* data */,
 				04F5D2342B8E950900E01D64 /* helper */,
 			);
@@ -180,7 +189,6 @@
 				04F5D23B2B8EC15B00E01D64 /* CatLoaderResult.swift */,
 				04F5D2412B8EC1CA00E01D64 /* Cat.swift */,
 				04F5D2532B8EDE1700E01D64 /* CatLoader.swift */,
-				04F5D25A2B8EE0B300E01D64 /* CatWithImageLoader.swift */,
 			);
 			path = domain;
 			sourceTree = "<group>";
@@ -320,7 +328,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F5D24E2B8ED5EF00E01D64 /* RemoteStatusCodes.swift in Sources */,
-				04F5D25B2B8EE0B300E01D64 /* CatWithImageLoader.swift in Sources */,
 				04F5D20C2B8E750100E01D64 /* CatsViewController.swift in Sources */,
 				04F5D2562B8EDE2100E01D64 /* ImageLoader.swift in Sources */,
 				04F5D2522B8ED61900E01D64 /* RemoteImageLoader.swift in Sources */,
@@ -343,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F5D24A2B8ECBC700E01D64 /* RemoteImageLoaderTests.swift in Sources */,
+				04CC41082B8F930900752774 /* CatsViewControllerTests.swift in Sources */,
 				04F5D2332B8E94F700E01D64 /* FactoryHelpers.swift in Sources */,
 				04F5D2232B8E7A1D00E01D64 /* URLSessionHTTPClientTests.swift in Sources */,
 				04F5D24C2B8ECD7800E01D64 /* MockHTTPClient.swift in Sources */,

@@ -18,7 +18,7 @@ public final class RemoteCatLoader: CatLoader {
     }
     
     public func load(completion: @escaping (CatLoaderResult) -> Void) {
-        self.client.get(from: url, completion: { clientResult in
+        self.client.get(from: self.url, completion: { clientResult in
             switch clientResult {
             case .success(let data, let response):
                 completion(RemoteCatLoaderMapper.map(data, response: response))
