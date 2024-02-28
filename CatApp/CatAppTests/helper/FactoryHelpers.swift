@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import CatApp
 
 func anyURL() -> URL {
     return URL(string: "https://www.any-url.com")!
@@ -22,4 +22,16 @@ func anyData() -> Data {
 
 func anyResponse(from url: URL, statusCode: Int) -> HTTPURLResponse {
     return HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: [:])!
+}
+
+func makeCats() -> [Cat] {
+    return [Cat(id: "7RxMRzAMC39q879v",
+                size: 11728,
+                tags: ["cute"]),
+            Cat(id: "vMacnX3oi0XtcTNB",
+                size: 19949,
+                tags: ["cute"]),
+            Cat(id: "wINuKui2s7xdsBqV",
+                size: 17159,
+                tags: ["cute", "housemaid"])]
 }

@@ -79,6 +79,7 @@ final class RemoteCatLoaderTests: XCTestCase {
     private func makeSUT(url: URL = anyURL()) -> (RemoteCatLoader, MockHTTPClient) {
         let client = MockHTTPClient()
         let sut = RemoteCatLoader(url: url, client: client)
+        trackMemoryLeaks(instance: sut)
         return (sut, client)
     }
     

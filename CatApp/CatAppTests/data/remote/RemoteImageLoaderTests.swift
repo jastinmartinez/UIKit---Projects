@@ -90,6 +90,7 @@ final class RemoteImageLoaderTests: XCTestCase {
     private func makeSUT() -> (RemoteImageLoader, MockHTTPClient) {
         let client = MockHTTPClient()
         let sut = RemoteImageLoader(client: client)
+        trackMemoryLeaks(instance: sut)
         return (sut, client)
     }
 }

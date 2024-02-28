@@ -108,46 +108,4 @@ final class CatsViewControllerTests: XCTestCase {
     private func numbersOfRow(for sut: CatsViewController, section: Int = 0) -> Int {
         return sut.catTableView.numberOfRows(inSection: section)
     }
-    
-    private func makeCats() -> [Cat] {
-        return [Cat(id: "7RxMRzAMC39q879v",
-                    size: 11728,
-                    tags: ["cute"]),
-                Cat(id: "vMacnX3oi0XtcTNB",
-                    size: 19949,
-                    tags: ["cute"]),
-                Cat(id: "wINuKui2s7xdsBqV",
-                    size: 17159,
-                    tags: ["cute", "housemaid"])]
-    }
-    
-    private func trackMemoryLeaks(instance: AnyObject,
-                                  file: StaticString = #filePath,
-                                  line: UInt = #line
-    ) {
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(instance,
-                         "Instance of object not deallocated possible memory leak",
-                         file: file,
-                         line: line)
-        }
-    }
-}
-
-
-private final class MockCatLoader: CatLoader {
-    
-    private var messages = [(CatApp.CatLoaderResult) -> Void]()
-    
-    func load(completion: @escaping (CatApp.CatLoaderResult) -> Void) {
-        messages.append(completion)
-    }
-    
-    func completeWith(cats: [Cat], at index: Int = 0) {
-        messages[index](.success(cats))
-    }
-    
-    func completeWith(error: Error, at index: Int = 0) {
-        messages[index](.failure(error))
-    }
 }
