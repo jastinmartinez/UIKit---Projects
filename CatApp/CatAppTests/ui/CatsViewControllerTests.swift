@@ -24,7 +24,7 @@ final class CatsViewControllerTests: XCTestCase {
         let (sut, _) = makeSUT()
         
         sut.viewDidLoad()
-        
+       
         XCTAssertTrue(tableViewCell(for: sut, cell: CatLoadingTableViewCell.self), "Instance do not match")
     }
     
@@ -36,8 +36,8 @@ final class CatsViewControllerTests: XCTestCase {
         
         client.completeWith(cats: cats)
         
-        XCTAssertEqual(sut.cats.count, 3)
-        XCTAssertEqual(sut.cats.map({$0.id}), cats.map({$0.id}))
+        XCTAssertEqual(sut.catPresenter.cats.count, 3)
+        XCTAssertEqual(sut.catPresenter.cats.map({$0.id}), cats.map({$0.id}))
     }
     
     func test_onViewDidLoad_catLoaderLoad_deliversData_toCatTableView() {
@@ -48,7 +48,7 @@ final class CatsViewControllerTests: XCTestCase {
         
         client.completeWith(cats: cats)
         
-        XCTAssertEqual(sut.cats.map({$0.id}), cats.map({$0.id}))
+        XCTAssertEqual(sut.catPresenter.cats.map({$0.id}), cats.map({$0.id}))
         XCTAssertEqual(numbersOfRow(for: sut), 3)
         XCTAssertTrue(tableViewCell(for: sut, cell: CatTableViewCell.self), "Instance do not match")
     }
@@ -62,7 +62,7 @@ final class CatsViewControllerTests: XCTestCase {
         
         client.completeWith(error: error)
         
-        XCTAssertTrue(sut.cats.isEmpty)
+        XCTAssertTrue(sut.catPresenter.cats.isEmpty)
         XCTAssertEqual(numbersOfRow(for: sut), 0)
         XCTAssertTrue(tableViewCell(for: sut, cell: CatErrorTableViewCell.self), "Instance do not match")
     }
@@ -82,9 +82,9 @@ final class CatsViewControllerTests: XCTestCase {
     
     private func makeSUT(didSelect: @escaping (Int) -> Void = { _ in},
                          file: StaticString = #filePath,
-                         line: UInt = #line) -> (CatsViewController, MockCatLoader) {
-        let client = MockCatLoader()
-        let sut = CatsViewController(catLoader: client, didSelectCat: didSelect)
+                         line: UInt = #line) -> (CatsViewController, MockLoader) {
+        let client = MockLoader()
+        let sut = CatsViewController(catPresenter: client, didSelectCat: didSelect)
         trackMemoryLeaks(instance: sut, file: file, line: line)
         return (sut, client)
     }
@@ -107,5 +107,30 @@ final class CatsViewControllerTests: XCTestCase {
     
     private func numbersOfRow(for sut: CatsViewController, section: Int = 0) -> Int {
         return sut.catTableView.numberOfRows(inSection: section)
+    }
+}
+
+private class MockLoader: CatPresenter {
+   
+    var state: CatApp.CatPresenterState = .loading
+    
+    private var messages = [() -> Void]()
+    
+    var cats: [Cat] = []
+    
+    func completeWith(cats: [Cat], at index: Int = 0) {
+        self.cats = cats
+        state = .success
+        messages[index]()
+    }
+    
+    func completeWith(error: Error, at index: Int = 0) {
+        state = .failure(error)
+        messages[index]()
+    }
+    
+    func load(completion: @escaping () -> Void) {
+        state = .loading
+        messages.append(completion)
     }
 }

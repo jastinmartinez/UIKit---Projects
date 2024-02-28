@@ -14,6 +14,10 @@
 		04CC41132B8FC59100752774 /* CatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC41122B8FC59100752774 /* CatPresenter.swift */; };
 		04CC41152B8FC5A200752774 /* CatPresenterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC41142B8FC5A200752774 /* CatPresenterState.swift */; };
 		04CC41172B8FC5B400752774 /* CatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC41162B8FC5B400752774 /* CatViewModel.swift */; };
+		04CC411A2B8FE24700752774 /* UITableView+dequeueReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC41192B8FE24700752774 /* UITableView+dequeueReusableCell.swift */; };
+		04CC411C2B8FE27100752774 /* CatErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC411B2B8FE27100752774 /* CatErrorTableViewCell.swift */; };
+		04CC411E2B8FE28700752774 /* CatLoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC411D2B8FE28700752774 /* CatLoadingTableViewCell.swift */; };
+		04CC41202B8FE29100752774 /* CatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC411F2B8FE29100752774 /* CatTableViewCell.swift */; };
 		04F5D2082B8E750100E01D64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2072B8E750100E01D64 /* AppDelegate.swift */; };
 		04F5D20A2B8E750100E01D64 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2092B8E750100E01D64 /* SceneDelegate.swift */; };
 		04F5D20C2B8E750100E01D64 /* CatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D20B2B8E750100E01D64 /* CatsViewController.swift */; };
@@ -56,6 +60,10 @@
 		04CC41122B8FC59100752774 /* CatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatPresenter.swift; sourceTree = "<group>"; };
 		04CC41142B8FC5A200752774 /* CatPresenterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatPresenterState.swift; sourceTree = "<group>"; };
 		04CC41162B8FC5B400752774 /* CatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatViewModel.swift; sourceTree = "<group>"; };
+		04CC41192B8FE24700752774 /* UITableView+dequeueReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+dequeueReusableCell.swift"; sourceTree = "<group>"; };
+		04CC411B2B8FE27100752774 /* CatErrorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatErrorTableViewCell.swift; sourceTree = "<group>"; };
+		04CC411D2B8FE28700752774 /* CatLoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLoadingTableViewCell.swift; sourceTree = "<group>"; };
+		04CC411F2B8FE29100752774 /* CatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatTableViewCell.swift; sourceTree = "<group>"; };
 		04F5D2042B8E750100E01D64 /* CatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F5D2072B8E750100E01D64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04F5D2092B8E750100E01D64 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +136,32 @@
 			path = presenter;
 			sourceTree = "<group>";
 		};
+		04CC41212B8FE2CB00752774 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				04F5D20B2B8E750100E01D64 /* CatsViewController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		04CC41222B8FE2D500752774 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				04CC411B2B8FE27100752774 /* CatErrorTableViewCell.swift */,
+				04CC411D2B8FE28700752774 /* CatLoadingTableViewCell.swift */,
+				04CC411F2B8FE29100752774 /* CatTableViewCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		04CC41232B8FE2E800752774 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				04CC41192B8FE24700752774 /* UITableView+dequeueReusableCell.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
 		04F5D1FB2B8E750100E01D64 = {
 			isa = PBXGroup;
 			children = (
@@ -150,8 +184,8 @@
 		04F5D2062B8E750100E01D64 /* CatApp */ = {
 			isa = PBXGroup;
 			children = (
-				04CC41112B8FC58800752774 /* presenter */,
 				04F5D2462B8ECA1C00E01D64 /* ui */,
+				04CC41112B8FC58800752774 /* presenter */,
 				04F5D23A2B8EC15300E01D64 /* domain */,
 				04F5D22A2B8E93E500E01D64 /* data */,
 				04F5D2072B8E750100E01D64 /* AppDelegate.swift */,
@@ -256,7 +290,9 @@
 		04F5D2462B8ECA1C00E01D64 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				04F5D20B2B8E750100E01D64 /* CatsViewController.swift */,
+				04CC41212B8FE2CB00752774 /* controller */,
+				04CC41222B8FE2D500752774 /* cell */,
+				04CC41232B8FE2E800752774 /* extension */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -363,11 +399,14 @@
 			files = (
 				04F5D24E2B8ED5EF00E01D64 /* RemoteStatusCodes.swift in Sources */,
 				04F5D20C2B8E750100E01D64 /* CatsViewController.swift in Sources */,
+				04CC41202B8FE29100752774 /* CatTableViewCell.swift in Sources */,
 				04F5D2562B8EDE2100E01D64 /* ImageLoader.swift in Sources */,
+				04CC411C2B8FE27100752774 /* CatErrorTableViewCell.swift in Sources */,
 				04F5D2522B8ED61900E01D64 /* RemoteImageLoader.swift in Sources */,
 				04F5D2362B8E963800E01D64 /* HTTPClient.swift in Sources */,
 				04CC41172B8FC5B400752774 /* CatViewModel.swift in Sources */,
 				04F5D2422B8EC1CA00E01D64 /* Cat.swift in Sources */,
+				04CC411A2B8FE24700752774 /* UITableView+dequeueReusableCell.swift in Sources */,
 				04F5D2392B8EC13800E01D64 /* RemoteCat.swift in Sources */,
 				04F5D2502B8ED60500E01D64 /* ImageLoaderResult.swift in Sources */,
 				04F5D2542B8EDE1700E01D64 /* CatLoader.swift in Sources */,
@@ -376,6 +415,7 @@
 				04F5D20A2B8E750100E01D64 /* SceneDelegate.swift in Sources */,
 				04F5D23C2B8EC15B00E01D64 /* CatLoaderResult.swift in Sources */,
 				04CC41132B8FC59100752774 /* CatPresenter.swift in Sources */,
+				04CC411E2B8FE28700752774 /* CatLoadingTableViewCell.swift in Sources */,
 				04CC41152B8FC5A200752774 /* CatPresenterState.swift in Sources */,
 				04F5D23E2B8EC18300E01D64 /* RemoteCatLoaderMapper.swift in Sources */,
 				04F5D22D2B8E941300E01D64 /* URLSessionHTTPClient.swift in Sources */,

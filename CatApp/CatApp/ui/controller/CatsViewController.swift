@@ -9,18 +9,20 @@ import UIKit
 
 public class CatsViewController: UIViewController {
     
-    private let catLoader: CatLoader
-    public private(set) var cats = [Cat]()
-    private var catLoaderState: CatLoaderState = .loading
+    public private(set) var catPresenter: CatPresenter
     private var didSelectCat: (Int) -> Void
     
     public let catTableView: UITableView = {
         let xTableView = UITableView()
-        return UITableView()
+        xTableView.register(CatLoadingTableViewCell.self, forCellReuseIdentifier: CatLoadingTableViewCell.name)
+        xTableView.register(CatTableViewCell.self, forCellReuseIdentifier: CatTableViewCell.name)
+        xTableView.register(CatErrorTableViewCell.self, forCellReuseIdentifier: CatErrorTableViewCell.name)
+        return xTableView
     }()
     
-    public init(catLoader: CatLoader, didSelectCat: @escaping (Int) -> Void) {
-        self.catLoader = catLoader
+    public init(catPresenter: CatPresenter,
+                didSelectCat: @escaping (Int) -> Void) {
+        self.catPresenter = catPresenter
         self.didSelectCat = didSelectCat
         super.init(nibName: nil, bundle: nil)
     }
@@ -45,31 +47,25 @@ public class CatsViewController: UIViewController {
     }
     
     private func getCats() {
-        catLoader.load { [weak self] catLoaderResult in
-            if case let .success(array) = catLoaderResult {
-                self?.cats = array
-                self?.catLoaderState = .success
-                self?.catTableView.reloadData()
-            } else {
-                self?.catLoaderState = .failure
-            }
+        catPresenter.load { [weak self] in
+            self?.catTableView.reloadData()
         }
     }
 }
 
 extension CatsViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cats.count
+        return catPresenter.cats.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch catLoaderState {
-        case  .failure:
-            return CatErrorTableViewCell()
+        switch catPresenter.state {
         case .loading:
-            return CatLoadingTableViewCell()
+            return tableView.dequeueReusableCell(for: indexPath) as CatLoadingTableViewCell
         case .success:
-            return CatTableViewCell()
+            return tableView.dequeueReusableCell(for: indexPath) as CatTableViewCell
+        case .failure:
+            return tableView.dequeueReusableCell(for: indexPath) as CatErrorTableViewCell
         }
     }
 }
@@ -79,18 +75,3 @@ extension CatsViewController: UITableViewDelegate {
         didSelectCat(indexPath.row)
     }
 }
-
-extension CatsViewController {
-    public enum CatLoaderState {
-        case failure
-        case loading
-        case success
-    }
-}
-
-
-public class CatErrorTableViewCell: UITableViewCell { }
-
-public class CatLoadingTableViewCell: UITableViewCell { }
-
-public class CatTableViewCell: UITableViewCell { }

@@ -7,8 +7,14 @@
 
 import UIKit
 
-private class MockLoader: CatLoader {
-    func load(completion: @escaping (CatLoaderResult) -> Void) {
+private class MockLoader: CatPresenter {
+    
+    
+    var state: CatPresenterState = .loading
+
+    var cats: [Cat] = []
+    
+    func load(completion: @escaping () -> Void) {
         
     }
 }
@@ -24,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = CatsViewController(catLoader: MockLoader(), didSelectCat: { index in })
+        window?.rootViewController = CatsViewController(catPresenter: MockLoader(), didSelectCat: { index in })
         window?.makeKeyAndVisible()
     }
     
