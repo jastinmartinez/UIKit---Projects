@@ -1,5 +1,5 @@
 //
-//  HTTPClientResult.swift
+//  CatLoaderResult.swift
 //  CatApp
 //
 //  Created by Jastin on 27/2/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum HTTPClientResult {
-    case success(Data, HTTPURLResponse)
+public enum CatLoaderResult {
+    case success([Cat])
     case failure(Error)
 }

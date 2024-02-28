@@ -24,7 +24,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
         let sut = URLSessionHTTPClient()
         let anyURL = anyURL()
         
-        sut.get(from: anyURL)
+        sut.get(from: anyURL, completion: {_ in})
         
         let waitForRequest = expectation(description: "wait for async call")
         MockSession.listenToRequest = { requestToReceived in
@@ -83,8 +83,8 @@ final class URLSessionHTTPClientTests: XCTestCase {
         let sut = URLSessionHTTPClient()
         let anyURL = anyURL()
         
-        sut.get(from: anyURL)
-        sut.get(from: anyURL)
+        sut.get(from: anyURL, completion: {_ in})
+        sut.get(from: anyURL, completion: {_ in})
         
         let waitForRequest = expectation(description: "wait for async call")
         
@@ -120,23 +120,6 @@ final class URLSessionHTTPClientTests: XCTestCase {
     private func makeSUT() -> URLSessionHTTPClient {
         let sut = URLSessionHTTPClient()
         return sut
-    }
-    
-    private func anyData() -> Data {
-        return Data()
-    }
-    
-    private func anyResponse(from url: URL, statusCode: Int) -> HTTPURLResponse {
-        return HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: [:])!
-    }
-    
-    
-    private func anyURL() -> URL {
-        return URL(string: "https://www.any-url.com")!
-    }
-    
-    private func anyError() -> Error {
-        return NSError(domain: "any error", code: 0)
     }
 }
 

@@ -14,7 +14,14 @@
 		04F5D2142B8E750400E01D64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F5D2122B8E750400E01D64 /* LaunchScreen.storyboard */; };
 		04F5D2232B8E7A1D00E01D64 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2222B8E7A1D00E01D64 /* URLSessionHTTPClientTests.swift */; };
 		04F5D22D2B8E941300E01D64 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D22C2B8E941300E01D64 /* URLSessionHTTPClient.swift */; };
-		04F5D22F2B8E942C00E01D64 /* HTTPClientResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D22E2B8E942C00E01D64 /* HTTPClientResult.swift */; };
+		04F5D2312B8E949000E01D64 /* RemoteCatLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2302B8E949000E01D64 /* RemoteCatLoaderTests.swift */; };
+		04F5D2332B8E94F700E01D64 /* FactoryHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2322B8E94F700E01D64 /* FactoryHelpers.swift */; };
+		04F5D2362B8E963800E01D64 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2352B8E963800E01D64 /* HTTPClient.swift */; };
+		04F5D2392B8EC13800E01D64 /* RemoteCat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2382B8EC13800E01D64 /* RemoteCat.swift */; };
+		04F5D23C2B8EC15B00E01D64 /* CatLoaderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D23B2B8EC15B00E01D64 /* CatLoaderResult.swift */; };
+		04F5D23E2B8EC18300E01D64 /* RemoteCatLoaderMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D23D2B8EC18300E01D64 /* RemoteCatLoaderMapper.swift */; };
+		04F5D2402B8EC19B00E01D64 /* RemoteCatLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D23F2B8EC19B00E01D64 /* RemoteCatLoader.swift */; };
+		04F5D2422B8EC1CA00E01D64 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5D2412B8EC1CA00E01D64 /* Cat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +46,14 @@
 		04F5D2222B8E7A1D00E01D64 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		04F5D2292B8E7A3300E01D64 /* CatApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CatApp.xctestplan; sourceTree = "<group>"; };
 		04F5D22C2B8E941300E01D64 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
-		04F5D22E2B8E942C00E01D64 /* HTTPClientResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientResult.swift; sourceTree = "<group>"; };
+		04F5D2302B8E949000E01D64 /* RemoteCatLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCatLoaderTests.swift; sourceTree = "<group>"; };
+		04F5D2322B8E94F700E01D64 /* FactoryHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryHelpers.swift; sourceTree = "<group>"; };
+		04F5D2352B8E963800E01D64 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		04F5D2382B8EC13800E01D64 /* RemoteCat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCat.swift; sourceTree = "<group>"; };
+		04F5D23B2B8EC15B00E01D64 /* CatLoaderResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLoaderResult.swift; sourceTree = "<group>"; };
+		04F5D23D2B8EC18300E01D64 /* RemoteCatLoaderMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCatLoaderMapper.swift; sourceTree = "<group>"; };
+		04F5D23F2B8EC19B00E01D64 /* RemoteCatLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCatLoader.swift; sourceTree = "<group>"; };
+		04F5D2412B8EC1CA00E01D64 /* Cat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +96,7 @@
 		04F5D2062B8E750100E01D64 /* CatApp */ = {
 			isa = PBXGroup;
 			children = (
+				04F5D23A2B8EC15300E01D64 /* domain */,
 				04F5D22A2B8E93E500E01D64 /* data */,
 				04F5D2072B8E750100E01D64 /* AppDelegate.swift */,
 				04F5D2092B8E750100E01D64 /* SceneDelegate.swift */,
@@ -96,7 +111,8 @@
 		04F5D2212B8E7A1D00E01D64 /* CatAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				04F5D2222B8E7A1D00E01D64 /* URLSessionHTTPClientTests.swift */,
+				04F5D2432B8EC22500E01D64 /* data */,
+				04F5D2342B8E950900E01D64 /* helpers */,
 			);
 			path = CatAppTests;
 			sourceTree = "<group>";
@@ -104,6 +120,7 @@
 		04F5D22A2B8E93E500E01D64 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				04F5D2372B8EC12D00E01D64 /* remote */,
 				04F5D22B2B8E93FF00E01D64 /* session */,
 			);
 			path = data;
@@ -113,9 +130,61 @@
 			isa = PBXGroup;
 			children = (
 				04F5D22C2B8E941300E01D64 /* URLSessionHTTPClient.swift */,
-				04F5D22E2B8E942C00E01D64 /* HTTPClientResult.swift */,
+				04F5D2352B8E963800E01D64 /* HTTPClient.swift */,
 			);
 			path = session;
+			sourceTree = "<group>";
+		};
+		04F5D2342B8E950900E01D64 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				04F5D2322B8E94F700E01D64 /* FactoryHelpers.swift */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
+		04F5D2372B8EC12D00E01D64 /* remote */ = {
+			isa = PBXGroup;
+			children = (
+				04F5D2382B8EC13800E01D64 /* RemoteCat.swift */,
+				04F5D23D2B8EC18300E01D64 /* RemoteCatLoaderMapper.swift */,
+				04F5D23F2B8EC19B00E01D64 /* RemoteCatLoader.swift */,
+			);
+			path = remote;
+			sourceTree = "<group>";
+		};
+		04F5D23A2B8EC15300E01D64 /* domain */ = {
+			isa = PBXGroup;
+			children = (
+				04F5D23B2B8EC15B00E01D64 /* CatLoaderResult.swift */,
+				04F5D2412B8EC1CA00E01D64 /* Cat.swift */,
+			);
+			path = domain;
+			sourceTree = "<group>";
+		};
+		04F5D2432B8EC22500E01D64 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				04F5D2452B8EC23A00E01D64 /* remote */,
+				04F5D2442B8EC22E00E01D64 /* session */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		04F5D2442B8EC22E00E01D64 /* session */ = {
+			isa = PBXGroup;
+			children = (
+				04F5D2222B8E7A1D00E01D64 /* URLSessionHTTPClientTests.swift */,
+			);
+			path = session;
+			sourceTree = "<group>";
+		};
+		04F5D2452B8EC23A00E01D64 /* remote */ = {
+			isa = PBXGroup;
+			children = (
+				04F5D2302B8E949000E01D64 /* RemoteCatLoaderTests.swift */,
+			);
+			path = remote;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +288,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F5D20C2B8E750100E01D64 /* ViewController.swift in Sources */,
-				04F5D22F2B8E942C00E01D64 /* HTTPClientResult.swift in Sources */,
+				04F5D2362B8E963800E01D64 /* HTTPClient.swift in Sources */,
+				04F5D2422B8EC1CA00E01D64 /* Cat.swift in Sources */,
+				04F5D2392B8EC13800E01D64 /* RemoteCat.swift in Sources */,
+				04F5D2402B8EC19B00E01D64 /* RemoteCatLoader.swift in Sources */,
 				04F5D2082B8E750100E01D64 /* AppDelegate.swift in Sources */,
 				04F5D20A2B8E750100E01D64 /* SceneDelegate.swift in Sources */,
+				04F5D23C2B8EC15B00E01D64 /* CatLoaderResult.swift in Sources */,
+				04F5D23E2B8EC18300E01D64 /* RemoteCatLoaderMapper.swift in Sources */,
 				04F5D22D2B8E941300E01D64 /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,7 +304,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04F5D2332B8E94F700E01D64 /* FactoryHelpers.swift in Sources */,
 				04F5D2232B8E7A1D00E01D64 /* URLSessionHTTPClientTests.swift in Sources */,
+				04F5D2312B8E949000E01D64 /* RemoteCatLoaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
