@@ -41,6 +41,7 @@ public class CatLoadingTableViewCell: UITableViewCell, IdentifiableCell {
     private func onCreate() {
         setToSubView()
         setConstraint()
+        setLayout()
     }
     
     private func setToSubView() {
@@ -57,6 +58,11 @@ public class CatLoadingTableViewCell: UITableViewCell, IdentifiableCell {
                                      catPlaceHolderImageView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
                                      catPlaceHolderImageView.centerXAnchor.constraint(equalTo: centerXAnchor)])
     }
+    
+    private func setLayout() {
+        selectionStyle = .none
+    }
+    
     private func startLoading() {
         loadingIndicatorView.startAnimating()
     }

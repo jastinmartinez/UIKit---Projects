@@ -37,8 +37,7 @@ final class CatsViewControllerTests: XCTestCase {
         
         client.completeWith(cats: cats)
         
-        XCTAssertEqual(sut.catPresenter.cats.count, 3)
-        XCTAssertEqual(sut.catPresenter.cats.map({$0.id}), cats.map({$0.id}))
+        XCTAssertEqual(String(describing: sut.catPresenter.catState), String(describing: DataStatePresenter<[Cat]>.success(cats)))
     }
     
     func test_onViewDidLoad_catLoaderLoad_deliversData_toCatTableView() {
@@ -49,7 +48,7 @@ final class CatsViewControllerTests: XCTestCase {
         
         client.completeWith(cats: cats)
         
-        XCTAssertEqual(sut.catPresenter.cats.map({$0.id}), cats.map({$0.id}))
+        XCTAssertEqual(String(describing: sut.catPresenter.catState), String(describing: DataStatePresenter<[Cat]>.success(cats)))
         XCTAssertEqual(numbersOfRow(for: sut), 3)
         XCTAssertTrue(tableViewCell(for: sut, cell: CatTableViewCell.self), "Instance do not match")
     }
@@ -63,7 +62,7 @@ final class CatsViewControllerTests: XCTestCase {
         
         client.completeWith(error: error)
         
-        XCTAssertTrue(sut.catPresenter.cats.isEmpty)
+        XCTAssertEqual(String(describing: sut.catPresenter.catState), String(describing: DataStatePresenter<[Cat]>.failure(error)))
         XCTAssertEqual(numbersOfRow(for: sut), 1)
         XCTAssertTrue(tableViewCell(for: sut, cell: CatErrorTableViewCell.self), "Instance do not match")
     }
@@ -112,27 +111,24 @@ final class CatsViewControllerTests: XCTestCase {
     }
 }
 
-private class MockLoader: CatPresenter {
+private class MockLoader: CatLoaderPresenter {
    
-    var state: CatApp.CatPresenterState = .loading
+    var catState: CatApp.DataStatePresenter<[Cat]> = .loading
     
     private var messages = [() -> Void]()
     
-    var cats: [Cat] = []
-    
     func completeWith(cats: [Cat], at index: Int = 0) {
-        self.cats = cats
-        state = .success
+        catState = .success(cats)
         messages[index]()
     }
     
     func completeWith(error: Error, at index: Int = 0) {
-        state = .failure(error)
+        catState = .failure(error)
         messages[index]()
     }
     
-    func load(completion: @escaping () -> Void) {
-        state = .loading
+    func getCats(completion: @escaping () -> Void) {
+        catState = .loading
         messages.append(completion)
     }
 }

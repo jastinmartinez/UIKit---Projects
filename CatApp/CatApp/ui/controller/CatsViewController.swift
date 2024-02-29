@@ -9,11 +9,12 @@ import UIKit
 
 public class CatsViewController: UIViewController {
     
-    public private(set) var catPresenter: CatPresenter
+    public private(set) var catPresenter: CatLoaderPresenter
     public var didSelectCat: ((Int) -> Void)?
     
     public let catTableView: UITableView = {
         let xTableView = UITableView()
+       
         xTableView.translatesAutoresizingMaskIntoConstraints = false
         xTableView.register(CatLoadingTableViewCell.self, forCellReuseIdentifier: CatLoadingTableViewCell.name)
         xTableView.register(CatTableViewCell.self, forCellReuseIdentifier: CatTableViewCell.name)
@@ -21,7 +22,7 @@ public class CatsViewController: UIViewController {
         return xTableView
     }()
     
-    public init(catPresenter: CatPresenter) {
+    public init(catPresenter: CatLoaderPresenter) {
         self.catPresenter = catPresenter
         self.didSelectCat = nil
         super.init(nibName: nil, bundle: nil)
@@ -61,7 +62,7 @@ public class CatsViewController: UIViewController {
     }
     
     private func getCats() {
-        catPresenter.load { [weak self] in
+        catPresenter.getCats { [weak self] in
             DispatchQueue.main.async { 
                 self?.reloadData()
                 self?.setSeparatorToTableView()
@@ -74,7 +75,7 @@ public class CatsViewController: UIViewController {
     }
     
     private func setSeparatorToTableView() {
-        if case .success = catPresenter.state {
+        if case .success = catPresenter.catState {
             catTableView.separatorStyle = .singleLine
         } else {
             catTableView.separatorStyle = .none
@@ -84,11 +85,18 @@ public class CatsViewController: UIViewController {
 
 extension CatsViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfRowsInSection
+        switch catPresenter.catState {
+        case .loading:
+            return 1
+        case .success(let cats):
+            return cats.count
+        case .failure(let error):
+            return 1
+        }
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch catPresenter.state {
+        switch catPresenter.catState {
         case .loading:
             return setLoadingCell(tableView, indexPath)
         case .success:
@@ -120,9 +128,5 @@ extension CatsViewController {
     
     private func setFailureCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         return tableView.dequeueReusableCell(for: indexPath) as CatErrorTableViewCell
-    }
-    
-    private var numberOfRowsInSection: Int {
-        return catPresenter.cats.count == 0 ? 1 : catPresenter.cats.count
     }
 }

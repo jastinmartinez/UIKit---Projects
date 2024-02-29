@@ -22,12 +22,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let url = URL(string: "https://cataas.com/api/cats?tags=cute")!
         let client = URLSessionHTTPClient()
         let remoteCatLoader = RemoteCatLoader(url: url, client: client)
-        let catViewModel = CatViewModel(catLoader: remoteCatLoader)
-        let catsViewController = CatsViewController(catPresenter: catViewModel)
+        let remoteImageLoader = RemoteImageLoader(client: client)
+        let catItemLoaderAdapter = CatItemImageLoaderAdapter(path: "https://cataas.com/api/cat/", imageLoader: remoteImageLoader)
+        let catLoaderPresenter = CatLoaderPresentation(catLoader: remoteCatLoader, catItemImageLoader: catItemLoaderAdapter)
+        let catsViewController = CatsViewController(catPresenter: catLoaderPresenter)
         let rootNavigationController = UINavigationController(rootViewController: catsViewController)
-        catsViewController.didSelectCat = { index in
-            
-        }
+        catsViewController.didSelectCat = { index in }
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
     }

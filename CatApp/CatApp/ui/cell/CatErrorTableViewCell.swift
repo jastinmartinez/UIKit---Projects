@@ -7,6 +7,4 @@
 
 import UIKit
 
-public class CatErrorTableViewCell: UITableViewCell, IdentifiableCell {
-
-}
+public class CatErrorTableViewCell: UITableViewCell, IdentifiableCell {}

@@ -8,30 +8,34 @@
 import Foundation
 import UIKit
 
-public final class CatLoaderPresentation: CatPresenter {
+public final class CatLoaderPresentation: CatLoaderPresenter {
     
     private let catLoader: CatLoader
-    public var state: CatPresenterState
-    public private(set) var cats: [Cat]
+    private let catItemImageLoader: CatItemImageLoader
+    public var catState: DataStatePresenter<[Cat]>
     
-    public init(catLoader: CatLoader) {
-        self.cats = []
+    public init(catLoader: CatLoader, catItemImageLoader: CatItemImageLoader) {
         self.catLoader = catLoader
-        self.state = .loading
+        self.catState = .loading
+        self.catItemImageLoader = catItemImageLoader
     }
     
-    public func load(completion: @escaping () -> Void) {
-        state = .loading
+    public func getCats(completion: @escaping () -> Void) {
+        catState = .loading
         completion()
         catLoader.load(completion: { [weak self] result in
             switch result {
             case .success(let cats):
-                self?.state = .success
-                self?.cats = cats
+                self?.catState = .success(cats)
             case .failure(let error):
-                self?.state = .failure(error)
+                self?.catState = .failure(error)
             }
             completion()
         })
     }
+    
+    public func getImage(completion: @escaping (DataStatePresenter<Data>) -> Void) {
+        
+    }
 }
+

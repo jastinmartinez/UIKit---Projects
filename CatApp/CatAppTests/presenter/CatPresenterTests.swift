@@ -15,52 +15,61 @@ final class CatPresenterTests: XCTestCase {
     func test_load_deliversLoadingState() {
         let (sut, _) = makeSUT()
         
-        sut.load(completion: { })
-        XCTAssertEqual(String(describing: sut.state),
-                       String(describing: CatPresenterState.loading))
+        sut.getCats(completion: { })
+        XCTAssertEqual(String(describing: sut.catState),
+                       String(describing: DataStatePresenter<[Cat]>.loading))
     }
     
     func test_load_deliversLoadingThenSuccessState() {
         let (sut, client) = makeSUT()
         
-        sut.load(completion: { })
-        XCTAssertEqual(String(describing: sut.state),
-                       String(describing: CatPresenterState.loading))
+        sut.getCats(completion: { })
+        XCTAssertEqual(String(describing: sut.catState),
+                       String(describing: DataStatePresenter<[Cat]>.loading))
         client.completeWith(cats: [])
-        XCTAssertEqual(String(describing: sut.state),
-                       String(describing: CatPresenterState.success))
+        XCTAssertEqual(String(describing: sut.catState),
+                       String(describing: DataStatePresenter<[Cat]>.success([])))
     }
     
     func test_load_deliversLoadingThenErrorState() {
         let error = anyError()
         let (sut, client) = makeSUT()
         
-        sut.load(completion: { })
-        XCTAssertEqual(String(describing: sut.state),
-                       String(describing: CatPresenterState.loading))
+        sut.getCats(completion: { })
+        XCTAssertEqual(String(describing: sut.catState),
+                       String(describing: DataStatePresenter<[Cat]>.loading))
         client.completeWith(error: error)
-        XCTAssertEqual(String(describing: sut.state),
-                       String(describing: CatPresenterState.failure(error)))
+        XCTAssertEqual(String(describing: sut.catState),
+                       String(describing: DataStatePresenter<[Cat]>.failure(error)))
     }
     
     func test_load_deliversLoading_thenSuccessState_thenMapCats() {
         let (sut, client) = makeSUT()
-        
-        sut.load(completion: { })
-        XCTAssertEqual(String(describing: sut.state),
-                       String(describing: CatPresenterState.loading))
+        let cats = makeCats()
+        sut.getCats(completion: { })
+        XCTAssertEqual(String(describing: sut.catState),
+                       String(describing: DataStatePresenter<[Cat]>.loading))
         client.completeWith(cats: makeCats())
-        XCTAssertEqual(String(describing: sut.state),
-                       String(describing: CatPresenterState.success))
+        XCTAssertEqual(String(describing: sut.catState),
+                       String(describing: DataStatePresenter<[Cat]>.success(cats)))
         
-        XCTAssertEqual(sut.cats.count, 3)
     }
     
     
-    private func makeSUT() -> (CatViewModel, MockCatLoader) {
-        let client = MockCatLoader()
-        let sut = CatViewModel(catLoader: client)
+    private func makeSUT() -> (CatLoaderPresentation, MockCatLoader) {
+        let mockCatLoader = MockCatLoader()
+        let mockCatItemImageLoader = MockCatItemImageLoader()
+        let sut = CatLoaderPresentation(catLoader: mockCatLoader, catItemImageLoader: mockCatItemImageLoader)
         trackMemoryLeaks(instance: sut)
-        return (sut, client)
+        return (sut, mockCatLoader)
+    }
+    
+    private class MockCatItemImageLoader: CatItemImageLoader {
+        
+        private var messages = [(String, (CatApp.ImageLoaderResult) -> Void)]()
+        
+        func load(from id: String, completion: @escaping (CatApp.ImageLoaderResult) -> Void) {
+            messages.append((id, completion))
+        }
     }
 }

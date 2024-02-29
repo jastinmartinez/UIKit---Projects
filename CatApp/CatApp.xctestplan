@@ -4,20 +4,19 @@
       "id" : "9F7EFCA3-D5A0-4496-BECA-DB1910E50B0E",
       "name" : "Test Scheme Action",
       "options" : {
-
+        "testTimeoutsEnabled" : false,
+        "threadSanitizerEnabled" : false
       }
     }
   ],
   "defaultOptions" : {
-    "addressSanitizer" : {
-      "enabled" : true
-    },
     "targetForVariableExpansion" : {
       "containerPath" : "container:CatApp.xcodeproj",
       "identifier" : "04F5D2032B8E750100E01D64",
       "name" : "CatApp"
     },
-    "testExecutionOrdering" : "random"
+    "testExecutionOrdering" : "random",
+    "threadSanitizerEnabled" : true
   },
   "testTargets" : [
     {

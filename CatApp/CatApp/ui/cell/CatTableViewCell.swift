@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-public class CatTableViewCell: UITableViewCell, IdentifiableCell { 
+public class CatTableViewCell: UITableViewCell, IdentifiableCell {
     
-    
+    func setCat(_ cat: Cat) {
+    }
 }
