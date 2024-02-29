@@ -217,9 +217,9 @@
 		04F5D2212B8E7A1D00E01D64 /* CatAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				04C2BF7C2B9101B30022F098 /* domain */,
-				04CC410A2B8FB21300752774 /* presenter */,
 				04CC41062B8F92FB00752774 /* ui */,
+				04CC410A2B8FB21300752774 /* presenter */,
+				04C2BF7C2B9101B30022F098 /* domain */,
 				04F5D2432B8EC22500E01D64 /* data */,
 				04F5D2342B8E950900E01D64 /* helper */,
 			);

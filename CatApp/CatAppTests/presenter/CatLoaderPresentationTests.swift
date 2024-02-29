@@ -12,7 +12,7 @@ import CatApp
 
 final class CatLoaderPresentationTests: XCTestCase {
     
-    func test_load_deliversLoadingState() {
+    func test_getCats_deliversLoadingState() {
         let (sut, _) = makeSUT()
         
         sut.getCats(completion: { })
@@ -20,7 +20,7 @@ final class CatLoaderPresentationTests: XCTestCase {
                        String(describing: DataStatePresenter<[Cat]>.loading))
     }
     
-    func test_load_deliversLoadingThenSuccessState() {
+    func test_getCats_deliversLoadingThenSuccessState() {
         let (sut, client) = makeSUT()
         
         sut.getCats(completion: { })
@@ -31,7 +31,7 @@ final class CatLoaderPresentationTests: XCTestCase {
                        String(describing: DataStatePresenter<[Cat]>.success([])))
     }
     
-    func test_load_deliversLoadingThenErrorState() {
+    func test_getCats_deliversLoadingThenErrorState() {
         let error = anyError()
         let (sut, client) = makeSUT()
         
@@ -43,7 +43,7 @@ final class CatLoaderPresentationTests: XCTestCase {
                        String(describing: DataStatePresenter<[Cat]>.failure(error)))
     }
     
-    func test_load_deliversLoading_thenSuccessState_thenMapCats() {
+    func test_getCats_deliversLoading_thenSuccessState_thenMapCats() {
         let (sut, client) = makeSUT()
         let cats = makeCats()
         sut.getCats(completion: { })
@@ -54,6 +54,8 @@ final class CatLoaderPresentationTests: XCTestCase {
                        String(describing: DataStatePresenter<[Cat]>.success(cats)))
         
     }
+    
+    
     
     
     private func makeSUT() -> (CatLoaderPresentation, MockCatLoader) {
