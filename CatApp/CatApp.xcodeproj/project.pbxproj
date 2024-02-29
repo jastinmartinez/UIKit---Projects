@@ -11,6 +11,7 @@
 		04C2BF772B90E98B0022F098 /* CatItemImageLoaderAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2BF762B90E98B0022F098 /* CatItemImageLoaderAdapterTests.swift */; };
 		04C2BF792B90F0700022F098 /* CatItemImageLoaderAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2BF782B90F0700022F098 /* CatItemImageLoaderAdapter.swift */; };
 		04C2BF7B2B90FBAF0022F098 /* CatItemImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2BF7A2B90FBAF0022F098 /* CatItemImageLoader.swift */; };
+		04C2BF7F2B91172A0022F098 /* AssetConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2BF7E2B91172A0022F098 /* AssetConstant.swift */; };
 		04CC41082B8F930900752774 /* CatsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC41072B8F930900752774 /* CatsViewControllerTests.swift */; };
 		04CC410C2B8FB22F00752774 /* CatLoaderPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC410B2B8FB22F00752774 /* CatLoaderPresentationTests.swift */; };
 		04CC410E2B8FBD2D00752774 /* MockCatLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC410D2B8FBD2D00752774 /* MockCatLoader.swift */; };
@@ -61,6 +62,7 @@
 		04C2BF762B90E98B0022F098 /* CatItemImageLoaderAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatItemImageLoaderAdapterTests.swift; sourceTree = "<group>"; };
 		04C2BF782B90F0700022F098 /* CatItemImageLoaderAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatItemImageLoaderAdapter.swift; sourceTree = "<group>"; };
 		04C2BF7A2B90FBAF0022F098 /* CatItemImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatItemImageLoader.swift; sourceTree = "<group>"; };
+		04C2BF7E2B91172A0022F098 /* AssetConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetConstant.swift; sourceTree = "<group>"; };
 		04CC41072B8F930900752774 /* CatsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsViewControllerTests.swift; sourceTree = "<group>"; };
 		04CC410B2B8FB22F00752774 /* CatLoaderPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLoaderPresentationTests.swift; sourceTree = "<group>"; };
 		04CC410D2B8FBD2D00752774 /* MockCatLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCatLoader.swift; sourceTree = "<group>"; };
@@ -124,6 +126,14 @@
 				04C2BF762B90E98B0022F098 /* CatItemImageLoaderAdapterTests.swift */,
 			);
 			path = domain;
+			sourceTree = "<group>";
+		};
+		04C2BF7D2B91171A0022F098 /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				04C2BF7E2B91172A0022F098 /* AssetConstant.swift */,
+			);
+			path = helper;
 			sourceTree = "<group>";
 		};
 		04CC41062B8F92FB00752774 /* ui */ = {
@@ -310,6 +320,7 @@
 		04F5D2462B8ECA1C00E01D64 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				04C2BF7D2B91171A0022F098 /* helper */,
 				04CC41212B8FE2CB00752774 /* controller */,
 				04CC41222B8FE2D500752774 /* cell */,
 				04CC41232B8FE2E800752774 /* extension */,
@@ -437,6 +448,7 @@
 				04C2BF7B2B90FBAF0022F098 /* CatItemImageLoader.swift in Sources */,
 				04F5D23C2B8EC15B00E01D64 /* CatLoaderResult.swift in Sources */,
 				04CC41132B8FC59100752774 /* CatLoaderPresenter.swift in Sources */,
+				04C2BF7F2B91172A0022F098 /* AssetConstant.swift in Sources */,
 				04CC411E2B8FE28700752774 /* CatLoadingTableViewCell.swift in Sources */,
 				04CC41152B8FC5A200752774 /* DataStatePresenter.swift in Sources */,
 				048BF6D22B903BC30054957E /* IdentifiableCell.swift in Sources */,

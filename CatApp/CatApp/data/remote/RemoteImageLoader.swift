@@ -16,7 +16,7 @@ final public class RemoteImageLoader: ImageLoader {
     }
     
     public func load(from url: URL, completion: @escaping (ImageLoaderResult) -> Void) {
-        client.get(from: url) { clientResult in
+        self.client.get(from: url) { clientResult in
             switch clientResult {
             case .success(let data, let response):
                 completion(RemoteImageLoader.map(data: data, response: response))

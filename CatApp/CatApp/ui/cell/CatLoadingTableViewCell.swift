@@ -20,7 +20,7 @@ public class CatLoadingTableViewCell: UITableViewCell, IdentifiableCell {
     private let catPlaceHolderImageView: UIImageView = {
         let xCatPlaceHolderImageView = UIImageView()
         xCatPlaceHolderImageView.translatesAutoresizingMaskIntoConstraints = false
-        xCatPlaceHolderImageView.image = UIImage(named: "catplaceholder")
+        xCatPlaceHolderImageView.image = UIImage(named: AssetConstant.catPlaceholder.rawValue)
         return xCatPlaceHolderImageView
     }()
     

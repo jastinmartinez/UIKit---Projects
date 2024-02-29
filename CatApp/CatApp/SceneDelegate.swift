@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let client = URLSessionHTTPClient()
         let remoteCatLoader = RemoteCatLoader(url: url, client: client)
         let remoteImageLoader = RemoteImageLoader(client: client)
-        let catItemLoaderAdapter = CatItemImageLoaderAdapter(path: "https://cataas.com/api/cat/", imageLoader: remoteImageLoader)
+        let catItemLoaderAdapter = CatItemImageLoaderAdapter(path: "https://cataas.com/cat/", imageLoader: remoteImageLoader)
         let catLoaderPresenter = CatLoaderPresentation(catLoader: remoteCatLoader, catItemImageLoader: catItemLoaderAdapter)
         let catsViewController = CatsViewController(catPresenter: catLoaderPresenter)
         let rootNavigationController = UINavigationController(rootViewController: catsViewController)

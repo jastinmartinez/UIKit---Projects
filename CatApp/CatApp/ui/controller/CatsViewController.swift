@@ -127,7 +127,7 @@ extension CatsViewController {
         let catTableViewCell = tableView.dequeueReusableCell(for: indexPath) as CatTableViewCell
         catTableViewCell.setCat(cats[indexPath.row])
         catPresenter.getImage(from: cats[indexPath.row].id,
-                              completion: catTableViewCell.setImage)
+                              completion: catTableViewCell.setCatImage)
         return catTableViewCell
     }
     
