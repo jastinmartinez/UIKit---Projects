@@ -33,5 +33,16 @@ public final class CatLoaderPresentation: CatLoaderPresenter {
             completion()
         })
     }
+    
+    public func getImage(from id: String, completion: @escaping (DataStatePresenter<Data>) -> Void) {
+        completion(.loading)
+        catItemImageLoader.load(from: id) { imageResult in
+            switch imageResult {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
-

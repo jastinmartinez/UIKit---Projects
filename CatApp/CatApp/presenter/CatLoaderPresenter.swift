@@ -8,6 +8,7 @@
 import Foundation
 
 public protocol CatLoaderPresenter {
-    func getCats(completion: @escaping () -> Void)
     var catState: DataStatePresenter<[Cat]> { get }
+    func getCats(completion: @escaping () -> Void)
+    func getImage(from id: String, completion: @escaping (DataStatePresenter<Data>) -> Void)
 }

@@ -131,4 +131,6 @@ private class MockLoader: CatLoaderPresenter {
         catState = .loading
         messages.append(completion)
     }
+    
+    func getImage(from id: String, completion: @escaping (CatApp.DataStatePresenter<Data>) -> Void) { }
 }

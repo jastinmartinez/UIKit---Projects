@@ -14,7 +14,6 @@ public class CatsViewController: UIViewController {
     
     public let catTableView: UITableView = {
         let xTableView = UITableView()
-       
         xTableView.translatesAutoresizingMaskIntoConstraints = false
         xTableView.register(CatLoadingTableViewCell.self, forCellReuseIdentifier: CatLoadingTableViewCell.name)
         xTableView.register(CatTableViewCell.self, forCellReuseIdentifier: CatTableViewCell.name)
@@ -90,7 +89,7 @@ extension CatsViewController: UITableViewDataSource {
             return 1
         case .success(let cats):
             return cats.count
-        case .failure(let error):
+        case .failure:
             return 1
         }
     }
@@ -99,8 +98,8 @@ extension CatsViewController: UITableViewDataSource {
         switch catPresenter.catState {
         case .loading:
             return setLoadingCell(tableView, indexPath)
-        case .success:
-            return setSuccessCell(tableView, indexPath)
+        case .success(let cats):
+            return setSuccessCell(tableView, indexPath, cats)
         case .failure:
             return setFailureCell(tableView, indexPath)
         }
@@ -122,8 +121,14 @@ extension CatsViewController {
         return tableView.dequeueReusableCell(for: indexPath) as CatLoadingTableViewCell
     }
     
-    private func setSuccessCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(for: indexPath) as CatTableViewCell
+    private func setSuccessCell(_ tableView: UITableView,
+                                _ indexPath: IndexPath,
+                                _ cats: [Cat]) -> UITableViewCell {
+        let catTableViewCell = tableView.dequeueReusableCell(for: indexPath) as CatTableViewCell
+        catTableViewCell.setCat(cats[indexPath.row])
+        catPresenter.getImage(from: cats[indexPath.row].id,
+                              completion: catTableViewCell.setImage)
+        return catTableViewCell
     }
     
     private func setFailureCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
