@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol CatPresenter {
+public protocol CatLoaderPresenter {
     func load(completion: @escaping () -> Void)
     var cats: [Cat] { get }
     var state: CatPresenterState { get }

@@ -8,17 +8,7 @@
 import Foundation
 import UIKit
 
-public protocol IdentifiableCell: AnyObject {
-     static var name: String { get }
-}
-
-extension IdentifiableCell where Self: UITableViewCell {
-    public static var name: String {
-        String(describing: self)
-    }
-}
-
-public final class CatViewModel: CatPresenter {
+public final class CatLoaderPresentation: CatPresenter {
     
     private let catLoader: CatLoader
     public var state: CatPresenterState
@@ -43,16 +33,5 @@ public final class CatViewModel: CatPresenter {
             }
             completion()
         })
-    }
-    
-    public func identifiableCell() -> IdentifiableCell {
-        switch state {
-        case .loading:
-            return CatLoadingTableViewCell()
-        case .success:
-            return CatTableViewCell()
-        case .failure:
-            return CatErrorTableViewCell()
-        }
     }
 }
