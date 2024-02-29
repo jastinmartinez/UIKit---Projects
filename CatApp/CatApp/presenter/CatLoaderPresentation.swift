@@ -33,9 +33,5 @@ public final class CatLoaderPresentation: CatLoaderPresenter {
             completion()
         })
     }
-    
-    public func getImage(completion: @escaping (DataStatePresenter<Data>) -> Void) {
-        
-    }
 }
 

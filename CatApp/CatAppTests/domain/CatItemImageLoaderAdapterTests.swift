@@ -84,6 +84,7 @@ final class CatItemImageLoaderAdapterTests: XCTestCase {
     private func makeSUT(path: String) -> (CatItemImageLoaderAdapter, MockImageLoader) {
         let client = MockImageLoader()
         let sut = CatItemImageLoaderAdapter(path: path, imageLoader: client)
+        trackMemoryLeaks(instance: sut)
         return (sut, client)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  CatPresenter.swift
+//  CatLoaderPresentationTests.swift
 //  CatAppTests
 //
 //  Created by Jastin on 28/2/24.
@@ -10,7 +10,7 @@ import XCTest
 import CatApp
 
 
-final class CatPresenterTests: XCTestCase {
+final class CatLoaderPresentationTests: XCTestCase {
     
     func test_load_deliversLoadingState() {
         let (sut, _) = makeSUT()
