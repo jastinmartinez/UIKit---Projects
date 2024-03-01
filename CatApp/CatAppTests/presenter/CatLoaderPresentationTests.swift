@@ -136,6 +136,7 @@ final class CatLoaderPresentationTests: XCTestCase {
         catClient.completeWith(cats: [cat])
         
         let op2 = expectation(description: "wait for getImage code")
+        op2.expectedFulfillmentCount = 2
         sut.getImage(from: id, completion: { result in op2.fulfill() })
         imageClient.completeWith(data: anyData)
         
