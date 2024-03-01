@@ -40,7 +40,7 @@ public final class CatViewController: UIViewController {
     
     private func setViewStyle() {
         title = "Profile"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.systemBackground
     }
     
     private func setCatImageView() {
