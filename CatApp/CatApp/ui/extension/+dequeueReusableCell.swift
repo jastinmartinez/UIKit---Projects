@@ -16,3 +16,12 @@ extension UITableView {
         return cell
     }
 }
+
+extension UICollectionView {
+    func dequeueReusableCell<T: IdentifiableCell>(for indexPath: IndexPath) -> T {
+        guard let cell =  dequeueReusableCell(withReuseIdentifier: T.name, for: indexPath) as? T else {
+            fatalError("Not cell registered with name \(T.name))")
+        }
+        return cell
+    }
+}

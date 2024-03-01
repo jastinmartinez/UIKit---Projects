@@ -103,9 +103,9 @@ extension CatViewController: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CatTagCollectionViewCell.name, for: indexPath)
-        (cell as? CatTagCollectionViewCell)?.setTag(tags[indexPath.row])
-        return cell
+        let catTagCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath) as CatTagCollectionViewCell
+        catTagCollectionViewCell.setTag(tags[indexPath.row])
+        return catTagCollectionViewCell
     }
 }
 

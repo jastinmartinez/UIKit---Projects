@@ -42,6 +42,7 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
     
     private func setLayout() {
         selectionStyle = .none
+        accessoryType = .disclosureIndicator
     }
     
     private func setConstraint() {
