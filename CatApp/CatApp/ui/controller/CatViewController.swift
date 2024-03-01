@@ -82,7 +82,7 @@ public final class CatViewController: UIViewController {
         NSLayoutConstraint.activate([tagCollectionView.topAnchor.constraint(equalTo: catImageView.bottomAnchor, constant: 50),
                                      tagCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
                                      tagCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                                     tagCollectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)])
+                                     tagCollectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2)])
         return tagCollectionView
     }
     
