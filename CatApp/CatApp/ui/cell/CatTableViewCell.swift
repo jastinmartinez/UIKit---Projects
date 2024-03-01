@@ -18,6 +18,7 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
         return xCatImageView
     }()
     
+    private var tagComponents = [(label: UILabel, view: UIView)]()
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -32,6 +33,7 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
         setLayout()
         setToSubView()
         setConstraint()
+        setTagView()
     }
     
     private func setToSubView() {
@@ -50,27 +52,32 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
     }
     
     func setCat(_ cat: Cat) {
-        let tagStackView = tagStackViewFactory()
         if let tags = cat.tags {
             for index in 0..<min(3,tags.count) {
-                setTagView(tags[index], tagStackView: tagStackView)
+                tagComponents[index].label.text = tags[index]
+                tagComponents[index].view.isHidden = false
             }
         }
     }
     
-    private func setTagView(_ tag: String, tagStackView: UIStackView) {
-        let tagLabel = tagLabelFactory(with: tag)
-        let tagView = tagViewFactory()
-        tagView.addSubview(tagLabel)
-        tagStackView.addArrangedSubview(tagView)
-        NSLayoutConstraint.activate([tagLabel.topAnchor.constraint(equalTo: tagView.layoutMarginsGuide.topAnchor),
-                                     tagLabel.leadingAnchor.constraint(equalTo: tagView.layoutMarginsGuide.leadingAnchor),
-                                     tagLabel.trailingAnchor.constraint(equalTo: tagView.layoutMarginsGuide.trailingAnchor),
-                                     tagLabel.bottomAnchor.constraint(equalTo: tagView.layoutMarginsGuide.bottomAnchor)])
-        
+    private func setTagView() {
+        let tagStackView = tagStackViewFactory()
+        for index in 0..<3 {
+            let tagLabel = tagLabelFactory()
+            let tagView = tagViewFactory()
+            tagView.addSubview(tagLabel)
+            tagStackView.addArrangedSubview(tagView)
+            NSLayoutConstraint.activate([tagLabel.topAnchor.constraint(equalTo: tagView.layoutMarginsGuide.topAnchor),
+                                         tagLabel.leadingAnchor.constraint(equalTo: tagView.layoutMarginsGuide.leadingAnchor),
+                                         tagLabel.trailingAnchor.constraint(equalTo: tagView.layoutMarginsGuide.trailingAnchor),
+                                         tagLabel.bottomAnchor.constraint(equalTo: tagView.layoutMarginsGuide.bottomAnchor)])
+            tagComponents.append((tagLabel, tagView))
+        }
         addSubview(tagStackView)
         NSLayoutConstraint.activate([tagStackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-                                     tagStackView.leadingAnchor.constraint(equalTo: catImageView.trailingAnchor, constant: 10)])
+                                     tagStackView.leadingAnchor.constraint(equalTo: catImageView.trailingAnchor, constant: 10),
+                                     tagStackView.trailingAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.trailingAnchor),
+                                     tagStackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)])
     }
     
     private func tagStackViewFactory() -> UIStackView {
@@ -83,15 +90,15 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
         return tagStackView
     }
     
-    private func tagLabelFactory(with text: String) -> UILabel {
+    private func tagLabelFactory() -> UILabel {
         let tagLabel = UILabel()
         tagLabel.translatesAutoresizingMaskIntoConstraints = false
-        tagLabel.text = text
         return tagLabel
     }
     
     private func tagViewFactory() -> UIView {
         let tagView = UIView()
+        tagView.isHidden = true
         tagView.translatesAutoresizingMaskIntoConstraints = false
         tagView.layer.borderWidth = 1
         tagView.layer.borderColor = UIColor.systemBlue.cgColor
