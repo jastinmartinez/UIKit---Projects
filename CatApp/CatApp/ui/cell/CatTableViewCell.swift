@@ -62,7 +62,7 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
     
     private func setTagView() {
         let tagStackView = tagStackViewFactory()
-        for index in 0..<3 {
+        for _ in 0..<3 {
             let tagLabel = tagLabelFactory()
             let tagView = tagViewFactory()
             tagView.addSubview(tagLabel)

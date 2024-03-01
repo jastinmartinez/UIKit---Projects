@@ -16,7 +16,7 @@
       "name" : "CatApp"
     },
     "testExecutionOrdering" : "random",
-    "threadSanitizerEnabled" : true
+    "testTimeoutsEnabled" : true
   },
   "testTargets" : [
     {

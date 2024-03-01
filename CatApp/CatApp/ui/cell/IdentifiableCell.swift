@@ -17,3 +17,9 @@ extension IdentifiableCell where Self: UITableViewCell {
         String(describing: self)
     }
 }
+
+extension IdentifiableCell where Self: UICollectionViewCell {
+    public static var name: String {
+        String(describing: self)
+    }
+}

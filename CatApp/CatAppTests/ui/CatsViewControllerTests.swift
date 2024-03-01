@@ -82,8 +82,8 @@ final class CatsViewControllerTests: XCTestCase {
     
     private func makeSUT(didSelect: @escaping (Int) -> Void = { _ in},
                          file: StaticString = #filePath,
-                         line: UInt = #line) -> (CatsViewController, MockLoader) {
-        let client = MockLoader()
+                         line: UInt = #line) -> (CatsViewController, MockLoaderPresenter) {
+        let client = MockLoaderPresenter()
         let sut = CatsViewController(catPresenter: client)
         sut.didSelectCat = didSelect
         trackMemoryLeaks(instance: sut, file: file, line: line)
@@ -111,7 +111,7 @@ final class CatsViewControllerTests: XCTestCase {
     }
 }
 
-private class MockLoader: CatLoaderPresenter {
+private class MockLoaderPresenter: CatLoaderPresenter {
    
     var catState: CatApp.DataStatePresenter<[Cat]> = .loading
     

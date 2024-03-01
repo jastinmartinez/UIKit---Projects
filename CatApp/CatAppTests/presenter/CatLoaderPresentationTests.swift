@@ -122,6 +122,29 @@ final class CatLoaderPresentationTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+    func test_getImage_deliversSuccess_mapImageToCat() {
+        let (sut, catClient, imageClient) = makeSUT()
+        let id = "imageId"
+        let anyData = anyData()
+        let cat = Cat(id: id, size: 12, tags: [])
+        
+        let op1 = expectation(description: "wait for getCats")
+        op1.expectedFulfillmentCount = 2
+        sut.getCats {
+            op1.fulfill()
+        }
+        catClient.completeWith(cats: [cat])
+        
+        let op2 = expectation(description: "wait for getImage code")
+        sut.getImage(from: id, completion: { result in op2.fulfill() })
+        imageClient.completeWith(data: anyData)
+        
+        wait(for: [op1, op2], timeout: 1.0)
+        
+        for item in sut.cats {
+            XCTAssertNotNil(item.image, "expected to be not nil")
+        }
+    }
     
     private func makeSUT() -> (CatLoaderPresentation, MockCatLoader, MockCatItemImageLoader) {
         let mockCatLoader = MockCatLoader()
