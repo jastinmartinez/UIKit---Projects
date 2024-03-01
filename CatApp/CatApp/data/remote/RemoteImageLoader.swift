@@ -10,18 +10,23 @@ import Foundation
 final public class RemoteImageLoader: ImageLoader {
    
     private let client: HTTPClient
+    private let catImageQueue = DispatchQueue(label: "com.catImage.download",
+                                              qos: .userInteractive,
+                                              attributes: .concurrent)
     
     public init(client: HTTPClient) {
         self.client = client
     }
     
     public func load(from url: URL, completion: @escaping (ImageLoaderResult) -> Void) {
-        self.client.get(from: url) { clientResult in
-            switch clientResult {
-            case .success(let data, let response):
-                completion(RemoteImageLoader.map(data: data, response: response))
-            case .failure(let error):
-                completion(.failure(error))
+        catImageQueue.async { [client] in
+            client.get(from: url) { clientResult in
+                switch clientResult {
+                case .success(let data, let response):
+                    completion(RemoteImageLoader.map(data: data, response: response))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
     }

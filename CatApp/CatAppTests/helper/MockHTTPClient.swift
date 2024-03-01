@@ -10,6 +10,8 @@ import CatApp
 
 class MockHTTPClient: HTTPClient {
     
+    var concurrentQueueNotifier: (() -> Void)? = nil
+    
     var urls: [URL] {
         return messages.map({ $0.url })
     }
@@ -18,6 +20,7 @@ class MockHTTPClient: HTTPClient {
     
     func get(from url: URL, completion: @escaping (CatApp.HTTPClientResult) -> Void) {
         messages.append((url, completion))
+        concurrentQueueNotifier?()
     }
     
     func completeWith(error: Error, at index: Int = 0) {
