@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let url = URL(string: "https://cataas.com/api/cats?tags=cute")!
+        let url = URL(string: "https://cataas.com/api/cats")!
         let client = URLSessionHTTPClient()
         let remoteCatLoader = RemoteCatLoader(url: url, client: client)
         let remoteImageLoader = RemoteImageLoader(client: client)
