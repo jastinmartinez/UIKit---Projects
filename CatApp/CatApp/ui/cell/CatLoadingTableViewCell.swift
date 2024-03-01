@@ -61,6 +61,7 @@ public class CatLoadingTableViewCell: UITableViewCell, IdentifiableCell {
     
     private func setLayout() {
         selectionStyle = .none
+        isUserInteractionEnabled = false
     }
     
     private func startLoading() {
