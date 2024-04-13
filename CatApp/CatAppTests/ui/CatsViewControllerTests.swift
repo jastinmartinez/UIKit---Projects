@@ -9,128 +9,104 @@ import Foundation
 import XCTest
 import CatApp
 
+
 final class CatsViewControllerTests: XCTestCase {
     
-    func test_onViewDidLoad_delegatesAreSet() {
+    func test_initDoesNotLoadCat() {
+        let (sut, loader) = makeSUT()
+        
+        XCTAssertEqual(loader.localCallCount, 0)
+    }
+    
+    func test_viewDidLoad_loadsCat() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(loader.localCallCount, 1)
+    }
+    
+    func test_pullToRefresh_loadsCat() {
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.refreshControl?.simulatePullToRefresh()
+        XCTAssertEqual(loader.localCallCount, 2)
+        
+        sut.refreshControl?.simulatePullToRefresh()
+        XCTAssertEqual(loader.localCallCount, 3)
+    }
+    
+    func test_viewDidLoad_showsLoadingIndicator() {
         let (sut, _) = makeSUT()
         
-        sut.viewDidLoad()
+        sut.loadViewIfNeeded()
+        sut.replaceRefreshControllerWithFake()
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
         
-        XCTAssertTrue(isDataSourceSet(for: sut))
-        XCTAssertTrue(isDelegateSet(for: sut))
-    }
-    
-    func test_onViewDidLoad_isCatLoadingTableViewCellState() {
-        let (sut, _) = makeSUT()
-        
-        sut.viewDidLoad()
-        
-        XCTAssertEqual(numbersOfRow(for: sut), 1)
-        XCTAssertTrue(tableViewCell(for: sut, cell: CatLoadingTableViewCell.self), "Instance do not match")
-    }
-    
-    func test_onViewDidLoad_catLoaderLoad_deliversData() {
-        let (sut, client) = makeSUT()
-        let cats = makeCats()
-        
-        sut.viewDidLoad()
-        
-        client.completeWith(cats: cats)
-        
-        XCTAssertEqual(String(describing: sut.catPresenter.catState), String(describing: DataStatePresenter<[Cat]>.success(cats)))
-    }
-    
-    func test_onViewDidLoad_catLoaderLoad_deliversData_toCatTableView() {
-        let (sut, client) = makeSUT()
-        let cats = makeCats()
-        
-        sut.viewDidLoad()
-        
-        client.completeWith(cats: cats)
-        
-        XCTAssertEqual(String(describing: sut.catPresenter.catState), String(describing: DataStatePresenter<[Cat]>.success(cats)))
-        XCTAssertEqual(numbersOfRow(for: sut), 3)
-        XCTAssertTrue(tableViewCell(for: sut, cell: CatTableViewCell.self), "Instance do not match")
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
+
     }
     
     
-    func test_onViewDidLoad_catLoaderLoad_deliversError() {
-        let (sut, client) = makeSUT()
-        let error = anyError()
-        
-        sut.viewDidLoad()
-        
-        client.completeWith(error: error)
-        
-        XCTAssertEqual(String(describing: sut.catPresenter.catState), String(describing: DataStatePresenter<[Cat]>.failure(error)))
-        XCTAssertEqual(numbersOfRow(for: sut), 1)
-        XCTAssertTrue(tableViewCell(for: sut, cell: CatErrorTableViewCell.self), "Instance do not match")
-    }
     
-    func test_catsTableView_canSelectCatTableViewCell() {
-        let select: (Int) -> Void = { index in
-            XCTAssertEqual(index, 0)
-        }
-        let (sut, client) = makeSUT(didSelect: select)
-        sut.viewDidLoad()
-        let cats = makeCats()
-        client.completeWith(cats: cats)
-        didSelect(for: sut, at: 0)
-    }
-    
-    //MARK:  HELPERS
-    
-    private func makeSUT(didSelect: @escaping (Int) -> Void = { _ in},
-                         file: StaticString = #filePath,
-                         line: UInt = #line) -> (CatsViewController, MockLoaderPresenter) {
-        let client = MockLoaderPresenter()
-        let sut = CatsViewController(catPresenter: client)
-        sut.didSelectCat = didSelect
+    private func makeSUT(  file: StaticString = #filePath,
+                           line: UInt = #line) -> (CatsViewController, CatLoaderSpy) {
+        let catLoader = CatLoaderSpy()
+        let sut = CatsViewController(catLoader: catLoader)
+        trackMemoryLeaks(instance: catLoader, file: file, line: line)
         trackMemoryLeaks(instance: sut, file: file, line: line)
-        return (sut, client)
+        return (sut, catLoader)
     }
     
-    private func didSelect(for sut: CatsViewController, at index: Int) {
-        sut.tableView(sut.catTableView, didSelectRowAt: IndexPath(row: index, section: 0))
-    }
-    
-    private func tableViewCell(for sut: CatsViewController, cell: UITableViewCell.Type) -> Bool  {
-        return type(of: sut.tableView(sut.catTableView, cellForRowAt: IndexPath(row: 0, section: 0))) == cell
-    }
-    
-    private func isDataSourceSet(for sut: CatsViewController) -> Bool {
-        return sut.catTableView.dataSource != nil
-    }
-    
-    private func isDelegateSet(for sut: CatsViewController) -> Bool {
-        return sut.catTableView.delegate != nil
-    }
-    
-    private func numbersOfRow(for sut: CatsViewController, section: Int = 0) -> Int {
-        return sut.catTableView.numberOfRows(inSection: section)
+    class CatLoaderSpy: CatLoader {
+        
+        var localCallCount: Int {
+            return messages.count
+        }
+        
+        private(set) var messages = [(CatApp.CatLoaderResult) -> Void]()
+        
+        func load(completion: @escaping (CatApp.CatLoaderResult) -> Void) {
+            messages.append(completion)
+        }
     }
 }
 
-private class MockLoaderPresenter: CatLoaderPresenter {
-   
-    var catState: CatApp.DataStatePresenter<[Cat]> = .loading
+private extension CatsViewController {
+    func replaceRefreshControllerWithFake() {
+        let fake = FakeUIRefreshController()
+        refreshControl?.allTargets.forEach({ target in
+            refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach({ action in
+                fake.addTarget(target, action: Selector(action), for: .valueChanged)
+            })
+        })
+        refreshControl = fake
+    }
+}
+
+private class FakeUIRefreshController: UIRefreshControl {
+    private var _isRefreshing = false
     
-    private var messages = [() -> Void]()
+    override var isRefreshing: Bool { _isRefreshing }
     
-    func completeWith(cats: [Cat], at index: Int = 0) {
-        catState = .success(cats)
-        messages[index]()
+    override func beginRefreshing() {
+        _isRefreshing = true
     }
     
-    func completeWith(error: Error, at index: Int = 0) {
-        catState = .failure(error)
-        messages[index]()
+    override func endRefreshing() {
+        _isRefreshing = false
     }
-    
-    func getCats(completion: @escaping () -> Void) {
-        catState = .loading
-        messages.append(completion)
+}
+
+private extension UIRefreshControl {
+    func simulatePullToRefresh() {
+        allTargets.forEach({ target in
+            actions(forTarget: target, forControlEvent: .valueChanged)?.forEach({
+                (target as NSObject).perform(Selector($0))
+            })
+        })
     }
-    
-    func getImage(from id: String, completion: @escaping (CatApp.DataStatePresenter<Data>) -> Void) { }
 }
