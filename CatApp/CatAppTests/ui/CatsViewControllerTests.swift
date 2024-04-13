@@ -50,7 +50,18 @@ final class CatsViewControllerTests: XCTestCase {
 
     }
     
-    
+    func test_viewDidLoad_hidesLoadingIndicatorOnLoadCompletion() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        sut.replaceRefreshControllerWithFake()
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        
+        loader.completeFeedLoading()
+        
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+    }
     
     private func makeSUT(  file: StaticString = #filePath,
                            line: UInt = #line) -> (CatsViewController, CatLoaderSpy) {
@@ -71,6 +82,10 @@ final class CatsViewControllerTests: XCTestCase {
         
         func load(completion: @escaping (CatApp.CatLoaderResult) -> Void) {
             messages.append(completion)
+        }
+        
+        func completeFeedLoading() {
+            messages[0](.success([]))
         }
     }
 }

@@ -30,6 +30,8 @@ public class CatsViewController: UITableViewController {
     }
     
     @objc private func load() {
-        catLoader?.load { _ in }
+        catLoader?.load { [weak self] _ in
+            self?.refreshControl?.endRefreshing()
+        }
     }
 }
