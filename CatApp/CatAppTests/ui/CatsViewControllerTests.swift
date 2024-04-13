@@ -42,10 +42,10 @@ final class CatsViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         sut.replaceRefreshControllerWithFake()
-        XCTAssertEqual(sut.isShowingLoadingIndicator, false)
+        XCTAssertFalse(sut.isShowingLoadingIndicator)
         
         sut.simulateLoadingIndicator()
-        XCTAssertEqual(sut.isShowingLoadingIndicator, true)
+        XCTAssertTrue(sut.isShowingLoadingIndicator)
     }
     
     func test_viewDidLoad_hidesLoadingIndicatorOnLoadCompletion() {
@@ -55,7 +55,7 @@ final class CatsViewControllerTests: XCTestCase {
         sut.simulateLoadingIndicator()
         loader.completeFeedLoading()
         
-        XCTAssertEqual(sut.isShowingLoadingIndicator, false)
+        XCTAssertFalse(sut.isShowingLoadingIndicator)
     }
     
     func test_userInitiatedCatReload_showsLoadingIndicator() {
@@ -66,7 +66,7 @@ final class CatsViewControllerTests: XCTestCase {
         sut.simulatePullToRefresh()
         sut.mockViewIsLoadingTransition()
         
-        XCTAssertEqual(sut.isShowingLoadingIndicator, true)
+        XCTAssertTrue(sut.isShowingLoadingIndicator)
     }
     
     func test_userInitiatedCatReload_hidesLoadingIndicatorOnLoaderCompletion() {
@@ -78,7 +78,7 @@ final class CatsViewControllerTests: XCTestCase {
         sut.mockViewIsLoadingTransition()
         
         loader.completeFeedLoading()
-        XCTAssertEqual(sut.isShowingLoadingIndicator, false)
+        XCTAssertFalse(sut.isShowingLoadingIndicator)
     }
     
     
