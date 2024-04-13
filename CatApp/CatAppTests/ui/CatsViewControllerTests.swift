@@ -42,10 +42,10 @@ final class CatsViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         sut.replaceRefreshControllerWithFake()
-        XCTAssertEqual(sut.refreshControlIsRefreshing(), false)
+        XCTAssertEqual(sut.isShowingLoadingIndicator, false)
         
         sut.simulateLoadingIndicator()
-        XCTAssertEqual(sut.refreshControlIsRefreshing(), true)
+        XCTAssertEqual(sut.isShowingLoadingIndicator, true)
     }
     
     func test_viewDidLoad_hidesLoadingIndicatorOnLoadCompletion() {
@@ -55,7 +55,7 @@ final class CatsViewControllerTests: XCTestCase {
         sut.simulateLoadingIndicator()
         loader.completeFeedLoading()
         
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+        XCTAssertEqual(sut.isShowingLoadingIndicator, false)
     }
     
     func test_userInitiatedCatReload_showsLoadingIndicator() {
@@ -64,8 +64,9 @@ final class CatsViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         sut.replaceRefreshControllerWithFake()
         sut.simulatePullToRefresh()
+        sut.mockViewIsLoadingTransition()
         
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
+        XCTAssertEqual(sut.isShowingLoadingIndicator, true)
     }
     
     func test_userInitiatedCatReload_hidesLoadingIndicatorOnLoaderCompletion() {
@@ -74,9 +75,10 @@ final class CatsViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         sut.replaceRefreshControllerWithFake()
         sut.simulatePullToRefresh()
-        loader.completeFeedLoading()
+        sut.mockViewIsLoadingTransition()
         
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+        loader.completeFeedLoading()
+        XCTAssertEqual(sut.isShowingLoadingIndicator, false)
     }
     
     
@@ -88,22 +90,22 @@ final class CatsViewControllerTests: XCTestCase {
         trackMemoryLeaks(instance: sut, file: file, line: line)
         return (sut, catLoader)
     }
+}
+
+class CatLoaderSpy: CatLoader {
     
-    class CatLoaderSpy: CatLoader {
-        
-        var localCallCount: Int {
-            return messages.count
-        }
-        
-        private(set) var messages = [(CatApp.CatLoaderResult) -> Void]()
-        
-        func load(completion: @escaping (CatApp.CatLoaderResult) -> Void) {
-            messages.append(completion)
-        }
-        
-        func completeFeedLoading() {
-            messages[0](.success([]))
-        }
+    var localCallCount: Int {
+        return messages.count
+    }
+    
+    private(set) var messages = [(CatApp.CatLoaderResult) -> Void]()
+    
+    func load(completion: @escaping (CatApp.CatLoaderResult) -> Void) {
+        messages.append(completion)
+    }
+    
+    func completeFeedLoading() {
+        messages[0](.success([]))
     }
 }
 
@@ -120,7 +122,6 @@ private extension CatsViewController {
     
     func simulatePullToRefresh() {
         refreshControl?.simulatePullToRefresh()
-        mockViewIsLoadingTransition()
     }
     
     func simulateLoadingIndicator() {
@@ -128,11 +129,11 @@ private extension CatsViewController {
         mockViewIsLoadingTransition()
     }
     
-    func refreshControlIsRefreshing() -> Bool {
-        return self.refreshControl?.isRefreshing ?? false
+    var isShowingLoadingIndicator: Bool {
+        return self.refreshControl?.isRefreshing == true
     }
     
-    private func mockViewIsLoadingTransition() {
+    func mockViewIsLoadingTransition() {
         beginAppearanceTransition(true, animated: false)
         endAppearanceTransition()
     }
