@@ -26,14 +26,14 @@ final class CatsViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.localCallCount, 1)
     }
     
-    func test_pullToRefresh_loadsCat() {
+    func test_userInitiatedCatReload_loadsCat() {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
         
-        sut.refreshControl?.simulatePullToRefresh()
+        sut.simulatePullToRefresh()
         XCTAssertEqual(loader.localCallCount, 2)
         
-        sut.refreshControl?.simulatePullToRefresh()
+        sut.simulatePullToRefresh()
         XCTAssertEqual(loader.localCallCount, 3)
     }
     
@@ -42,26 +42,43 @@ final class CatsViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         sut.replaceRefreshControllerWithFake()
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+        XCTAssertEqual(sut.refreshControlIsRefreshing(), false)
         
-        sut.beginAppearanceTransition(true, animated: false)
-        sut.endAppearanceTransition()
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
-
+        sut.simulateLoadingIndicator()
+        XCTAssertEqual(sut.refreshControlIsRefreshing(), true)
     }
     
     func test_viewDidLoad_hidesLoadingIndicatorOnLoadCompletion() {
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
-        sut.replaceRefreshControllerWithFake()
-        sut.beginAppearanceTransition(true, animated: false)
-        sut.endAppearanceTransition()
-        
+        sut.simulateLoadingIndicator()
         loader.completeFeedLoading()
         
         XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
     }
+    
+    func test_userInitiatedCatReload_showsLoadingIndicator() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        sut.replaceRefreshControllerWithFake()
+        sut.simulatePullToRefresh()
+        
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
+    }
+    
+    func test_userInitiatedCatReload_hidesLoadingIndicatorOnLoaderCompletion() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        sut.replaceRefreshControllerWithFake()
+        sut.simulatePullToRefresh()
+        loader.completeFeedLoading()
+        
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+    }
+    
     
     private func makeSUT(  file: StaticString = #filePath,
                            line: UInt = #line) -> (CatsViewController, CatLoaderSpy) {
@@ -99,6 +116,25 @@ private extension CatsViewController {
             })
         })
         refreshControl = fake
+    }
+    
+    func simulatePullToRefresh() {
+        refreshControl?.simulatePullToRefresh()
+        mockViewIsLoadingTransition()
+    }
+    
+    func simulateLoadingIndicator() {
+        replaceRefreshControllerWithFake()
+        mockViewIsLoadingTransition()
+    }
+    
+    func refreshControlIsRefreshing() -> Bool {
+        return self.refreshControl?.isRefreshing ?? false
+    }
+    
+    private func mockViewIsLoadingTransition() {
+        beginAppearanceTransition(true, animated: false)
+        endAppearanceTransition()
     }
 }
 
