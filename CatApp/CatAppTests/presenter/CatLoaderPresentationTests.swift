@@ -156,12 +156,13 @@ final class CatLoaderPresentationTests: XCTestCase {
     }
     
     
-    private class MockCatItemImageLoader: CatItemImageLoader {
-        
+    private class MockCatItemImageLoader: ImageLoaderAdapter {
+       
         private var messages = [(String, (CatApp.ImageLoaderResult) -> Void)]()
         
-        func load(from id: String, completion: @escaping (CatApp.ImageLoaderResult) -> Void) {
+        func load(from id: String, completion: @escaping (CatApp.ImageLoaderResult) -> Void) -> ImageLoaderTask {
             messages.append((id, completion))
+            return CancelTasks()
         }
         
         func completeWith(data: Data, at index: Int = 0) {
@@ -170,6 +171,13 @@ final class CatLoaderPresentationTests: XCTestCase {
         
         func completeWith(error: Error, at index: Int = 0) {
             messages[index].1(.failure(error))
+        }
+        
+        func cancel(from id: String) {
+            
+        }
+        private struct CancelTasks: ImageLoaderTask {
+            func cancel() { }
         }
     }
 }

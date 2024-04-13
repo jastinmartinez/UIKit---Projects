@@ -10,3 +10,4 @@ import Foundation
 public protocol ImageLoader {
     func load(from url: URL, completion: @escaping (ImageLoaderResult) -> Void)
 }
+

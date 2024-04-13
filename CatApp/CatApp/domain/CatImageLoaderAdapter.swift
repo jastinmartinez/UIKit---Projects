@@ -2,12 +2,12 @@
 //  CatItemImageLoaderAdapter.swift
 //  CatApp
 //
-//  Created by Jastin on 29/2/24.
+//  Created by Jastin on 13/4/24.
 //
 
 import Foundation
 
-public final class CatItemImageLoaderAdapter: CatItemImageLoader {
+public final class CatItemImageLoaderAdapter: ImageLoaderAdapter {
     
     private let path: String
     private let imageLoader: ImageLoader
@@ -17,15 +17,22 @@ public final class CatItemImageLoaderAdapter: CatItemImageLoader {
         self.imageLoader = imageLoader
     }
     
-    public func load(from id: String, completion: @escaping (CatApp.ImageLoaderResult) -> Void) {
+    public func load(from id: String, completion: @escaping (CatApp.ImageLoaderResult) -> Void) -> ImageLoaderTask {
         guard let url = URL(string: path + id) else {
             completion(.failure(Error.url))
-            return
+            return CatImageLoaderTask()
         }
         imageLoader.load(from: url, completion: completion)
+        return CatImageLoaderTask()
     }
     
     public enum Error: Swift.Error {
         case url
+    }
+}
+
+struct CatImageLoaderTask: ImageLoaderTask {
+    func cancel() {
+        
     }
 }

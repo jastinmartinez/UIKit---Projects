@@ -7,7 +7,4 @@
 
 import Foundation
 
-public enum CatLoaderResult {
-    case success([Cat])
-    case failure(Error)
-}
+public typealias CatLoaderResult = Result<[Cat], Error>

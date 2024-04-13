@@ -11,17 +11,27 @@ import UIKit
 public class CatsViewController: UITableViewController {
     
     private var catLoader: CatLoader?
+    private var imageLoaderAdapter: ImageLoaderAdapter?
+    private var tableModel = [Cat]()
+    private var imageTasks = [IndexPath: ImageLoaderTask]()
     
-    public convenience init(catLoader: CatLoader) {
+    public convenience init(catLoader: CatLoader,
+                            imageLoaderAdapter: ImageLoaderAdapter) {
         self.init()
         self.catLoader = catLoader
+        self.imageLoaderAdapter = imageLoaderAdapter
     }
-    
+
     public override func viewDidLoad() {
         super.viewDidLoad()
+        registerCell()
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
         load()
+    }
+    
+    private func registerCell() {
+        tableView.register(CatTableViewCell.self, forCellReuseIdentifier: CatTableViewCell.name)
     }
     
     public override func viewIsAppearing(_ animated: Bool) {
@@ -30,8 +40,29 @@ public class CatsViewController: UITableViewController {
     }
     
     @objc private func load() {
-        catLoader?.load { [weak self] _ in
+        catLoader?.load { [weak self] result in
+            if let cats = try? result.get() {
+                self?.tableModel = cats
+                self?.tableView.reloadData()
+            }
             self?.refreshControl?.endRefreshing()
         }
+    }
+    
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let catCell: CatTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        let cat = tableModel[indexPath.row]
+        catCell.setCat(cat)
+        imageTasks[indexPath] = imageLoaderAdapter?.load(from: cat.id, completion: { _ in })
+        return catCell
+    }
+    
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableModel.count
+    }
+    
+    public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        imageTasks[indexPath]?.cancel()
+        imageTasks[indexPath] = nil
     }
 }

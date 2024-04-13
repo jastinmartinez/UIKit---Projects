@@ -10,7 +10,7 @@ import UIKit
 
 public class CatTableViewCell: UITableViewCell, IdentifiableCell {
     
-    private let catImageView: UIImageView = {
+    public let catImageView: UIImageView = {
         let xCatImageView = UIImageView()
         xCatImageView.layer.masksToBounds = true
         xCatImageView.layer.cornerRadius = 20
@@ -18,7 +18,7 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
         return xCatImageView
     }()
     
-    private var tagComponents = [(label: UILabel, view: UIView)]()
+    public private(set) var tagComponents = [(label: UILabel, view: UIView)]()
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -105,26 +105,5 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
         tagView.layer.borderColor = UIColor.systemBlue.cgColor
         tagView.layer.cornerRadius = 5
         return tagView
-    }
-    
-    func setCatImage(_ image: DataStatePresenter<Data>) {
-        DispatchQueue.main.async { [setImageFor] in
-            setImageFor(image)
-        }
-    }
-    
-    private func setImageFor(_ state: DataStatePresenter<Data>) {
-        switch state {
-        case .loading:
-            catImageView.image = UIImage(named: AssetConstant.catPlaceholder.rawValue)
-        case .success(let data):
-            if let image = UIImage(data: data) {
-                catImageView.image = image
-            } else {
-                catImageView.image = UIImage(named: AssetConstant.catNotFound.rawValue)
-            }
-        case .failure:
-            catImageView.image = UIImage(named: AssetConstant.catNotFound.rawValue)
-        }
     }
 }

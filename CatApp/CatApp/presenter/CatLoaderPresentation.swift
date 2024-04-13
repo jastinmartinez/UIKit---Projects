@@ -11,7 +11,7 @@ import UIKit
 public final class CatLoaderPresentation: CatLoaderPresenter {
     
     private let catLoader: CatLoader
-    private let catItemImageLoader: CatItemImageLoader
+    private let catItemImageLoader: ImageLoaderAdapter
     public var catState: DataStatePresenter<[Cat]>
     public private(set) var imageForCatDictionary = [String: Cat]()
     public var cats: [Cat] {
@@ -20,7 +20,7 @@ public final class CatLoaderPresentation: CatLoaderPresenter {
             .sorted(by: { $0.id < $1.id })
     }
     
-    public init(catLoader: CatLoader, catItemImageLoader: CatItemImageLoader) {
+    public init(catLoader: CatLoader, catItemImageLoader: ImageLoaderAdapter) {
         self.catLoader = catLoader
         self.catState = .loading
         self.catItemImageLoader = catItemImageLoader

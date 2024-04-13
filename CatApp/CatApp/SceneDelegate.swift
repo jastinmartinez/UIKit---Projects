@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let remoteImageLoader = RemoteImageLoader(client: client)
         let catItemLoaderAdapter = CatItemImageLoaderAdapter(path: "https://cataas.com/cat/", imageLoader: remoteImageLoader)
         let catLoaderPresenter = CatLoaderPresentation(catLoader: remoteCatLoader, catItemImageLoader: catItemLoaderAdapter)
-        let catsViewController = CatsViewController(catLoader: remoteCatLoader)
+        let catsViewController = CatsViewController(catLoader: remoteCatLoader, imageLoaderAdapter: catItemLoaderAdapter)
         let rootNavigationController = UINavigationController(rootViewController: catsViewController)
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
