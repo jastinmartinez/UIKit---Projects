@@ -212,7 +212,6 @@ final class CatsViewControllerTests: XCTestCase {
         
         view1?.simulateRetryAction()
         XCTAssertEqual(loader.loadedImageIds, [cat0.id, cat1.id, cat0.id, cat1.id], "Expected fourth image id after second view retry action")
-        
     }
     
     func test_catView_preLoadsImagesWhenNearVisible() {
@@ -245,6 +244,10 @@ final class CatsViewControllerTests: XCTestCase {
         
         sut.simulateCatVieIsNotNearVisible(at: 1)
         XCTAssertEqual(loader.cancelImageIds, [cat0.id, cat1.id], "Expect second cancel image id request from second view")
+    }
+    
+    func test_catView() {
+        
     }
     
     private func makeSUT(  file: StaticString = #filePath,
@@ -417,10 +420,10 @@ private extension CatsViewController {
                 fake.addTarget(target, action: Selector(action), for: .valueChanged)
             })
         })
+        catRefreshViewController?.view = fake
         refreshControl = fake
     }
 }
-
 
 private class FakeUIRefreshController: UIRefreshControl {
     private var _isRefreshing = false
@@ -435,8 +438,6 @@ private class FakeUIRefreshController: UIRefreshControl {
         _isRefreshing = false
     }
 }
-
-
 
 private extension CatTableViewCell {
     var tags: [String] {
@@ -469,7 +470,6 @@ private extension UIRefreshControl {
         })
     }
 }
-
 
 private extension UIButton {
     func simulateTap() {

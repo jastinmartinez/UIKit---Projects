@@ -7,28 +7,33 @@
 
 import UIKit
 
-
 public class CatsViewController: UITableViewController {
     
-    private var catLoader: CatLoader?
+    private(set) public var catRefreshViewController: CatsRefreshViewController?
     private var imageLoaderAdapter: ImageLoaderAdapter?
-    private var tableModel = [Cat]()
+    private var tableModel = [Cat]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     private var imageTasks = [IndexPath: ImageLoaderTask]()
     
     public convenience init(catLoader: CatLoader,
                             imageLoaderAdapter: ImageLoaderAdapter) {
         self.init()
-        self.catLoader = catLoader
+        self.catRefreshViewController = CatsRefreshViewController(catLoader: catLoader)
         self.imageLoaderAdapter = imageLoaderAdapter
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
+        refreshControl = catRefreshViewController?.view
+        catRefreshViewController?.onRefresh = { [weak self] cats in
+            self?.tableModel = cats
+        }
+        catRefreshViewController?.refresh()
         tableView.prefetchDataSource = self
-        load()
     }
     
     private func registerCell() {
@@ -38,16 +43,6 @@ public class CatsViewController: UITableViewController {
     public override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         refreshControl?.beginRefreshing()
-    }
-    
-    @objc private func load() {
-        catLoader?.load { [weak self] result in
-            if let cats = try? result.get() {
-                self?.tableModel = cats
-                self?.tableView.reloadData()
-            }
-            self?.refreshControl?.endRefreshing()
-        }
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
