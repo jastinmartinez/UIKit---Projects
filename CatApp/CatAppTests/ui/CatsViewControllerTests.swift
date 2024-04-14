@@ -109,6 +109,113 @@ final class CatsViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.cancelImageIds, [cat0.id, cat1.id], "Expected both to be cancel since cell is not visible")
     }
     
+    func test_catViewLoadingIndicator_isVisibleWhileLoadingImage() {
+        let cat0 = makeCat()
+        let cat1 = makeCat()
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.complete(with: [cat0, cat1])
+        
+        let view0 = sut.simulateCatViewVisible(at: 0)
+        XCTAssertEqual(view0?.isShowingImageLoadingIndicator, true)
+        
+        let view1 = sut.simulateCatViewVisible(at: 1)
+        XCTAssertEqual(view1?.isShowingImageLoadingIndicator, true)
+        
+        loader.completeImage(at: 0)
+        XCTAssertEqual(view0?.isShowingImageLoadingIndicator, false)
+        XCTAssertEqual(view1?.isShowingImageLoadingIndicator, true)
+        
+        loader.completeImage(at: 1)
+        XCTAssertEqual(view1?.isShowingImageLoadingIndicator, false)
+        XCTAssertEqual(view0?.isShowingImageLoadingIndicator, false)
+    }
+    
+    func test_catView_renderImageLoadedFromURL() {
+        let cat0 = makeCat()
+        let cat1 = makeCat()
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.complete(with: [cat0, cat1])
+        
+        let view0 = sut.simulateCatViewVisible(at: 0)
+        let view1 = sut.simulateCatViewVisible(at: 1)
+        XCTAssertEqual(view0?.renderImage, .none)
+        XCTAssertEqual(view1?.renderImage, .none)
+        
+        let redImage = UIImage.make(withColor: .red)
+        loader.completeImage(with: redImage, at: 0)
+        XCTAssertEqual(view0?.renderImage, redImage)
+        XCTAssertEqual(view1?.renderImage, .none)
+        
+        let blueImage = UIImage.make(withColor: .blue)
+        loader.completeImage(with: blueImage, at: 1)
+        XCTAssertEqual(view1?.renderImage, blueImage)
+    }
+    
+    func test_catViewRetryButton_isVisibleOnImageURLLoadError() {
+        let cat0 = makeCat()
+        let cat1 = makeCat()
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.complete(with: [cat0, cat1])
+        
+        let view0 = sut.simulateCatViewVisible(at: 0)
+        let view1 = sut.simulateCatViewVisible(at: 1)
+        XCTAssertEqual(view0?.isShowingRetryAction, false)
+        XCTAssertEqual(view1?.isShowingRetryAction, false)
+        
+        let redImageData = UIImage.make(withColor: .red)
+        loader.completeImage(with: redImageData)
+        XCTAssertEqual(view0?.isShowingRetryAction, false)
+        XCTAssertEqual(view1?.isShowingRetryAction, false)
+        
+        loader.completeImage(with: anyError(), at: 1)
+        XCTAssertEqual(view0?.isShowingRetryAction, false)
+        XCTAssertEqual(view1?.isShowingRetryAction, true)
+    }
+    
+    func test_catViewRetryButton_isVisibleOnInvalidImageData() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.complete(with: [makeCat()])
+        
+        let view = sut.simulateCatViewVisible(at: 0)
+        XCTAssertEqual(view?.isShowingRetryAction, false)
+        
+        let invalidImage = Data("invalidImage".utf8)
+        loader.completeImage(with: invalidImage)
+        XCTAssertEqual(view?.isShowingRetryAction, true)
+    }
+    
+    func test_catViewRetryAction_retriesImageLoad() {
+        let cat0 = makeCat()
+        let cat1 = makeCat()
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.complete(with: [cat0, cat1])
+        
+        let view0 = sut.simulateCatViewVisible(at: 0)
+        let view1 = sut.simulateCatViewVisible(at: 1)
+        XCTAssertEqual(loader.loadedImageIds, [cat0.id, cat1.id], "Expected two image id for the two visible views")
+        
+        loader.completeImage(with: anyError(), at: 0)
+        loader.completeImage(with: anyError(), at: 1)
+        XCTAssertEqual(loader.loadedImageIds, [cat0.id, cat1.id], "Expected two image id before retry action")
+        
+        view0?.simulateRetryAction()
+        XCTAssertEqual(loader.loadedImageIds, [cat0.id, cat1.id, cat0.id], "Expected third image id after first view retry action")
+        
+        view1?.simulateRetryAction()
+        XCTAssertEqual(loader.loadedImageIds, [cat0.id, cat1.id, cat0.id, cat1.id], "Expected fourth image id after second view retry action")
+
+    }
+    
     private func makeSUT(  file: StaticString = #filePath,
                            line: UInt = #line) -> (CatsViewController, CatLoaderSpy) {
         let catLoader = CatLoaderSpy()
@@ -170,6 +277,14 @@ class CatLoaderSpy: CatLoader, ImageLoaderAdapter {
         return CancelTasks {  [weak self]in
             self?.cancelCatImageLoaderMessages.append(id)
         }
+    }
+    
+    func completeImage(with data: Data = Data(), at index: Int = 0) {
+        catImageLoaderMessages[index].completion(.success(data))
+    }
+    
+    func completeImage(with error: Error, at index: Int = 0) {
+        catImageLoaderMessages[index].completion(.failure(error))
     }
 
     private struct CancelTasks: ImageLoaderTask {
@@ -277,6 +392,30 @@ private class FakeUIRefreshController: UIRefreshControl {
     }
 }
 
+
+
+private extension CatTableViewCell {
+    var tags: [String] {
+        return tagComponents.compactMap({ $0.label.text })
+    }
+    
+    var isShowingImageLoadingIndicator: Bool {
+        return containerView.isShimmering
+    }
+    
+    var renderImage: Data? {
+        return catImageView.image?.pngData()
+    }
+    
+    var isShowingRetryAction: Bool {
+        return !retryButton.isHidden
+    }
+    
+    func simulateRetryAction() {
+        retryButton.simulateTap()
+    }
+}
+
 private extension UIRefreshControl {
     func simulatePullToRefresh() {
         allTargets.forEach({ target in
@@ -288,8 +427,24 @@ private extension UIRefreshControl {
 }
 
 
-private extension CatTableViewCell {
-    var tags: [String] {
-        return tagComponents.compactMap({ $0.label.text })
+private extension UIButton {
+    func simulateTap() {
+        allTargets.forEach { target in
+            actions(forTarget: target, forControlEvent: .touchUpInside)?.forEach({ action in
+                (target as NSObject).perform(Selector(action))
+            })
+        }
+    }
+}
+
+private extension UIImage {
+    static func make(withColor color: UIColor) -> Data {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        return UIGraphicsImageRenderer(size: rect.size, format: format).image { rendererContext in
+            color.setFill()
+            rendererContext.fill(rect)
+        }.pngData()!
     }
 }

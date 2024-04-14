@@ -11,6 +11,7 @@
 		041778D42B922E020093CE65 /* CatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041778D32B922E020093CE65 /* CatViewController.swift */; };
 		041778D62B924EDE0093CE65 /* CatTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041778D52B924EDE0093CE65 /* CatTagCollectionViewCell.swift */; };
 		0425530A2BCB255F00E8D9E8 /* CatImageLoaderAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042553092BCB255F00E8D9E8 /* CatImageLoaderAdapter.swift */; };
+		0425530C2BCB2CC800E8D9E8 /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425530B2BCB2CC800E8D9E8 /* UIView+Shimmering.swift */; };
 		048BF6D22B903BC30054957E /* IdentifiableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048BF6D12B903BC30054957E /* IdentifiableCell.swift */; };
 		04C2BF772B90E98B0022F098 /* CatItemImageLoaderAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2BF762B90E98B0022F098 /* CatItemImageLoaderAdapterTests.swift */; };
 		04C2BF7B2B90FBAF0022F098 /* ImageLoaderAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2BF7A2B90FBAF0022F098 /* ImageLoaderAdapter.swift */; };
@@ -65,6 +66,7 @@
 		041778D32B922E020093CE65 /* CatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatViewController.swift; sourceTree = "<group>"; };
 		041778D52B924EDE0093CE65 /* CatTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		042553092BCB255F00E8D9E8 /* CatImageLoaderAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImageLoaderAdapter.swift; sourceTree = "<group>"; };
+		0425530B2BCB2CC800E8D9E8 /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		048BF6D12B903BC30054957E /* IdentifiableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableCell.swift; sourceTree = "<group>"; };
 		04C2BF762B90E98B0022F098 /* CatItemImageLoaderAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatItemImageLoaderAdapterTests.swift; sourceTree = "<group>"; };
 		04C2BF7A2B90FBAF0022F098 /* ImageLoaderAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderAdapter.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				04CC41192B8FE24700752774 /* +dequeueReusableCell.swift */,
+				0425530B2BCB2CC800E8D9E8 /* UIView+Shimmering.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				04CC41202B8FE29100752774 /* CatTableViewCell.swift in Sources */,
 				04F5D2562B8EDE2100E01D64 /* ImageLoader.swift in Sources */,
 				04CC411C2B8FE27100752774 /* CatErrorTableViewCell.swift in Sources */,
+				0425530C2BCB2CC800E8D9E8 /* UIView+Shimmering.swift in Sources */,
 				04F5D2522B8ED61900E01D64 /* RemoteImageLoader.swift in Sources */,
 				04F5D2362B8E963800E01D64 /* HTTPClient.swift in Sources */,
 				041778D62B924EDE0093CE65 /* CatTagCollectionViewCell.swift in Sources */,

@@ -7,7 +7,4 @@
 
 import Foundation
 
-public enum ImageLoaderResult {
-    case success(Data)
-    case failure(Error)
-}
+public typealias ImageLoaderResult = Result<Data, Error> 

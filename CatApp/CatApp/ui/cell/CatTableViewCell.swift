@@ -10,7 +10,19 @@ import UIKit
 
 public class CatTableViewCell: UITableViewCell, IdentifiableCell {
     
-    public let catImageView: UIImageView = {
+    private(set) public lazy var containerView: UIView = {
+       return UIView()
+    }()
+    
+    private(set) public lazy var retryButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(retryButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    var onRetry: (() -> Void)?
+    
+    private(set) public lazy var catImageView: UIImageView = {
         let xCatImageView = UIImageView()
         xCatImageView.layer.masksToBounds = true
         xCatImageView.layer.cornerRadius = 20
@@ -34,6 +46,10 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
         setToSubView()
         setConstraint()
         setTagView()
+    }
+    
+    @objc private func retryButtonTapped() {
+        onRetry?()
     }
     
     private func setToSubView() {
