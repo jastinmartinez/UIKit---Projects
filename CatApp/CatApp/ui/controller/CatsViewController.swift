@@ -77,6 +77,10 @@ public class CatsViewController: UITableViewController {
     }
     
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cancelTask(forRowAt: indexPath)
+    }
+    
+    private func cancelTask(forRowAt indexPath: IndexPath) {
         imageTasks[indexPath]?.cancel()
         imageTasks[indexPath] = nil
     }
@@ -86,7 +90,11 @@ extension CatsViewController: UITableViewDataSourcePrefetching {
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { indexPath in
             let cat = tableModel[indexPath.row]
-            _ = imageLoaderAdapter?.load(from: cat.id, completion: { _ in })
+            imageTasks[indexPath] = imageLoaderAdapter?.load(from: cat.id, completion: { _ in })
         }
+    }
+    
+    public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach(cancelTask)
     }
 }

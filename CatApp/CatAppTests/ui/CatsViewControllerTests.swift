@@ -212,7 +212,7 @@ final class CatsViewControllerTests: XCTestCase {
         
         view1?.simulateRetryAction()
         XCTAssertEqual(loader.loadedImageIds, [cat0.id, cat1.id, cat0.id, cat1.id], "Expected fourth image id after second view retry action")
-
+        
     }
     
     func test_catView_preLoadsImagesWhenNearVisible() {
@@ -222,13 +222,29 @@ final class CatsViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         loader.complete(with: [cat0, cat1])
-        XCTAssertEqual(loader.loadedImageIds, [], "Expect no image URL request until image is near visible")
+        XCTAssertEqual(loader.loadedImageIds, [], "Expect no image id request until image is near visible")
         
         sut.simulateCatViewNearVisible(at: 0)
         XCTAssertEqual(loader.loadedImageIds, [cat0.id], "Expected first image Id once first cell is visible")
         
         sut.simulateCatViewNearVisible(at: 1)
         XCTAssertEqual(loader.loadedImageIds, [cat0.id, cat1.id], "Expected second image Id once second cell is visible")
+    }
+    
+    func test_catView_cancelsImagesPreloadingWhenNotNearVisibleAnymore() {
+        let cat0 = makeCat()
+        let cat1 = makeCat()
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.complete(with: [cat0, cat1])
+        XCTAssertEqual(loader.cancelImageIds, [], "Expect no cancel image id request until image is not near visible")
+        
+        sut.simulateCatVieIsNotNearVisible(at: 0)
+        XCTAssertEqual(loader.cancelImageIds, [cat0.id], "Expect first cancel image id request from first view")
+        
+        sut.simulateCatVieIsNotNearVisible(at: 1)
+        XCTAssertEqual(loader.cancelImageIds, [cat0.id, cat1.id], "Expect second cancel image id request from second view")
     }
     
     private func makeSUT(  file: StaticString = #filePath,
@@ -273,7 +289,7 @@ final class CatsViewControllerTests: XCTestCase {
 }
 
 class CatLoaderSpy: CatLoader, ImageLoaderAdapter {
-   
+    
     //    MARK: ImageLoaderAdapter
     
     private var catImageLoaderMessages = [(id: String, completion: (CatApp.ImageLoaderResult) -> Void)]()
@@ -301,14 +317,14 @@ class CatLoaderSpy: CatLoader, ImageLoaderAdapter {
     func completeImage(with error: Error, at index: Int = 0) {
         catImageLoaderMessages[index].completion(.failure(error))
     }
-
+    
     private struct CancelTasks: ImageLoaderTask {
         let callBack: () -> Void
         func cancel() {
             callBack()
         }
     }
-
+    
     //    MARK: CatLoader
     
     private var catLoaderMessages = [(CatApp.CatLoaderResult) -> Void]()
@@ -343,11 +359,17 @@ private extension CatsViewController {
         return catView(at: index) as? CatTableViewCell
     }
     
-    @discardableResult
-    func simulateCatViewNearVisible(at index: Int = 0) -> CatTableViewCell? {
+    func simulateCatViewNearVisible(at index: Int = 0) {
         let prefetch = tableView.prefetchDataSource
         let indexPath = IndexPath(row: index, section: catSection)
-        return prefetch?.tableView(tableView, prefetchRowsAt: [indexPath]) as? CatTableViewCell
+        prefetch?.tableView(tableView, prefetchRowsAt: [indexPath])
+    }
+    
+    func simulateCatVieIsNotNearVisible(at index: Int = 0)  {
+        simulateCatViewNearVisible(at: index)
+        let prefetch = tableView.prefetchDataSource
+        let indexPath = IndexPath(row: index, section: catSection)
+        prefetch?.tableView?(tableView, cancelPrefetchingForRowsAt: [indexPath])
     }
     
     func simulateCatViewNotVisible(at index: Int = 0) {
