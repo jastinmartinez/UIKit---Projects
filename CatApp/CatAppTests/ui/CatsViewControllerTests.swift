@@ -215,6 +215,22 @@ final class CatsViewControllerTests: XCTestCase {
 
     }
     
+    func test_catView_preLoadsImagesWhenNearVisible() {
+        let cat0 = makeCat()
+        let cat1 = makeCat()
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.complete(with: [cat0, cat1])
+        XCTAssertEqual(loader.loadedImageIds, [], "Expect no image URL request until image is near visible")
+        
+        sut.simulateCatViewNearVisible(at: 0)
+        XCTAssertEqual(loader.loadedImageIds, [cat0.id], "Expected first image Id once first cell is visible")
+        
+        sut.simulateCatViewNearVisible(at: 1)
+        XCTAssertEqual(loader.loadedImageIds, [cat0.id, cat1.id], "Expected second image Id once second cell is visible")
+    }
+    
     private func makeSUT(  file: StaticString = #filePath,
                            line: UInt = #line) -> (CatsViewController, CatLoaderSpy) {
         let catLoader = CatLoaderSpy()
@@ -325,6 +341,13 @@ private extension CatsViewController {
     @discardableResult
     func simulateCatViewVisible(at index: Int = 0) -> CatTableViewCell? {
         return catView(at: index) as? CatTableViewCell
+    }
+    
+    @discardableResult
+    func simulateCatViewNearVisible(at index: Int = 0) -> CatTableViewCell? {
+        let prefetch = tableView.prefetchDataSource
+        let indexPath = IndexPath(row: index, section: catSection)
+        return prefetch?.tableView(tableView, prefetchRowsAt: [indexPath]) as? CatTableViewCell
     }
     
     func simulateCatViewNotVisible(at index: Int = 0) {
