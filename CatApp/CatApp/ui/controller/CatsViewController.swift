@@ -56,14 +56,7 @@ public class CatsViewController: UITableViewController {
         catCell.retryButton.isHidden = true
         catCell.catImageView.image = nil
         catCell.containerView.startShimmering()
-        imageTasks[indexPath] = imageLoaderAdapter?.load(from: cat.id, completion: { [weak catCell] result in
-            let data = try? result.get()
-            let image = data.map(UIImage.init) ?? nil
-            catCell?.catImageView.image = image
-            catCell?.retryButton.isHidden = (image != nil)
-            catCell?.containerView.stopShimmering()
-        })
-        catCell.onRetry = { [weak self, weak catCell] in
+        let loadImage = { [weak self, weak catCell] in
             guard let self = self else { return }
             self.imageTasks[indexPath] = self.imageLoaderAdapter?.load(from: cat.id, completion: { [weak catCell] result in
                 let data = try? result.get()
@@ -73,6 +66,8 @@ public class CatsViewController: UITableViewController {
                 catCell?.containerView.stopShimmering()
             })
         }
+        catCell.onRetry = loadImage
+        loadImage()
         return catCell
     }
     

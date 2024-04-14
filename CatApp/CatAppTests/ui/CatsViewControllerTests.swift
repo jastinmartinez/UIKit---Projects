@@ -9,7 +9,6 @@ import Foundation
 import XCTest
 import CatApp
 
-
 final class CatsViewControllerTests: XCTestCase {
     
     func test_loadCatActions_requestCatsFromLoader() {
