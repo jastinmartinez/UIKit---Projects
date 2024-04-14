@@ -12,6 +12,7 @@
 		041778D62B924EDE0093CE65 /* CatTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041778D52B924EDE0093CE65 /* CatTagCollectionViewCell.swift */; };
 		042140EE2BCC3B54009F9587 /* CatsRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042140ED2BCC3B54009F9587 /* CatsRefreshViewController.swift */; };
 		042140F02BCC4230009F9587 /* CatCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042140EF2BCC4230009F9587 /* CatCellController.swift */; };
+		042140F32BCC47DA009F9587 /* CatUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042140F22BCC47DA009F9587 /* CatUIComposer.swift */; };
 		0425530A2BCB255F00E8D9E8 /* CatImageLoaderAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042553092BCB255F00E8D9E8 /* CatImageLoaderAdapter.swift */; };
 		0425530C2BCB2CC800E8D9E8 /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425530B2BCB2CC800E8D9E8 /* UIView+Shimmering.swift */; };
 		048BF6D22B903BC30054957E /* IdentifiableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048BF6D12B903BC30054957E /* IdentifiableCell.swift */; };
@@ -69,6 +70,7 @@
 		041778D52B924EDE0093CE65 /* CatTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		042140ED2BCC3B54009F9587 /* CatsRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsRefreshViewController.swift; sourceTree = "<group>"; };
 		042140EF2BCC4230009F9587 /* CatCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCellController.swift; sourceTree = "<group>"; };
+		042140F22BCC47DA009F9587 /* CatUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatUIComposer.swift; sourceTree = "<group>"; };
 		042553092BCB255F00E8D9E8 /* CatImageLoaderAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImageLoaderAdapter.swift; sourceTree = "<group>"; };
 		0425530B2BCB2CC800E8D9E8 /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		048BF6D12B903BC30054957E /* IdentifiableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableCell.swift; sourceTree = "<group>"; };
@@ -132,6 +134,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		042140F12BCC47CB009F9587 /* composers */ = {
+			isa = PBXGroup;
+			children = (
+				042140F22BCC47DA009F9587 /* CatUIComposer.swift */,
+			);
+			path = composers;
+			sourceTree = "<group>";
+		};
 		04C2BF7C2B9101B30022F098 /* domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +348,7 @@
 		04F5D2462B8ECA1C00E01D64 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				042140F12BCC47CB009F9587 /* composers */,
 				04C2BF7D2B91171A0022F098 /* helper */,
 				04CC41212B8FE2CB00752774 /* controller */,
 				04CC41222B8FE2D500752774 /* cell */,
@@ -458,6 +469,7 @@
 				041778D62B924EDE0093CE65 /* CatTagCollectionViewCell.swift in Sources */,
 				04CC41172B8FC5B400752774 /* CatLoaderPresentation.swift in Sources */,
 				0425530A2BCB255F00E8D9E8 /* CatImageLoaderAdapter.swift in Sources */,
+				042140F32BCC47DA009F9587 /* CatUIComposer.swift in Sources */,
 				04F5D2422B8EC1CA00E01D64 /* Cat.swift in Sources */,
 				04CC411A2B8FE24700752774 /* +dequeueReusableCell.swift in Sources */,
 				04F5D2392B8EC13800E01D64 /* RemoteCat.swift in Sources */,

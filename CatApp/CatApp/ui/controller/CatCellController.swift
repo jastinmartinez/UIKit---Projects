@@ -49,7 +49,7 @@ public class CatCellController {
         self.imageLoaderTask = self.imageLoaderAdapter.load(from: cat.id, completion: {  result in } )
     }
     
-    deinit {
+    func cancel() {
         imageLoaderTask?.cancel()
     }
 }

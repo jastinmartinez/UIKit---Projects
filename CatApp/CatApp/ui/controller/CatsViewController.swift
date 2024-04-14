@@ -7,32 +7,23 @@
 
 import UIKit
 
-
-public class CatsViewController: UITableViewController {
+public class CatsViewController: UITableViewController, UITableViewDataSourcePrefetching {
     
     private(set) public var catRefreshViewController: CatsRefreshViewController?
-    private var imageLoaderAdapter: ImageLoaderAdapter?
-    private var tableModel = [Cat]() {
+    public var tableModel = [CatCellController]() {
         didSet {
             self.tableView.reloadData()
         }
     }
-    private var catCellControllers = [IndexPath: CatCellController]()
-    
-    public convenience init(catLoader: CatLoader,
-                            imageLoaderAdapter: ImageLoaderAdapter) {
+    convenience init(catRefreshViewController: CatsRefreshViewController) {
         self.init()
-        self.catRefreshViewController = CatsRefreshViewController(catLoader: catLoader)
-        self.imageLoaderAdapter = imageLoaderAdapter
+        self.catRefreshViewController = catRefreshViewController
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
         refreshControl = catRefreshViewController?.view
-        catRefreshViewController?.onRefresh = { [weak self] cats in
-            self?.tableModel = cats
-        }
         catRefreshViewController?.refresh()
         tableView.prefetchDataSource = self
     }
@@ -59,19 +50,13 @@ public class CatsViewController: UITableViewController {
     }
     
     private func removeCatCellController(forRowAt indexPath: IndexPath) {
-        catCellControllers[indexPath] = nil
+        tableModel[indexPath.row].cancel()
     }
     
     private func catCellViewControllerForRowAt(_ indexPath: IndexPath) -> CatCellController {
-        let cat = tableModel[indexPath.row]
-        let  catCellController = CatCellController(cat: cat,
-                                                   imageLoaderAdapter: imageLoaderAdapter!)
-        catCellControllers[indexPath] = catCellController
-        return catCellController
+        return tableModel[indexPath.row]
     }
-}
-
-extension CatsViewController: UITableViewDataSourcePrefetching {
+    
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { indexPath in
             catCellViewControllerForRowAt(indexPath).preload()

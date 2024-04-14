@@ -24,8 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let remoteCatLoader = RemoteCatLoader(url: url, client: client)
         let remoteImageLoader = RemoteImageLoader(client: client)
         let catItemLoaderAdapter = CatItemImageLoaderAdapter(path: "https://cataas.com/cat/", imageLoader: remoteImageLoader)
-        let catLoaderPresenter = CatLoaderPresentation(catLoader: remoteCatLoader, catItemImageLoader: catItemLoaderAdapter)
-        let catsViewController = CatsViewController(catLoader: remoteCatLoader, imageLoaderAdapter: catItemLoaderAdapter)
+        let catsViewController = CatUIComposer.catComposeWith(catLoader: remoteCatLoader, imageLoaderAdapter: catItemLoaderAdapter)
         let rootNavigationController = UINavigationController(rootViewController: catsViewController)
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
@@ -60,4 +59,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 }
-

@@ -253,7 +253,7 @@ final class CatsViewControllerTests: XCTestCase {
     private func makeSUT(  file: StaticString = #filePath,
                            line: UInt = #line) -> (CatsViewController, CatLoaderSpy) {
         let catLoader = CatLoaderSpy()
-        let sut = CatsViewController(catLoader: catLoader,
+        let sut = CatUIComposer.catComposeWith(catLoader: catLoader,
                                      imageLoaderAdapter: catLoader)
         trackMemoryLeaks(instance: catLoader, file: file, line: line)
         trackMemoryLeaks(instance: sut, file: file, line: line)
