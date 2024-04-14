@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 public class CatsViewController: UITableViewController {
     
     private(set) public var catRefreshViewController: CatsRefreshViewController?
@@ -16,7 +17,7 @@ public class CatsViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
-    private var imageTasks = [IndexPath: ImageLoaderTask]()
+    private var catCellControllers = [IndexPath: CatCellController]()
     
     public convenience init(catLoader: CatLoader,
                             imageLoaderAdapter: ImageLoaderAdapter) {
@@ -46,25 +47,7 @@ public class CatsViewController: UITableViewController {
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let catCell: CatTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-        let cat = tableModel[indexPath.row]
-        catCell.setCat(cat)
-        catCell.retryButton.isHidden = true
-        catCell.catImageView.image = nil
-        catCell.containerView.startShimmering()
-        let loadImage = { [weak self, weak catCell] in
-            guard let self = self else { return }
-            self.imageTasks[indexPath] = self.imageLoaderAdapter?.load(from: cat.id, completion: { [weak catCell] result in
-                let data = try? result.get()
-                let image = data.map(UIImage.init) ?? nil
-                catCell?.catImageView.image = image
-                catCell?.retryButton.isHidden = (image != nil)
-                catCell?.containerView.stopShimmering()
-            })
-        }
-        catCell.onRetry = loadImage
-        loadImage()
-        return catCell
+        return catCellViewControllerForRowAt(indexPath).view(tableView, cellForRowAt: indexPath)
     }
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,24 +55,30 @@ public class CatsViewController: UITableViewController {
     }
     
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cancelTask(forRowAt: indexPath)
+        removeCatCellController(forRowAt: indexPath)
     }
     
-    private func cancelTask(forRowAt indexPath: IndexPath) {
-        imageTasks[indexPath]?.cancel()
-        imageTasks[indexPath] = nil
+    private func removeCatCellController(forRowAt indexPath: IndexPath) {
+        catCellControllers[indexPath] = nil
+    }
+    
+    private func catCellViewControllerForRowAt(_ indexPath: IndexPath) -> CatCellController {
+        let cat = tableModel[indexPath.row]
+        let  catCellController = CatCellController(cat: cat,
+                                                   imageLoaderAdapter: imageLoaderAdapter!)
+        catCellControllers[indexPath] = catCellController
+        return catCellController
     }
 }
 
 extension CatsViewController: UITableViewDataSourcePrefetching {
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { indexPath in
-            let cat = tableModel[indexPath.row]
-            imageTasks[indexPath] = imageLoaderAdapter?.load(from: cat.id, completion: { _ in })
+            catCellViewControllerForRowAt(indexPath).preload()
         }
     }
     
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach(cancelTask)
+        indexPaths.forEach(removeCatCellController)
     }
 }

@@ -11,6 +11,7 @@
 		041778D42B922E020093CE65 /* CatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041778D32B922E020093CE65 /* CatViewController.swift */; };
 		041778D62B924EDE0093CE65 /* CatTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041778D52B924EDE0093CE65 /* CatTagCollectionViewCell.swift */; };
 		042140EE2BCC3B54009F9587 /* CatsRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042140ED2BCC3B54009F9587 /* CatsRefreshViewController.swift */; };
+		042140F02BCC4230009F9587 /* CatCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042140EF2BCC4230009F9587 /* CatCellController.swift */; };
 		0425530A2BCB255F00E8D9E8 /* CatImageLoaderAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042553092BCB255F00E8D9E8 /* CatImageLoaderAdapter.swift */; };
 		0425530C2BCB2CC800E8D9E8 /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425530B2BCB2CC800E8D9E8 /* UIView+Shimmering.swift */; };
 		048BF6D22B903BC30054957E /* IdentifiableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048BF6D12B903BC30054957E /* IdentifiableCell.swift */; };
@@ -67,6 +68,7 @@
 		041778D32B922E020093CE65 /* CatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatViewController.swift; sourceTree = "<group>"; };
 		041778D52B924EDE0093CE65 /* CatTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		042140ED2BCC3B54009F9587 /* CatsRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsRefreshViewController.swift; sourceTree = "<group>"; };
+		042140EF2BCC4230009F9587 /* CatCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCellController.swift; sourceTree = "<group>"; };
 		042553092BCB255F00E8D9E8 /* CatImageLoaderAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImageLoaderAdapter.swift; sourceTree = "<group>"; };
 		0425530B2BCB2CC800E8D9E8 /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		048BF6D12B903BC30054957E /* IdentifiableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableCell.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				04F5D20B2B8E750100E01D64 /* CatsViewController.swift */,
 				041778D32B922E020093CE65 /* CatViewController.swift */,
 				042140ED2BCC3B54009F9587 /* CatsRefreshViewController.swift */,
+				042140EF2BCC4230009F9587 /* CatCellController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				04F5D20C2B8E750100E01D64 /* CatsViewController.swift in Sources */,
 				04CC41202B8FE29100752774 /* CatTableViewCell.swift in Sources */,
 				04F5D2562B8EDE2100E01D64 /* ImageLoader.swift in Sources */,
+				042140F02BCC4230009F9587 /* CatCellController.swift in Sources */,
 				04CC411C2B8FE27100752774 /* CatErrorTableViewCell.swift in Sources */,
 				0425530C2BCB2CC800E8D9E8 /* UIView+Shimmering.swift in Sources */,
 				04F5D2522B8ED61900E01D64 /* RemoteImageLoader.swift in Sources */,
