@@ -18,12 +18,13 @@ public final class CatItemImageLoaderAdapter: ImageLoaderAdapter {
     }
     
     public func load(from id: String, completion: @escaping (CatApp.ImageLoaderResult) -> Void) -> ImageLoaderTask {
+        let cancellable = CatItemImageLoaderAdapterCancelable(imageLoader: imageLoader)
         guard let url = URL(string: path + id) else {
             completion(.failure(Error.url))
-            return CatImageLoaderTask()
+            return cancellable
         }
         imageLoader.load(from: url, completion: completion)
-        return CatImageLoaderTask()
+        return cancellable
     }
     
     public enum Error: Swift.Error {
@@ -31,8 +32,15 @@ public final class CatItemImageLoaderAdapter: ImageLoaderAdapter {
     }
 }
 
-struct CatImageLoaderTask: ImageLoaderTask {
+struct CatItemImageLoaderAdapterCancelable: ImageLoaderTask {
+    private let imageLoader: ImageLoader
+    
+    init(imageLoader: ImageLoader) {
+        self.imageLoader = imageLoader
+    }
+    
     func cancel() {
-        
+        imageLoader.cancel()
     }
 }
+

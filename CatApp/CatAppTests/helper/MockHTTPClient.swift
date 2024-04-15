@@ -10,6 +10,7 @@ import CatApp
 
 class MockHTTPClient: HTTPClient {
     
+    var cancelsCount = 0
     var concurrentQueueNotifier: (() -> Void)? = nil
     
     var urls: [URL] {
@@ -29,5 +30,9 @@ class MockHTTPClient: HTTPClient {
     
     func completeWith(data: Data, response: HTTPURLResponse, at index: Int = 0) {
         messages[index].completion(.success(data, response))
+    }
+    
+    func cancelRequest() {
+        cancelsCount += 1
     }
 }

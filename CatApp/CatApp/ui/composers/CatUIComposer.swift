@@ -9,6 +9,18 @@ import Foundation
 import UIKit
 
 public enum CatUIComposer {
+    
+    public static func composeRoot() -> UINavigationController {
+        let url = URL(string: "https://cataas.com/api/cats")!
+        let client = URLSessionHTTPClient()
+        let remoteCatLoader = RemoteCatLoader(url: url, client: client)
+        let remoteImageLoader = RemoteImageLoader(client: client)
+        let catItemLoaderAdapter = CatItemImageLoaderAdapter(path: "https://cataas.com/cat/", imageLoader: remoteImageLoader)
+        let catsViewController = CatUIComposer.catComposeWith(catLoader: remoteCatLoader, imageLoaderAdapter: catItemLoaderAdapter)
+        let rootNavigationController = UINavigationController(rootViewController: catsViewController)
+        return rootNavigationController
+    }
+    
     public static func catComposeWith(catLoader: CatLoader,
                                       imageLoaderAdapter: ImageLoaderAdapter) -> CatsViewController {
         let catPresentationAdapter = CatPresentationAdapter(catLoader: catLoader)
@@ -50,12 +62,12 @@ final class CatViewAdapter: CatView {
         self.catsViewController = catsViewController
         self.imageLoaderAdapter = imageLoaderAdapter
     }
-   
+    
     func display(_ viewModel: CatViewModel) {
         catsViewController?.tableModel = viewModel.cats.map({ cat in
             let catImagePresentationAdapter = CatImagePresentationAdapter<WeakRefVirtualProxy<CatCellController>, UIImage>(cat: cat,
-                                                                                                        imageLoaderAdapter: imageLoaderAdapter,
-                                                                                                        imageTransformer: UIImage.init)
+                                                                                                                           imageLoaderAdapter: imageLoaderAdapter,
+                                                                                                                           imageTransformer: UIImage.init)
             let catCellController = CatCellController(delegate: catImagePresentationAdapter)
             let catImagePresenter = CatImagePresenter(view: WeakRefVirtualProxy(catCellController), imageTransformation: UIImage.init)
             catImagePresentationAdapter.presenter = catImagePresenter
@@ -84,7 +96,6 @@ private final class CatPresentationAdapter: CatsRefreshViewControllerDelegate {
         }
     }
 }
-
 
 
 private final class CatImagePresentationAdapter<View: CatImageView, Image>: CatCellControllerDelegate where View.Image == Image {

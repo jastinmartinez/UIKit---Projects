@@ -8,7 +8,7 @@
 import Foundation
 
 final public class RemoteImageLoader: ImageLoader {
-   
+    
     private let client: HTTPClient
     private let catImageQueue = DispatchQueue(label: "com.catImage.download",
                                               qos: .userInteractive,
@@ -36,6 +36,10 @@ final public class RemoteImageLoader: ImageLoader {
             return .failure(Error.statusCode)
         }
         return .success(data)
+    }
+    
+    public func cancel() {
+        client.cancelRequest()
     }
 }
 

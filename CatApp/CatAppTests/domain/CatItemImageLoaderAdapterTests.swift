@@ -104,4 +104,8 @@ private final class MockImageLoader: ImageLoader {
     func completeWith(error: Error, at index: Int = 0) {
         messages[index].1(.failure(error))
     }
+    
+    func cancel() {
+        
+    }
 }

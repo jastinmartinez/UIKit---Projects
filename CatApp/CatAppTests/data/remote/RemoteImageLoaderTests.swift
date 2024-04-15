@@ -12,7 +12,6 @@ import CatApp
 
 final class RemoteImageLoaderTests: XCTestCase {
     
-    
     func test_load_performClientRequest() {
         let url = anyURL()
         let (sut, client) = makeSUT()
@@ -75,6 +74,16 @@ final class RemoteImageLoaderTests: XCTestCase {
             }
             wait(for: [exp], timeout: 1.0)
         }, expect: .failure(RemoteImageLoader.Error.statusCode))
+    }
+    
+    func test_load_performClientRequest_performCancelRequest() {
+        let (sut, client) = makeSUT()
+        let url = anyURL()
+        
+        sut.load(from: url) { result in }
+        sut.cancel()
+        
+        XCTAssertEqual(client.cancelsCount, 1)
     }
     
     private func expect(from sut: RemoteImageLoader,
