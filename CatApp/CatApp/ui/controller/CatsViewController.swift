@@ -32,6 +32,11 @@ public class CatsViewController: UITableViewController, UITableViewDataSourcePre
         setRefreshControlControl()
         catRefreshViewController?.refresh()
         setPrefetchDelegate()
+        setHeightForRow()
+    }
+    
+    private func setHeightForRow() {
+        self.tableView.rowHeight = 70
     }
     
     private func setPrefetchDelegate() {
