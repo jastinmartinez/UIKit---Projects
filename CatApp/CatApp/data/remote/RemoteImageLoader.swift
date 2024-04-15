@@ -15,7 +15,7 @@ final public class RemoteImageLoader: ImageLoader {
         self.client = client
     }
     
-    public func load(from url: URL, completion: @escaping (ImageLoaderResult) -> Void) {
+    public func load(from url: URL, completion: @escaping (ImageLoader.Result) -> Void) {
         client.get(from: url) { clientResult in
             switch clientResult {
             case .success(let data, let response):
@@ -26,7 +26,7 @@ final public class RemoteImageLoader: ImageLoader {
         }
     }
     
-    private static func map(data: Data, response: HTTPURLResponse) -> ImageLoaderResult {
+    private static func map(data: Data, response: HTTPURLResponse) -> ImageLoader.Result {
         guard response.statusCode == RemoteImageLoader.OK_200 else {
             return .failure(Error.statusCode)
         }

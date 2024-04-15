@@ -103,10 +103,10 @@ final class CatItemImageLoaderAdapterTests: XCTestCase {
 private final class MockImageLoader: ImageLoader {
     
     var cancelCounter = 0
-    private(set) var messages = [(URL, (CatApp.ImageLoaderResult) -> Void)]()
+    private(set) var messages = [(URL, (ImageLoader.Result) -> Void)]()
     
    
-    func load(from url: URL, completion: @escaping (CatApp.ImageLoaderResult) -> Void) {
+    func load(from url: URL, completion: @escaping (ImageLoader.Result) -> Void) {
         messages.append((url, completion))
     }
     

@@ -12,5 +12,5 @@ public protocol ImageLoaderTask {
 }
 
 public protocol ImageLoaderAdapter {
-    func load(from id: String, completion: @escaping (CatApp.ImageLoaderResult) -> Void) -> ImageLoaderTask
+    func load(from id: String, completion: @escaping (ImageLoader.Result) -> Void) -> ImageLoaderTask
 }

@@ -76,7 +76,7 @@ final class RemoteImageLoaderTests: XCTestCase {
     private func expect(from sut: RemoteImageLoader,
                         with url: URL,
                         complete: () -> Void,
-                        expect: ImageLoaderResult,
+                        expect: ImageLoader.Result,
                         file: StaticString = #filePath,
                         line: UInt = #line) {
         let exp = expectation(description: "wait for async call")

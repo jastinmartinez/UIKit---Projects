@@ -17,7 +17,7 @@ public final class CatItemImageLoaderAdapter: ImageLoaderAdapter {
         self.imageLoader = imageLoader
     }
     
-    public func load(from id: String, completion: @escaping (CatApp.ImageLoaderResult) -> Void) -> ImageLoaderTask {
+    public func load(from id: String, completion: @escaping (ImageLoader.Result) -> Void) -> ImageLoaderTask {
         let cancellable = CatItemImageLoaderAdapterCancelable(imageLoader: imageLoader)
         guard let url = URL(string: path + id) else {
             completion(.failure(Error.url))

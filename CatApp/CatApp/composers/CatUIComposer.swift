@@ -52,7 +52,7 @@ private final class MainQueueDispatcherDecorator<T> {
 }
 
 extension MainQueueDispatcherDecorator: CatLoader where T == CatLoader {
-    func load(completion: @escaping (CatLoaderResult) -> Void) {
+    func load(completion: @escaping (CatLoader.Result) -> Void) {
         delegate.load { [weak self] result in
             self?.dispatch { completion(result) }
         }
@@ -60,7 +60,7 @@ extension MainQueueDispatcherDecorator: CatLoader where T == CatLoader {
 }
 
 extension MainQueueDispatcherDecorator: ImageLoaderAdapter where T == ImageLoaderAdapter {
-    func load(from id: String, completion: @escaping (ImageLoaderResult) -> Void) -> ImageLoaderTask {
+    func load(from id: String, completion: @escaping (ImageLoader.Result) -> Void) -> ImageLoaderTask {
         return delegate.load(from: id) { [weak self] result in
             self?.dispatch { completion(result) }
         }

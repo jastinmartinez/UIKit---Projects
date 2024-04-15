@@ -321,7 +321,7 @@ class CatLoaderSpy: CatLoader, ImageLoaderAdapter {
     
     //    MARK: ImageLoaderAdapter
     
-    private var catImageLoaderMessages = [(id: String, completion: (CatApp.ImageLoaderResult) -> Void)]()
+    private var catImageLoaderMessages = [(id: String, completion: (ImageLoader.Result) -> Void)]()
     private var cancelCatImageLoaderMessages = [String]()
     
     var loadedImageIds: [String] {
@@ -332,7 +332,7 @@ class CatLoaderSpy: CatLoader, ImageLoaderAdapter {
         return cancelCatImageLoaderMessages
     }
     
-    func load(from id: String, completion: @escaping (CatApp.ImageLoaderResult) -> Void) -> ImageLoaderTask {
+    func load(from id: String, completion: @escaping (ImageLoader.Result) -> Void) -> ImageLoaderTask {
         catImageLoaderMessages.append((id, completion))
         return CancelTasks {  [weak self]in
             self?.cancelCatImageLoaderMessages.append(id)
@@ -356,13 +356,13 @@ class CatLoaderSpy: CatLoader, ImageLoaderAdapter {
     
     //    MARK: CatLoader
     
-    private var catLoaderMessages = [(CatApp.CatLoaderResult) -> Void]()
+    private var catLoaderMessages = [(CatLoader.Result) -> Void]()
     
     var localCallCount: Int {
         return catLoaderMessages.count
     }
     
-    func load(completion: @escaping (CatApp.CatLoaderResult) -> Void) {
+    func load(completion: @escaping (CatLoader.Result) -> Void) {
         catLoaderMessages.append(completion)
     }
     

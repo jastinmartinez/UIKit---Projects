@@ -8,5 +8,6 @@
 import Foundation
 
 public protocol CatLoader {
-    func load(completion: @escaping (CatLoaderResult) -> Void)
+    typealias Result = Swift.Result<[Cat], Error>
+    func load(completion: @escaping (Result) -> Void)
 }
