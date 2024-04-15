@@ -60,8 +60,8 @@ extension MainQueueDispatcherDecorator: CatLoader where T == CatLoader {
 }
 
 extension MainQueueDispatcherDecorator: ImageLoaderAdapter where T == ImageLoaderAdapter {
-    func load(from id: String, completion: @escaping (ImageLoaderResult) -> Void) -> any ImageLoaderTask {
-        delegate.load(from: id) { [weak self] result in
+    func load(from id: String, completion: @escaping (ImageLoaderResult) -> Void) -> ImageLoaderTask {
+        return delegate.load(from: id) { [weak self] result in
             self?.dispatch { completion(result) }
         }
     }

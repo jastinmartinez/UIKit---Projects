@@ -235,6 +235,7 @@
 		04F5D2062B8E750100E01D64 /* CatApp */ = {
 			isa = PBXGroup;
 			children = (
+				042140F12BCC47CB009F9587 /* composers */,
 				04F5D2462B8ECA1C00E01D64 /* ui */,
 				04CC41112B8FC58800752774 /* presenter */,
 				04F5D23A2B8EC15300E01D64 /* domain */,
@@ -343,7 +344,6 @@
 		04F5D2462B8ECA1C00E01D64 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				042140F12BCC47CB009F9587 /* composers */,
 				04C2BF7D2B91171A0022F098 /* helper */,
 				04CC41212B8FE2CB00752774 /* controller */,
 				04CC41222B8FE2D500752774 /* cell */,
