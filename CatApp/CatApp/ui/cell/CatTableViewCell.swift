@@ -62,10 +62,10 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
     }
     
     private func setConstraint() {
-        NSLayoutConstraint.activate([catImageView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+        NSLayoutConstraint.activate([catImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
                                      catImageView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-                                     catImageView.heightAnchor.constraint(equalToConstant: 70),
-                                     catImageView.widthAnchor.constraint(equalToConstant: 70)])
+                                     catImageView.heightAnchor.constraint(equalToConstant: 50),
+                                     catImageView.widthAnchor.constraint(equalToConstant: 50)])
     }
     
     func setTags(_ tags: [String]?) {

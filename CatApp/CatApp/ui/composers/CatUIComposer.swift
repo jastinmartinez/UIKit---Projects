@@ -23,12 +23,47 @@ public enum CatUIComposer {
     
     public static func catComposeWith(catLoader: CatLoader,
                                       imageLoaderAdapter: ImageLoaderAdapter) -> CatsViewController {
-        let catPresentationAdapter = CatPresentationAdapter(catLoader: catLoader)
+        let catPresentationAdapter = CatPresentationAdapter(catLoader: MainQueueDispatcherDecorator(delegate: catLoader))
         let catRefreshViewController = CatsRefreshViewController(delegate: catPresentationAdapter)
         let catsViewController = CatsViewController(catRefreshViewController: catRefreshViewController)
-        let catViewAdapter = CatViewAdapter(catsViewController: catsViewController, imageLoaderAdapter: imageLoaderAdapter)
+        let catViewAdapter = CatViewAdapter(catsViewController: catsViewController, imageLoaderAdapter: MainQueueDispatcherDecorator(delegate: imageLoaderAdapter))
         catPresentationAdapter.catPresenter = CatPresenter(catLoadingView: WeakRefVirtualProxy(catRefreshViewController), catView: catViewAdapter)
         return catsViewController
+    }
+}
+
+private final class MainQueueDispatcherDecorator<T> {
+    
+    private let delegate: T
+    
+    init(delegate: T) {
+        self.delegate = delegate
+    }
+    
+    func dispatch(completion: @escaping () -> Void) {
+        if Thread.isMainThread {
+            completion()
+        } else {
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
+}
+
+extension MainQueueDispatcherDecorator: CatLoader where T == CatLoader {
+    func load(completion: @escaping (CatLoaderResult) -> Void) {
+        delegate.load { [weak self] result in
+            self?.dispatch { completion(result) }
+        }
+    }
+}
+
+extension MainQueueDispatcherDecorator: ImageLoaderAdapter where T == ImageLoaderAdapter {
+    func load(from id: String, completion: @escaping (ImageLoaderResult) -> Void) -> any ImageLoaderTask {
+        delegate.load(from: id) { [weak self] result in
+            self?.dispatch { completion(result) }
+        }
     }
 }
 

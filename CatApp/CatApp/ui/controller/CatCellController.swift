@@ -17,7 +17,7 @@ public class CatCellController: CatImageView {
   
     private let delegate: CatCellControllerDelegate
     private var cell: CatTableViewCell?
-  
+   
     init(delegate: CatCellControllerDelegate) {
         self.delegate = delegate
     }

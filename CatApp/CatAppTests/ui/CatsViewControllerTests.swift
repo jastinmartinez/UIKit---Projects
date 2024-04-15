@@ -246,8 +246,34 @@ final class CatsViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.cancelImageIds, [cat0.id, cat1.id], "Expect second cancel image id request from second view")
     }
     
-    func test_catView() {
+    func test_loadCatCompletion_dispatchesFromBackgroundToMainThread() {
+        let (sut, loader) = makeSUT()
         
+        sut.loadViewIfNeeded()
+        
+        let exp = expectation(description: "wait for async call")
+        DispatchQueue.global().async {
+            loader.complete(at: 0)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func test_loadCatImageCompletion_dispatchesFromBackgroundToMainThread() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.complete(with: [makeCat()])
+        _ = sut.simulateCatViewVisible()
+        
+        let exp = expectation(description: "wait for async call")
+        DispatchQueue.global().async {
+            loader.completeImage()
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
     }
     
     private func makeSUT(  file: StaticString = #filePath,
