@@ -68,8 +68,8 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
                                      catImageView.widthAnchor.constraint(equalToConstant: 70)])
     }
     
-    func setCat(_ cat: Cat) {
-        if let tags = cat.tags {
+    func setTags(_ tags: [String]?) {
+        if let tags = tags {
             for index in 0..<min(3,tags.count) {
                 tagComponents[index].label.text = tags[index]
                 tagComponents[index].view.isHidden = false

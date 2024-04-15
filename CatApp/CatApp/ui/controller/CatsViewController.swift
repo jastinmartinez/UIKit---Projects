@@ -10,31 +10,45 @@ import UIKit
 public class CatsViewController: UITableViewController, UITableViewDataSourcePrefetching {
     
     private(set) public var catRefreshViewController: CatsRefreshViewController?
+    
     public var tableModel = [CatCellController]() {
         didSet {
             self.tableView.reloadData()
         }
     }
+    
     convenience init(catRefreshViewController: CatsRefreshViewController) {
         self.init()
         self.catRefreshViewController = catRefreshViewController
     }
-
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
-        registerCell()
-        refreshControl = catRefreshViewController?.view
+        onCreate()
+    }
+    
+    private func onCreate() {
+        setCell()
+        setRefreshControlControl()
         catRefreshViewController?.refresh()
+        setPrefetchDelegate()
+    }
+    
+    private func setPrefetchDelegate() {
         tableView.prefetchDataSource = self
     }
     
-    private func registerCell() {
+    private func setRefreshControlControl() {
+        refreshControl = catRefreshViewController?.view
+    }
+    
+    private func setCell() {
         tableView.register(CatTableViewCell.self, forCellReuseIdentifier: CatTableViewCell.name)
     }
     
     public override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
-        refreshControl?.beginRefreshing()
+        catRefreshViewController?.beginRefreshing?()
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

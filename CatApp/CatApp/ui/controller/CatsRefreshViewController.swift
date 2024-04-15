@@ -8,28 +8,36 @@
 import Foundation
 import UIKit
 
-public class CatsRefreshViewController: NSObject {
+protocol CatsRefreshViewControllerDelegate {
+    func didRequestCatRefresh()
+}
+
+public class CatsRefreshViewController: NSObject, CatLoadingView {
+    public lazy var view = loadView()
+    private(set) var beginRefreshing: (() -> Void)?
+    private let delegate: CatsRefreshViewControllerDelegate
     
-    public lazy var view: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        return refreshControl
-    }()
-    
-    private let catLoader: CatLoader
-    
-    init(catLoader: CatLoader) {
-        self.catLoader = catLoader
+    init(delegate: CatsRefreshViewControllerDelegate) {
+        self.delegate = delegate
     }
     
-    var onRefresh: (([Cat]) -> Void)?
-    
     @objc func refresh() {
-        catLoader.load { [weak self] result in
-            if let cats = try? result.get() {
-                self?.onRefresh?(cats)
+        delegate.didRequestCatRefresh()
+    }
+    
+    func display(_ viewModel: CatLoadingViewModel) {
+        if viewModel.isLoading {
+            beginRefreshing = { [weak self] in
+                self?.view.beginRefreshing()
             }
-            self?.view.endRefreshing()
+        } else {
+            view.endRefreshing()
         }
+    }
+    
+    private func loadView() -> UIRefreshControl {
+        let view = UIRefreshControl()
+        view.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return view
     }
 }

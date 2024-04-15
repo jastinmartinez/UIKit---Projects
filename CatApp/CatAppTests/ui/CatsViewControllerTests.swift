@@ -421,7 +421,7 @@ private extension CatsViewController {
             })
         })
         catRefreshViewController?.view = fake
-        refreshControl = fake
+        refreshControl = catRefreshViewController?.view
     }
 }
 

@@ -8,48 +8,52 @@
 import Foundation
 import UIKit
 
-public class CatCellController {
+protocol CatCellControllerDelegate {
+    func didRequestImage()
+    func didCancelImageRequest()
+}
+
+public class CatCellController: CatImageView {
+  
+    private let delegate: CatCellControllerDelegate
+    private var cell: CatTableViewCell?
+  
+    init(delegate: CatCellControllerDelegate) {
+        self.delegate = delegate
+    }
     
-    private var imageLoaderTask: ImageLoaderTask?
-    private let cat: Cat
-    private let imageLoaderAdapter: ImageLoaderAdapter
-    
-    init(cat: Cat, imageLoaderAdapter: ImageLoaderAdapter) {
-        self.imageLoaderTask = nil
-        self.cat = cat
-        self.imageLoaderAdapter = imageLoaderAdapter
+    func display(_ viewModel: CatImageViewModel<UIImage>) {
+        cell?.setTags(viewModel.tags)
+        cell?.catImageView.image = viewModel.image
+        cell?.retryButton.isHidden = !viewModel.shouldRetry
+        if viewModel.isLoading {
+            cell?.containerView.startShimmering()
+        } else {
+            cell?.containerView.stopShimmering()
+        }
     }
     
     func view(_ tableView: UITableView,
               cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        self.cell = bindFor(tableView, cellForRowAt: indexPath)
+        delegate.didRequestImage()
+        return cell!
+    }
+    
+    private func bindFor(_ tableView: UITableView,
+                         cellForRowAt indexPath: IndexPath) -> CatTableViewCell {
         let catCell: CatTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-        catCell.setCat(cat)
         catCell.retryButton.isHidden = true
         catCell.catImageView.image = nil
-        catCell.containerView.startShimmering()
-        
-        let loadImage = { [weak self, weak catCell] in
-            guard let self = self else { return }
-            
-            self.imageLoaderTask = self.imageLoaderAdapter.load(from: cat.id, completion: { [weak catCell] result in
-                let data = try? result.get()
-                let image = data.map(UIImage.init) ?? nil
-                catCell?.catImageView.image = image
-                catCell?.retryButton.isHidden = (image != nil)
-                catCell?.containerView.stopShimmering()
-            })
-        }
-        catCell.onRetry = loadImage
-        loadImage()
+        catCell.onRetry = delegate.didRequestImage
         return catCell
     }
     
     func preload() {
-        self.imageLoaderTask = self.imageLoaderAdapter.load(from: cat.id, completion: {  result in } )
+        delegate.didRequestImage()
     }
     
     func cancel() {
-        imageLoaderTask?.cancel()
+        delegate.didCancelImageRequest()
     }
 }
