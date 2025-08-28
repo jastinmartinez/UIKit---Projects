@@ -99,7 +99,25 @@ final class URLSessionHTTPClientTests: XCTestCase {
         wait(for: [waitForRequest], timeout: 1.0)
     }
     
-    
+    func test_httpClient_canCancelRequests() {
+        let sut = URLSessionHTTPClient()
+        let anyURL = anyURL()
+        MockSession.stub()
+        
+        let waitForRequest = expectation(description: "wait for async call")
+        sut.get(from: anyURL, completion: { result in
+            switch result {
+            case .success:
+                XCTFail("Expected failure instead got \(result) ")
+            case .failure(let failure):
+                XCTAssertEqual((failure as NSError).code, NSURLErrorCancelled)
+            }
+            waitForRequest.fulfill()
+        })
+        sut.cancelRequest()
+        
+        wait(for: [waitForRequest], timeout: 1.0)
+    }
     private func makeSUT() -> URLSessionHTTPClient {
         let sut = URLSessionHTTPClient()
         trackMemoryLeaks(instance: sut)

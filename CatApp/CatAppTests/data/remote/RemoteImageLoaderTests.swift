@@ -12,21 +12,13 @@ import CatApp
 
 final class RemoteImageLoaderTests: XCTestCase {
     
-    
     func test_load_performClientRequest() {
         let url = anyURL()
         let (sut, client) = makeSUT()
         
-        let exp = expectation(description: "wait for async code")
-        
-        client.concurrentQueueNotifier = {
-            XCTAssertEqual(client.urls, [url])
-            exp.fulfill()
-        }
-        
         sut.load(from: url, completion: {_ in })
         
-        wait(for: [exp], timeout: 1.0)
+        XCTAssertEqual(client.urls, [url])
     }
     
     func test_load_performClientRequest_DeliversError() {
@@ -36,10 +28,8 @@ final class RemoteImageLoaderTests: XCTestCase {
         
         expect(from: sut, with: url, complete: {
             let exp = expectation(description: "wait for async call")
-            client.concurrentQueueNotifier  = {
-                client.completeWith(error: error)
-                exp.fulfill()
-            }
+            client.completeWith(error: error)
+            exp.fulfill()
             wait(for: [exp], timeout: 1.0)
         }, expect: .failure(error))
     }
@@ -52,10 +42,8 @@ final class RemoteImageLoaderTests: XCTestCase {
         
         expect(from: sut, with: url, complete: {
             let exp = expectation(description: "wait for async call")
-            client.concurrentQueueNotifier  = {
-                client.completeWith(data: data, response: anyResponse)
-                exp.fulfill()
-            }
+            client.completeWith(data: data, response: anyResponse)
+            exp.fulfill()
             wait(for: [exp], timeout: 1.0)
         }, expect: .success(data))
     }
@@ -69,18 +57,26 @@ final class RemoteImageLoaderTests: XCTestCase {
         
         expect(from: sut, with: url, complete: {
             let exp = expectation(description: "wait for async call")
-            client.concurrentQueueNotifier  = {
-                client.completeWith(data: data, response: anyResponse)
-                exp.fulfill()
-            }
+            client.completeWith(data: data, response: anyResponse)
+            exp.fulfill()
             wait(for: [exp], timeout: 1.0)
         }, expect: .failure(RemoteImageLoader.Error.statusCode))
+    }
+    
+    func test_load_performClientRequest_performCancelRequest() {
+        let (sut, client) = makeSUT()
+        let url = anyURL()
+        
+        sut.load(from: url) { result in }
+        sut.cancel()
+        
+        XCTAssertEqual(client.cancelsCount, 1)
     }
     
     private func expect(from sut: RemoteImageLoader,
                         with url: URL,
                         complete: () -> Void,
-                        expect: ImageLoaderResult,
+                        expect: ImageLoader.Result,
                         file: StaticString = #filePath,
                         line: UInt = #line) {
         let exp = expectation(description: "wait for async call")

@@ -10,9 +10,9 @@ import CatApp
 
 final class MockCatLoader: CatLoader {
     
-    private var messages = [(CatApp.CatLoaderResult) -> Void]()
+    private var messages = [(CatLoader.Result) -> Void]()
     
-    func load(completion: @escaping (CatApp.CatLoaderResult) -> Void) {
+    func load(completion: @escaping (CatLoader.Result) -> Void) {
         messages.append(completion)
     }
     

@@ -14,7 +14,7 @@ public enum RemoteCatLoaderMapper {
         return RemoteStatusCodes.OK.rawValue
     }
     
-    static func map(_ data: Data, response: HTTPURLResponse) -> CatLoaderResult {
+    static func map(_ data: Data, response: HTTPURLResponse) -> CatLoader.Result {
         do {
             guard response.statusCode == OK_200 else {
                 return .failure(RemoteCatLoader.Error.statusCode(response.statusCode))

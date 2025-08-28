@@ -15,7 +15,8 @@
       "identifier" : "04F5D2032B8E750100E01D64",
       "name" : "CatApp"
     },
-    "testExecutionOrdering" : "random"
+    "testExecutionOrdering" : "random",
+    "threadSanitizerEnabled" : true
   },
   "testTargets" : [
     {

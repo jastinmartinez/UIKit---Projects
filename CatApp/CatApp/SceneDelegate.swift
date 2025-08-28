@@ -19,21 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let url = URL(string: "https://cataas.com/api/cats")!
-        let client = URLSessionHTTPClient()
-        let remoteCatLoader = RemoteCatLoader(url: url, client: client)
-        let remoteImageLoader = RemoteImageLoader(client: client)
-        let catItemLoaderAdapter = CatItemImageLoaderAdapter(path: "https://cataas.com/cat/", imageLoader: remoteImageLoader)
-        let catLoaderPresenter = CatLoaderPresentation(catLoader: remoteCatLoader, catItemImageLoader: catItemLoaderAdapter)
-        let catsViewController = CatsViewController(catPresenter: catLoaderPresenter)
-        let rootNavigationController = UINavigationController(rootViewController: catsViewController)
-        catsViewController.didSelectCat = { index in
-            catLoaderPresenter.catState.onSuccess { cats in
-                let cat = cats[index]
-                let catViewController = CatViewController(cat: cat)
-                rootNavigationController.pushViewController(catViewController, animated: true) }
-            }
-        window?.rootViewController = rootNavigationController
+        window?.rootViewController = CatUIComposer.composeRoot()
         window?.makeKeyAndVisible()
     }
     
@@ -66,4 +52,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 }
-

@@ -81,6 +81,17 @@ final class CatItemImageLoaderAdapterTests: XCTestCase {
         XCTAssertEqual(client.messages.map({$0.0.absoluteString}), [result,result])
     }
     
+    func test_load_canCancelRequest() {
+        let path = "anyPath"
+        let imageId = "anyId"
+        let (sut, client) = makeSUT(path: path)
+        
+        let request = sut.load(from: imageId) { result in }
+        request.cancel()
+        
+        XCTAssertEqual(client.cancelCounter, 1)
+    }
+    
     private func makeSUT(path: String) -> (CatItemImageLoaderAdapter, MockImageLoader) {
         let client = MockImageLoader()
         let sut = CatItemImageLoaderAdapter(path: path, imageLoader: client)
@@ -91,9 +102,11 @@ final class CatItemImageLoaderAdapterTests: XCTestCase {
 
 private final class MockImageLoader: ImageLoader {
     
-    private(set) var messages = [(URL, (CatApp.ImageLoaderResult) -> Void)]()
+    var cancelCounter = 0
+    private(set) var messages = [(URL, (ImageLoader.Result) -> Void)]()
     
-    func load(from url: URL, completion: @escaping (CatApp.ImageLoaderResult) -> Void) {
+   
+    func load(from url: URL, completion: @escaping (ImageLoader.Result) -> Void) {
         messages.append((url, completion))
     }
     
@@ -103,5 +116,9 @@ private final class MockImageLoader: ImageLoader {
     
     func completeWith(error: Error, at index: Int = 0) {
         messages[index].1(.failure(error))
+    }
+    
+    func cancel() {
+        cancelCounter += 1
     }
 }

@@ -10,7 +10,25 @@ import UIKit
 
 public class CatTableViewCell: UITableViewCell, IdentifiableCell {
     
-    private let catImageView: UIImageView = {
+    public lazy var containerView: UIView = {
+        let xView = UIView()
+        xView.layer.masksToBounds = true
+        xView.layer.cornerRadius = 20
+        xView.translatesAutoresizingMaskIntoConstraints = false
+       return xView
+    }()
+    
+    private(set) public lazy var retryButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
+        button.addTarget(self, action: #selector(retryButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    var onRetry: (() -> Void)?
+    
+    private(set) public lazy var catImageView: UIImageView = {
         let xCatImageView = UIImageView()
         xCatImageView.layer.masksToBounds = true
         xCatImageView.layer.cornerRadius = 20
@@ -18,7 +36,7 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
         return xCatImageView
     }()
     
-    private var tagComponents = [(label: UILabel, view: UIView)]()
+    public private(set) var tagComponents = [(label: UILabel, view: UIView)]()
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,8 +54,17 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
         setTagView()
     }
     
+    @objc private func retryButtonTapped() {
+        onRetry?()
+        print(">> 1")
+    }
+    
     private func setToSubView() {
-        addSubview(catImageView)
+        contentView.addSubview(retryButton)
+        contentView.addSubview(catImageView)
+        contentView.addSubview(containerView)
+        contentView.sendSubviewToBack(containerView)
+        contentView.sendSubviewToBack(catImageView)
     }
     
     private func setLayout() {
@@ -46,14 +73,25 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
     }
     
     private func setConstraint() {
-        NSLayoutConstraint.activate([catImageView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+        NSLayoutConstraint.activate([catImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
                                      catImageView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-                                     catImageView.heightAnchor.constraint(equalToConstant: 70),
-                                     catImageView.widthAnchor.constraint(equalToConstant: 70)])
+                                     catImageView.heightAnchor.constraint(equalToConstant: 50),
+                                     catImageView.widthAnchor.constraint(equalToConstant: 50)])
+        
+        NSLayoutConstraint.activate([retryButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+                                     retryButton.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+                                     retryButton.heightAnchor.constraint(equalToConstant: 50),
+                                     retryButton.widthAnchor.constraint(equalToConstant: 50)])
+        
+        
+        NSLayoutConstraint.activate([containerView.centerYAnchor.constraint(equalTo: centerYAnchor),
+                                     containerView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+                                     containerView.heightAnchor.constraint(equalToConstant: 50),
+                                     containerView.widthAnchor.constraint(equalToConstant: 50)])
     }
     
-    func setCat(_ cat: Cat) {
-        if let tags = cat.tags {
+    func setTags(_ tags: [String]?) {
+        if let tags = tags {
             for index in 0..<min(3,tags.count) {
                 tagComponents[index].label.text = tags[index]
                 tagComponents[index].view.isHidden = false
@@ -77,7 +115,7 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
         addSubview(tagStackView)
         NSLayoutConstraint.activate([tagStackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
                                      tagStackView.leadingAnchor.constraint(equalTo: catImageView.trailingAnchor, constant: 10),
-                                     tagStackView.trailingAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.trailingAnchor),
+                                     tagStackView.trailingAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.trailingAnchor, constant: -10),
                                      tagStackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)])
     }
     
@@ -105,26 +143,5 @@ public class CatTableViewCell: UITableViewCell, IdentifiableCell {
         tagView.layer.borderColor = UIColor.systemBlue.cgColor
         tagView.layer.cornerRadius = 5
         return tagView
-    }
-    
-    func setCatImage(_ image: DataStatePresenter<Data>) {
-        DispatchQueue.main.async { [setImageFor] in
-            setImageFor(image)
-        }
-    }
-    
-    private func setImageFor(_ state: DataStatePresenter<Data>) {
-        switch state {
-        case .loading:
-            catImageView.image = UIImage(named: AssetConstant.catPlaceholder.rawValue)
-        case .success(let data):
-            if let image = UIImage(data: data) {
-                catImageView.image = image
-            } else {
-                catImageView.image = UIImage(named: AssetConstant.catNotFound.rawValue)
-            }
-        case .failure:
-            catImageView.image = UIImage(named: AssetConstant.catNotFound.rawValue)
-        }
     }
 }
